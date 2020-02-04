@@ -1,6 +1,6 @@
-package mcFayyaz;
+package McFayyaz;
 
-public class mcFayyaz {
+public class McFayyaz {
     public boolean addResturant(){
         //    TODO
         return false;

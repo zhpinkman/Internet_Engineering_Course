@@ -1,4 +1,4 @@
-package mcFayyaz;
+package McFayyaz;
 
 public class UserManager {
 }
