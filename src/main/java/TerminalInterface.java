@@ -26,10 +26,18 @@ public class TerminalInterface {
     }
 
     private static String runCommand(String command, String jsonData, McFayyaz mcFayyaz){
-        Gson gson = new Gson();
-        Resturant resturant = gson.fromJson(jsonData, Resturant.class);
-        resturant.print();
-        return "";
+        try {
+            if (command.equals("addRestaurant")) {
+                Gson gson = new Gson();
+                Restaurant restaurant = gson.fromJson(jsonData, Restaurant.class);
+                restaurant.print();
+            }
+
+
+        }catch (Exception e){
+            return e.getMessage();
+        }
+        return "OK";
     }
 
     private static String[] parseInput(String input) {

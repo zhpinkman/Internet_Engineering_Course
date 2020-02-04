@@ -1,9 +1,13 @@
 package McFayyaz;
 
+import java.util.List;
+
 public class McFayyaz {
-    public boolean addResturant(){
-        //    TODO
-        return false;
+    List<Restaurant> restaurants;
+
+    public boolean addResturant(Restaurant restaurant){
+        restaurants.add(restaurant);
+        return true;
     }
 
 
