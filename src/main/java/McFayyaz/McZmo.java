@@ -2,7 +2,7 @@ package McFayyaz;
 
 import java.util.List;
 
-public class McFayyaz {
+public class McZmo {
     List<Restaurant> restaurants;
 
     public boolean addResturant(Restaurant restaurant){

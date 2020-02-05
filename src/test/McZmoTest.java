@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-public class McFayyazTest {
+public class McZmoTest {
     @Test
     public void test(){
 
