@@ -47,7 +47,11 @@ public class TerminalInterface {
             } else if (command.equals("getRestaurants")) {
                 mcZmo.printRestaurants();
             } else if (command.equals("getRestaurant")) {
-                // TODO: 2/5/20  
+                Properties properties = gson.fromJson(jsonData, Properties.class);
+                String restaurantName = properties.getProperty("name");
+                Restaurant restaurant = mcZmo.getRestaurant(restaurantName);
+                String restaurantDetail = gson.toJson(restaurant);
+                System.out.println(restaurantDetail);
             } else if (command.equals("getFoods")) {
                 // TODO: 2/5/20  
             } else if (command.equals("getFood")) {

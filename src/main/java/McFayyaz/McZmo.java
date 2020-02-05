@@ -32,4 +32,13 @@ public class McZmo {
             System.out.println(restaurant.getName());
         }
     }
+
+    public Restaurant getRestaurant(String restaurantName) throws Exception {
+        for (Restaurant restaurant: restaurants) {
+            if (restaurant.getName().equals(restaurantName)) {
+                return restaurant;
+            }
+        }
+        throw new Exception("Error: restaurant does not exists");
+    }
 }
