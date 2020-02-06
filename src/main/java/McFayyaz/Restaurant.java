@@ -55,4 +55,17 @@ public class Restaurant {
             throw new Exception("Error: Duplicate food");
         menu.add(food);
     }
+
+    public int getFoodsPopularityAverage() {
+        int foodsPopulationSum = 0;
+        for (Food food: menu) {
+            foodsPopulationSum += food.getPopularity();
+        }
+        return foodsPopulationSum / menu.size();
+    }
+
+
+    public double getDistanceFromLocation(Location location) {
+        return this.location.getDistanceFromLocation(location);
+    }
 }

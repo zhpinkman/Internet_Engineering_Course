@@ -8,3 +8,4 @@ McFayyaz/RestaurantManager.class
 TerminalInterface.class
 McFayyaz/Location.class
 McFayyaz/Restaurant.class
+McFayyaz/SortByAveragePopularityDistance.class

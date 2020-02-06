@@ -1,6 +1,8 @@
 package McFayyaz;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class McZmo {
@@ -61,5 +63,35 @@ public class McZmo {
             }
         }
         throw new Exception("Error: restaurant does not exists");
+    }
+
+    public void printRecommendedRestaurants() {
+        Collections.sort(restaurants, new SortByAveragePopularityDistance(user.getLocation()));
+        List<Restaurant> firstThreeRestaurants = restaurants.subList(0, 3);
+        for (Restaurant restaurant: firstThreeRestaurants) {
+            System.out.println(restaurant.getName());
+        }
+    }
+
+}
+
+class SortByAveragePopularityDistance implements Comparator<Restaurant> {
+
+    private Location location;
+
+    public SortByAveragePopularityDistance(Location location) {
+        this.location = location;
+    }
+
+
+    @Override
+    public int compare(Restaurant r1, Restaurant r2) {
+        double r1FoodsAverage = r1.getFoodsPopularityAverage();
+        double r2FoodsAverage = r2.getFoodsPopularityAverage();
+        double r1DistanceFromUser = r1.getDistanceFromLocation(location);
+        double r2DistanceFromUser = r2.getDistanceFromLocation(location);
+        int r1Rank = (int) (r1FoodsAverage / r1DistanceFromUser);
+        int r2Rank = (int) (r2FoodsAverage / r2DistanceFromUser);
+        return r1Rank - r2Rank;
     }
 }

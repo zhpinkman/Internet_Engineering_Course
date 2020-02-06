@@ -13,4 +13,8 @@ public class Food {
     public String getName() {
         return name;
     }
+
+    public double getPopularity() {
+        return popularity;
+    }
 }

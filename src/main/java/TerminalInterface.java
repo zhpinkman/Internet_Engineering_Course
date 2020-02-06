@@ -70,7 +70,7 @@ public class TerminalInterface {
             } else if (command.equals("finalizeOrder")) {
                 // TODO: 2/5/20
             } else if (command.equals("getRecommendedRestaurant")) {
-                // TODO: 2/5/20
+                mcZmo.printRecommendedRestaurants();
             } else {
                 throw new Exception("Error: Bad Format");
             }
