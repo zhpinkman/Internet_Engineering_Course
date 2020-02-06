@@ -8,13 +8,20 @@ import java.util.List;
 public class Cart {
     private List<CartItem> cartItems = new ArrayList<CartItem>();
 
-    public void addToCart(CartItem newCartItem) throws Exception {
+    private CartItem findCartItem(CartItem newCartItem){
         for (CartItem cartItem: cartItems) {
             if (cartItem.getFood().getName().equals(newCartItem.getFood().getName())) {
-                throw new Exception("Error: item already exists in cart");
+                return cartItem;
             }
         }
-        cartItems.add(newCartItem);
+        return null;
+    }
+
+    private boolean doesRestaurantMatch(CartItem newCartItem){
+        Restaurant activeRestaurant = this.getRestaurant();
+        if (activeRestaurant != null && !activeRestaurant.getName().equals(newCartItem.getRestaurant().getName()))
+            return true;
+        return false;
     }
 
     public Restaurant getRestaurant() {
@@ -22,5 +29,16 @@ public class Cart {
             return cartItems.get(0).getRestaurant();
         }
         return null;
+    }
+
+    public void addToCart(CartItem newCartItem) throws Exception {
+        if (doesRestaurantMatch(newCartItem))
+            throw new Exception("Error: you have some food from another restaurant, then you can not add foods from another restaurant to your cart");
+
+        CartItem cartItem = findCartItem(newCartItem);
+        if (cartItem != null)
+            cartItem.increaseQuantity();
+        else
+            cartItems.add(newCartItem);
     }
 }

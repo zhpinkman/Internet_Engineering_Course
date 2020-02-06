@@ -6,6 +6,7 @@ import McFayyaz.Restaurant.Restaurant;
 public class CartItem {
     private Restaurant restaurant;
     private Food food;
+    private int quantity = 1;
 
     public CartItem(Restaurant restaurant, Food food) {
         this.restaurant = restaurant;
@@ -20,4 +21,7 @@ public class CartItem {
         return restaurant;
     }
 
+    public void increaseQuantity() {
+        quantity += 1;
+    }
 }

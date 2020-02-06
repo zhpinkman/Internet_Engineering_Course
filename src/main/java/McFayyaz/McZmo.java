@@ -3,6 +3,7 @@ package McFayyaz;
 import McFayyaz.Restaurant.Food;
 import McFayyaz.Restaurant.Location;
 import McFayyaz.Restaurant.Restaurant;
+import McFayyaz.User.Cart;
 import McFayyaz.User.CartItem;
 import McFayyaz.User.User;
 
@@ -39,6 +40,9 @@ public class McZmo {
     }
 
     public void printRestaurants() {
+        if(restaurants.size() == 0){
+            System.out.println("No added Restaurants yet");
+        }
         for (Restaurant restaurant: restaurants) {
             System.out.println(restaurant.getName());
         }
@@ -63,18 +67,11 @@ public class McZmo {
     }
 
     public void addToCart(String restaurantName, String foodName) throws Exception{
-        for (Restaurant restaurant: restaurants) {
-            if (restaurant.getName().equals(restaurantName)) {
-                Restaurant activeRestaurant = user.getActiveRestaurant();
-                if (activeRestaurant != null && !activeRestaurant.getName().equals(restaurantName))
-                    throw new Exception("Error: you have some food from another restaurant, then you can not add foods from another restaurant to your cart");
-                Food food = restaurant.getFood(foodName);
-                CartItem cartItem = new CartItem(restaurant, food);
-                user.addToCart(cartItem);
-                return;
-            }
-        }
-        throw new Exception("Error: restaurant does not exists");
+        Restaurant restaurant = getRestaurant(restaurantName);
+        Food food = restaurant.getFood(foodName);
+        CartItem cartItem = new CartItem(restaurant, food);
+        user.addToCart(cartItem);
+        return;
     }
 
     public void printRecommendedRestaurants() {
@@ -85,6 +82,9 @@ public class McZmo {
         }
     }
 
+    public Cart getCart() {
+        return user.getUserCart();
+    }
 }
 
 class SortByAveragePopularityDistance implements Comparator<Restaurant> {
