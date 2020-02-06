@@ -7,8 +7,7 @@ import java.util.Properties;
 
 import McFayyaz.Restaurant.Food;
 import McFayyaz.Restaurant.Restaurant;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 
 public class TerminalInterface {
     public static void main(String[] args) throws IOException {
@@ -35,7 +34,7 @@ public class TerminalInterface {
 
     private static String runCommand(String command, String jsonData, McZmo mcZmo){
         try {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();;
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
             if (command.equals("addRestaurant")) {
                 System.out.println("Adding Restaurant");
                 Restaurant restaurant = gson.fromJson(jsonData, Restaurant.class);
@@ -80,7 +79,7 @@ public class TerminalInterface {
 
             } else if (command.equals("getCart")) {
                 System.out.println("Getting cart");
-                System.out.println(gson.toJson(mcZmo.getCart()));
+                System.out.println(mcZmo.getBriefCartJson());
 
             } else if (command.equals("finalizeOrder")) {
                 System.out.println("Finalizing Order");
