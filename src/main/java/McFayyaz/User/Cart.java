@@ -19,9 +19,7 @@ public class Cart {
 
     private boolean doesRestaurantMatch(CartItem newCartItem){
         Restaurant activeRestaurant = this.getRestaurant();
-        if (activeRestaurant != null && !activeRestaurant.getName().equals(newCartItem.getRestaurant().getName()))
-            return true;
-        return false;
+        return activeRestaurant != null && !activeRestaurant.getName().equals(newCartItem.getRestaurant().getName());
     }
 
     public Restaurant getRestaurant() {

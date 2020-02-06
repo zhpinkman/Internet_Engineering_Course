@@ -7,7 +7,7 @@ public class Restaurant {
     private String name;
     private String description;
     private Location location;
-    private List<Food> menu = new ArrayList<Food>();
+    private List<Food> menu = new ArrayList<>();
 
 
 
@@ -19,10 +19,6 @@ public class Restaurant {
         for (Food food:menu) {
             food.print();
         }
-    }
-
-    public void testRestaurant(){
-
     }
 
     public Food getFood(String foodName) throws Exception {

@@ -14,12 +14,12 @@ import com.google.gson.JsonElement;
 import java.util.*;
 
 public class McZmo {
-    final int RECOMMEND_COUNT = 3;
+    private final int RECOMMEND_COUNT = 3;
 
-    List<Restaurant> restaurants = new ArrayList<Restaurant>();
-    User user = new User();
+    private List<Restaurant> restaurants = new ArrayList<>();
+    private User user = new User();
 
-    public boolean doesRestaurantExist(Restaurant restaurant) {
+    private boolean doesRestaurantExist(Restaurant restaurant) {
         for (Restaurant restaurantItem : restaurants)
             if (restaurantItem.isCopy(restaurant))
                 return true;
@@ -74,13 +74,11 @@ public class McZmo {
         Food food = restaurant.getFood(foodName);
         CartItem cartItem = new CartItem(restaurant, food);
         user.addToCart(cartItem);
-        return;
     }
 
     public List<Restaurant> getRecommendedRestaurants() {
-        Collections.sort(restaurants, new SortByAveragePopularityDistance(user.getLocation()));
-        List<Restaurant> firstThreeRestaurants = restaurants.subList(0, Math.min(RECOMMEND_COUNT, restaurants.size()));
-        return firstThreeRestaurants;
+        restaurants.sort(new SortByAveragePopularityDistance(user.getLocation()));
+        return restaurants.subList(0, Math.min(RECOMMEND_COUNT, restaurants.size()));
     }
 
     public void printRecommendedRestaurants() {

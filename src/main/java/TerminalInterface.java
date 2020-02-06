@@ -9,7 +9,7 @@ import McFayyaz.Restaurant.Food;
 import McFayyaz.Restaurant.Restaurant;
 import com.google.gson.*;
 
-public class TerminalInterface {
+class TerminalInterface {
     public static void main(String[] args) throws IOException {
         McZmo mcZmo = new McZmo();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -32,72 +32,86 @@ public class TerminalInterface {
         }
     }
 
-    private static String runCommand(String command, String jsonData, McZmo mcZmo){
+    private static void runCommand(String command, String jsonData, McZmo mcZmo){
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            if (command.equals("addRestaurant")) {
-                System.out.println("Adding Restaurant");
-                Restaurant restaurant = gson.fromJson(jsonData, Restaurant.class);
-                mcZmo.addRestaurant(restaurant);
+            switch (command) {
+                case "addRestaurant": {
+                    System.out.println("Adding Restaurant");
+                    Restaurant restaurant = gson.fromJson(jsonData, Restaurant.class);
+                    mcZmo.addRestaurant(restaurant);
 
-            } else if (command.equals("addFood")) {
-                System.out.println("Adding Food");
-                Food food = gson.fromJson(jsonData, Food.class);
-                Properties properties = gson.fromJson(jsonData, Properties.class);
-                String restaurantName = properties.getProperty("restaurantName");
+                    break;
+                }
+                case "addFood": {
+                    System.out.println("Adding Food");
+                    Food food = gson.fromJson(jsonData, Food.class);
+                    Properties properties = gson.fromJson(jsonData, Properties.class);
+                    String restaurantName = properties.getProperty("restaurantName");
 //                System.out.println(restaurantName);
-                mcZmo.addFood(restaurantName, food);
-                food.print();
+                    mcZmo.addFood(restaurantName, food);
+                    food.print();
 
-            } else if (command.equals("getRestaurants")) {
-                System.out.println("Getting Restaurants");
-                mcZmo.printRestaurants();
+                    break;
+                }
+                case "getRestaurants":
+                    System.out.println("Getting Restaurants");
+                    mcZmo.printRestaurants();
 
-            } else if (command.equals("getRestaurant")) {
-                System.out.println("Getting Restaurant");
-                Properties properties = gson.fromJson(jsonData, Properties.class);
-                String restaurantName = properties.getProperty("name");
-                Restaurant restaurant = mcZmo.getRestaurant(restaurantName);
-                String restaurantDetail = gson.toJson(restaurant);
-                System.out.println(restaurantDetail);
+                    break;
+                case "getRestaurant": {
+                    System.out.println("Getting Restaurant");
+                    Properties properties = gson.fromJson(jsonData, Properties.class);
+                    String restaurantName = properties.getProperty("name");
+                    Restaurant restaurant = mcZmo.getRestaurant(restaurantName);
+                    String restaurantDetail = gson.toJson(restaurant);
+                    System.out.println(restaurantDetail);
 
-            } else if (command.equals("getFood")) {
-                System.out.println("Getting Food");
-                Properties properties = gson.fromJson(jsonData, Properties.class);
-                String restaurantName = properties.getProperty("restaurantName");
-                String foodName = properties.getProperty("foodName");
-                Food food = mcZmo.getFood(restaurantName, foodName);
-                String foodDetail = gson.toJson(food);
-                System.out.println(foodDetail);
+                    break;
+                }
+                case "getFood": {
+                    System.out.println("Getting Food");
+                    Properties properties = gson.fromJson(jsonData, Properties.class);
+                    String restaurantName = properties.getProperty("restaurantName");
+                    String foodName = properties.getProperty("foodName");
+                    Food food = mcZmo.getFood(restaurantName, foodName);
+                    String foodDetail = gson.toJson(food);
+                    System.out.println(foodDetail);
 
-            } else if (command.equals("addToCart")) {
-                System.out.println("Adding to Cart");
-                Properties properties = gson.fromJson(jsonData, Properties.class);
-                String restaurantName = properties.getProperty("restaurantName");
-                String foodName = properties.getProperty("foodName");
-                mcZmo.addToCart(restaurantName, foodName);
+                    break;
+                }
+                case "addToCart": {
+                    System.out.println("Adding to Cart");
+                    Properties properties = gson.fromJson(jsonData, Properties.class);
+                    String restaurantName = properties.getProperty("restaurantName");
+                    String foodName = properties.getProperty("foodName");
+                    mcZmo.addToCart(restaurantName, foodName);
 
-            } else if (command.equals("getCart")) {
-                System.out.println("Getting cart");
-                System.out.println(mcZmo.getBriefCartJson());
+                    break;
+                }
+                case "getCart":
+                    System.out.println("Getting cart");
+                    System.out.println(mcZmo.getBriefCartJson());
 
-            } else if (command.equals("finalizeOrder")) {
-                System.out.println("Finalizing Order");
-                System.out.println(mcZmo.getBriefCartJson());
-                mcZmo.finalizeOrder();
-                System.out.println("Order Finalized");
+                    break;
+                case "finalizeOrder":
+                    System.out.println("Finalizing Order");
+                    System.out.println(mcZmo.getBriefCartJson());
+                    mcZmo.finalizeOrder();
+                    System.out.println("Order Finalized");
 
-            } else if (command.equals("getRecommendedRestaurants")) {
-                System.out.println("Getting Recommended Restaurant");
-                mcZmo.printRecommendedRestaurants();
+                    break;
+                case "getRecommendedRestaurants":
+                    System.out.println("Getting Recommended Restaurant");
+                    mcZmo.printRecommendedRestaurants();
 
-            } else {
-                throw new Exception("Error: Bad Format");
+                    break;
+                default:
+                    throw new Exception("Error: Bad Format");
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return "OK";
     }
 
     private static String[] parseInput(String input) {
