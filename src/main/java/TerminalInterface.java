@@ -87,7 +87,7 @@ public class TerminalInterface {
                 mcZmo.finalizeOrder();
                 System.out.println("Order Finalized");
 
-            } else if (command.equals("getRecommendedRestaurant")) {
+            } else if (command.equals("getRecommendedRestaurants")) {
                 System.out.println("Getting Recommended Restaurant");
                 mcZmo.printRecommendedRestaurants();
 

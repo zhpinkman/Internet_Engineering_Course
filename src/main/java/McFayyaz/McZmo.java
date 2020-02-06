@@ -14,24 +14,26 @@ import com.google.gson.JsonElement;
 import java.util.*;
 
 public class McZmo {
+    final int RECOMMEND_COUNT = 3;
+
     List<Restaurant> restaurants = new ArrayList<Restaurant>();
     User user = new User();
 
-    public boolean doesRestaurantExist(Restaurant restaurant){
-        for(Restaurant restaurantItem : restaurants)
-            if(restaurantItem.isCopy(restaurant))
+    public boolean doesRestaurantExist(Restaurant restaurant) {
+        for (Restaurant restaurantItem : restaurants)
+            if (restaurantItem.isCopy(restaurant))
                 return true;
         return false;
     }
 
-    public void addRestaurant(Restaurant restaurant) throws Exception{
+    public void addRestaurant(Restaurant restaurant) throws Exception {
         if (doesRestaurantExist(restaurant))
             throw new Exception("Error: Duplicate restaurant");
         restaurants.add(restaurant);
     }
 
     public void addFood(String restaurantName, Food food) throws Exception {
-        for (Restaurant restaurant: restaurants) {
+        for (Restaurant restaurant : restaurants) {
             if (restaurant.getName().equals(restaurantName)) {
                 restaurant.addFood(food);
                 return;
@@ -41,16 +43,16 @@ public class McZmo {
     }
 
     public void printRestaurants() {
-        if(restaurants.size() == 0){
+        if (restaurants.size() == 0) {
             System.out.println("No added Restaurants yet");
         }
-        for (Restaurant restaurant: restaurants) {
+        for (Restaurant restaurant : restaurants) {
             System.out.println(restaurant.getName());
         }
     }
 
     public Restaurant getRestaurant(String restaurantName) throws Exception {
-        for (Restaurant restaurant: restaurants) {
+        for (Restaurant restaurant : restaurants) {
             if (restaurant.getName().equals(restaurantName)) {
                 return restaurant;
             }
@@ -59,7 +61,7 @@ public class McZmo {
     }
 
     public Food getFood(String restaurantName, String foodName) throws Exception {
-        for (Restaurant restaurant: restaurants) {
+        for (Restaurant restaurant : restaurants) {
             if (restaurant.getName().equals(restaurantName)) {
                 return restaurant.getFood(foodName);
             }
@@ -67,7 +69,7 @@ public class McZmo {
         throw new Exception("Error: restaurant does not exists");
     }
 
-    public void addToCart(String restaurantName, String foodName) throws Exception{
+    public void addToCart(String restaurantName, String foodName) throws Exception {
         Restaurant restaurant = getRestaurant(restaurantName);
         Food food = restaurant.getFood(foodName);
         CartItem cartItem = new CartItem(restaurant, food);
@@ -75,10 +77,15 @@ public class McZmo {
         return;
     }
 
-    public void printRecommendedRestaurants() {
+    public List<Restaurant> getRecommendedRestaurants() {
         Collections.sort(restaurants, new SortByAveragePopularityDistance(user.getLocation()));
-        List<Restaurant> firstThreeRestaurants = restaurants.subList(0, 3);
-        for (Restaurant restaurant: firstThreeRestaurants) {
+        List<Restaurant> firstThreeRestaurants = restaurants.subList(0, Math.min(RECOMMEND_COUNT, restaurants.size()));
+        return firstThreeRestaurants;
+    }
+
+    public void printRecommendedRestaurants() {
+        List<Restaurant> firstThreeRestaurants = getRecommendedRestaurants();
+        for (Restaurant restaurant : firstThreeRestaurants) {
             System.out.println(restaurant.getName());
         }
     }
@@ -87,7 +94,7 @@ public class McZmo {
         return user.getUserCart();
     }
 
-    public String getBriefCartJson(){
+    public String getBriefCartJson() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonElement cartJsonElement = gson.toJsonTree(this.getCart());
         JsonArray array = cartJsonElement.getAsJsonObject().get("cartItems").getAsJsonArray();
@@ -112,15 +119,14 @@ class SortByAveragePopularityDistance implements Comparator<Restaurant> {
         this.location = location;
     }
 
-
     @Override
     public int compare(Restaurant r1, Restaurant r2) {
-        double r1FoodsAverage = r1.getFoodsPopularityAverage();
-        double r2FoodsAverage = r2.getFoodsPopularityAverage();
+        double r1FoodsPopularityAverage = r1.getFoodsPopularityAverage();
+        double r2FoodsPopularityAverage = r2.getFoodsPopularityAverage();
         double r1DistanceFromUser = r1.getDistanceFromLocation(location);
         double r2DistanceFromUser = r2.getDistanceFromLocation(location);
-        int r1Rank = (int) (r1FoodsAverage / r1DistanceFromUser);
-        int r2Rank = (int) (r2FoodsAverage / r2DistanceFromUser);
+        int r1Rank = (int) (r1FoodsPopularityAverage / r1DistanceFromUser);
+        int r2Rank = (int) (r2FoodsPopularityAverage / r2DistanceFromUser);
         return r1Rank - r2Rank;
     }
 }
