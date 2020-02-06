@@ -1,5 +1,11 @@
 package McFayyaz;
 
+import McFayyaz.Restaurant.Food;
+import McFayyaz.Restaurant.Location;
+import McFayyaz.Restaurant.Restaurant;
+import McFayyaz.User.CartItem;
+import McFayyaz.User.User;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,9 +15,15 @@ public class McZmo {
     List<Restaurant> restaurants = new ArrayList<Restaurant>();
     User user = new User();
 
+    public boolean doesRestaurantExist(Restaurant restaurant){
+        for(Restaurant restaurantItem : restaurants)
+            if(restaurantItem.isCopy(restaurant))
+                return true;
+        return false;
+    }
 
     public void addRestaurant(Restaurant restaurant) throws Exception{
-        if (restaurants.contains(restaurant))
+        if (doesRestaurantExist(restaurant))
             throw new Exception("Error: Duplicate restaurant");
         restaurants.add(restaurant);
     }

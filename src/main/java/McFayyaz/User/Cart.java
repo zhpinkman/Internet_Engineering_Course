@@ -1,4 +1,6 @@
-package McFayyaz;
+package McFayyaz.User;
+
+import McFayyaz.Restaurant.Restaurant;
 
 import java.util.ArrayList;
 import java.util.List;

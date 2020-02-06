@@ -1,4 +1,4 @@
-package McFayyaz;
+package McFayyaz.User;
 
 public class UserManager {
 }

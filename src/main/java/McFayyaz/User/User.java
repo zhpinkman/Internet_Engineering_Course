@@ -1,4 +1,7 @@
-package McFayyaz;
+package McFayyaz.User;
+
+import McFayyaz.Restaurant.Location;
+import McFayyaz.Restaurant.Restaurant;
 
 public class User {
     private Cart userCart = new Cart();

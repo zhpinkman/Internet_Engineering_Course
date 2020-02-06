@@ -1,4 +1,7 @@
-package McFayyaz;
+package McFayyaz.User;
+
+import McFayyaz.Restaurant.Food;
+import McFayyaz.Restaurant.Restaurant;
 
 public class CartItem {
     private Restaurant restaurant;

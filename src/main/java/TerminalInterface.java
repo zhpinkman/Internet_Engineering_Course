@@ -1,10 +1,12 @@
 import McFayyaz.McZmo;
-import McFayyaz.*;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
+import McFayyaz.Restaurant.Food;
+import McFayyaz.Restaurant.Restaurant;
 import com.google.gson.Gson;
 
 public class TerminalInterface {
