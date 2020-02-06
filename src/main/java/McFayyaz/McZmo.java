@@ -35,7 +35,7 @@ public class McZmo {
                 return;
             }
         }
-        throw new Exception("Error: restaurant does not exists");
+        throw new Exception("Error: " + restaurantName + " restaurant does not exists");
     }
 
     public void printRestaurants() {

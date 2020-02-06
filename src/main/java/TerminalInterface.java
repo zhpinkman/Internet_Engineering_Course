@@ -43,7 +43,7 @@ public class TerminalInterface {
                 Food food = gson.fromJson(jsonData, Food.class);
                 Properties properties = gson.fromJson(jsonData, Properties.class);
                 String restaurantName = properties.getProperty("restaurantName");
-                System.out.println(restaurantName);
+//                System.out.println(restaurantName);
                 mcZmo.addFood(restaurantName, food);
                 food.print();
             } else if (command.equals("getRestaurants")) {
