@@ -99,6 +99,9 @@ public class McZmo {
         return gson.toJson(cartJsonElement);
     }
 
+    public void finalizeOrder() {
+        user.finalizeOrder();
+    }
 }
 
 class SortByAveragePopularityDistance implements Comparator<Restaurant> {

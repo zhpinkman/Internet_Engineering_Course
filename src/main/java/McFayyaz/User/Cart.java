@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    private List<CartItem> cartItems = new ArrayList<CartItem>();
+    private List<CartItem> cartItems = new ArrayList<>();
 
     private CartItem findCartItem(CartItem newCartItem){
         for (CartItem cartItem: cartItems) {
@@ -40,5 +40,9 @@ public class Cart {
             cartItem.increaseQuantity();
         else
             cartItems.add(newCartItem);
+    }
+
+    public void emptyCart(){
+        cartItems.clear();
     }
 }

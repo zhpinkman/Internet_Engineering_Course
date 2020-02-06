@@ -21,4 +21,9 @@ public class User {
     public Location getLocation() {
         return location;
     }
+
+    public void finalizeOrder() {
+        userCart.emptyCart();
+
+    }
 }

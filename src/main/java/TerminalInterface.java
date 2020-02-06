@@ -83,7 +83,9 @@ public class TerminalInterface {
 
             } else if (command.equals("finalizeOrder")) {
                 System.out.println("Finalizing Order");
-                // TODO: 2/5/20
+                System.out.println(mcZmo.getBriefCartJson());
+                mcZmo.finalizeOrder();
+                System.out.println("Order Finalized");
 
             } else if (command.equals("getRecommendedRestaurant")) {
                 System.out.println("Getting Recommended Restaurant");
