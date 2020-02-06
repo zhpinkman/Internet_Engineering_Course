@@ -3,6 +3,7 @@ import McFayyaz.McZmo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Properties;
 
 import McFayyaz.Restaurant.Food;
@@ -26,13 +27,14 @@ class TerminalInterface {
                     jsonData = input_parts[1];
                 }
                 runCommand(command, jsonData, mcZmo);
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static void runCommand(String command, String jsonData, McZmo mcZmo){
+    private static void runCommand(String command, String jsonData, McZmo mcZmo) {
+        final int RECOMMEND_COUNT = 3;
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             switch (command) {
@@ -103,14 +105,20 @@ class TerminalInterface {
                     break;
                 case "getRecommendedRestaurants":
                     System.out.println("Getting Recommended Restaurant");
-                    mcZmo.printRecommendedRestaurants();
+                    printRecommendedRestaurants(mcZmo.getRecommendedRestaurants(RECOMMEND_COUNT));
 
                     break;
                 default:
                     throw new Exception("Error: Bad Format");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private static void printRecommendedRestaurants(List<Restaurant> firstThreeRestaurants) {
+        for (Restaurant restaurant : firstThreeRestaurants) {
+            System.out.println(restaurant.getName());
         }
     }
 

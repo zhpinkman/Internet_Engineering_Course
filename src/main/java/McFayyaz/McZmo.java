@@ -1,130 +1,61 @@
 package McFayyaz;
 
 import McFayyaz.Restaurant.Food;
-import McFayyaz.Restaurant.Location;
 import McFayyaz.Restaurant.Restaurant;
+import McFayyaz.Restaurant.RestaurantManager;
 import McFayyaz.User.Cart;
 import McFayyaz.User.CartItem;
-import McFayyaz.User.User;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
+import McFayyaz.User.UserManager;
 
-import java.util.*;
+import java.util.List;
 
 public class McZmo {
-    private final int RECOMMEND_COUNT = 3;
+    private RestaurantManager restaurantManager = new RestaurantManager();
+    private UserManager userManager = new UserManager();
 
-    private List<Restaurant> restaurants = new ArrayList<>();
-    private User user = new User();
-
-    private boolean doesRestaurantExist(Restaurant restaurant) {
-        for (Restaurant restaurantItem : restaurants)
-            if (restaurantItem.isCopy(restaurant))
-                return true;
-        return false;
-    }
-
+    //    RESTAURANT MANAGER
     public void addRestaurant(Restaurant restaurant) throws Exception {
-        if (doesRestaurantExist(restaurant))
-            throw new Exception("Error: Duplicate restaurant");
-        restaurants.add(restaurant);
+        restaurantManager.addRestaurant(restaurant);
     }
 
     public void addFood(String restaurantName, Food food) throws Exception {
-        for (Restaurant restaurant : restaurants) {
-            if (restaurant.getName().equals(restaurantName)) {
-                restaurant.addFood(food);
-                return;
-            }
-        }
-        throw new Exception("Error: " + restaurantName + " restaurant does not exists");
+        restaurantManager.addFood(restaurantName, food);
     }
 
     public void printRestaurants() {
-        if (restaurants.size() == 0) {
-            System.out.println("No added Restaurants yet");
-        }
-        for (Restaurant restaurant : restaurants) {
-            System.out.println(restaurant.getName());
-        }
+        restaurantManager.printRestaurants();
     }
 
     public Restaurant getRestaurant(String restaurantName) throws Exception {
-        for (Restaurant restaurant : restaurants) {
-            if (restaurant.getName().equals(restaurantName)) {
-                return restaurant;
-            }
-        }
-        throw new Exception("Error: restaurant does not exists");
+        return restaurantManager.getRestaurant(restaurantName);
     }
 
     public Food getFood(String restaurantName, String foodName) throws Exception {
-        for (Restaurant restaurant : restaurants) {
-            if (restaurant.getName().equals(restaurantName)) {
-                return restaurant.getFood(foodName);
-            }
-        }
-        throw new Exception("Error: restaurant does not exists");
+        return restaurantManager.getFood(restaurantName, foodName);
     }
 
+    //    USER MANAGER
     public void addToCart(String restaurantName, String foodName) throws Exception {
         Restaurant restaurant = getRestaurant(restaurantName);
         Food food = restaurant.getFood(foodName);
         CartItem cartItem = new CartItem(restaurant, food);
-        user.addToCart(cartItem);
-    }
-
-    public List<Restaurant> getRecommendedRestaurants() {
-        restaurants.sort(new SortByAveragePopularityDistance(user.getLocation()));
-        return restaurants.subList(0, Math.min(RECOMMEND_COUNT, restaurants.size()));
-    }
-
-    public void printRecommendedRestaurants() {
-        List<Restaurant> firstThreeRestaurants = getRecommendedRestaurants();
-        for (Restaurant restaurant : firstThreeRestaurants) {
-            System.out.println(restaurant.getName());
-        }
+        userManager.addToCart(cartItem);
     }
 
     public Cart getCart() {
-        return user.getUserCart();
+        return userManager.getCart();
     }
 
     public String getBriefCartJson() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonElement cartJsonElement = gson.toJsonTree(this.getCart());
-        JsonArray array = cartJsonElement.getAsJsonObject().get("cartItems").getAsJsonArray();
-        array.forEach(item -> {
-            item.getAsJsonObject().addProperty("foodName", item.getAsJsonObject().get("food").getAsJsonObject().get("name").getAsString());
-            item.getAsJsonObject().remove("food");
-            item.getAsJsonObject().remove("restaurant");
-        });
-        return gson.toJson(cartJsonElement);
+        return userManager.getBriefCartJson();
     }
 
     public void finalizeOrder() {
-        user.finalizeOrder();
-    }
-}
-
-class SortByAveragePopularityDistance implements Comparator<Restaurant> {
-
-    private Location location;
-
-    public SortByAveragePopularityDistance(Location location) {
-        this.location = location;
+        userManager.finalizeOrder();
     }
 
-    @Override
-    public int compare(Restaurant r1, Restaurant r2) {
-        double r1FoodsPopularityAverage = r1.getFoodsPopularityAverage();
-        double r2FoodsPopularityAverage = r2.getFoodsPopularityAverage();
-        double r1DistanceFromUser = r1.getDistanceFromLocation(location);
-        double r2DistanceFromUser = r2.getDistanceFromLocation(location);
-        int r1Rank = (int) (r1FoodsPopularityAverage / r1DistanceFromUser);
-        int r2Rank = (int) (r2FoodsPopularityAverage / r2DistanceFromUser);
-        return r1Rank - r2Rank;
+    //    MIXED
+    public List<Restaurant> getRecommendedRestaurants(int recommendCount) {
+        return restaurantManager.getRecommendedRestaurants(userManager.getLocation(), recommendCount);
     }
 }
