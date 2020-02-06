@@ -2,14 +2,11 @@ package McFayyaz;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class McZmo {
-    List<Restaurant> restaurants;
+    List<Restaurant> restaurants = new ArrayList<Restaurant>();
+    User user = new User();
 
-    public McZmo() {
-        restaurants = new ArrayList<Restaurant>();
-    }
 
     public void addRestaurant(Restaurant restaurant) throws Exception{
         if (restaurants.contains(restaurant))
@@ -37,6 +34,30 @@ public class McZmo {
         for (Restaurant restaurant: restaurants) {
             if (restaurant.getName().equals(restaurantName)) {
                 return restaurant;
+            }
+        }
+        throw new Exception("Error: restaurant does not exists");
+    }
+
+    public Food getFood(String restaurantName, String foodName) throws Exception {
+        for (Restaurant restaurant: restaurants) {
+            if (restaurant.getName().equals(restaurantName)) {
+                return restaurant.getFood(foodName);
+            }
+        }
+        throw new Exception("Error: restaurant does not exists");
+    }
+
+    public void addToCart(String restaurantName, String foodName) throws Exception{
+        for (Restaurant restaurant: restaurants) {
+            if (restaurant.getName().equals(restaurantName)) {
+                Restaurant activeRestaurant = user.getActiveRestaurant();
+                if (activeRestaurant != null && !activeRestaurant.getName().equals(restaurantName))
+                    throw new Exception("Error: you have some food from another restaurant, then you can not add foods from another restaurant to your cart");
+                Food food = restaurant.getFood(foodName);
+                CartItem cartItem = new CartItem(restaurant, food);
+                user.addToCart(cartItem);
+                return;
             }
         }
         throw new Exception("Error: restaurant does not exists");

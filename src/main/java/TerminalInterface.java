@@ -52,12 +52,19 @@ public class TerminalInterface {
                 Restaurant restaurant = mcZmo.getRestaurant(restaurantName);
                 String restaurantDetail = gson.toJson(restaurant);
                 System.out.println(restaurantDetail);
-            } else if (command.equals("getFoods")) {
-                // TODO: 2/5/20  
             } else if (command.equals("getFood")) {
-                // TODO: 2/5/20
+                Properties properties = gson.fromJson(jsonData, Properties.class);
+                String restaurantName = properties.getProperty("restaurantName");
+                String foodName = properties.getProperty("foodName");
+                Food food = mcZmo.getFood(restaurantName, foodName);
+                String foodDetail = gson.toJson(food);
+                System.out.println(foodDetail);
+
             } else if (command.equals("addToCart")) {
-                // TODO: 2/5/20
+                Properties properties = gson.fromJson(jsonData, Properties.class);
+                String restaurantName = properties.getProperty("restaurantName");
+                String foodName = properties.getProperty("foodName");
+                mcZmo.addToCart(restaurantName, foodName);
             } else if (command.equals("getCart")) {
                 // TODO: 2/5/20
             } else if (command.equals("finalizeOrder")) {

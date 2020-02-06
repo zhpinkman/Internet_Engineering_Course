@@ -7,11 +7,9 @@ public class Restaurant {
     private String name;
     private String description;
     private Location location;
-    private List<Food> menu;
+    private List<Food> menu = new ArrayList<Food>();
 
-    public Restaurant() {
-        menu = new ArrayList<Food>();
-    }
+
 
     public void print() {
         System.out.println("name: " + name + "\n" +
@@ -25,6 +23,14 @@ public class Restaurant {
 
     public void testRestaurant(){
 
+    }
+
+    public Food getFood(String foodName) throws Exception {
+        for (Food food: menu) {
+            if (food.getName().equals(foodName))
+                return food;
+        }
+        throw new Exception("Error: food does not exists");
     }
 
 
