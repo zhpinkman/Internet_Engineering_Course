@@ -46,7 +46,7 @@ public class Restaurant {
         return menu;
     }
 
-    private boolean isFoodInMenu(Food food){
+    private boolean     isFoodInMenu(Food food){
         for(Food foodItem: menu){
             if(foodItem.getName().equals(food.getName()))
                 return true;

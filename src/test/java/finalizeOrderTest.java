@@ -1,7 +1,10 @@
-import org.junit.Before;
+
+
 import org.junit.Test;
 
-public class McZmoTest {
+public class finalizeOrderTest {
+
+
     @Test
     public void test(){
 
