@@ -36,4 +36,8 @@ public class UserManager {
     public void finalizeOrder() {
         user.finalizeOrder();
     }
+
+    public int getUserCartSize() {
+        return user.getUserCartSize();
+    }
 }

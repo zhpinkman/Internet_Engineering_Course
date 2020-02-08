@@ -1,6 +1,7 @@
 package McFayyaz.Restaurant;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -58,7 +59,16 @@ public class RestaurantManager {
     }
 
     public List<Restaurant> getRecommendedRestaurants(Location userLocation, int recommendCount) {
+//        for (Restaurant restaurant: restaurants) {
+//            System.out.println(restaurant.getName());
+//        }
         restaurants.sort(new SortByAveragePopularityDistance(userLocation));
+        Collections.reverse(restaurants);
+
+//        for (Restaurant restaurant: restaurants) {
+//            System.out.println(restaurant.getName());
+//        }
+
         return restaurants.subList(0, Math.min(recommendCount, restaurants.size()));
     }
 

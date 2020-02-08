@@ -43,4 +43,8 @@ public class Cart {
     public void emptyCart(){
         cartItems.clear();
     }
+
+    public int getSize() {
+        return cartItems.size();
+    }
 }

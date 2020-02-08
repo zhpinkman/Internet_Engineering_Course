@@ -24,6 +24,9 @@ public class User {
 
     public void finalizeOrder() {
         userCart.emptyCart();
+    }
 
+    public int getUserCartSize() {
+        return userCart.getSize();
     }
 }

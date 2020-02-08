@@ -54,8 +54,14 @@ public class McZmo {
         userManager.finalizeOrder();
     }
 
+    public int getUserCartSize() {
+        return userManager.getUserCartSize();
+    }
+
     //    MIXED
     public List<Restaurant> getRecommendedRestaurants(int recommendCount) {
         return restaurantManager.getRecommendedRestaurants(userManager.getLocation(), recommendCount);
     }
+
+
 }

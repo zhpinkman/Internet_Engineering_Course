@@ -9,6 +9,12 @@ public class Restaurant {
     private Location location;
     private List<Food> menu = new ArrayList<>();
 
+    public Restaurant(String name, String description, Location location, List<Food> menu) {
+        this.name = name;
+        this.description = description;
+        this.location = location;
+        this.menu = menu;
+    }
 
 
     public void print() {

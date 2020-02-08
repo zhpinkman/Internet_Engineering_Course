@@ -1,14 +1,14 @@
 import McFayyaz.McZmo;
+import McFayyaz.Restaurant.Food;
+import McFayyaz.Restaurant.Restaurant;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Properties;
-
-import McFayyaz.Restaurant.Food;
-import McFayyaz.Restaurant.Restaurant;
-import com.google.gson.*;
 
 class TerminalInterface {
     public static void main(String[] args) throws IOException {
@@ -42,7 +42,6 @@ class TerminalInterface {
                     System.out.println("Adding Restaurant");
                     Restaurant restaurant = gson.fromJson(jsonData, Restaurant.class);
                     mcZmo.addRestaurant(restaurant);
-
                     break;
                 }
                 case "addFood": {
