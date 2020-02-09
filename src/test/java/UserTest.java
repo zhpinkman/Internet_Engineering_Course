@@ -17,10 +17,10 @@ public class UserTest {
     @BeforeClass
     public static void beforeUserTest(){
         try {
-            mcZmo.addRestaurant(new Restaurant("a", "a", new Location(0, 1), new ArrayList<Food>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 8, 200)))));
-            mcZmo.addRestaurant(new Restaurant("b", "b", new Location(1, 0), new ArrayList<Food>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 10, 200)))));
-            mcZmo.addRestaurant(new Restaurant("c", "c", new Location(0, 2), new ArrayList<Food>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 8, 200)))));
-            mcZmo.addRestaurant(new Restaurant("d", "d", new Location(0, 2), new ArrayList<Food>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 10, 200)))));
+            mcZmo.addRestaurant(new Restaurant("a", "a", new Location(0, 1), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 8, 200)))));
+            mcZmo.addRestaurant(new Restaurant("b", "b", new Location(1, 0), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 10, 200)))));
+            mcZmo.addRestaurant(new Restaurant("c", "c", new Location(0, 2), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 8, 200)))));
+            mcZmo.addRestaurant(new Restaurant("d", "d", new Location(0, 2), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 10, 200)))));
             mcZmo.addToCart("a", "a");
             mcZmo.addToCart("a", "b");
         } catch (Exception e) {

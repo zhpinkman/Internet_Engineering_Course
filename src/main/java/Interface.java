@@ -4,32 +4,40 @@ import McFayyaz.Restaurant.Restaurant;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.List;
 import java.util.Properties;
 
-class TerminalInterface {
-    public static void main(String[] args) throws IOException {
-        McZmo mcZmo = new McZmo();
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String line;
+class Interface {
+    public static void main(String[] args){
+        PrintStream consoleOut = System.out;
+        InputStream consoleIn = System.in;
+        start(consoleIn, consoleOut);
+    }
 
-        while ((line = br.readLine()) != null) {
-            try {
-                String[] input_parts = parseInput(line);
-//                if(input_parts.length != 2)
-//                    throw new Exception("Error: Bad Format");
-                String command = input_parts[0];
-                String jsonData = "";
-                if (input_parts.length == 2) {
-                    jsonData = input_parts[1];
+    public static void start(InputStream inputStream, PrintStream outputStream) {
+        System.setOut(outputStream);
+        McZmo mcZmo = new McZmo();
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+        String line;
+        try {
+            while ((line = br.readLine()) != null) {
+                try {
+                    String[] input_parts = parseInput(line);
+//                    if (input_parts.length != 2)
+//                        throw new Exception("Error: Bad Format");
+                    String command = input_parts[0];
+                    String jsonData = "";
+                    if (input_parts.length == 2) {
+                        jsonData = input_parts[1];
+                    }
+                    runCommand(command, jsonData, mcZmo);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
                 }
-                runCommand(command, jsonData, mcZmo);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
             }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -42,6 +50,7 @@ class TerminalInterface {
                     System.out.println("Adding Restaurant");
                     Restaurant restaurant = gson.fromJson(jsonData, Restaurant.class);
                     mcZmo.addRestaurant(restaurant);
+                    restaurant.print();
                     break;
                 }
                 case "addFood": {
