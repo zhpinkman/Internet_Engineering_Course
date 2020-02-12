@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurant {
+    private String id;
     private String name;
     private String description;
     private Location location;
+    private String logo;
     private List<Food> menu = new ArrayList<>();
 
-    public Restaurant(String name, String description, Location location, List<Food> menu) {
+    public Restaurant(String id, String name, String description, Location location, List<Food> menu, String logo) {
+        this.id = id;
         this.name = name;
+        this.logo = logo;
         this.description = description;
         this.location = location;
         this.menu = menu;
@@ -18,7 +22,10 @@ public class Restaurant {
 
 
     public void print() {
-        System.out.println("name: " + name + "\n" +
+        System.out.println(
+                "id: " + id + "\n" +
+                "name: " + name + "\n" +
+                "logo: " + logo + "\n" +
                 "description: " + description + "\n" +
                 "Location: ");
         location.print();
