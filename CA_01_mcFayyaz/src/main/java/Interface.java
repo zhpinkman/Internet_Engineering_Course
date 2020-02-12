@@ -1,6 +1,6 @@
-import McFayyaz.McZmo;
-import McFayyaz.Restaurant.Food;
-import McFayyaz.Restaurant.Restaurant;
+import MzFoodDelivery.McZmo;
+import MzFoodDelivery.Restaurant.Food;
+import MzFoodDelivery.Restaurant.Restaurant;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

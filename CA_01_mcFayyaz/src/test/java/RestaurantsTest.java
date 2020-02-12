@@ -1,7 +1,7 @@
-import McFayyaz.McZmo;
-import McFayyaz.Restaurant.Food;
-import McFayyaz.Restaurant.Location;
-import McFayyaz.Restaurant.Restaurant;
+import MzFoodDelivery.McZmo;
+import MzFoodDelivery.Restaurant.Food;
+import MzFoodDelivery.Restaurant.Location;
+import MzFoodDelivery.Restaurant.Restaurant;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;

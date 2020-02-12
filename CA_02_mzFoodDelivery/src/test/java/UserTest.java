@@ -1,7 +1,7 @@
-import McFayyaz.McZmo;
-import McFayyaz.Restaurant.Food;
-import McFayyaz.Restaurant.Location;
-import McFayyaz.Restaurant.Restaurant;
+import MzFoodDelivery.MzFoodDelivery;
+import MzFoodDelivery.Restaurant.Food;
+import MzFoodDelivery.Restaurant.Location;
+import MzFoodDelivery.Restaurant.Restaurant;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -12,17 +12,17 @@ import java.util.Arrays;
 
 public class UserTest {
 
-    private static McZmo mcZmo = new McZmo();
+    private static MzFoodDelivery mzFoodDelivery = new MzFoodDelivery();
 
     @BeforeClass
     public static void beforeUserTest(){
         try {
-            mcZmo.addRestaurant(new Restaurant("a", "a", new Location(0, 1), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 8, 200)))));
-            mcZmo.addRestaurant(new Restaurant("b", "b", new Location(1, 0), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 10, 200)))));
-            mcZmo.addRestaurant(new Restaurant("c", "c", new Location(0, 2), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 8, 200)))));
-            mcZmo.addRestaurant(new Restaurant("d", "d", new Location(0, 2), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 10, 200)))));
-            mcZmo.addToCart("a", "a");
-            mcZmo.addToCart("a", "b");
+            mzFoodDelivery.addRestaurant(new Restaurant("a", "a", new Location(0, 1), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 8, 200)))));
+            mzFoodDelivery.addRestaurant(new Restaurant("b", "b", new Location(1, 0), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 10, 200)))));
+            mzFoodDelivery.addRestaurant(new Restaurant("c", "c", new Location(0, 2), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 8, 200)))));
+            mzFoodDelivery.addRestaurant(new Restaurant("d", "d", new Location(0, 2), new ArrayList<>(Arrays.asList(new Food("a", "a", 10, 100), new Food("b", "b", 10, 200)))));
+            mzFoodDelivery.addToCart("a", "a");
+            mzFoodDelivery.addToCart("a", "b");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -31,9 +31,9 @@ public class UserTest {
     @Test
     public void finalizeOrderTest() {
         String output = "";
-        output += mcZmo.getBriefCartJson();
+        output += mzFoodDelivery.getBriefCartJson();
         output += "Order Finalized";
-        mcZmo.finalizeOrder();
+        mzFoodDelivery.finalizeOrder();
         Assert.assertEquals("{\n" +
                 "  \"cartItems\": [\n" +
                 "    {\n" +
@@ -48,7 +48,7 @@ public class UserTest {
                 "}" +
                 "Order Finalized", output);
 
-        Assert.assertEquals(0, mcZmo.getUserCartSize());
+        Assert.assertEquals(0, mzFoodDelivery.getUserCartSize());
     }
 
     @AfterClass
