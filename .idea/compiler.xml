@@ -6,10 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="CA_01_mcFayyaz" />
+        <module name="CA_02_mzFoodDelivery" />
         <module name="mcFayyaz" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="CA_01_mcFayyaz" target="1.8" />
+      <module name="CA_02_mzFoodDelivery" target="1.8" />
       <module name="mcFayyaz" target="1.8" />
     </bytecodeTargetLevel>
   </component>

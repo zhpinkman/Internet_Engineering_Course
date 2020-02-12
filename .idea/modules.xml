@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CA_01_mcFayyaz/CA_01_mcFayyaz.iml" filepath="$PROJECT_DIR$/CA_01_mcFayyaz/CA_01_mcFayyaz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CA_02_mzFoodDelivery/CA_02_mzFoodDelivery.iml" filepath="$PROJECT_DIR$/CA_02_mzFoodDelivery/CA_02_mzFoodDelivery.iml" />
       <module fileurl="file://$PROJECT_DIR$/mcFayyaz.iml" filepath="$PROJECT_DIR$/mcFayyaz.iml" />
     </modules>
   </component>
