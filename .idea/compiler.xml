@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="CA_01_mcFayyaz" />
         <module name="CA_02_mzFoodDelivery" />
-        <module name="mcFayyaz" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
