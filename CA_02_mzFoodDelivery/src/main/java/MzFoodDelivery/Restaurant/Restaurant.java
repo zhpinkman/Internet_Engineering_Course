@@ -11,6 +11,8 @@ public class Restaurant {
     private String logo;
     private List<Food> menu;
 
+    private final double MAX_NEAR_DISTANCE = 170;
+
     public Restaurant(String id, String name, String description, Location location, List<Food> menu, String logo) {
         this.id = id;
         this.name = name;
@@ -85,8 +87,13 @@ public class Restaurant {
         return this.location.getDistanceFromLocation(location);
     }
 
+    public boolean isNearUser(Location location) {
+        return this.location.getDistanceFromLocation(location) < MAX_NEAR_DISTANCE;
+    }
+
     public boolean isCopy(Restaurant restaurant) {
-        return this.name.equals(restaurant.name);
+//        return this.name.equals(restaurant.name);
+        return this.id.equals(restaurant.id);
     }
 
     public String getLogo() {

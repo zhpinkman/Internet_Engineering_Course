@@ -1,5 +1,8 @@
 package MzFoodDelivery.Restaurant;
 
+import MzFoodDelivery.Exceptions.RestaurantIsNotNearUserException;
+import MzFoodDelivery.Exceptions.RestaurantNotFoundException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,6 +17,13 @@ public class RestaurantManager {
             if (restaurantItem.isCopy(restaurant))
                 return true;
         return false;
+    }
+
+    private Restaurant findRestaurantById(String id){
+        for (Restaurant restaurantItem : restaurants)
+            if (restaurantItem.getId().equals(id))
+                return restaurantItem;
+        return null;
     }
 
     public void addRestaurant(Restaurant restaurant) throws Exception {
@@ -75,7 +85,17 @@ public class RestaurantManager {
 
     public List<Restaurant> getNearRestaurants(Location userLocation) {
         restaurants.sort(new SortByDistance(userLocation));
-        return restaurants.stream().filter(it -> it.getDistanceFromLocation(userLocation) < 170).collect(Collectors.toList());
+        return restaurants.stream().filter(it -> it.isNearUser(userLocation)).collect(Collectors.toList());
+    }
+
+    public Restaurant getNearRestaurantById(String restaurantId, Location userLocation) throws Exception {
+        Restaurant restaurant = findRestaurantById(restaurantId);
+        if(restaurant == null)
+            throw new RestaurantNotFoundException("Error: restaurant does not exists");
+        else if(!restaurant.isNearUser(userLocation))
+            throw new RestaurantIsNotNearUserException("Error: This restaurant is not near you!");
+        else
+            return restaurant;
     }
 }
 
