@@ -67,4 +67,7 @@ public class MzFoodDelivery {
         return restaurantManager.getNearRestaurants(userManager.getLocation());
     }
 
+    public Restaurant getNearRestaurantById(String id) throws Exception{
+        return restaurantManager.getNearRestaurantById(id, userManager.getLocation());
+    }
 }

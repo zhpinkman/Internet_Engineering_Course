@@ -1,7 +1,10 @@
 package InterfaceServer;
 
 import HTTPRequestHandler.HTTPRequsestHandler;
+import MzFoodDelivery.Exceptions.RestaurantIsNotNearUserException;
+import MzFoodDelivery.Exceptions.RestaurantNotFoundException;
 import MzFoodDelivery.MzFoodDelivery;
+import MzFoodDelivery.Restaurant.Food;
 import MzFoodDelivery.Restaurant.Location;
 import MzFoodDelivery.Restaurant.Restaurant;
 import com.google.common.io.Resources;
@@ -37,18 +40,57 @@ public class InterfaceServer {
             ctx.result("Hello: " + ctx.pathParam("name"));
         });
 
-        app.get("restaurant/near/", ctx -> {
+        app.get("restaurants/near/", ctx -> {
             try {
-                ctx.html(generateGetNearRestaurantPage());
+                ctx.html(generateGetNearRestaurantsPage());
             }catch (Exception e){
                 System.out.println(e.getMessage());
                 ctx.status(502);
             }
         });
 
+        app.get("restaurants/:restaurantId", ctx -> {
+            try {
+                ctx.html(generateGetNearRestaurantPage(ctx.pathParam("restaurantId")));
+            }catch (RestaurantNotFoundException e) {
+                ctx.status(403).result("Unauthorized");
+            }catch (RestaurantIsNotNearUserException e){
+                ctx.status(404).result("Not Found");
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                ctx.status(502).result(":|");
+            }
+        });
+
     }
 
-    public String generateGetNearRestaurantPage() throws Exception{
+    public String generateGetNearRestaurantPage(String id) throws Exception{
+        Restaurant restaurant = mzFoodDelivery.getNearRestaurantById(id);
+        HashMap<String, String> restaurantContext = new HashMap<>();
+        restaurantContext.put("id", restaurant.getId());
+        restaurantContext.put("logo", restaurant.getLogo());
+        restaurantContext.put("name", restaurant.getName());
+        restaurantContext.put("distance", Double.toString(restaurant.getDistanceFromLocation(new Location(0,0))));
+        restaurantContext.put("x", Double.toString(restaurant.getLocation().getX()));
+        restaurantContext.put("y", Double.toString(restaurant.getLocation().getY()));
+        String nearRestaurantHTML = HTMLHandler.fillTemplate(readResourceFile("restaurantBefore.html"), restaurantContext);
+
+        String menuItemHTML = readResourceFile("restaurantMenuItem.html");
+        for(Food food: restaurant.getMenu()){
+            HashMap<String, String> context = new HashMap<>();
+            context.put("logo", food.getImage());
+            context.put("name", food.getName());
+            context.put("price", Double.toString(food.getPrice()));
+            context.put("restaurantId", restaurant.getId());
+//            context.put("description", restaurant.getDescription());
+            nearRestaurantHTML += HTMLHandler.fillTemplate(menuItemHTML, context);
+        }
+
+        nearRestaurantHTML += readResourceFile("restaurantAfter.html");
+        return nearRestaurantHTML;
+    }
+
+    public String generateGetNearRestaurantsPage() throws Exception{
         String nearRestaurantsHTML = readResourceFile("restaurantsBefore.html");
         List<Restaurant> nearRestaurants = mzFoodDelivery.getNearRestaurants();
         String restaurantItemHTML = readResourceFile("restaurantsItem.html");
