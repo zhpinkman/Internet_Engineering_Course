@@ -1,0 +1,95 @@
+Adding Restaurant
+name: Hesturan
+description: luxury
+Location: 
+X: 1.0 | Y: 3.0
+name: Gheime | description: it’s yummy! | Popularity: 0.8 | Price: 20000.0
+name: Kabab | description: it’s delicious! | Popularity: 0.6 | Price: 30000.0
+Adding Restaurant
+name: mcFayyaz
+description: luxury
+Location: 
+X: 1.0 | Y: 3.0
+name: Gheime | description: it’s yummy! | Popularity: 0.8 | Price: 20000.0
+name: Kabab | description: it’s delicious! | Popularity: 0.6 | Price: 30000.0
+Adding Restaurant
+Error: Duplicate restaurant
+Adding Food
+name: gheime | description: it’s yummy! | Popularity: 0.8 | Price: 20000.0
+Adding Food
+Error: Duplicate food
+Getting Restaurants
+Hesturan
+mcFayyaz
+Getting Restaurant
+{
+  "name": "Hesturan",
+  "description": "luxury",
+  "location": {
+    "x": 1.0,
+    "y": 3.0
+  },
+  "menu": [
+    {
+      "name": "Gheime",
+      "description": "it’s yummy!",
+      "popularity": 0.8,
+      "price": 20000.0
+    },
+    {
+      "name": "Kabab",
+      "description": "it’s delicious!",
+      "popularity": 0.6,
+      "price": 30000.0
+    },
+    {
+      "name": "gheime",
+      "description": "it’s yummy!",
+      "popularity": 0.8,
+      "price": 20000.0
+    }
+  ]
+}
+Getting Food
+{
+  "name": "Kabab",
+  "description": "it’s delicious!",
+  "popularity": 0.6,
+  "price": 30000.0
+}
+Adding to Cart
+Adding to Cart
+Getting cart
+{
+  "cartItems": [
+    {
+      "quantity": 1,
+      "foodName": "Kabab"
+    },
+    {
+      "quantity": 1,
+      "foodName": "Gheime"
+    }
+  ]
+}
+Finalizing Order
+{
+  "cartItems": [
+    {
+      "quantity": 1,
+      "foodName": "Kabab"
+    },
+    {
+      "quantity": 1,
+      "foodName": "Gheime"
+    }
+  ]
+}
+Order Finalized
+Getting cart
+{
+  "cartItems": []
+}
+Getting Recommended Restaurant
+mcFayyaz
+Hesturan
