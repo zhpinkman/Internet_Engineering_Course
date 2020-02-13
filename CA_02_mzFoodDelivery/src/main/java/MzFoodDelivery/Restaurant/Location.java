@@ -22,6 +22,6 @@ public class Location {
     }
 
     public double getDistanceFromLocation(Location location) {
-        return Math.pow(x - location.x, 2) + Math.pow(y - location.y, 2);
+        return Math.sqrt(Math.pow(x - location.x, 2) + Math.pow(y - location.y, 2));
     }
 }

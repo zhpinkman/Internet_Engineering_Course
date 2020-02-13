@@ -9,7 +9,7 @@ public class Restaurant {
     private String description;
     private Location location;
     private String logo;
-    private List<Food> menu = new ArrayList<>();
+    private List<Food> menu;
 
     public Restaurant(String id, String name, String description, Location location, List<Food> menu, String logo) {
         this.id = id;
@@ -87,5 +87,13 @@ public class Restaurant {
 
     public boolean isCopy(Restaurant restaurant) {
         return this.name.equals(restaurant.name);
+    }
+
+    public String getLogo() {
+        return this.logo;
+    }
+
+    public String getId() {
+        return id;
     }
 }

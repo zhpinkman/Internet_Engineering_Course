@@ -63,5 +63,8 @@ public class MzFoodDelivery {
         return restaurantManager.getRecommendedRestaurants(userManager.getLocation(), recommendCount);
     }
 
+    public List<Restaurant> getNearRestaurants(){
+        return restaurantManager.getNearRestaurants(userManager.getLocation());
+    }
 
 }

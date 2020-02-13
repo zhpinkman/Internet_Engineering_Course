@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RestaurantManager {
     private List<Restaurant> restaurants = new ArrayList<>();
@@ -72,11 +73,14 @@ public class RestaurantManager {
         return restaurants.subList(0, Math.min(recommendCount, restaurants.size()));
     }
 
+    public List<Restaurant> getNearRestaurants(Location userLocation) {
+        restaurants.sort(new SortByDistance(userLocation));
+        return restaurants.stream().filter(it -> it.getDistanceFromLocation(userLocation) < 170).collect(Collectors.toList());
+    }
 }
 
 
 class SortByAveragePopularityDistance implements Comparator<Restaurant> {
-
     private Location location;
 
     SortByAveragePopularityDistance(Location location) {
@@ -92,5 +96,18 @@ class SortByAveragePopularityDistance implements Comparator<Restaurant> {
         int r1Rank = (int) (r1FoodsPopularityAverage / r1DistanceFromUser);
         int r2Rank = (int) (r2FoodsPopularityAverage / r2DistanceFromUser);
         return r1Rank - r2Rank;
+    }
+}
+
+class SortByDistance implements Comparator<Restaurant> {
+    private Location location;
+
+    SortByDistance(Location location) {
+        this.location = location;
+    }
+
+    @Override
+    public int compare(Restaurant r1, Restaurant r2) {
+        return (int) r1.getDistanceFromLocation(location) - (int) r2.getDistanceFromLocation(location);
     }
 }
