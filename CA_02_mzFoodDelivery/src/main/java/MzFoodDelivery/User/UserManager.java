@@ -7,7 +7,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
 public class UserManager {
-    private User user = new User();
+    private User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0));
+
 
     public void addToCart(CartItem cartItem) throws Exception {
         user.addToCart(cartItem);
@@ -39,5 +40,9 @@ public class UserManager {
 
     public int getUserCartSize() {
         return user.getUserCartSize();
+    }
+
+    public User getUser() {
+        return user;
     }
 }

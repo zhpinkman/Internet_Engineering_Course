@@ -12,11 +12,11 @@
 <body>
     <ul>
         <li>id: 1</li>
-        <li>full name: Ehsan KhamesPanah</li>
-        <li>phone number: +989123456789</li>
-        <li>email: ekhamespanah@yahoo.com</li>
-        <li>credit: 50000 Toman</li>
-        <form action="" method="POST">
+        <li>full name: %fullName%</li>
+        <li>phone number: +%phoneNumber%</li>
+        <li>email: %email%</li>
+        <li>credit: %credit% Toman</li>
+        <form action="%fullName%/charge" method="POST">
             <button type="submit">increase</button>
             <input type="text" name="credit" value="" />
         </form>

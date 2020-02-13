@@ -5,6 +5,7 @@ import MzFoodDelivery.Restaurant.Restaurant;
 import MzFoodDelivery.Restaurant.RestaurantManager;
 import MzFoodDelivery.User.Cart;
 import MzFoodDelivery.User.CartItem;
+import MzFoodDelivery.User.User;
 import MzFoodDelivery.User.UserManager;
 
 import java.util.List;
@@ -69,5 +70,9 @@ public class MzFoodDelivery {
 
     public Restaurant getNearRestaurantById(String id) throws Exception{
         return restaurantManager.getNearRestaurantById(id, userManager.getLocation());
+    }
+
+    public User getUser() {
+        return userManager.getUser();
     }
 }

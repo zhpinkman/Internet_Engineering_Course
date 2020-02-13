@@ -7,6 +7,7 @@ import MzFoodDelivery.MzFoodDelivery;
 import MzFoodDelivery.Restaurant.Food;
 import MzFoodDelivery.Restaurant.Location;
 import MzFoodDelivery.Restaurant.Restaurant;
+import MzFoodDelivery.User.User;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -35,7 +36,7 @@ public class InterfaceServer {
 
     public void runServer(final int port) throws Exception {
         Javalin app = Javalin.create().start(port);
-        app.get("/", ctx -> ctx.result("Hello World"));
+        app.get("/", ctx -> ctx.html(readResourceFile("homePage.html")));
         app.get("/hello/:name", ctx -> {
             ctx.result("Hello: " + ctx.pathParam("name"));
         });
@@ -58,10 +59,28 @@ public class InterfaceServer {
                 ctx.status(404).result("Not Found");
             }catch (Exception e){
                 System.out.println(e.getMessage());
-                ctx.status(502).result(":|");
+                ctx.status(502).result(":| " + e.getMessage());
             }
         });
 
+        app.get("profile/", ctx -> {
+            try {
+                ctx.html(generateGetUserProfile());
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                ctx.status(502).result(":| " + e.getMessage());
+            }
+        });
+
+    }
+
+    public String generateGetUserProfile() throws Exception{
+        User user = mzFoodDelivery.getUser();
+        HashMap<String, String> context = new HashMap<>();
+        context.put("fullName", user.getFullName());
+        context.put("email", user.getEmail());
+        context.put("phoneNumber", user.getPhoneNumber());
+        return HTMLHandler.fillTemplate(readResourceFile("user.html"), context);
     }
 
     public String generateGetNearRestaurantPage(String id) throws Exception{
