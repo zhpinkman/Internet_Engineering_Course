@@ -16,9 +16,9 @@
         <li>phone number: +%phoneNumber%</li>
         <li>email: %email%</li>
         <li>credit: %credit% Toman</li>
-        <form action="%fullName%/charge" method="POST">
+        <form action="/charge" method="POST">
+            <input type="number" name="credit" value="" />
             <button type="submit">increase</button>
-            <input type="text" name="credit" value="" />
         </form>
     </ul>
 </body>

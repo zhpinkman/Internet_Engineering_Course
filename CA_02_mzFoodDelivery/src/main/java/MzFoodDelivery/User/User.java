@@ -62,5 +62,8 @@ public class User {
     }
 
 
-
+    public void chargeUserCredit(double amount) {
+        if (amount > 0)
+            credit += amount;
+    }
 }

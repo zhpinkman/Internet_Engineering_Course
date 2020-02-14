@@ -72,6 +72,14 @@ public class InterfaceServer {
             }
         });
 
+        app.post("/charge", ctx -> {
+            String creditValue = ctx.formParam("credit");
+            if (!creditValue.isEmpty())
+                mzFoodDelivery.chargeUserCredit(Double.parseDouble(creditValue));
+            ctx.result("user credit updated");
+            ctx.redirect("profile");
+        });
+
     }
 
     public String generateGetUserProfile() throws Exception{

@@ -59,6 +59,10 @@ public class MzFoodDelivery {
         return userManager.getUserCartSize();
     }
 
+    public void chargeUserCredit(double amount) {
+        userManager.chargeUserCredit(amount);
+    }
+
     //    MIXED
     public List<Restaurant> getRecommendedRestaurants(int recommendCount) {
         return restaurantManager.getRecommendedRestaurants(userManager.getLocation(), recommendCount);

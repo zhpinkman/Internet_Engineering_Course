@@ -45,4 +45,8 @@ public class UserManager {
     public User getUser() {
         return user;
     }
+
+    public void chargeUserCredit(double amount) {
+        user.chargeUserCredit(amount);
+    }
 }
