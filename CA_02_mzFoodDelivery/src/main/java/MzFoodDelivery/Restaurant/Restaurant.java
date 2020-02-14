@@ -102,4 +102,11 @@ public class Restaurant {
     public String getId() {
         return id;
     }
+
+
+    public String getDescriptionOrDefulatValue(String defaultValue) {
+        if (description == null)
+            return defaultValue;
+        return description;
+    }
 }
