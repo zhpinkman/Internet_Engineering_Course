@@ -51,7 +51,7 @@ public class MzFoodDelivery {
         return userManager.getBriefCartJson();
     }
 
-    public void finalizeOrder() {
+    public void finalizeOrder() throws Exception {
         userManager.finalizeOrder();
     }
 

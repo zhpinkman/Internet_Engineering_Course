@@ -34,7 +34,13 @@ public class UserManager {
         return gson.toJson(cartJsonElement);
     }
 
-    public void finalizeOrder() {
+    public void finalizeOrder() throws Exception {
+        double totalPrice = user.getCartTotalPrice();
+        if (user.getUserCartSize() == 0)
+            throw new Exception("user cart is empty");
+        if (totalPrice > user.getCredit())
+            throw new Exception("credit is not enough for finalizing your order");
+        user.withdrawCredit(totalPrice);
         user.finalizeOrder();
     }
 

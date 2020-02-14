@@ -108,6 +108,17 @@ public class InterfaceServer {
             }
         });
 
+        app.post("/finalize", ctx -> {
+            try {
+                mzFoodDelivery.finalizeOrder();
+                ctx.html("order successfully finalized");
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+                ctx.html(exception.getMessage());
+                ctx.status(400);
+            }
+        });
+
     }
 
     private String generateUserCart() throws Exception {

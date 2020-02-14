@@ -52,4 +52,14 @@ public class Cart {
     public int getSize() {
         return cartItems.size();
     }
+
+    public double getTotalPrice() {
+        double totalPrice = 0;
+        for (CartItem cartItem: cartItems) {
+            totalPrice += cartItem.getQuantity() * cartItem.getFood().getPrice();
+        }
+        return totalPrice;
+    }
+
+
 }

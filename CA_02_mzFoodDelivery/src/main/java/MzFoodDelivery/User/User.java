@@ -66,4 +66,12 @@ public class User {
         if (amount > 0)
             credit += amount;
     }
+
+    public double getCartTotalPrice() {
+        return userCart.getTotalPrice();
+    }
+
+    public void withdrawCredit(double amount) {
+        credit -= amount;
+    }
 }
