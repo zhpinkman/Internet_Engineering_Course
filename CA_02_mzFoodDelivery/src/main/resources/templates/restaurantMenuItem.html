@@ -28,11 +28,11 @@
         	<!--<ul>-->
         		<li>
                     <img src="%logo%" alt="logo">
-                    <div>%name%</div>
-                    <div>%price% Toman</div>
-                    <form action="%restaurantId%/addToCart/%name%" method="POST">
+                    <form action="/addToCart/%restaurantId%" method="POST">
+                        <input name="foodName" value="%name%" style="pointer-events:none; background: none;border: none;color:black;"  />
                         <button type="submit">addToCart</button>
                     </form>
+                    <div>%price% Toman</div>
                 </li>
                 <!--<li>-->
                     <!--<img src="url of food image" alt="logo">-->

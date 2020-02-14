@@ -79,4 +79,13 @@ public class MzFoodDelivery {
     public User getUser() {
         return userManager.getUser();
     }
+
+    public void addToCartByRestaurantId(String restaurantId, String foodName) throws Exception {
+        String restaurantName = getRestaurantById(restaurantId);
+        addToCart(restaurantName, foodName);
+    }
+
+    private String getRestaurantById(String restaurantId) throws Exception {
+        return restaurantManager.getRestaurantNameById(restaurantId);
+    }
 }

@@ -73,16 +73,46 @@ public class InterfaceServer {
         });
 
         app.post("/charge", ctx -> {
-            String creditValue = ctx.formParam("credit");
-            if (!creditValue.isEmpty())
-                mzFoodDelivery.chargeUserCredit(Double.parseDouble(creditValue));
-            ctx.result("user credit updated");
+            try {
+                String creditValue = ctx.formParam("credit");
+                if (!creditValue.isEmpty())
+                    mzFoodDelivery.chargeUserCredit(Double.parseDouble(creditValue));
+                ctx.result("user credit updated");
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+            }
             ctx.redirect("profile");
         });
 
-    }
+        app.post("/addToCart/:restaurantId", ctx -> {
+            String foodName = "", restaurantId = "";
+            try {
+                foodName = ctx.formParam("foodName");
+                restaurantId = ctx.pathParam("restaurantId");
+                mzFoodDelivery.addToCartByRestaurantId(restaurantId, foodName);
+                System.out.println(mzFoodDelivery.getCart().getSize());
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+            }
+            ctx.redirect("/restaurants/" + restaurantId);
+        });
 
-    public String generateGetUserProfile() throws Exception{
+
+//        app.get("getCart", ctx -> {
+//            try {
+//                ctx.html(generateUserCart());
+//            } catch (Exception exception) {
+//                System.out.println(exception.getMessage());
+//            }
+//        });
+
+    }
+//
+//    private String generateUserCart() throws Exception {
+//
+//    }
+
+    public String generateGetUserProfile() throws Exception {
         User user = mzFoodDelivery.getUser();
         HashMap<String, String> context = new HashMap<>();
         context.put("fullName", user.getFullName());
@@ -106,10 +136,10 @@ public class InterfaceServer {
         String menuItemHTML = readResourceFile("restaurantMenuItem.html");
         for(Food food: restaurant.getMenu()){
             HashMap<String, String> context = new HashMap<>();
+            context.put("restaurantId", restaurant.getId());
             context.put("logo", food.getImage());
             context.put("name", food.getName());
             context.put("price", Double.toString(food.getPrice()));
-            context.put("restaurantId", restaurant.getId());
 //            context.put("description", restaurant.getDescription());
             nearRestaurantHTML += HTMLHandler.fillTemplate(menuItemHTML, context);
         }

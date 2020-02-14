@@ -97,6 +97,15 @@ public class RestaurantManager {
         else
             return restaurant;
     }
+
+    public String getRestaurantNameById(String restaurantId) throws Exception {
+        for (Restaurant restaurant : restaurants) {
+            if (restaurant.getId().equals(restaurantId)) {
+                return restaurant.getName();
+            }
+        }
+        throw new Exception("Error: restaurant does not exists");
+    }
 }
 
 
