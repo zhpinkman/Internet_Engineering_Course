@@ -121,7 +121,7 @@ public class InterfaceServer {
             context.put("logo", restaurant.getLogo());
             context.put("name", restaurant.getName());
             context.put("distance", Double.toString(restaurant.getDistanceFromLocation(new Location(0,0))));
-            context.put("description", restaurant.getDescriptionOrDefulatValue("nothing to show"));
+            context.put("description", restaurant.getPropertyOrDefaultValue("description", "nothing to show"));
             nearRestaurantsHTML += HTMLHandler.fillTemplate(restaurantItemHTML, context);
         }
         nearRestaurantsHTML += readResourceFile("restaurantsAfter.html");

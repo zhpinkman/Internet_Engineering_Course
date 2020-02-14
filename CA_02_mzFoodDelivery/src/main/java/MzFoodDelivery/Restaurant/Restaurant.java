@@ -109,4 +109,19 @@ public class Restaurant {
             return defaultValue;
         return description;
     }
+
+    public String getPropertyOrDefaultValue(String propertyName, String defaultValue) {
+        String fieldValue = null;
+        try {
+            fieldValue = (String) getClass().getDeclaredField(propertyName).get(this);
+        }
+        catch (NoSuchFieldException | IllegalAccessException exception)
+        {
+//            System.out.println(exception.getMessage());
+        }
+        System.out.println(fieldValue);
+        if (fieldValue != null)
+            return fieldValue;
+        return defaultValue;
+    }
 }
