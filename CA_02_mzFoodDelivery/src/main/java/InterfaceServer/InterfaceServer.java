@@ -80,6 +80,7 @@ public class InterfaceServer {
         context.put("fullName", user.getFullName());
         context.put("email", user.getEmail());
         context.put("phoneNumber", user.getPhoneNumber());
+        context.put("credit", String.valueOf(user.getCredit()));
         return HTMLHandler.fillTemplate(readResourceFile("user.html"), context);
     }
 

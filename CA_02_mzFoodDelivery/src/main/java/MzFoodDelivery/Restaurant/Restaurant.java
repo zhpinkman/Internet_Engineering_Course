@@ -1,6 +1,5 @@
 package MzFoodDelivery.Restaurant;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurant {
@@ -61,7 +60,7 @@ public class Restaurant {
         return menu;
     }
 
-    private boolean     isFoodInMenu(Food food){
+    private boolean isFoodInMenu(Food food){
         for(Food foodItem: menu){
             if(foodItem.getName().equals(food.getName()))
                 return true;
