@@ -7,6 +7,8 @@ import MzFoodDelivery.MzFoodDelivery;
 import MzFoodDelivery.Restaurant.Food;
 import MzFoodDelivery.Restaurant.Location;
 import MzFoodDelivery.Restaurant.Restaurant;
+import MzFoodDelivery.User.Cart;
+import MzFoodDelivery.User.CartItem;
 import MzFoodDelivery.User.User;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
@@ -98,19 +100,32 @@ public class InterfaceServer {
         });
 
 
-//        app.get("getCart", ctx -> {
-//            try {
-//                ctx.html(generateUserCart());
-//            } catch (Exception exception) {
-//                System.out.println(exception.getMessage());
-//            }
-//        });
+        app.get("getCart", ctx -> {
+            try {
+                ctx.html(generateUserCart());
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+            }
+        });
 
     }
-//
-//    private String generateUserCart() throws Exception {
-//
-//    }
+
+    private String generateUserCart() throws Exception {
+       Cart cart = mzFoodDelivery.getCart();
+       if (cart.getSize() == 0)
+           return "user cart is empty";
+       HashMap<String, String> context = new HashMap<>();
+       context.put("restaurantName", cart.getRestaurant().getName());
+       String userCartHtml = HTMLHandler.fillTemplate(readResourceFile("CartBefore.html"), context);
+       for (CartItem cartItem: cart.getCartItems()) {
+           context.clear();
+           context.put("foodName", cartItem.getFood().getName());
+           context.put("foodAmount", String.valueOf(cartItem.getQuantity()));
+           userCartHtml += HTMLHandler.fillTemplate(readResourceFile("CartItem.html"), context);
+       }
+       userCartHtml += readResourceFile("CartAfter.html");
+       return userCartHtml;
+    }
 
     public String generateGetUserProfile() throws Exception {
         User user = mzFoodDelivery.getUser();

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
+
     private List<CartItem> cartItems = new ArrayList<>();
 
     private CartItem findCartItem(CartItem newCartItem){
@@ -15,6 +16,10 @@ public class Cart {
             }
         }
         return null;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
     }
 
     private boolean doesRestaurantMatch(CartItem newCartItem){

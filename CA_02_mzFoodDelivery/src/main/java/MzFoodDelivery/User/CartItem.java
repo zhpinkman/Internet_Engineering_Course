@@ -8,6 +8,10 @@ public class CartItem {
     private Food food;
     private int quantity = 1;
 
+    public int getQuantity() {
+        return quantity;
+    }
+
     public CartItem(Restaurant restaurant, Food food) {
         this.restaurant = restaurant;
         this.food = food;
