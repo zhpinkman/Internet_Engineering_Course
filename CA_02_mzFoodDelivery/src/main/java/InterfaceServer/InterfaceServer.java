@@ -26,6 +26,11 @@ public class InterfaceServer {
 
     private MzFoodDelivery mzFoodDelivery = new MzFoodDelivery();
 
+
+    public MzFoodDelivery getMzFoodDelivery() {
+        return mzFoodDelivery;
+    }
+
     public void start(final String RESTAURANTS_URI, final int port) {
         try {
             System.out.println("Importing Restaurants...");
