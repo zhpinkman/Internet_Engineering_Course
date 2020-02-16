@@ -51,9 +51,7 @@ public class UserTest {
             System.out.println(exception.getMessage());
         }
         HttpResponse<String> response = Unirest.post("http://localhost:8080/finalize").asString();
-//        System.out.println(response.getBody());
         Assert.assertEquals("credit is not enough for finalizing your order", response.getBody());
-//        System.out.println(response.getStatus());
         Assert.assertEquals(response.getStatus(), 400);
         mzFoodDelivery.getCart().emptyCart();
     }
@@ -61,9 +59,7 @@ public class UserTest {
     @Test
     public void emptyCartFinalizingOrderTest() {
         HttpResponse<String> response = Unirest.post("http://localhost:8080/finalize").asString();
-//        System.out.println(response.getBody());
         Assert.assertEquals("user cart is empty", response.getBody());
-//        System.out.println(response.getStatus());
         Assert.assertEquals(response.getStatus(), 400);
     }
 
