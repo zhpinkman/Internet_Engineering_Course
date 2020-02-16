@@ -28,17 +28,17 @@ public class HTTPRequsestHandler {
         try (CloseableHttpResponse response = httpClient.execute(request)) {
 
             // Get HttpResponse Status
-            System.out.println(response.getStatusLine().toString());
+//            System.out.println(response.getStatusLine().toString());
 
             HttpEntity entity = response.getEntity();
             Header headers = entity.getContentType();
-            System.out.println(headers);
+//            System.out.println(headers);
 
             String result = "";
             if (entity != null) {
                 // return it as a String
                 result = EntityUtils.toString(entity);
-                System.out.println(result);
+//                System.out.println(result);
             }
             return result;
         }
