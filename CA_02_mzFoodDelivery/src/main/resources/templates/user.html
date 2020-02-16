@@ -17,7 +17,7 @@
         <li>email: %email%</li>
         <li>credit: %credit% Toman</li>
         <form action="/charge" method="POST">
-            <input type="number" name="credit" value="" />
+            <input type="number" name="credit" value="" min="0" />
             <button type="submit">increase</button>
         </form>
     </ul>

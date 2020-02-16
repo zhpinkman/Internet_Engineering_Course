@@ -73,7 +73,7 @@ public class InterfaceServer {
             }
         });
 
-        app.get("profile/", ctx -> {
+        app.get("profile/:email", ctx -> {
             try {
                 ctx.html(generateGetUserProfile());
             }catch (Exception e){
@@ -90,8 +90,9 @@ public class InterfaceServer {
                 ctx.result("user credit updated");
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
+                ctx.result(exception.getMessage());
             }
-            ctx.redirect("profile");
+//            ctx.redirect("profile/ekhamespanah@yahoo.com");
         });
 
         app.post("/addToCart/:restaurantId", ctx -> {
@@ -100,15 +101,17 @@ public class InterfaceServer {
                 foodName = ctx.formParam("foodName");
                 restaurantId = ctx.pathParam("restaurantId");
                 mzFoodDelivery.addToCartByRestaurantId(restaurantId, foodName);
+                ctx.status(200).result("Added to cart");
                 System.out.println(mzFoodDelivery.getCart().getSize());
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
+                ctx.status(403).result(exception.getMessage());
             }
-            ctx.redirect("/restaurants/" + restaurantId);
+//            ctx.redirect("/restaurants/" + restaurantId);
         });
 
 
-        app.get("getCart", ctx -> {
+        app.get("/getCart", ctx -> {
             try {
                 ctx.html(generateUserCart());
             } catch (Exception exception) {
