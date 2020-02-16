@@ -10,6 +10,17 @@ import org.apache.http.util.EntityUtils;
 
 public class HTTPRequsestHandler {
 
+    public static int getStatusCode(String uri) throws Exception {
+        final CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet request = new HttpGet(uri);
+
+        try (CloseableHttpResponse response = httpClient.execute(request)) {
+            // Get HttpResponse Status
+            return response.getStatusLine().getStatusCode();
+        }
+
+    }
+
     public static String getRequest(String uri) throws Exception {
         final CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet request = new HttpGet(uri);
