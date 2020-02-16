@@ -35,8 +35,8 @@ public class RestaurantsTest {
         final String RESTAURANTS_URI = "http://138.197.181.131:8080/restaurants";
         interfaceServer = new InterfaceServer();
         mzFoodDelivery = interfaceServer.getMzFoodDelivery();
+        addTestRestaurants();
         try {
-            addTestRestaurants();
             interfaceServer.start(RESTAURANTS_URI, 8080);
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
@@ -101,6 +101,7 @@ public class RestaurantsTest {
 
     @AfterClass
     public static void afterRestaurantsTest() {
+        interfaceServer.stop();
     }
 
 }

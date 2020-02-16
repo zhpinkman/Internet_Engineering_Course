@@ -24,6 +24,9 @@ import java.util.List;
 
 public class InterfaceServer {
 
+
+    private Javalin app;
+
     private MzFoodDelivery mzFoodDelivery = new MzFoodDelivery();
 
 
@@ -42,7 +45,7 @@ public class InterfaceServer {
     }
 
     public void runServer(final int port) throws Exception {
-        Javalin app = Javalin.create().start(port);
+        app = Javalin.create().start(port);
         app.get("/", ctx -> ctx.html(readResourceFile("homePage.html")));
         app.get("/hello/:name", ctx -> {
             ctx.result("Hello: " + ctx.pathParam("name"));
@@ -221,4 +224,7 @@ public class InterfaceServer {
     }
 
 
+    public void stop() {
+        app.stop();
+    }
 }
