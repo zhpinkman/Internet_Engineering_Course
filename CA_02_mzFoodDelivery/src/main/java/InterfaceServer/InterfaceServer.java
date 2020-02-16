@@ -61,9 +61,9 @@ public class InterfaceServer {
             try {
                 ctx.html(generateGetNearRestaurantPage(ctx.pathParam("restaurantId")));
             }catch (RestaurantNotFoundException e) {
-                ctx.status(403).result("Unauthorized");
-            }catch (RestaurantIsNotNearUserException e){
                 ctx.status(404).result("Not Found");
+            }catch (RestaurantIsNotNearUserException e){
+                ctx.status(403).result("Unauthorized");
             }catch (Exception e){
                 System.out.println(e.getMessage());
                 ctx.status(502).result(":| " + e.getMessage());
