@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="CA_03_mzFoodDelivery:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>CA_03_mzFoodDelivery</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="CA_03_mzFoodDelivery.war">
+      <element id="artifact" artifact-name="CA_03_mzFoodDelivery:war exploded" />
+    </root>
+  </artifact>
+</component>
