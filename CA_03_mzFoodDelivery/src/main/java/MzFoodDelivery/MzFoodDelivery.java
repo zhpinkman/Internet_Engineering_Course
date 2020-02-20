@@ -11,8 +11,21 @@ import MzFoodDelivery.User.UserManager;
 import java.util.List;
 
 public class MzFoodDelivery {
+
+    private static MzFoodDelivery instance;
+
     private RestaurantManager restaurantManager = new RestaurantManager();
     private UserManager userManager = new UserManager();
+
+
+    private MzFoodDelivery() {}
+
+    public static MzFoodDelivery getInstance() {
+        if (instance == null) {
+            instance = new MzFoodDelivery();
+        }
+        return instance;
+    }
 
     //    RESTAURANT MANAGER
     public void addRestaurant(Restaurant restaurant) throws Exception {

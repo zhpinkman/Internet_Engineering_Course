@@ -1,4 +1,4 @@
-import HTTPRequestHandler.HTTPRequsestHandler;
+import HTTPRequestHandler.HTTPRequestHandler;
 import InterfaceServer.InterfaceServer;
 import MzFoodDelivery.MzFoodDelivery;
 import MzFoodDelivery.Restaurant.Food;
@@ -50,8 +50,8 @@ public class RestaurantsTest {
         String url = "http://localhost:8080/restaurants/" + restaurantId;
         String restaurantPageHtml = "";
         try {
-            restaurantPageHtml = HTTPRequsestHandler.getRequest(url);
-            int statusCode = HTTPRequsestHandler.getStatusCode(url);
+            restaurantPageHtml = HTTPRequestHandler.getRequest(url);
+            int statusCode = HTTPRequestHandler.getStatusCode(url);
             Assert.assertEquals(statusCode, 200);
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,8 +72,8 @@ public class RestaurantsTest {
         String url = "http://localhost:8080/restaurants/" + restaurantId;
         String restaurantPageHtml = "";
         try {
-            restaurantPageHtml = HTTPRequsestHandler.getRequest(url);
-            int statusCode = HTTPRequsestHandler.getStatusCode(url);
+            restaurantPageHtml = HTTPRequestHandler.getRequest(url);
+            int statusCode = HTTPRequestHandler.getStatusCode(url);
             Assert.assertEquals(statusCode, 404);
             Assert.assertEquals(restaurantPageHtml, "Not Found");
         } catch (Exception e) {
@@ -87,8 +87,8 @@ public class RestaurantsTest {
         String url = "http://localhost:8080/restaurants/" + restaurantId;
         String restaurantPageHtml = "";
         try {
-            restaurantPageHtml = HTTPRequsestHandler.getRequest(url);
-            int statusCode = HTTPRequsestHandler.getStatusCode(url);
+            restaurantPageHtml = HTTPRequestHandler.getRequest(url);
+            int statusCode = HTTPRequestHandler.getStatusCode(url);
             Assert.assertEquals(statusCode, 403);
             Assert.assertEquals(restaurantPageHtml, "Unauthorized");
         } catch (Exception e) {

@@ -1,6 +1,6 @@
 package InterfaceServer;
 
-import HTTPRequestHandler.HTTPRequsestHandler;
+import HTTPRequestHandler.HTTPRequestHandler;
 import MzFoodDelivery.Exceptions.RestaurantIsNotNearUserException;
 import MzFoodDelivery.Exceptions.RestaurantNotFoundException;
 import MzFoodDelivery.MzFoodDelivery;
@@ -209,7 +209,7 @@ public class InterfaceServer {
     }
 
     public void importRestaurantsFromWeb(String uri) throws Exception {
-        String RestaurantsJsonString = HTTPRequsestHandler.getRequest(uri);
+        String RestaurantsJsonString = HTTPRequestHandler.getRequest(uri);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<Restaurant> restaurants = gson.fromJson(RestaurantsJsonString, new TypeToken<List<Restaurant>>() {
         }.getType());
