@@ -1,7 +1,7 @@
-package services.User;
+package MzFoodDelivery.User;
 
-import services.Restaurant.Food;
-import services.Restaurant.Restaurant;
+import MzFoodDelivery.Restaurant.Food;
+import MzFoodDelivery.Restaurant.Restaurant;
 
 public class CartItem {
     private Restaurant restaurant;

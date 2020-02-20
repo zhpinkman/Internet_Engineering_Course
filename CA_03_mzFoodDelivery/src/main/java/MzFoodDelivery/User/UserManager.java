@@ -1,6 +1,6 @@
-package services.User;
+package MzFoodDelivery.User;
 
-import services.Restaurant.Location;
+import MzFoodDelivery.Restaurant.Location;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;

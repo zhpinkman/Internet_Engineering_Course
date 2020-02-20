@@ -1,7 +1,7 @@
-package services.User;
+package MzFoodDelivery.User;
 
-import services.Restaurant.Location;
-import services.Restaurant.Restaurant;
+import MzFoodDelivery.Restaurant.Location;
+import MzFoodDelivery.Restaurant.Restaurant;
 
 public class User {
     private Cart userCart = new Cart();

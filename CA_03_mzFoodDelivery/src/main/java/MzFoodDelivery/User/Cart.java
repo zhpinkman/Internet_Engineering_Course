@@ -1,6 +1,6 @@
-package services.User;
+package MzFoodDelivery.User;
 
-import services.Restaurant.Restaurant;
+import MzFoodDelivery.Restaurant.Restaurant;
 
 import java.util.ArrayList;
 import java.util.List;

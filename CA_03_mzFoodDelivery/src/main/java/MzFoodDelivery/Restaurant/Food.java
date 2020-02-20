@@ -1,4 +1,4 @@
-package services.Restaurant;
+package MzFoodDelivery.Restaurant;
 
 public class Food {
     private String name;

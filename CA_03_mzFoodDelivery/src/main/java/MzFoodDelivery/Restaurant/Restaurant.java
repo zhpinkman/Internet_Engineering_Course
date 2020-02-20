@@ -1,4 +1,4 @@
-package services.Restaurant;
+package MzFoodDelivery.Restaurant;
 
 import java.util.List;
 

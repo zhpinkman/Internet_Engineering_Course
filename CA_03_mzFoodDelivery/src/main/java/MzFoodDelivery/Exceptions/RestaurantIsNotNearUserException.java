@@ -1,4 +1,4 @@
-package services.Exceptions;
+package MzFoodDelivery.Exceptions;
 
 public class RestaurantIsNotNearUserException extends Exception {
     // Parameterless Constructor

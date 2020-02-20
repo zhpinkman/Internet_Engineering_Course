@@ -1,7 +1,7 @@
-package services.Restaurant;
+package MzFoodDelivery.Restaurant;
 
-import services.Exceptions.RestaurantIsNotNearUserException;
-import services.Exceptions.RestaurantNotFoundException;
+import MzFoodDelivery.Exceptions.RestaurantIsNotNearUserException;
+import MzFoodDelivery.Exceptions.RestaurantNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Collections;
