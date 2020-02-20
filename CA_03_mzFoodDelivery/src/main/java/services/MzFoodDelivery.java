@@ -1,5 +1,9 @@
 package services;
 
+import HTTPRequestHandler.HTTPRequsestHandler;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import services.Restaurant.Food;
 import services.Restaurant.Restaurant;
 import services.Restaurant.RestaurantManager;
@@ -11,6 +15,20 @@ import services.User.UserManager;
 import java.util.List;
 
 public class MzFoodDelivery {
+
+    private static MzFoodDelivery instance;
+
+    private MzFoodDelivery(){
+
+    }
+
+    public static MzFoodDelivery getInstance() {
+        if (instance == null) {
+            instance = new MzFoodDelivery();
+        }
+        return instance;
+    }
+
     private RestaurantManager restaurantManager = new RestaurantManager();
     private UserManager userManager = new UserManager();
 
@@ -87,5 +105,23 @@ public class MzFoodDelivery {
 
     private String getRestaurantById(String restaurantId) throws Exception {
         return restaurantManager.getRestaurantNameById(restaurantId);
+    }
+
+    public void importRestaurantsFromWeb(String uri) throws Exception {
+        String RestaurantsJsonString = HTTPRequsestHandler.getRequest("http://138.197.181.131:8080/restaurants");
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<Restaurant> restaurants = gson.fromJson(RestaurantsJsonString, new TypeToken<List<Restaurant>>() {
+        }.getType());
+        int counter = 1;
+        for (Restaurant restaurant : restaurants) {
+            System.out.println(counter + "----------------");
+            counter++;
+            restaurant.print();
+            try {
+                addRestaurant(restaurant);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
