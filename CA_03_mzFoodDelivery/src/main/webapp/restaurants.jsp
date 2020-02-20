@@ -48,7 +48,11 @@
         for (Restaurant restaurant: restaurantList) {
     %>
     <tr>
-        <td><%=restaurant.getId()%></td>
+        <td>
+            <a href="restaurant.jsp?restaurantId=<%=restaurant.getId()%>">
+                <%=restaurant.getId()%>
+            </a>
+        </td>
         <td><img class="logo" src=<%=restaurant.getLogo()%> alt="logo"></td>
         <td><%=restaurant.getName()%></td>
         <td><%=restaurant.getPropertyOrDefaultValue("description", "no description")%></td>
