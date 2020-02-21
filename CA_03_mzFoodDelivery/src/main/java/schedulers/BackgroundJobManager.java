@@ -5,21 +5,23 @@ import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+
+
 @WebListener
 public class BackgroundJobManager implements ServletContextListener {
 
-    private static BackgroundJobManager instance;
-
+//    private static BackgroundJobManager instance;
+//
     private ScheduledExecutorService scheduler;
-
-    public static BackgroundJobManager getInstance() {
-        if (instance == null) {
-            instance = new BackgroundJobManager();
-        }
-        return instance;
-    }
-
-    private BackgroundJobManager() {}
+//
+//    public static BackgroundJobManager getInstance() {
+//        if (instance == null) {
+//            instance = new BackgroundJobManager();
+//        }
+//        return instance;
+//    }
+//
+//    private BackgroundJobManager() {}
 
     @Override
     public void contextInitialized(ServletContextEvent event) {

@@ -12,7 +12,7 @@ import java.util.List;
 public class SecJob implements Runnable {
     @Override
     public void run() {
-
+        System.out.println("zhivar");
     }
 
 
