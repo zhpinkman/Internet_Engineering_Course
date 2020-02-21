@@ -27,7 +27,7 @@
 <%
     if (cartItemList.size() != 0) {
 %>
-<div>restaurant name</div>
+<div><%=MzFoodDelivery.getInstance().getCart().getRestaurant().getName()%></div>
 <ul>
     <%
         for (CartItem cartItem: cartItemList) {
