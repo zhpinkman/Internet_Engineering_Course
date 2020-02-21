@@ -53,7 +53,7 @@
                 %>
                 <div> <%=food.getName()%> </div>
                 <div><%=food.getPrice()%> Toman</div>
-                <form action="" method="POST">
+                <form action="/CA_03_mzFoodDelivery/addToCart?restaurantId=<%=restaurant.getId()%>&foodName=<%=food.getName()%>" method="POST">
                     <button type="submit">addToCart</button>
                 </form>
             </li>
