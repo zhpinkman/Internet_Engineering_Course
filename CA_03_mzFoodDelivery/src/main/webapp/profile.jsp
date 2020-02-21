@@ -35,9 +35,9 @@
     <li>phone number: <%=user.getPhoneNumber()%></li>
     <li>email: <%=user.getEmail()%>></li>
     <li>credit: <%=user.getCredit()%> Toman</li>
-    <form action="" method="POST">
+    <form action="/CA_03_mzFoodDelivery/chargeCredit" method="POST">
         <button type="submit">increase</button>
-        <input type="text" name="credit" value="" />
+        <input type="number" name="credit" value="" />
     </form>
     <%
         Cart cartList = user.getUserCart();
