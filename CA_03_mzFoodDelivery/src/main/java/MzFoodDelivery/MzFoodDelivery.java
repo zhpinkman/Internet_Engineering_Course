@@ -8,6 +8,7 @@ import MzFoodDelivery.User.CartItem;
 import MzFoodDelivery.User.User;
 import MzFoodDelivery.User.UserManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MzFoodDelivery {
@@ -16,6 +17,7 @@ public class MzFoodDelivery {
 
     private RestaurantManager restaurantManager = new RestaurantManager();
     private UserManager userManager = new UserManager();
+    private List<Delivery> deliveries = new ArrayList<Delivery>();
 
 
     private MzFoodDelivery() {}
@@ -100,5 +102,14 @@ public class MzFoodDelivery {
 
     private String getRestaurantById(String restaurantId) throws Exception {
         return restaurantManager.getRestaurantNameById(restaurantId);
+    }
+
+    public void addDelivery(Delivery delivery) {
+        deliveries.add(delivery);
+    }
+
+
+    public List<Delivery> getDeliveries() {
+        return deliveries;
     }
 }
