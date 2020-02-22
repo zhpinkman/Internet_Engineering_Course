@@ -121,7 +121,7 @@
     <hr>
     <a href='profile'>.: Profile :.</a>
     <hr>
-    <a href='getCart'>.: Cart :.</a>
+    <a href='cart'>.: Cart :.</a>
     <hr>
 </div>
 <div class="box">

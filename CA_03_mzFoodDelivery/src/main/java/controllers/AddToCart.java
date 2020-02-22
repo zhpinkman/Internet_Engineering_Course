@@ -36,10 +36,13 @@ public class AddToCart extends HttpServlet {
 
         try {
             MzFoodDelivery.getInstance().addToCart(MzFoodDelivery.getInstance().getNearRestaurantById(restaurantId).getName(), foodName);
+            response.setStatus(200);
+            response.getWriter().println("Success");
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendError(400, e.getMessage());
         }
-        response.sendRedirect("http://localhost:8080/CA_03_mzFoodDelivery/restaurant.jsp?restaurantId=" + restaurantId);
+//        response.sendRedirect(request.getContextPath() + "/restaurant.jsp?restaurantId=" + restaurantId);
 
     }
 }
