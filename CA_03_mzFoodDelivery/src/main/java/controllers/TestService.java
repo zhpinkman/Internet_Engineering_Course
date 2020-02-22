@@ -14,7 +14,6 @@ import java.io.IOException;
 public class TestService extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("in in");
         String param = request.getParameter("status");
         if (param.equals("start")) {
             System.out.println("ali");

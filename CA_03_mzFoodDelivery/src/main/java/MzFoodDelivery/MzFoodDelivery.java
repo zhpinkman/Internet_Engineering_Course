@@ -104,8 +104,12 @@ public class MzFoodDelivery {
         return restaurantManager.getRestaurantNameById(restaurantId);
     }
 
-    public void addDelivery(Delivery delivery) {
-        deliveries.add(delivery);
+    public void removeDeliveries() {
+        deliveries.clear();
+    }
+
+    public void addDeliveries(List<Delivery> deliveryList) {
+        deliveries.addAll(deliveryList);
     }
 
 

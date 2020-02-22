@@ -12,7 +12,16 @@ import java.util.List;
 public class SecJob implements Runnable {
     @Override
     public void run() {
-        System.out.println("zhivar");
+        System.out.println("searching for deliveries");
+        if (MzFoodDelivery.getInstance().getDeliveries().size() != 0) {
+            BackgroundJobManager.stopJob();
+            System.out.println("stopping searching for deliveries");
+        }
+        try {
+            importDeliveriesFromWeb();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -21,15 +30,11 @@ public class SecJob implements Runnable {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<Delivery> deliveries = gson.fromJson(deliveriesJsonString, new TypeToken<List<Delivery>>() {
         }.getType());
-        int counter = 1;
-        for (Delivery delivery : deliveries) {
-            System.out.println(counter + "----------------");
-            counter++;
-            try {
-                MzFoodDelivery.getInstance().addDelivery(delivery);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            MzFoodDelivery.getInstance().removeDeliveries();
+            MzFoodDelivery.getInstance().addDeliveries(deliveries);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

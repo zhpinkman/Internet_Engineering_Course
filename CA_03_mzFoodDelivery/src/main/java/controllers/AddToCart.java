@@ -2,8 +2,7 @@ package controllers;
 
 import MzFoodDelivery.MzFoodDelivery;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +15,16 @@ import java.io.PrintWriter;
 public class AddToCart extends HttpServlet {
 
 
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        chain.doFilter(request, response);
+    }
+
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String restaurantId = request.getParameter("restaurantId");
         String foodName = request.getParameter("foodName");
+
 
 //        response.setContentType("text/html; charset=UTF-8");
 //        response.setCharacterEncoding("UTF-8");

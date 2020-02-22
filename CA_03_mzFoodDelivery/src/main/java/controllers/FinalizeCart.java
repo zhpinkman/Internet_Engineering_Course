@@ -1,6 +1,7 @@
 package controllers;
 
 import MzFoodDelivery.MzFoodDelivery;
+import schedulers.BackgroundJobManager;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,7 @@ public class FinalizeCart extends HttpServlet {
         try {
             MzFoodDelivery.getInstance().finalizeOrder();
             message = "order successfully finalized!!";
+            BackgroundJobManager.startJob();
         } catch (Exception e) {
             message = e.getMessage();
         }
