@@ -1,3 +1,8 @@
+<%@ page import="MzFoodDelivery.Order" %>
+<%@ page import="MzFoodDelivery.MzFoodDelivery" %>
+<%@ page import="MzFoodDelivery.User.CartItem" %>
+<%@ page import="MzFoodDelivery.Status" %>
+<%@ page import="java.time.LocalTime" %>
 <%--
   Created by IntelliJ IDEA.
   User: zhivar
@@ -18,24 +23,70 @@
     </style>
 </head>
 <body>
-<div>restaurant name</div>
+
+<%
+    String orderId = request.getParameter("orderId");
+    Order order = null;
+    try {
+        order = MzFoodDelivery.getInstance().getOrderById(Double.parseDouble(orderId));
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
+<%
+    if (order == null) {
+%>
+<div>
+    order not found!!!
+</div>
+<%
+    } else {
+%>
+<div><%=order.getCart().getRestaurant().getName()%></div>
 <ul>
-    <li>food 1:‌ 2</li>
-    <li>food 2: 3</li>
-    <li>food 3: 1</li>
+    <%
+        for (CartItem cartItem: order.getCart().getCartItems()) {
+    %>
+    <li>
+        <%=cartItem.getFood().getName()%>
+        ,
+        <%=cartItem.getQuantity()%>
+    </li>
+    <%}%>
 </ul>
 <!-- One of these states -->
+<%
+    if (order.getStatus() == Status.SEARCHING) {
+%>
 <div>
     status : finding delivery
 </div>
+<%}%>
 <!-- or -->
+
+<%
+    if (order.getStatus() == Status.DELIVERING) {
+%>
 <div>
     <div>status : delivering</div>
-    <div>remained time : 10 min 12 sec</div>
+    <%
+        long remainingTime = order.getRemainingArrivingTime();
+        LocalTime localtime = LocalTime.ofSecondOfDay(remainingTime);
+    %>
+    <div>remained time : <%=localtime.getMinute()%> min <%=localtime.getSecond()%> sec</div>
 </div>
+<%}%>
+
 <!-- or -->
+
+<%
+    if (order.getStatus() == Status.DELIVERED) {
+%>
 <div>
     status : done
 </div>
+<%}%>
+<%}%>
+
 </body>
 </html>

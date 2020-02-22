@@ -1,5 +1,6 @@
 package MzFoodDelivery.User;
 
+import MzFoodDelivery.Order;
 import MzFoodDelivery.Restaurant.Location;
 import MzFoodDelivery.Restaurant.Restaurant;
 
@@ -37,8 +38,23 @@ public class User {
         return location;
     }
 
-    public void finalizeOrder() {
+    public Order finalizeOrder() {
+        Cart cart = cloneCart();
         userCart.emptyCart();
+        return new Order(cart);
+    }
+
+
+    public Cart cloneCart() {
+        Cart cart = new Cart();
+        for (CartItem cartItem: userCart.getCartItems()) {
+            try {
+                cart.addToCart(cartItem);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return cart;
     }
 
     public int getUserCartSize() {

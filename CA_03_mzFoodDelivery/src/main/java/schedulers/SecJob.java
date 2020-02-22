@@ -6,16 +6,16 @@ import MzFoodDelivery.MzFoodDelivery;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import MzFoodDelivery.Order;
 
 import java.util.List;
 
 public class SecJob implements Runnable {
     @Override
     public void run() {
-        System.out.println("searching for deliveries");
         if (MzFoodDelivery.getInstance().getDeliveries().size() != 0) {
             BackgroundJobManager.stopJob();
-            System.out.println("stopping searching for deliveries");
+            MzFoodDelivery.getInstance().assignDeliveryToOrder();
         }
         try {
             importDeliveriesFromWeb();
@@ -37,4 +37,6 @@ public class SecJob implements Runnable {
             System.out.println(e.getMessage());
         }
     }
+
+
 }
