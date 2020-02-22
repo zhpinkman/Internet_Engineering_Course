@@ -36,4 +36,6 @@ public class Food {
     public String getImage() { return image; }
 
     public double getPrice() { return  price; }
+
+    public String getDescription() { return description; }
 }

@@ -21,7 +21,8 @@ public class FoodParty extends HttpServlet {
 
     public void init() throws ServletException {
         try {
-            scheduler.scheduleAtFixedRate(new ScheduledParty(), 0, 30, TimeUnit.SECONDS);
+            new ScheduledParty().run();
+            scheduler.scheduleAtFixedRate(new ScheduledParty(), 30, 30, TimeUnit.SECONDS);
         } catch (Exception e) {
             e.printStackTrace();
         }

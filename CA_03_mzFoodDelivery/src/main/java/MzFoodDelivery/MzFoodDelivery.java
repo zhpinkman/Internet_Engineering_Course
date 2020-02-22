@@ -11,6 +11,7 @@ import MzFoodDelivery.User.User;
 import MzFoodDelivery.User.UserManager;
 import schedulers.BackgroundJobManager;
 
+import javax.servlet.http.Part;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -169,4 +170,7 @@ public class MzFoodDelivery {
         foodPartyManager.importFoodPartyFromWeb();
     }
 
+    public List<PartyFood> getPartyFoods(){
+        return foodPartyManager.getPartyFoods();
+    }
 }

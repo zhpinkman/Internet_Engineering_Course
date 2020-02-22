@@ -3,6 +3,7 @@
 <%@ page import="MzFoodDelivery.Restaurant.Restaurant" %>
 <%@ page import="java.util.List" %>
 <%@ page import="MzFoodDelivery.Restaurant.Food" %>
+<%@ page import="MzFoodDelivery.Restaurant.PartyFood" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,6 +46,7 @@
 <%--            <%=foodList.get(0).getName()%>--%>
             <%
                 for (Food food: foodList) {
+                    if(!(food instanceof PartyFood)){
             %>
             <li>
                 <img src=<%=food.getImage()%> alt="logo">
@@ -57,7 +59,8 @@
                     <button type="submit">addToCart</button>
                 </form>
             </li>
-            <%}%>
+            <%      }
+                }%>
         </ul>
     </li>
 </ul>

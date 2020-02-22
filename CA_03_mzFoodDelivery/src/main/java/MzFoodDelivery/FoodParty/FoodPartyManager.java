@@ -15,17 +15,19 @@ import java.util.List;
 
 public class FoodPartyManager {
 
-    private List<PartyFood> partyFoods;
+    private List<PartyFood> partyFoods = new ArrayList<>();
 
     public void addFood(PartyFood partyFood) {
         partyFoods.add(partyFood);
     }
 
     public void deleteOldParty(){
-        for (PartyFood partyFood: partyFoods) {
-            partyFood.getRestaurant().deleteFood(partyFood);
+        if(partyFoods.size() > 0) {
+            for (PartyFood partyFood : partyFoods) {
+                partyFood.getRestaurant().deleteFood(partyFood);
+            }
+            partyFoods.clear();
         }
-        partyFoods.clear();
     }
 
     public void importFoodPartyFromWeb() throws Exception {
@@ -48,6 +50,10 @@ public class FoodPartyManager {
                     item.menu.get(0).price, item.menu.get(0).count, restaurant);
             MzFoodDelivery.getInstance().addPartyFood(partyFood.getRestaurant().getName(), partyFood);
         }
+    }
+
+    public List<PartyFood> getPartyFoods() {
+        return partyFoods;
     }
 }
 

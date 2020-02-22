@@ -62,7 +62,7 @@ public class Restaurant {
 
     private boolean isFoodInMenu(Food food){
         for(Food foodItem: menu){
-            if(foodItem.getName().equals(food.getName()))
+            if(foodItem.getName().equals(food.getName()) && !(food instanceof PartyFood))
                 return true;
         }
         return false;
