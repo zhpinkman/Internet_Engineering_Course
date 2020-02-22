@@ -137,7 +137,7 @@ public class MzFoodDelivery {
         latestOrder.setDelivery(delivery);
     }
 
-    private Delivery getQuickestDelivery(Order order) {
+    public Delivery getQuickestDelivery(Order order) {
         double minTime = Double.POSITIVE_INFINITY;
         Delivery quickestDelivery = null;
         for (Delivery delivery : deliveries) {
@@ -150,7 +150,7 @@ public class MzFoodDelivery {
         return quickestDelivery;
     }
 
-    private double calcDeliveryDistanceToGo(Restaurant restaurant, Delivery delivery) {
+    public double calcDeliveryDistanceToGo(Restaurant restaurant, Delivery delivery) {
         double distanceToGetToRestaurant = delivery.getLocation().getDistanceFromLocation(restaurant.getLocation());
         double distanceToGetToCustomer = delivery.getLocation().getDistanceFromLocation(getUser().getLocation());
         return distanceToGetToCustomer + distanceToGetToRestaurant;

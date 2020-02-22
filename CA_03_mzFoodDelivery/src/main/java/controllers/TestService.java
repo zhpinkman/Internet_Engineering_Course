@@ -20,7 +20,10 @@ public class TestService extends HttpServlet {
             BackgroundJobManager.startJob();
         } else if (param.equals("stop")) {
             System.out.println("shayan");
-            BackgroundJobManager.stopJob();
+//            BackgroundJobManager.stopJob();
+        } else if (param.equals("wait")) {
+            System.out.println("waiting");
+//            BackgroundJobManager.waitForArriving(0);
         }
     }
 }

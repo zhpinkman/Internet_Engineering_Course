@@ -3,6 +3,7 @@
 <%@ page import="MzFoodDelivery.User.CartItem" %>
 <%@ page import="MzFoodDelivery.Status" %>
 <%@ page import="java.time.LocalTime" %>
+<%@ page import="java.time.Duration" %>
 <%--
   Created by IntelliJ IDEA.
   User: zhivar
@@ -70,13 +71,13 @@
 <div>
     <div>status : delivering</div>
     <%
-        long remainingTime = order.getRemainingArrivingTime();
-        LocalTime localtime = LocalTime.ofSecondOfDay(remainingTime);
+        Duration duration = order.getRemainingArrivingTime();
     %>
-    <div>remained time : <%=localtime.getMinute()%> min <%=localtime.getSecond()%> sec</div>
+    <%=order.getStartingDeliveryTime().getMinute()%>
+    <%=order.getStartingDeliveryTime().getSecond()%>
+    <div>remained time : <%=duration.getSeconds() / 60%> min <%=duration.getSeconds() % 60%> sec</div>
 </div>
 <%}%>
-
 <!-- or -->
 
 <%

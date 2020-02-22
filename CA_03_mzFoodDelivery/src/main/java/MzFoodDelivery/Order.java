@@ -1,9 +1,10 @@
 package MzFoodDelivery;
 
 import MzFoodDelivery.User.Cart;
+import schedulers.BackgroundJobManager;
 
+import java.time.Duration;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 
 public class Order {
 
@@ -16,6 +17,7 @@ public class Order {
     private Delivery delivery;
     private LocalTime startingDeliveryTime;
 
+
     public Order(Cart cart) {
         this.id = max_id ++;
         this.status = Status.SEARCHING;
@@ -26,11 +28,18 @@ public class Order {
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
         setDeliveringStatus();
-        startingDeliveryTime = LocalTime.now();
+        double distance = MzFoodDelivery.getInstance().calcDeliveryDistanceToGo(cart.getRestaurant(), delivery);
+        double time = distance / delivery.getVelocity();
+        startingDeliveryTime = LocalTime.now().plusSeconds((long) time);
+        BackgroundJobManager.waitForArriving((int) time, this);
     }
 
-    public long getRemainingArrivingTime() {
-        return startingDeliveryTime.until(LocalTime.now(), ChronoUnit.SECONDS);
+    public Duration getRemainingArrivingTime() {
+        return Duration.between(LocalTime.now(), startingDeliveryTime);
+    }
+
+    public LocalTime getStartingDeliveryTime() {
+        return startingDeliveryTime;
     }
 
     public Delivery getDelivery() {

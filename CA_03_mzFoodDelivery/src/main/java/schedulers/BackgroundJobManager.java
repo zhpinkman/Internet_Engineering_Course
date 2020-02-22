@@ -12,27 +12,20 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class BackgroundJobManager implements ServletContextListener {
 
-//    private static BackgroundJobManager instance;
-//
-    private static ScheduledExecutorService scheduler;
-//
-//    public static BackgroundJobManager getInstance() {
-//        if (instance == null) {
-//            instance = new BackgroundJobManager();
-//        }
-//        return instance;
-//    }
-//
-//    private BackgroundJobManager() {}
-
 
     public static void startJob() {
-        scheduler = Executors.newSingleThreadScheduledExecutor();
-        scheduler.scheduleAtFixedRate(new SecJob(), 0, 5, TimeUnit.SECONDS);
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(new SecJob(scheduler), 0, 5, TimeUnit.SECONDS);
     }
 
-    public static void stopJob() {
+    public static void stopJob(ScheduledExecutorService scheduler) {
         scheduler.shutdown();
+    }
+
+
+    public static void waitForArriving(int seconds, Order order) {
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleWithFixedDelay(new waitJob(scheduler, order), 0, seconds, TimeUnit.SECONDS);
     }
 
     @Override
@@ -47,7 +40,7 @@ public class BackgroundJobManager implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent event) {
-        scheduler.shutdownNow();
+
     }
 
 }

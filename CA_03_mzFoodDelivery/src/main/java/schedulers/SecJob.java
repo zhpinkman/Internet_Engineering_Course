@@ -9,13 +9,23 @@ import com.google.gson.reflect.TypeToken;
 import MzFoodDelivery.Order;
 
 import java.util.List;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class SecJob implements Runnable {
+
+    private ScheduledExecutorService scheduler;
+
+    public SecJob(ScheduledExecutorService scheduler) {
+        this.scheduler = scheduler;
+    }
+
     @Override
     public void run() {
+        System.out.println("running");
         if (MzFoodDelivery.getInstance().getDeliveries().size() != 0) {
-            BackgroundJobManager.stopJob();
+            BackgroundJobManager.stopJob(scheduler);
             MzFoodDelivery.getInstance().assignDeliveryToOrder();
+            System.out.println("finished");
         }
         try {
             importDeliveriesFromWeb();
