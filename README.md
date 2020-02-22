@@ -4,8 +4,4 @@ for having farsi characters (UTF-8) in servlet responses and requests you can us
 
 >       response.setContentType("text/html; charset=UTF-8");
 >       response.setCharacterEncoding("UTF-8");
-<<<<<<< HEAD
 >       PrintWriter out = response.getWriter();
-=======
->       PrintWriter out = response.getWriter();
->>>>>>> 64cf8d0bc5685895a770b6402b405430f27ed43e
