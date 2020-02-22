@@ -123,6 +123,8 @@
     <hr>
     <a href='cart'>.: Cart :.</a>
     <hr>
+    <a href='foodParty'>.: Food Party :.</a>
+    <hr>
 </div>
 <div class="box">
     <div class="wall">
