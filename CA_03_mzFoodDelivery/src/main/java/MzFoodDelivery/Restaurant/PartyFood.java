@@ -20,4 +20,9 @@ public class PartyFood extends Food {
         return super.getPrice();
     }
 
+    public  Restaurant getRestaurant() { return restaurant; }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 }

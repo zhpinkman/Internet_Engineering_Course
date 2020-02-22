@@ -1,6 +1,8 @@
 package MzFoodDelivery;
 
+import MzFoodDelivery.FoodParty.FoodPartyManager;
 import MzFoodDelivery.Restaurant.Food;
+import MzFoodDelivery.Restaurant.PartyFood;
 import MzFoodDelivery.Restaurant.Restaurant;
 import MzFoodDelivery.Restaurant.RestaurantManager;
 import MzFoodDelivery.User.Cart;
@@ -19,6 +21,7 @@ public class MzFoodDelivery {
 
     private RestaurantManager restaurantManager = new RestaurantManager();
     private UserManager userManager = new UserManager();
+    private FoodPartyManager foodPartyManager = new FoodPartyManager();
     private List<Delivery> deliveries = new ArrayList<Delivery>();
     private List<Order> orderList = new ArrayList<Order>();
 
@@ -39,6 +42,12 @@ public class MzFoodDelivery {
 
     public void addFood(String restaurantName, Food food) throws Exception {
         restaurantManager.addFood(restaurantName, food);
+
+    }
+
+    public void addPartyFood(String restaurantName, PartyFood partyFood) throws Exception {
+        restaurantManager.addFood(restaurantName, partyFood);
+        foodPartyManager.addFood(partyFood);
     }
 
     public void printRestaurants() {
@@ -155,4 +164,9 @@ public class MzFoodDelivery {
         double distanceToGetToCustomer = delivery.getLocation().getDistanceFromLocation(getUser().getLocation());
         return distanceToGetToCustomer + distanceToGetToRestaurant;
     }
+
+    public void importFoodPartyFromWeb() throws Exception{
+        foodPartyManager.importFoodPartyFromWeb();
+    }
+
 }

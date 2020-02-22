@@ -124,4 +124,8 @@ public class Restaurant {
             return fieldValue;
         return defaultValue;
     }
+
+    public void deleteFood(PartyFood partyFood) {
+        menu.remove(partyFood);
+    }
 }

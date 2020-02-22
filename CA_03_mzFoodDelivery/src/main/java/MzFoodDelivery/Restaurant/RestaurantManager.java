@@ -2,6 +2,7 @@ package MzFoodDelivery.Restaurant;
 
 import MzFoodDelivery.Exceptions.RestaurantIsNotNearUserException;
 import MzFoodDelivery.Exceptions.RestaurantNotFoundException;
+import MzFoodDelivery.MzFoodDelivery;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +27,13 @@ public class RestaurantManager {
         return null;
     }
 
+    private Restaurant findRestaurantByName(String name){
+        for (Restaurant restaurantItem : restaurants)
+            if (restaurantItem.getName().equals(name))
+                return restaurantItem;
+        return null;
+    }
+
     public void addRestaurant(Restaurant restaurant) throws Exception {
         if (doesRestaurantExist(restaurant))
             throw new Exception("Error: Duplicate restaurant");
@@ -33,13 +41,10 @@ public class RestaurantManager {
     }
 
     public void addFood(String restaurantName, Food food) throws Exception {
-        for (Restaurant restaurant : restaurants) {
-            if (restaurant.getName().equals(restaurantName)) {
-                restaurant.addFood(food);
-                return;
-            }
-        }
-        throw new Exception("Error: " + restaurantName + " restaurant does not exists");
+        Restaurant restaurant = findRestaurantByName(restaurantName);
+        if(restaurant == null)
+            throw new Exception("Error: " + restaurantName + " restaurant does not exists");
+        restaurant.addFood(food);
     }
 
     public void printRestaurants() {
@@ -106,6 +111,7 @@ public class RestaurantManager {
         }
         throw new Exception("Error: restaurant does not exists");
     }
+
 }
 
 
