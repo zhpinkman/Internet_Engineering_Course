@@ -2,6 +2,9 @@ package MzFoodDelivery;
 
 import MzFoodDelivery.User.Cart;
 
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+
 public class Order {
 
 
@@ -11,6 +14,7 @@ public class Order {
     private Cart cart;
     private Status status;
     private Delivery delivery;
+    private LocalTime startingDeliveryTime;
 
     public Order(Cart cart) {
         this.id = max_id ++;
@@ -22,6 +26,11 @@ public class Order {
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
         setDeliveringStatus();
+        startingDeliveryTime = LocalTime.now();
+    }
+
+    public long getRemainingArrivingTime() {
+        return startingDeliveryTime.until(LocalTime.now(), ChronoUnit.SECONDS);
     }
 
     public Delivery getDelivery() {
