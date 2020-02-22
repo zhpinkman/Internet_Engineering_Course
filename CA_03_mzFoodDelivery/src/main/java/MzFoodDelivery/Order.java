@@ -10,6 +10,7 @@ public class Order {
     private double id;
     private Cart cart;
     private Status status;
+    private Delivery delivery;
 
     public Order(Cart cart) {
         this.id = max_id ++;
@@ -17,8 +18,26 @@ public class Order {
         this.cart = cart;
     }
 
-    public void setArrivingStatus() {
-        status = Status.ARRIVING;
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+        setDeliveringStatus();
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public double getId() {
+        return id;
+    }
+
+    public void setDeliveringStatus() {
+        status = Status.DELIVERING;
     }
 
     public void setDeliveredStatus() {

@@ -7,9 +7,11 @@ import MzFoodDelivery.User.Cart;
 import MzFoodDelivery.User.CartItem;
 import MzFoodDelivery.User.User;
 import MzFoodDelivery.User.UserManager;
+import schedulers.BackgroundJobManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 public class MzFoodDelivery {
 
@@ -18,6 +20,7 @@ public class MzFoodDelivery {
     private RestaurantManager restaurantManager = new RestaurantManager();
     private UserManager userManager = new UserManager();
     private List<Delivery> deliveries = new ArrayList<Delivery>();
+    private List<Order> orderList = new ArrayList<Order>();
 
 
     private MzFoodDelivery() {}
@@ -58,6 +61,15 @@ public class MzFoodDelivery {
         userManager.addToCart(cartItem);
     }
 
+    public Order getOrderById(double id) throws Exception {
+        for (Order order: orderList) {
+            if (order.getId() == id) {
+                return order;
+            }
+        }
+        throw new Exception("orderId not found");
+    }
+
     public Cart getCart() {
         return userManager.getCart();
     }
@@ -67,7 +79,9 @@ public class MzFoodDelivery {
     }
 
     public void finalizeOrder() throws Exception {
-        userManager.finalizeOrder();
+        Order order = userManager.finalizeOrder();
+        orderList.add(order);
+        BackgroundJobManager.startJob();
     }
 
     public int getUserCartSize() {
@@ -115,5 +129,30 @@ public class MzFoodDelivery {
 
     public List<Delivery> getDeliveries() {
         return deliveries;
+    }
+
+    public void assignDeliveryToOrder() {
+        Order latestOrder = orderList.get(orderList.size() - 1);
+        Delivery delivery = getQuickestDelivery(latestOrder);
+        latestOrder.setDelivery(delivery);
+    }
+
+    private Delivery getQuickestDelivery(Order order) {
+        double minTime = Double.POSITIVE_INFINITY;
+        Delivery quickestDelivery = null;
+        for (Delivery delivery : deliveries) {
+            double distanceToDeliverOrder = calcDeliveryDistanceToGo(order.getCart().getRestaurant(), delivery);
+            double timeToDeliverOrder = distanceToDeliverOrder / delivery.getVelocity();
+            if (timeToDeliverOrder < minTime) {
+                quickestDelivery = delivery;
+            }
+        }
+        return quickestDelivery;
+    }
+
+    private double calcDeliveryDistanceToGo(Restaurant restaurant, Delivery delivery) {
+        double distanceToGetToRestaurant = delivery.getLocation().getDistanceFromLocation(restaurant.getLocation());
+        double distanceToGetToCustomer = delivery.getLocation().getDistanceFromLocation(getUser().getLocation());
+        return distanceToGetToCustomer + distanceToGetToRestaurant;
     }
 }

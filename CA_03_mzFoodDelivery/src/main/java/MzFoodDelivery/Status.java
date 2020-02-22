@@ -1,7 +1,7 @@
 package MzFoodDelivery;
 
-enum Status {
+public enum Status {
     SEARCHING,
-    ARRIVING,
+    DELIVERING,
     DELIVERED
 }

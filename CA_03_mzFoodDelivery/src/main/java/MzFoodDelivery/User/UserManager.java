@@ -1,5 +1,6 @@
 package MzFoodDelivery.User;
 
+import MzFoodDelivery.Order;
 import MzFoodDelivery.Restaurant.Location;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,14 +35,14 @@ public class UserManager {
         return gson.toJson(cartJsonElement);
     }
 
-    public void finalizeOrder() throws Exception {
+    public Order finalizeOrder() throws Exception {
         double totalPrice = user.getCartTotalPrice();
         if (user.getUserCartSize() == 0)
             throw new Exception("user cart is empty");
         if (totalPrice > user.getCredit())
             throw new Exception("credit is not enough for finalizing your order");
         user.withdrawCredit(totalPrice);
-        user.finalizeOrder();
+        return user.finalizeOrder();
     }
 
     public int getUserCartSize() {
