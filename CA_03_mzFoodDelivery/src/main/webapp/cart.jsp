@@ -35,7 +35,7 @@
     <li><%=cartItem.getFood().getName()%>: <%=cartItem.getQuantity()%></li>
     <%}%>
 </ul>
-<form action="/CA_03_mzFoodDelivery/finalize" method="POST">
+<form action="finalize" method="POST">
     <button type="submit">finalize</button>
 </form>
 <%} else {%>
