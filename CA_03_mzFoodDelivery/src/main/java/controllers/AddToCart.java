@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "AddToCart", urlPatterns = "/addToCart")
 public class AddToCart extends HttpServlet {
 
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String restaurantId = request.getParameter("restaurantId");
         String foodName = request.getParameter("foodName");

@@ -37,9 +37,9 @@ public class GetRestaurants extends HttpServlet {
         }.getType());
         int counter = 1;
         for (Restaurant restaurant : restaurants) {
-            System.out.println(counter + "----------------");
+//            System.out.println(counter + "----------------");
             counter++;
-            restaurant.print();
+//            restaurant.print();
             try {
                 MzFoodDelivery.getInstance().addRestaurant(restaurant);
             } catch (Exception e) {

@@ -12,7 +12,7 @@ public class BackgroundJobManager implements ServletContextListener {
 
 //    private static BackgroundJobManager instance;
 //
-    private ScheduledExecutorService scheduler;
+    private static ScheduledExecutorService scheduler;
 //
 //    public static BackgroundJobManager getInstance() {
 //        if (instance == null) {
@@ -23,13 +23,24 @@ public class BackgroundJobManager implements ServletContextListener {
 //
 //    private BackgroundJobManager() {}
 
+
+    public static void startJob() {
+        scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(new SecJob(), 0, 5, TimeUnit.SECONDS);
+    }
+
+    public static void stopJob() {
+        scheduler.shutdown();
+    }
+
     @Override
     public void contextInitialized(ServletContextEvent event) {
-        scheduler = Executors.newSingleThreadScheduledExecutor();
+//        System.out.println("init");
+//        scheduler = Executors.newSingleThreadScheduledExecutor();
         // scheduler.scheduleAtFixedRate(new DailyJob(), 0, 1, TimeUnit.DAYS);
 //        scheduler.scheduleAtFixedRate(new HourlyJob(), 0, 1, TimeUnit.HOURS);
         //scheduler.scheduleAtFixedRate(new MinJob(), 0, 1, TimeUnit.MINUTES);
-         scheduler.scheduleAtFixedRate(new SecJob(), 0, 30, TimeUnit.SECONDS);
+//         scheduler.scheduleAtFixedRate(new SecJob(), 0, 30, TimeUnit.SECONDS);
     }
 
     @Override

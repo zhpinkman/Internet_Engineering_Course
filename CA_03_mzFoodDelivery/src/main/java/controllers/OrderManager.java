@@ -38,7 +38,7 @@ public class OrderManager extends HttpServlet {
         }.getType());
         int counter = 1;
         for (Delivery delivery : deliveries) {
-            System.out.println(counter + "----------------");
+//            System.out.println(counter + "----------------");
             counter++;
             try {
                 MzFoodDelivery.getInstance().addDelivery(delivery);
