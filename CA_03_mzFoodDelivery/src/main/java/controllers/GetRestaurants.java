@@ -18,14 +18,18 @@ import java.util.List;
 
 
 @WebServlet(name = "GetRestaurants", urlPatterns = "/getRestaurants")
+
 public class GetRestaurants extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void init() throws ServletException {
         try {
             importRestaurantsFromWeb();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("restaurants.jsp");
         requestDispatcher.forward(request, response);
     }
@@ -35,10 +39,8 @@ public class GetRestaurants extends HttpServlet {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<Restaurant> restaurants = gson.fromJson(RestaurantsJsonString, new TypeToken<List<Restaurant>>() {
         }.getType());
-        int counter = 1;
         for (Restaurant restaurant : restaurants) {
 //            System.out.println(counter + "----------------");
-            counter++;
 //            restaurant.print();
             try {
                 MzFoodDelivery.getInstance().addRestaurant(restaurant);
