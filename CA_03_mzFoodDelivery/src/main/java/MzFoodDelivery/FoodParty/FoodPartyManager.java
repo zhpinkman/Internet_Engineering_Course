@@ -57,20 +57,5 @@ public class FoodPartyManager {
     }
 }
 
-class FoodPartyWebItem {
-    public String id;
-    public String name;
-    public Location location;
-    public String logo;
-    public List<FoodPartyWebFoodItem> menu;
-}
 
-class FoodPartyWebFoodItem {
-    public int count;
-    public double oldPrice;
-    public String name;
-    public String description;
-    public double price;
-    public double popularity;
-    public String image;
-}
+
