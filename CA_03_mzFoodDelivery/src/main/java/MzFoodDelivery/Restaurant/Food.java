@@ -15,6 +15,7 @@ public class Food {
         this.image = image;
     }
 
+
     public void print() {
         System.out.println(
                 "name: " + name +
@@ -24,6 +25,7 @@ public class Food {
                 " | Image: " + image
         );
     }
+
 
     public String getName() {
         return name;
@@ -38,4 +40,10 @@ public class Food {
     public double getPrice() { return  price; }
 
     public String getDescription() { return description; }
+
+    public void decreaseFoodAmount() {}
+
+    public boolean hasEnoughAmount(int quantity) {
+        return true;
+    }
 }

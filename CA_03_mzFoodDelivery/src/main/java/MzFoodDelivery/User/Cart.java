@@ -1,5 +1,6 @@
 package MzFoodDelivery.User;
 
+import MzFoodDelivery.Restaurant.PartyFood;
 import MzFoodDelivery.Restaurant.Restaurant;
 
 import java.util.ArrayList;
@@ -62,4 +63,11 @@ public class Cart {
     }
 
 
+    public void removeCartItem(PartyFood partyFood) {
+        for (CartItem cartItem: cartItems) {
+            if (cartItem.getFood().getName().equals(partyFood.getName()) && cartItem.getRestaurant().getId().equals(partyFood.getRestaurant().getId())) {
+                cartItems.remove(cartItem);
+            }
+        }
+    }
 }

@@ -90,6 +90,7 @@ public class MzFoodDelivery {
 
     public void finalizeOrder() throws Exception {
         Order order = userManager.finalizeOrder();
+        restaurantManager.decreaseFoodAmounts(order);
         orderList.add(order);
         BackgroundJobManager.startJob();
     }
@@ -167,8 +168,18 @@ public class MzFoodDelivery {
     }
 
     public void importFoodPartyFromWeb() throws Exception{
+        removeOlderOffers();
         foodPartyManager.importFoodPartyFromWeb();
     }
+
+    private void removeOlderOffers() {
+        for (CartItem cartItem: userManager.getCart().getCartItems()) {
+            if (cartItem.getFood() instanceof PartyFood)
+                userManager.getCart().removeCartItem((PartyFood) cartItem.getFood());
+        }
+    }
+
+
 
     public List<PartyFood> getPartyFoods(){
         return foodPartyManager.getPartyFoods();

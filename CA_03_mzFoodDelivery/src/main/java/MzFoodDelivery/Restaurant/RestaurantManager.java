@@ -2,7 +2,10 @@ package MzFoodDelivery.Restaurant;
 
 import MzFoodDelivery.Exceptions.RestaurantIsNotNearUserException;
 import MzFoodDelivery.Exceptions.RestaurantNotFoundException;
+import MzFoodDelivery.Order;
 import MzFoodDelivery.MzFoodDelivery;
+import MzFoodDelivery.User.Cart;
+import MzFoodDelivery.User.CartItem;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -112,6 +115,12 @@ public class RestaurantManager {
         throw new Exception("Error: restaurant does not exists");
     }
 
+    public void decreaseFoodAmounts(Order order) throws Exception {
+        Cart cart = order.getCart();
+        for (CartItem cartItem: cart.getCartItems()) {
+            cartItem.getFood().decreaseFoodAmount();
+        }
+    }
 }
 
 

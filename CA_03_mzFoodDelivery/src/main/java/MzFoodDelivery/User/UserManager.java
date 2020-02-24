@@ -41,8 +41,18 @@ public class UserManager {
             throw new Exception("user cart is empty");
         if (totalPrice > user.getCredit())
             throw new Exception("credit is not enough for finalizing your order");
+        if (foodRepoEmpty(user.getUserCart()))
+            throw new Exception("count of this offer is not enough for you to submit");
         user.withdrawCredit(totalPrice);
         return user.finalizeOrder();
+    }
+
+    public boolean foodRepoEmpty(Cart cart) {
+        for (CartItem cartItem: cart.getCartItems()) {
+            if (!cartItem.getFood().hasEnoughAmount(cartItem.getQuantity()))
+                return true;
+        }
+        return false;
     }
 
     public int getUserCartSize() {

@@ -25,12 +25,11 @@ public class AddToCart extends HttpServlet {
         String restaurantId = request.getParameter("restaurantId");
         String foodName = request.getParameter("foodName");
 
-
-//        response.setContentType("text/html; charset=UTF-8");
-//        response.setCharacterEncoding("UTF-8");
-//        PrintWriter out = response.getWriter();
-//        out.println(restaurantId);
-//        out.println(foodName);
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println(restaurantId);
+        out.println(foodName);
 
 
 
