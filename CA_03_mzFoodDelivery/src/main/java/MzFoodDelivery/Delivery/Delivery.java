@@ -1,5 +1,6 @@
-package MzFoodDelivery;
+package MzFoodDelivery.Delivery;
 
+import MzFoodDelivery.MzFoodDelivery;
 import MzFoodDelivery.Restaurant.Location;
 
 public class Delivery {

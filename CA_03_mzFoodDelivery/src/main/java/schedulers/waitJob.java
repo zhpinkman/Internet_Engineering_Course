@@ -1,6 +1,6 @@
 package schedulers;
 
-import MzFoodDelivery.Order;
+import MzFoodDelivery.Delivery.Order;
 
 import java.util.concurrent.ScheduledExecutorService;
 

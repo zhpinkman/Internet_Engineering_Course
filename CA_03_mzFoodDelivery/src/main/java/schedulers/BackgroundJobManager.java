@@ -1,5 +1,5 @@
 package schedulers;// your package
-import MzFoodDelivery.Order;
+import MzFoodDelivery.Delivery.Order;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

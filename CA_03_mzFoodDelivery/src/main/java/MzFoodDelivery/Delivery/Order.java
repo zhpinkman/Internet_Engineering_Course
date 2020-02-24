@@ -1,5 +1,7 @@
-package MzFoodDelivery;
+package MzFoodDelivery.Delivery;
 
+import MzFoodDelivery.Delivery.Delivery;
+import MzFoodDelivery.MzFoodDelivery;
 import MzFoodDelivery.User.Cart;
 import schedulers.BackgroundJobManager;
 

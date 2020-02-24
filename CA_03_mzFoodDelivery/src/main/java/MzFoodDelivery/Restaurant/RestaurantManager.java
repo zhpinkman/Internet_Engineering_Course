@@ -2,14 +2,12 @@ package MzFoodDelivery.Restaurant;
 
 import MzFoodDelivery.Exceptions.RestaurantIsNotNearUserException;
 import MzFoodDelivery.Exceptions.RestaurantNotFoundException;
-import MzFoodDelivery.Order;
-import MzFoodDelivery.MzFoodDelivery;
+import MzFoodDelivery.Delivery.Order;
 import MzFoodDelivery.User.Cart;
 import MzFoodDelivery.User.CartItem;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -124,34 +122,4 @@ public class RestaurantManager {
 }
 
 
-class SortByAveragePopularityDistance implements Comparator<Restaurant> {
-    private Location location;
 
-    SortByAveragePopularityDistance(Location location) {
-        this.location = location;
-    }
-
-    @Override
-    public int compare(Restaurant r1, Restaurant r2) {
-        double r1FoodsPopularityAverage = r1.getFoodsPopularityAverage();
-        double r2FoodsPopularityAverage = r2.getFoodsPopularityAverage();
-        double r1DistanceFromUser = r1.getDistanceFromLocation(location);
-        double r2DistanceFromUser = r2.getDistanceFromLocation(location);
-        int r1Rank = (int) (r1FoodsPopularityAverage / r1DistanceFromUser);
-        int r2Rank = (int) (r2FoodsPopularityAverage / r2DistanceFromUser);
-        return r1Rank - r2Rank;
-    }
-}
-
-class SortByDistance implements Comparator<Restaurant> {
-    private Location location;
-
-    SortByDistance(Location location) {
-        this.location = location;
-    }
-
-    @Override
-    public int compare(Restaurant r1, Restaurant r2) {
-        return (int) r1.getDistanceFromLocation(location) - (int) r2.getDistanceFromLocation(location);
-    }
-}

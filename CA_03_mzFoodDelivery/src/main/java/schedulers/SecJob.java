@@ -1,12 +1,11 @@
 package schedulers;
 
 import HTTPRequestHandler.HTTPRequestHandler;
-import MzFoodDelivery.Delivery;
+import MzFoodDelivery.Delivery.Delivery;
 import MzFoodDelivery.MzFoodDelivery;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import MzFoodDelivery.Order;
 
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;

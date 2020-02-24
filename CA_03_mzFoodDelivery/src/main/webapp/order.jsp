@@ -1,7 +1,7 @@
-<%@ page import="MzFoodDelivery.Order" %>
+<%@ page import="MzFoodDelivery.Delivery.Order" %>
 <%@ page import="MzFoodDelivery.MzFoodDelivery" %>
 <%@ page import="MzFoodDelivery.User.CartItem" %>
-<%@ page import="MzFoodDelivery.Status" %>
+<%@ page import="MzFoodDelivery.Delivery.Status" %>
 <%@ page import="java.time.LocalTime" %>
 <%@ page import="java.time.Duration" %>
 <%--

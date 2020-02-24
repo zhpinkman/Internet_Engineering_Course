@@ -1,5 +1,7 @@
 package MzFoodDelivery;
 
+import MzFoodDelivery.Delivery.Delivery;
+import MzFoodDelivery.Delivery.Order;
 import MzFoodDelivery.FoodParty.FoodPartyManager;
 import MzFoodDelivery.Restaurant.Food;
 import MzFoodDelivery.Restaurant.PartyFood;
@@ -11,10 +13,8 @@ import MzFoodDelivery.User.User;
 import MzFoodDelivery.User.UserManager;
 import schedulers.BackgroundJobManager;
 
-import javax.servlet.http.Part;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 public class MzFoodDelivery {
 
