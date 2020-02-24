@@ -73,8 +73,8 @@
     <%
         Duration duration = order.getRemainingArrivingTime();
     %>
-    <%=order.getStartingDeliveryTime().getMinute()%>
-    <%=order.getStartingDeliveryTime().getSecond()%>
+<%--    <%=order.getStartingDeliveryTime().getMinute()%>--%>
+<%--    <%=order.getStartingDeliveryTime().getSecond()%>--%>
     <div>remained time : <%=duration.getSeconds() / 60%> min <%=duration.getSeconds() % 60%> sec</div>
 </div>
 <%}%>

@@ -43,6 +43,7 @@
         <th>logo</th>
         <th>name</th>
         <th>description</th>
+        <th>average delivery time</th>
     </tr>
     <%
         for (Restaurant restaurant: restaurantList) {
@@ -56,6 +57,7 @@
         <td><img class="logo" src=<%=restaurant.getLogo()%> alt="logo"></td>
         <td><%=restaurant.getName()%></td>
         <td><%=restaurant.getPropertyOrDefaultValue("description", "no description")%></td>
+        <td><%=restaurant.doublePrecision(restaurant.getAverageTimeToDeliver())%> seconds</td>
     </tr>
     <%}%>
 </table>

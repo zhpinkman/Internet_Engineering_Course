@@ -11,6 +11,8 @@ public class Restaurant {
     private List<Food> menu;
 
     private final double MAX_NEAR_DISTANCE = 170;
+    private final double averageDeliveryVelocity = 5;
+    private final double averageTimeToFindDelivery = 60;
 
     public Restaurant(String id, String name, String description, Location location, List<Food> menu, String logo) {
         this.id = id;
@@ -19,6 +21,15 @@ public class Restaurant {
         this.description = description;
         this.location = location;
         this.menu = menu;
+    }
+
+    public double getAverageTimeToDeliver() {
+        return ((location.getDistanceFromLocation(new Location(0, 0)) * 1.5) / averageDeliveryVelocity + averageTimeToFindDelivery);
+    }
+
+
+    public double doublePrecision(double input) {
+        return Math.round(input * 100) / 100.0d;
     }
 
 
