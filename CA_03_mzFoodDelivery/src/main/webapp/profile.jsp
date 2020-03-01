@@ -2,7 +2,8 @@
 <%@ page import="MzFoodDelivery.MzFoodDelivery" %>
 <%@ page import="MzFoodDelivery.User.Cart" %>
 <%@ page import="java.util.List" %>
-<%@ page import="MzFoodDelivery.User.CartItem" %><%--
+<%@ page import="MzFoodDelivery.User.CartItem" %>
+<%@ page import="MzFoodDelivery.Delivery.Order" %><%--
   Created by IntelliJ IDEA.
   User: zhivar
   Date: 2/20/20
@@ -12,7 +13,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
-
+<meta http-equiv="refresh" content="10" />
 <head>
     <meta charset="UTF-8">
     <title>User</title>
@@ -39,32 +40,40 @@
         <button type="submit">increase</button>
         <input type="number" name="credit" value="0" />
     </form>
-    <%
-        Cart cartList = user.getUserCart();
-    %>
-    <%
-        if (cartList.getSize() != 0) {
-    %>
+    <%--<%--%>
+        <%--Cart cartList = user.getUserCart();--%>
+    <%--%>--%>
+    <%--<%--%>
+        <%--if (cartList.getSize() != 0) {--%>
+    <%--%>--%>
     <li>
+        <%--Orders :--%>
+        <%--<div>--%>
+            <%--<span>--%>
+                 <%--restaurant name: <%=cartList.getRestaurant().getName()%>--%>
+            <%--</span>--%>
+        <%--</div>--%>
+        <%--<ul>--%>
+            <%--<%--%>
+                <%--for (CartItem cartItem: cartList.getCartItems()) {--%>
+            <%--%>--%>
+            <%--<li>--%>
+                <%--<%=cartItem.getFood().getName()%>--%>
+                <%--,--%>
+                <%--<%=cartItem.getQuantity()%>--%>
+            <%--</li>--%>
+            <%--<%}%>--%>
+        <%--</ul>--%>
         Orders :
-        <div>
-            <span>
-                 restaurant name: <%=cartList.getRestaurant().getName()%>
-            </span>
-        </div>
         <ul>
-            <%
-                for (CartItem cartItem: cartList.getCartItems()) {
-            %>
+            <% for(Order order : MzFoodDelivery.getInstance().getOrders()) {%>
             <li>
-                <%=cartItem.getFood().getName()%>
-                ,
-                <%=cartItem.getQuantity()%>
+                <a href="orders?orderId=<%=order.getId()%>">order id : <%=order.getId()%> | Status : <%=order.getStatus()%></a>
             </li>
-            <%}%>
+            <% } %>
         </ul>
     </li>
-    <%}%>
+    <%--<%}%>--%>
 </ul>
 </body>
 

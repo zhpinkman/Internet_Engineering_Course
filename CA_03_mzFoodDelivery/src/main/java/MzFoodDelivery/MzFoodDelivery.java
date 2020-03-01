@@ -80,6 +80,10 @@ public class MzFoodDelivery {
         throw new Exception("orderId not found");
     }
 
+    public List<Order> getOrders() throws Exception {
+        return orderList;
+    }
+
     public Cart getCart() {
         return userManager.getCart();
     }
