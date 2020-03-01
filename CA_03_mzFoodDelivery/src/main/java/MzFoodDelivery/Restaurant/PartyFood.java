@@ -13,15 +13,13 @@ public class PartyFood extends Food {
     }
 
     @Override
-    public void decreaseFoodAmount() {
-        count --;
+    public void decreaseFoodAmount(int quantity) {
+        count -= quantity;
     }
 
     @Override
     public boolean hasEnoughAmount(int quantity) {
-        if (count < quantity)
-            return false;
-        return true;
+        return count >= quantity;
     }
 
     @Override

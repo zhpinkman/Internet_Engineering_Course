@@ -80,7 +80,7 @@ public class MzFoodDelivery {
         throw new Exception("orderId not found");
     }
 
-    public List<Order> getOrders() throws Exception {
+    public List<Order> getOrders() {
         return orderList;
     }
 

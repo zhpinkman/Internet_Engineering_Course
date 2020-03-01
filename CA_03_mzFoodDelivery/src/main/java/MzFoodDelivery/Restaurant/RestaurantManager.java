@@ -113,10 +113,10 @@ public class RestaurantManager {
         throw new Exception("Error: restaurant does not exists");
     }
 
-    public void decreaseFoodAmounts(Order order) throws Exception {
+    public void decreaseFoodAmounts(Order order) {
         Cart cart = order.getCart();
         for (CartItem cartItem: cart.getCartItems()) {
-            cartItem.getFood().decreaseFoodAmount();
+            cartItem.getFood().decreaseFoodAmount(cartItem.getQuantity());
         }
     }
 }

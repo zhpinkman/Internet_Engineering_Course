@@ -41,7 +41,7 @@ public class Food {
 
     public String getDescription() { return description; }
 
-    public void decreaseFoodAmount() {}
+    public void decreaseFoodAmount(int quantity) {}
 
     public boolean hasEnoughAmount(int quantity) {
         return true;
