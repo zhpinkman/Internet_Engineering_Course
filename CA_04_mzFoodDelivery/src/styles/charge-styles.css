@@ -1,0 +1,52 @@
+@import "header.css";
+@import "font/flaticon.css";
+@import "vazir-fonts/fonts.css";
+
+body {
+  width: 100%;
+  direction: rtl;
+  font-family: "Vazir" !important;
+  background-color: #f7fff7 !important;
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block; /* remove extra space below image */
+}
+
+main {
+  margin-top: 70px;
+}
+
+.profile-info {
+  padding: 50px 35px;
+  background: #ff6b6b;
+  color: white;
+}
+
+.profile-info .name {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profile-info .name .profile-icon [class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after {
+  font-size: 100px;
+}
+
+.profile-info .name .name-text {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.profile-info .other-info {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}

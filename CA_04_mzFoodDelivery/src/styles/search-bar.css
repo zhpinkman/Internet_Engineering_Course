@@ -46,6 +46,9 @@
   background: #f3f3f3;
   text-align: center;
   height: 60px;
+  min-width: 110px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .search-bar .outer-box .search-btn .search-item {

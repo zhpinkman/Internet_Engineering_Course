@@ -20,3 +20,7 @@ header {
 .logout {
   color: red;
 }
+
+.loghme-icon img {
+  width: 3%;
+}
