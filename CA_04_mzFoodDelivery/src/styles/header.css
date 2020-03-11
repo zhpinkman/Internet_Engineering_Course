@@ -1,11 +1,12 @@
 .header {
-  color: red;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+.header .profile {
 }
 
 .header .logout {
-}
-
-.header .profile {
 }
 
 .header .cart {

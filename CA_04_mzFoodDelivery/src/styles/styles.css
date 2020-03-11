@@ -1,1 +1,8 @@
 @import "header.css";
+@import "font/flaticon.css";
+@import "vazir-fonts/fonts.css";
+
+body {
+  direction: rtl;
+  font-family: "Vazir" !important;
+}
