@@ -2,6 +2,8 @@
 @import "font/flaticon.css";
 @import "vazir-fonts/fonts.css";
 @import "app-background.css";
+@import "search-bar.css";
+
 body {
   width: 100%;
   direction: rtl;
