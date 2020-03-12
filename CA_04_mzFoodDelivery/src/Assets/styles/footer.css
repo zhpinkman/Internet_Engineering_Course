@@ -15,16 +15,19 @@ footer {
 }
 
 .footer-inner-box .copy-right-icon {
-  /*border: 1px solid white;*/
   width: 15px;
   height: 15px;
-  /*border-radius: 100%;*/
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 10px;
   padding-top: 2px;
   font-size: 16px;
+}
+
+.rounded-border {
+  border: 1px solid;
+  border-radius: 100%;
 }
 
 .footer-inner-box .copy-right-text {
