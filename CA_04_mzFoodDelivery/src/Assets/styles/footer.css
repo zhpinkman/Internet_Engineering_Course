@@ -1,5 +1,6 @@
 footer {
     position: absolute;
+    direction: rtl;
     width: 100%;
     bottom: 0px;
     margin-top: 50px;
@@ -13,10 +14,10 @@ footer {
 }
 
 .footer-inner-box .copy-right-icon {
-    border: 1px solid white;
+    /*border: 1px solid white;*/
     width: 15px;
     height: 15px;
-    border-radius: 100%;
+    /*border-radius: 100%;*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,5 +28,5 @@ footer {
 
 .footer-inner-box .copy-right-text {
     font-size: 20px;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }

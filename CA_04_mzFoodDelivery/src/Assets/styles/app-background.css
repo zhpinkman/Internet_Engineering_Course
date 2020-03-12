@@ -36,3 +36,15 @@
     color: white;
     text-align: center;
 }
+
+.app-background over-img{
+    position: relative;
+    width: 100%;
+    top: -45px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
