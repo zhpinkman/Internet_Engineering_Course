@@ -20,6 +20,7 @@ img {
 
 main {
   margin-top: 70px;
+  margin-bottom: 70px;
 }
 
 .profile-info {
@@ -115,6 +116,10 @@ main {
   margin: 0;
 }
 
+.orders-charge-wrapper .orders-charge .charge-form form .col-8 {
+  min-width: 240px;
+}
+
 .orders-charge-wrapper .orders-charge .charge-form form .col-8 input {
   width: 100%;
   height: 60px;
@@ -125,6 +130,10 @@ main {
   border-radius: 13px;
   font-size: 20px;
   color: grey;
+}
+
+.orders-charge-wrapper .orders-charge .charge-form form .col-4 {
+  min-width: 120px;
 }
 
 .orders-charge-wrapper .orders-charge .charge-form form .col-4 input {
