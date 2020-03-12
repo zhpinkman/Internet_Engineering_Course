@@ -1,31 +1,31 @@
 footer {
-  position: absolute;
-  width: 100%;
-  bottom: 0px;
-  margin-top: 50px;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    margin-top: 50px;
 }
 
 .footer-inner-box {
-  height: 70px;
-  background: #1a535c;
-  color: white;
-  box-shadow: 0 0 14px -6px black;
+    height: 70px;
+    background: #1a535c;
+    color: white;
+    box-shadow: 0 0 14px -6px black;
 }
 
 .footer-inner-box .copy-right-icon {
-  border: 1px solid white;
-  width: 15px;
-  height: 15px;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 10px;
-  padding-top: 2px;
-  font-size: 16px;
+    border: 1px solid white;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    padding-top: 2px;
+    font-size: 16px;
 }
 
 .footer-inner-box .copy-right-text {
-  font-size: 20px;
-  font-weight: bold;
+    font-size: 20px;
+    font-weight: bold;
 }
