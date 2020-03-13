@@ -38,12 +38,19 @@ body {
 .card {
     background-color: white;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 9%;
-    padding: 5px;
+    border-radius: 0.5rem !important;
+    padding-top: 15px;
+    padding-bottom: 10px;
     margin: 10px 10px 40px 10px;
     justify-content: center;
     align-content: center;
     align-items: center;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 4px 11px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.1);
 }
 
 .food-item-container {
@@ -74,26 +81,63 @@ body {
 .food-item-container .title-wrapper {
     width: 95%;
     justify-content: center;
+    align-items: center;
+    margin-top: 5px;
 }
 
-.food-item-container .title {
-    text-align: left;
-}
-
-.food-item-container .title .title-text {
+.food-item-container .title-wrapper .title-text {
     font-weight: bold;
+    font-size: 20px;
+    margin-left: 20px;
 }
 
-.food-item-container .title .rating-star-text {
+.food-item-container .title-wrapper .rating-star-text {
     font-weight: lighter;
+    margin-left: 2px;
 }
 
-.food-item-container .title .rating-star-img {
-    font-size: 140%;
+.food-item-container .title-wrapper .rating-star-img {
+    font-size: 110%;
     color: rgba(255, 165, 40);
+}
+
+.food-item-container .price-wrapper {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.food-item-container .card-button-wrapper {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
 .cart-container {
     min-height: 250px;
+}
+
+.btn-orange {
+    background-color: rgb(255, 230, 109) !important;
+    border: 0px !important;
+    font-size: 19px !important;
+    padding: 0.275rem 0.80rem !important;
+    border-radius: 0.5rem !important;
+}
+
+.btn-orange:disabled {
+    background-color: rgb(230, 230, 230) !important;
+    cursor: default;
+}
+
+.btn-orange[disabled]:hover {
+    background-color: rgb(230, 230, 230) !important;
+    border: 0px !important;
+}
+
+.btn-orange:hover {
+    background-color: rgba(235, 210, 90, 1) !important;
+    border-color: #ffe66d !important;
 }
 
