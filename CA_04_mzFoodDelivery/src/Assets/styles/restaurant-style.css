@@ -166,6 +166,17 @@ body {
     font-weight: lighter;
 }
 
+.cart-container .total-price {
+    margin: 15px;
+    font-size: 19px;
+}
+
+.cart-container .total-price span {
+    font-weight: bold;
+}
+
+
+
 .flaticon-plus {
     color: #1a535c;
 }
@@ -190,26 +201,31 @@ body {
 
 .btn-default:disabled {
     cursor: default;
+    background-color: rgb(230, 230, 230) !important;
 }
 
 .btn-default[disabled]:hover {
     border: 0px !important;
+    background-color: rgb(230, 230, 230) !important;
 }
 
 .btn-orange {
     background-color: rgb(255, 230, 109) !important;
 }
 
-.btn-orange:disabled {
-    background-color: rgb(230, 230, 230) !important;
-}
-
-.btn-orange[disabled]:hover {
-    background-color: rgb(230, 230, 230) !important;
-}
-
 .btn-orange:hover {
     background-color: rgba(235, 210, 90, 1) !important;
     border-color: #ffe66d !important;
+}
+
+.btn-cyan {
+    background-color: #4ecdc4 !important;
+    color: white !important;
+    margin-bottom: 15px;
+    font-size: 23px !important;
+}
+
+.btn-cyan:hover {
+    background-color: rgba(68, 179, 171, 1) !important;
 }
 
