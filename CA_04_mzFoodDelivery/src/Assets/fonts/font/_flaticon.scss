@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 11/03/2020 16:04
+    Creation date: 13/03/2020 00:02
     */
 
     @font-face {
@@ -44,6 +44,7 @@
 .flaticon-card:before { content: "\f104"; }
 .flaticon-mail:before { content: "\f105"; }
 .flaticon-phone:before { content: "\f106"; }
+.flaticon-arrow:before { content: "\f107"; }
     
     $font-Flaticon-plus: "\f100";
     $font-Flaticon-minus: "\f101";
@@ -52,3 +53,4 @@
     $font-Flaticon-card: "\f104";
     $font-Flaticon-mail: "\f105";
     $font-Flaticon-phone: "\f106";
+    $font-Flaticon-arrow: "\f107";
