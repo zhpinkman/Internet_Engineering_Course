@@ -32,7 +32,7 @@ body {
 }
 
 .food-list-container {
-    border-right: dashed 2px rgba(26, 83, 92, 0.9);
+    border-right: dashed 3px rgba(0, 0, 0, 0.2);
 }
 
 .card {
@@ -52,6 +52,8 @@ body {
     box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 4px 11px 0 rgba(0, 0, 0, 0.19);
     transform: scale(1.1);
 }
+
+/* FOOD LIST */
 
 .food-item-container {
     /*width: 100%;*/
@@ -114,26 +116,96 @@ body {
     align-content: center;
 }
 
+/* CART */
 .cart-container {
     min-height: 250px;
+    padding: 5px;
 }
 
-.btn-orange {
-    background-color: rgb(255, 230, 109) !important;
+.cart-container .cart-title {
+    text-align: center;
+    border-bottom: solid 2px #1a535c;
+    color: black;
+    font-size: 22px;
+    /*font-weight: bold;*/
+    padding: 0px 10px 0px 10px;
+}
+
+.cart-container .cart-list-wrapper {
+    border-radius: 1rem;
+    border: dashed 1px rgba(0, 0, 0, 0.7);
+    min-height: 100px;
+    width: 90%;
+    margin-top: 15px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+}
+
+.cart-container .cart-list-wrapper .cart-list-item-wrapper {
+    margin: 5px;
+    width: 100%;
+    border-bottom: solid 2px rgba(0, 0, 0, 0.1);
+}
+
+.cart-container .cart-icon::before {
+    font-size: 15px;
+    margin: 0px;
+}
+
+.cart-container a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cart-container .price {
+    font-weight: lighter;
+}
+
+.flaticon-plus {
+    color: #1a535c;
+}
+
+.flaticon-minus {
+    color: #ff6b6b;
+}
+
+
+
+
+
+
+
+.btn-default {
+    /*background-color: rgb(255, 230, 109) !important;*/
     border: 0px !important;
     font-size: 19px !important;
     padding: 0.275rem 0.80rem !important;
     border-radius: 0.5rem !important;
 }
 
+.btn-default:disabled {
+    cursor: default;
+}
+
+.btn-default[disabled]:hover {
+    border: 0px !important;
+}
+
+.btn-orange {
+    background-color: rgb(255, 230, 109) !important;
+}
+
 .btn-orange:disabled {
     background-color: rgb(230, 230, 230) !important;
-    cursor: default;
 }
 
 .btn-orange[disabled]:hover {
     background-color: rgb(230, 230, 230) !important;
-    border: 0px !important;
 }
 
 .btn-orange:hover {
