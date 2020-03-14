@@ -89,13 +89,7 @@ main {
   box-shadow: 0 0 10px -4px black;
 }
 
-.orders-charge-wrapper .orders-charge .selector-item {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-}
+
 
 .orders-charge-wrapper .orders-charge .active-item {
   background: #ff6b6b;
