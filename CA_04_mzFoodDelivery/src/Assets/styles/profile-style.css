@@ -1,6 +1,10 @@
 @import "orders-styles.css";
 @import "charge-styles.css";
 
+html {
+  height: 100%;
+}
+
 * {
   box-sizing: border-box !important;
 }
