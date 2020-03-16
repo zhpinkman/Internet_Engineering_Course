@@ -96,7 +96,7 @@ main {
   align-items: center;
   font-weight: bold;
   overflow: hidden;
-
+  border: none;
 }
 
 .orders-charge-wrapper .orders-charge .active-item {
