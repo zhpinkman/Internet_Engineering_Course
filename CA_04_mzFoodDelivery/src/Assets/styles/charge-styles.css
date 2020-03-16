@@ -9,7 +9,7 @@ body {
   font-family: "Vazir" !important;
   background-color: #f7fff7 !important;
   height: 100%;
-  position: relative;
+  /* position: relative; */
 }
 
 img {
@@ -19,6 +19,8 @@ img {
 }
 
 main {
+  /* margin: 0 auto -70px; */
+  min-height: 100%;
   margin-top: 70px;
   margin-bottom: 70px;
 }
@@ -27,6 +29,7 @@ main {
   padding: 50px 35px;
   background: #ff6b6b;
   color: white;
+  margin-top: 50px;
 }
 
 .profile-info .name {
@@ -63,7 +66,7 @@ main {
 }
 
 .orders-charge-wrapper .orders-charge {
-  width: 50%;
+  width: 80%;
   height: 300px;
   display: flex;
   justify-content: center;
@@ -88,8 +91,6 @@ main {
   width: 70%;
   box-shadow: 0 0 10px -4px black;
 }
-
-
 
 .orders-charge-wrapper .orders-charge .active-item {
   background: #ff6b6b;

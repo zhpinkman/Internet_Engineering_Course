@@ -1,14 +1,8 @@
-footer {
-  position: absolute;
-  direction: rtl;
-  width: 100%;
-  bottom: 0px;
-  margin-top: 50px;
-  display: contents !important;
-}
-
 .footer-inner-box {
   height: 70px;
+  /* position: absolute;
+  bottom: 0; */
+  width: 100%;
   background: #1a535c;
   color: white;
   box-shadow: 0 0 14px -6px black;
