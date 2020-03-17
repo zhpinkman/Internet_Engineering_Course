@@ -2,6 +2,10 @@
 @import "../fonts/vazir-fonts/fonts.css";
 @import url("https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css");
 
+html {
+  height: 100%;
+}
+
 body {
   width: 100%;
   height: 100%;
