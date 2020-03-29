@@ -8,6 +8,8 @@ import {
     Link
 } from "react-router-dom";
 
+import Home from "./pages/home/Home";
+
 function App() {
     return (
         <div className="App">
@@ -51,10 +53,10 @@ function App() {
         */}
                     <Switch>
                         <Route exact path="/">
-                            <Home/>
+                            <About/>
                         </Route>
                         <Route path="/about">
-                            <About/>
+                            <Home/>
                         </Route>
                         <Route path="/dashboard">
                             <Dashboard/>
@@ -63,14 +65,6 @@ function App() {
                 </div>
             </Router>
     );
-}
-
-function Home() {
-  return (
-      <div>
-        <h2>Home</h2>
-      </div>
-  );
 }
 
 function About() {
