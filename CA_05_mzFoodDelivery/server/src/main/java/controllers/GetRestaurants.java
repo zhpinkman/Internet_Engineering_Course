@@ -20,13 +20,13 @@ import java.util.List;
 @WebServlet(name = "GetRestaurants", urlPatterns = "/getRestaurants")
 
 public class GetRestaurants extends HttpServlet {
-    public void init() throws ServletException {
-        try {
-            importRestaurantsFromWeb();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void init() throws ServletException {
+//        try {
+//            importRestaurantsFromWeb();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,21 +34,21 @@ public class GetRestaurants extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    public void importRestaurantsFromWeb() throws Exception {
-        String RestaurantsJsonString = HTTPRequestHandler.getRequest("http://138.197.181.131:8080/restaurants");
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        List<Restaurant> restaurants = gson.fromJson(RestaurantsJsonString, new TypeToken<List<Restaurant>>() {
-        }.getType());
-        for (Restaurant restaurant : restaurants) {
-//            System.out.println(counter + "----------------");
-//            restaurant.print();
-            try {
-                MzFoodDelivery.getInstance().addRestaurant(restaurant);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
+//    public void importRestaurantsFromWeb() throws Exception {
+//        String RestaurantsJsonString = HTTPRequestHandler.getRequest("http://138.197.181.131:8080/restaurants");
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//        List<Restaurant> restaurants = gson.fromJson(RestaurantsJsonString, new TypeToken<List<Restaurant>>() {
+//        }.getType());
+//        for (Restaurant restaurant : restaurants) {
+////            System.out.println(counter + "----------------");
+////            restaurant.print();
+//            try {
+//                MzFoodDelivery.getInstance().addRestaurant(restaurant);
+//            } catch (Exception e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//    }
 }
 
 

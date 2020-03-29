@@ -2,60 +2,49 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="server:war exploded" />
+      <artifact name="server:war" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1bed55c-c195-4cbf-b419-2d0d2b36eea7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../CA_03_mzFoodDelivery/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/server_war.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/server_war_exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/server.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CA_05_mzFoodDelivery.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/HTTPRequestHandler/HTTPRequestHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Delivery/Delivery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Delivery/Order.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Delivery/Status.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Exceptions/RestaurantIsNotNearUserException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Exceptions/RestaurantNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/FoodParty/FoodPartyManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/FoodParty/FoodPartyWebFoodItem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/FoodParty/FoodPartyWebItem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/MzFoodDelivery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Restaurant/Food.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Restaurant/Location.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Restaurant/PartyFood.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Restaurant/Restaurant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Restaurant/RestaurantManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Restaurant/SortByAveragePopularityDistance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/Restaurant/SortByDistance.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/User/Cart.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/User/CartItem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/User/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/MzFoodDelivery/User/UserManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/controllers/AddToCart.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/controllers/ChargeCredit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/controllers/FinalizeCart.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/controllers/FoodParty.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/controllers/GetCart.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/controllers/GetProfile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/controllers/GetRestaurants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/controllers/OrderManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/controllers/TestService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/schedulers/BackgroundJobManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/schedulers/ScheduledParty.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/schedulers/SecJob.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/schedulers/waitJob.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/webapp/cart.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/webapp/foodparty.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/webapp/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/webapp/order.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/webapp/profile.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/webapp/restaurant.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/webapp/restaurants.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/webapp/successCharge.jsp" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_2_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/restControllers/RestaurantsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-context.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/server_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/server_war.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/server_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/server_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/classes/main/webapp/WEB-INF/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/classes/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/classes/main/webapp/cart.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/classes/main/webapp/foodparty.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/classes/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/classes/main/webapp/order.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/classes/main/webapp/profile.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/classes/main/webapp/restaurant.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/classes/main/webapp/restaurants.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/classes/main/webapp/successCharge.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/cart.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/foodparty.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/order.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/profile.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/restaurant.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/restaurants.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/server_war_exploded/successCharge.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/GetRestaurants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/GetRestaurants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,25 +55,85 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CA_05_mzFoodDelivery.iml">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+            <state relative-caret-position="187">
+              <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/restControllers/RestaurantsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#711#712#0" expanded="true" />
+                <element signature="e#783#784#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controllers/AddToCart.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controllers/GetRestaurants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="23" column="88" selection-start-line="23" selection-start-column="88" selection-end-line="23" selection-end-column="88" />
+            <state relative-caret-position="238">
+              <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/MzFoodDelivery/MzFoodDelivery.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/controllers/OrderManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-context.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="57" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="816">
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -93,6 +142,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-context.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/controllers/GetRestaurants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/restControllers/RestaurantsController.java" />
       </list>
     </option>
   </component>
@@ -102,6 +155,13 @@
     <option name="FILTER_INFO" value="true" />
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
@@ -206,6 +266,22 @@
               <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CA_03_mzFoodDelivery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="MzFoodDelivery" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CA_03_mzFoodDelivery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -216,6 +292,15 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="CA_03_mzFoodDelivery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -225,16 +310,18 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585483321462" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585489905898" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/META-INF/MANIFEST.MF" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.3091954" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Programming\University\06_Internet_Engineering\Internet_Engineering_Course\CA_05_mzFoodDelivery\server\src\main\webapp\WEB-INF" />
       <recent name="F:\Programming\University\06_Internet_Engineering\Internet_Engineering_Course\CA_05_mzFoodDelivery\server" />
     </key>
   </component>
@@ -344,12 +431,11 @@
       </method>
     </configuration>
     <configuration name="Tomcat 9.0.31" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.31" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/server_war/" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="server:war">
           <settings>
-            <option name="CONTEXT_PATH" value="/server_war" />
+            <option name="CONTEXT_PATH" value="/" />
           </settings>
         </artifact>
       </deployment>
@@ -410,7 +496,6 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method v="2">
-        <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="server:war" />
         </option>
@@ -521,12 +606,12 @@
       <option name="presentableId" value="Default" />
       <updated>1585479534309</updated>
       <workItem from="1585479537261" duration="149000" />
-      <workItem from="1585479705962" duration="3559000" />
+      <workItem from="1585479705962" duration="8486000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3708000" />
+    <option name="totallyTimeSpent" value="8635000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -539,8 +624,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -549,10 +635,11 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Application Servers" weight="0.32936078" />
+      <window_info anchor="bottom" id="Spring" />
       <window_info anchor="bottom" id="Messages" weight="0.32936078" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -566,7 +653,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.32995737" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.25426438" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Database" order="6" />
@@ -579,11 +666,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/CA_03_mzFoodDelivery.iml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/MzFoodDelivery/MzFoodDelivery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2088" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1795" />
@@ -603,16 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/OrderManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controllers/AddToCart.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -623,17 +695,125 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/cart.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="49" column="40" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CA_05_mzFoodDelivery.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://SpringLocalModels/module=server">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>SpringLocalModels</ID>
+          <OriginalElement>module=server</OriginalElement>
+          <nodes>
+            <node x="" y="">module=server</node>
+            <node x="" y="">fileset=server/Spring Context</node>
+            <node x="" y="">filePath=F:/Programming/University/06_Internet_Engineering/Internet_Engineering_Course/CA_05_mzFoodDelivery/server/src/main/webapp/WEB-INF/spring-context.xml</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="221.5" y="10.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Show filesets as groups</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/restControllers/RestaurantsController.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#781#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://SPRING/appContextPath=F:/Programming/University/06_Internet_Engineering/Internet_Engineering_Course/CA_05_mzFoodDelivery/server/src/main/webapp/WEB-INF/spring-context.xml;appContextName=spring-context">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>SPRING</ID>
+          <OriginalElement>appContextPath=F:/Programming/University/06_Internet_Engineering/Internet_Engineering_Course/CA_05_mzFoodDelivery/server/src/main/webapp/WEB-INF/spring-context.xml;appContextName=spring-context</OriginalElement>
+          <nodes>
+            <node x="" y="">module=server;context=F:/Programming/University/06_Internet_Engineering/Internet_Engineering_Course/CA_05_mzFoodDelivery/server/src/main/webapp/WEB-INF/spring-context.xml;tag=annotation-driven;offset=785</node>
+            <node x="" y="">module=server;context=F:/Programming/University/06_Internet_Engineering/Internet_Engineering_Course/CA_05_mzFoodDelivery/server/src/main/webapp/WEB-INF/spring-context.xml;bean_name=(restControllers) [Component]</node>
+            <node x="" y="">module=server;context=F:/Programming/University/06_Internet_Engineering/Internet_Engineering_Course/CA_05_mzFoodDelivery/server/src/main/webapp/WEB-INF/spring-context.xml;bean_class=restControllers.RestaurantsController;bean_name=restaurantsController</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="199.5" y="42.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Local context</Category>
+            <Category>Properties</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="57" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MzFoodDelivery/MzFoodDelivery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="114" column="28" selection-start-line="114" selection-start-column="28" selection-end-line="114" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/OrderManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/GetRestaurants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/restControllers/RestaurantsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#711#712#0" expanded="true" />
+            <element signature="e#783#784#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -642,12 +822,16 @@
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
-          <artifact-editor />
+          <artifact-editor>
+            <show-content>
+              <type id="library" />
+            </show-content>
+          </artifact-editor>
           <last-edited>server:war</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.3091954" />
                 <option value="0.5" />
               </list>
             </option>
@@ -656,11 +840,11 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Web</last-edited>
+          <last-edited>Spring (server)|Spring</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.3091954" />
               </list>
             </option>
           </splitter-proportions>
@@ -691,12 +875,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>server</last-edited>
+          <last-edited>Spring|server</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
-                <option value="0.6" />
+                <option value="0.3091954" />
               </list>
             </option>
           </splitter-proportions>
@@ -716,11 +899,11 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: com.google.code.gson:gson:2.8.6</last-edited>
+          <last-edited>Maven: org.springframework:spring-core:5.2.5.RELEASE</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.3091954" />
               </list>
             </option>
           </splitter-proportions>
