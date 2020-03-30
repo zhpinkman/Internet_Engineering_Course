@@ -2,6 +2,8 @@ package ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant;
 
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 
+import java.beans.Transient;
+
 public class PartyFood extends Food {
     private String restaurantId;
     private int count;
@@ -33,6 +35,7 @@ public class PartyFood extends Food {
         return super.getPrice();
     }
 
+    @Transient
     public Restaurant getRestaurant() {
         try {
             return MzFoodDelivery.getInstance().getRestaurantById(this.restaurantId);
