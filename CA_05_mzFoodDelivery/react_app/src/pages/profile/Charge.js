@@ -2,8 +2,6 @@ import * as React from "react";
 
 import "../../Assets/styles/profile-style.css";
 import UserService from "../../services/UserService";
-import ReactDOM from "react-dom";
-import Profile from "./Profile";
 
 
 export  default  class Charge extends React.Component{

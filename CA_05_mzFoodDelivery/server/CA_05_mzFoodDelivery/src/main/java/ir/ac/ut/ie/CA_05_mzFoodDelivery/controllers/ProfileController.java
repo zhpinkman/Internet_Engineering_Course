@@ -17,10 +17,10 @@ public class ProfileController {
 
 
     @PostMapping("/charge")
-    public String chargeCredit(@RequestBody ChargeAmount chargeAmount) {
+    public User chargeCredit(@RequestBody ChargeAmount chargeAmount) {
         System.out.println(chargeAmount);
         MzFoodDelivery.getInstance().chargeUserCredit(chargeAmount.amount);
-        return "success";
+        return MzFoodDelivery.getInstance().getUser();
     }
 
     @GetMapping("")
