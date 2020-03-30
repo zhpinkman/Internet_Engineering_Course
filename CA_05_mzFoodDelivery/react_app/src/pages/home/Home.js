@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../Assets/styles/home-styles.css";
+import Header from "../general/Header";
 
 export default class Home extends React.Component {
 
@@ -17,30 +18,14 @@ export default class Home extends React.Component {
     render() {
         return (
             <body>
-            <header>
-                <div className="header">
-                    <div className="cart m-2">
-                        <i className="flaticon-smart-cart"></i>
-                    </div>
-                    <div className="profile m-2">
-                        حساب کاربری
-                    </div>
-                    <div className="logout m-2">
-                        خروج
-                    </div>
-                </div>
-            </header>
-
-
+            <Header/>
             <div className="app-background">
                 <div className="behind-img">
-                    <img
-                        src={require("../../Assets/images/Cover Photo.jpg")}
-                        alt=""/>
+                    <img src={require("../../Assets/images/Cover Photo.jpg")} alt=""/>
                 </div>
                 <div className="center-things">
                     <div className="loghme-icon">
-                        <img src={require("../../Assets/images/LOGO.png")} alt=""/>
+                        <img className="home-loghme-icon-img" src={require("../../Assets/images/LOGO.png")} alt=""/>
                     </div>
                     <div className="loghme-title">
                         اولین و بزرگترین وب‌سایت سفارش آنلاین غذا در دانشگاه تهران
