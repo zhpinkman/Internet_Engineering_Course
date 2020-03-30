@@ -1,10 +1,8 @@
 package ir.ac.ut.ie.CA_05_mzFoodDelivery.controllers;
 
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.User.User;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -19,4 +17,16 @@ public class ProfileController {
         MzFoodDelivery.getInstance().chargeUserCredit(amount);
         return "user credit charged successfully";
     }
+
+    @GetMapping("")
+    public User getUser() {
+        return MzFoodDelivery.getInstance().getUser();
+    }
+
+
+    @PostMapping("addToCart")
+    public void addToCart(@RequestParam String restaurantId, @RequestParam String foodName) {
+        System.out.println(restaurantId + " " + foodName);
+    }
+
 }
