@@ -5,6 +5,7 @@ import Footer from "../general/Footer";
 import ProfileHeader from "./ProfileHeader";
 import Orders from "./Orders";
 import Charge from "./Charge";
+import UserService from "../../services/UserServices";
 
 
 export default class Profile extends React.Component{
@@ -18,6 +19,14 @@ export default class Profile extends React.Component{
     }
 
 
+    componentDidMount() {
+        console.log("started getting user");
+        UserService.getUser().then(user => {
+            console.log(user.data)
+            this.setState({user: user.data})
+        })
+    }
+
 
     render() {
         return (
@@ -27,7 +36,7 @@ export default class Profile extends React.Component{
                 <main>
 
 
-                    <ProfileHeader/>
+                    <ProfileHeader user={this.state.user} />
 
 
                     <div className="orders-charge-wrapper">
