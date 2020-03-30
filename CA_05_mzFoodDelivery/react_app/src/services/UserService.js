@@ -1,4 +1,4 @@
-import {USER_URL} from "../config/config";
+import {CHARGE_URL, USER_URL} from "../config/config";
 
 const axios = require("axios").default;
 
@@ -14,10 +14,13 @@ const axios = require("axios").default;
 
 export default class UserService {
 
-
-
     static getUser() {
         return axios.get(USER_URL);
+    }
+
+
+    static charge(amount) {
+        return axios.post(CHARGE_URL, {amount: amount});
     }
 
 }

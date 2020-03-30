@@ -19,11 +19,11 @@ public class SimpleCORSFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp,
                          FilterChain chain) throws IOException, ServletException {
-        try {
-            Thread.sleep(3000); // 3 seconds
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(3000); // 3 seconds
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         HttpServletResponse response = (HttpServletResponse) resp;
         HttpServletRequest request = (HttpServletRequest) req;
         response.setHeader("Access-Control-Allow-Origin", "*");

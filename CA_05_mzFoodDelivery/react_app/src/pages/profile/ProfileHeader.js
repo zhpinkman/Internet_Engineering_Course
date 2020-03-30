@@ -1,6 +1,6 @@
 import * as React from "react";
 import "../../Assets/styles/profile-style.css";
-import UserService from "../../services/UserServices";
+import UserService from "../../services/UserService";
 
 
 export default class ProfileHeader extends React.Component {

@@ -5,7 +5,7 @@ import Footer from "../general/Footer";
 import ProfileHeader from "./ProfileHeader";
 import Orders from "./Orders";
 import Charge from "./Charge";
-import UserService from "../../services/UserServices";
+import UserService from "../../services/UserService";
 
 
 export default class Profile extends React.Component{
