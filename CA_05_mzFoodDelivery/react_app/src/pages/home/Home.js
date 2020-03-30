@@ -19,17 +19,13 @@ export default class Home extends React.Component {
         return (
             <body>
             <Header/>
-
-
             <div className="app-background">
                 <div className="behind-img">
-                    <img
-                        src={require("../../Assets/images/Cover Photo.jpg")}
-                        alt=""/>
+                    <img src={require("../../Assets/images/Cover Photo.jpg")} alt=""/>
                 </div>
                 <div className="center-things">
                     <div className="loghme-icon">
-                        <img src={require("../../Assets/images/LOGO.png")} alt=""/>
+                        <img className="home-loghme-icon-img" src={require("../../Assets/images/LOGO.png")} alt=""/>
                     </div>
                     <div className="loghme-title">
                         اولین و بزرگترین وب‌سایت سفارش آنلاین غذا در دانشگاه تهران
