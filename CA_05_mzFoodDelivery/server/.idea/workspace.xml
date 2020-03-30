@@ -6,7 +6,14 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1bed55c-c195-4cbf-b419-2d0d2b36eea7" name="Default Changelist" comment="" />
+    <list default="true" id="c1bed55c-c195-4cbf-b419-2d0d2b36eea7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../react_app/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react_app/.idea/react_app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../react_app/.idea/react_app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react_app/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../react_app/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react_app/src/Assets/styles/home-styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../react_app/src/Assets/styles/home-styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react_app/src/pages/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react_app/src/pages/home/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,30 +119,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="restControllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CA_03_mzFoodDelivery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CA_03_mzFoodDelivery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CA_03_mzFoodDelivery" type="b2602c69:ProjectViewProjectNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -489,12 +472,12 @@
       <workItem from="1585479537261" duration="149000" />
       <workItem from="1585479705962" duration="9276000" />
       <workItem from="1585500316197" duration="620000" />
-      <workItem from="1585553064945" duration="1203000" />
+      <workItem from="1585553064945" duration="1204000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11248000" />
+    <option name="totallyTimeSpent" value="11249000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -506,7 +489,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25799572" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
