@@ -1,6 +1,8 @@
 import React from "react";
 import TextTitleCenter from "../../general/text/TextTitleCenter";
 import RemainingTime from "./RemainingTime";
+import "./foodParty.css";
+import FoodPartyCard from "./FoodPartyCard";
 
 export default class FoodParty extends React.Component {
     render() {
@@ -15,6 +17,7 @@ export default class FoodParty extends React.Component {
                     <div className="carousel-cell"></div>
                     <div className="carousel-cell"></div>
                     <div className="carousel-cell"></div>
+                    <FoodPartyCard/>
                 </div>
 
             </div>
