@@ -51,4 +51,6 @@ public class PartyFood extends Food {
     public int getCount() {
         return count;
     }
+
+    public String getRestaurantId() { return restaurantId; }
 }
