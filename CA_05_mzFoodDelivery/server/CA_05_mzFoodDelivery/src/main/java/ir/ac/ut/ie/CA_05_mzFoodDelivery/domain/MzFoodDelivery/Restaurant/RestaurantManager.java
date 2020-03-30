@@ -23,7 +23,7 @@ public class RestaurantManager {
         return false;
     }
 
-    private Restaurant findRestaurantById(String id){
+    public Restaurant findRestaurantById(String id){
         for (Restaurant restaurantItem : restaurants)
             if (restaurantItem.getId().equals(id))
                 return restaurantItem;

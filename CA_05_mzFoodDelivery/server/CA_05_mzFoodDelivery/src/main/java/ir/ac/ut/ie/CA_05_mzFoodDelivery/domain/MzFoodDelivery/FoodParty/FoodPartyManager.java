@@ -47,7 +47,7 @@ public class FoodPartyManager {
             }
             PartyFood partyFood = new PartyFood(item.menu.get(0).name, item.menu.get(0).description,
                     item.menu.get(0).popularity, item.menu.get(0).oldPrice, item.menu.get(0).image,
-                    item.menu.get(0).price, item.menu.get(0).count, restaurant);
+                    item.menu.get(0).price, item.menu.get(0).count, restaurant.getId());
             MzFoodDelivery.getInstance().addPartyFood(partyFood.getRestaurant().getName(), partyFood);
         }
     }

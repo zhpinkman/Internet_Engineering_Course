@@ -2,6 +2,9 @@ import React from 'react';
 import "../../Assets/styles/home-styles.css";
 import Header from "../general/Header";
 import Footer from "../general/Footer";
+import HomeTopSection from "./HomeTopSection";
+import HomeSearchBar from "./HomeSearchBar";
+import FoodParty from "./foodParty/FoodParty";
 
 export default class Home extends React.Component {
 
@@ -20,55 +23,11 @@ export default class Home extends React.Component {
         return (
             <div>
                 <Header/>
-                <div className="app-background">
-                    <div className="behind-img">
-                        <img src={require("../../Assets/images/Cover Photo.jpg")} alt=""/>
-                    </div>
-                    <div className="center-things">
-                        <div className="loghme-icon">
-                            <img className="home-loghme-icon-img" src={require("../../Assets/images/LOGO.png")} alt=""/>
-                        </div>
-                        <div className="loghme-title">
-                            اولین و بزرگترین وب‌سایت سفارش آنلاین غذا در دانشگاه تهران
-                        </div>
-                    </div>
-                </div>
-
-                <div className="search-bar">
-                    <div className="outer-box">
-                        <form
-                            action=""
-                            className="w-100 m-0 d-flex justify-content-center align-items-center">
-                            <div className="row w-100">
-                                <div className="food-name col">
-                                    <input
-                                        className="search-item"
-                                        placeholder="نام غذا"/>
-                                </div>
-                                <div className="restaurant-name col">
-                                    <input className="search-item" placeholder="نام رستوران"/>
-                                </div>
-                                <div className="search-btn col">
-                                    <input className="search-item" type="submit" value="جست‌و‌جو"/>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <HomeTopSection/>
+                <HomeSearchBar/>
 
                 <main>
-
-                    <div className="food-party">
-                        food party
-                        <div className="carousel"
-                             data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": false, "pageDots": false }'>
-                            <div className="carousel-cell"></div>
-                            <div className="carousel-cell"></div>
-                            <div className="carousel-cell"></div>
-                            <div className="carousel-cell"></div>
-                            <div className="carousel-cell"></div>
-                        </div>
-                    </div>
+                    <FoodParty/>
 
                     <div className="restaurants-list">
                         restaurants list

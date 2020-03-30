@@ -1,5 +1,6 @@
 package ir.ac.ut.ie.CA_05_mzFoodDelivery.controllers;
 
+import com.google.gson.Gson;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.services.RestaurantsService;
@@ -16,9 +17,9 @@ import java.util.List;
 @RequestMapping("/restaurants")
 public class RestaurantController {
 
-
     @GetMapping(
-            value = ""
+            value = "",
+            produces = MediaType.APPLICATION_JSON_VALUE
     )
     public List<Restaurant> restaurants() {
         return MzFoodDelivery.getInstance().getNearRestaurants();

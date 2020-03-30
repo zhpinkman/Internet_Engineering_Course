@@ -61,6 +61,10 @@ public class MzFoodDelivery {
         return restaurantManager.getRestaurant(restaurantName);
     }
 
+    public Restaurant getRestaurantById(String restaurantId) throws Exception {
+        return restaurantManager.findRestaurantById(restaurantId);
+    }
+
     public Food getFood(String restaurantName, String foodName) throws Exception {
         return restaurantManager.getFood(restaurantName, foodName);
     }
@@ -127,11 +131,11 @@ public class MzFoodDelivery {
     }
 
     public void addToCartByRestaurantId(String restaurantId, String foodName) throws Exception {
-        String restaurantName = getRestaurantById(restaurantId);
+        String restaurantName = getRestaurantNameById(restaurantId);
         addToCart(restaurantName, foodName);
     }
 
-    private String getRestaurantById(String restaurantId) throws Exception {
+    private String getRestaurantNameById(String restaurantId) throws Exception {
         return restaurantManager.getRestaurantNameById(restaurantId);
     }
 

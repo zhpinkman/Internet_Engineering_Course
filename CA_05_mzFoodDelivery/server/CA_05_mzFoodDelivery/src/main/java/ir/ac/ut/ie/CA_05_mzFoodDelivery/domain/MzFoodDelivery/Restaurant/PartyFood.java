@@ -1,15 +1,17 @@
 package ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant;
 
+import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
+
 public class PartyFood extends Food {
-    private Restaurant restaurant;
+    private String restaurantId;
     private int count;
     private double newPrice;
 
-    public PartyFood(String name, String description, double popularity, double price, String image, double newPrice, int count, Restaurant restaurant) {
+    public PartyFood(String name, String description, double popularity, double price, String image, double newPrice, int count, String restaurantId) {
         super(name, description, popularity, price, image);
         this.count = count;
         this.newPrice = newPrice;
-        this.restaurant = restaurant;
+        this.restaurantId = restaurantId;
     }
 
     @Override
@@ -32,11 +34,15 @@ public class PartyFood extends Food {
     }
 
     public Restaurant getRestaurant() {
-        return restaurant;
+        try {
+            return MzFoodDelivery.getInstance().getRestaurantById(this.restaurantId);
+        }catch (Exception e){
+            return null;
+        }
     }
 
     public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+        this.restaurantId = restaurant.getId();
     }
 
     public int getCount() {
