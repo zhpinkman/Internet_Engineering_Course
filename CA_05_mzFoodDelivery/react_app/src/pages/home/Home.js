@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../Assets/styles/home-styles.css";
+import Header from "../general/Header";
 
 export default class Home extends React.Component {
 
@@ -17,19 +18,7 @@ export default class Home extends React.Component {
     render() {
         return (
             <body>
-            <header>
-                <div className="header">
-                    <div className="cart m-2">
-                        <i className="flaticon-smart-cart"></i>
-                    </div>
-                    <div className="profile m-2">
-                        حساب کاربری
-                    </div>
-                    <div className="logout m-2">
-                        خروج
-                    </div>
-                </div>
-            </header>
+            <Header/>
 
 
             <div className="app-background">
