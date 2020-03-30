@@ -20,8 +20,6 @@ public class RestaurantsService {
     private static RestaurantsService instance;
 
 
-
-
     private RestaurantsService() {}
 
     public static RestaurantsService getInstance() {
