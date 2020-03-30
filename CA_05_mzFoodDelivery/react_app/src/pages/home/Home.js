@@ -26,25 +26,23 @@ export default class Home extends React.Component {
                 <HomeTopSection/>
                 <HomeSearchBar/>
 
-                <main>
-                    <FoodParty/>
+                <FoodParty/>
 
-                    <div className="restaurants-list">
-                        restaurants list
-                        <div className="carousel"
-                             data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": false, "pageDots": false }'>
-                            <div className="carousel-cell"></div>
-                            <div className="carousel-cell"></div>
-                            <div className="carousel-cell"></div>
-                            <div className="carousel-cell"></div>
-                            <div className="carousel-cell"></div>
-                        </div>
+                <div className="restaurants-list">
+                    restaurants list
+                    <div className="carousel"
+                         data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": false, "pageDots": false }'>
+                        <div className="carousel-cell"></div>
+                        <div className="carousel-cell"></div>
+                        <div className="carousel-cell"></div>
+                        <div className="carousel-cell"></div>
+                        <div className="carousel-cell"></div>
                     </div>
-                    <br/>
-                </main>
+                </div>
+                <br/>
 
 
-                <Footer />
+                <Footer/>
                 {/*<script src='https://npmcdn.com/flickity@2/dist/flickity.pkgd.js'></script>*/}
             </div>
         );

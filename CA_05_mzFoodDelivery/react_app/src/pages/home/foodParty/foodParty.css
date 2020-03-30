@@ -1,0 +1,12 @@
+.remaining-time-box {
+    width: max-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    min-width: 2px;
+    text-align: center;
+    margin: 15px auto;
+    height: 39px;
+    padding: 6px 10px;
+    border: solid 2px rgba(0, 0, 0, 0.4);
+    border-radius: 11px;
+}

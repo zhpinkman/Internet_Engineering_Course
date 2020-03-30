@@ -17,7 +17,7 @@ public class FoodPartyController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public PartyFood restaurants() {
-        return MzFoodDelivery.getInstance().getPartyFoods().get(0);
+    public List<PartyFood> restaurants() {
+        return MzFoodDelivery.getInstance().getPartyFoods();
     }
 }
