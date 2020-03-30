@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
-var restaurantService = require("./services/restaurantService.js");
+var restaurantService = require("./services/RestaurantService.js");
 
 function App() {
   return (
