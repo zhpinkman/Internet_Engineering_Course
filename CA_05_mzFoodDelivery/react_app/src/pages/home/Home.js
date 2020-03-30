@@ -1,6 +1,7 @@
 import React from 'react';
 import "../../Assets/styles/home-styles.css";
 import Header from "../general/Header";
+import Footer from "../general/Footer";
 
 export default class Home extends React.Component {
 
@@ -56,6 +57,7 @@ export default class Home extends React.Component {
                 </div>
 
                 <main>
+
                     <div className="food-party">
                         food party
                         <div className="carousel"
@@ -66,17 +68,24 @@ export default class Home extends React.Component {
                             <div className="carousel-cell"></div>
                             <div className="carousel-cell"></div>
                         </div>
-
                     </div>
+
                     <div className="restaurants-list">
                         restaurants list
+                        <div className="carousel"
+                             data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": false, "pageDots": false }'>
+                            <div className="carousel-cell"></div>
+                            <div className="carousel-cell"></div>
+                            <div className="carousel-cell"></div>
+                            <div className="carousel-cell"></div>
+                            <div className="carousel-cell"></div>
+                        </div>
                     </div>
+                    <br/>
                 </main>
 
 
-                <footer>
-                    footer
-                </footer>
+                <Footer />
                 {/*<script src='https://npmcdn.com/flickity@2/dist/flickity.pkgd.js'></script>*/}
             </div>
         );
