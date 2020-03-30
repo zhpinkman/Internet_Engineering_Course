@@ -23,4 +23,10 @@ public class ProfileController {
         return MzFoodDelivery.getInstance().getUser();
     }
 
+
+    @PostMapping("addToCart")
+    public void addToCart(@RequestParam String restaurantId, @RequestParam String foodName) {
+        System.out.println(restaurantId + " " + foodName);
+    }
+
 }
