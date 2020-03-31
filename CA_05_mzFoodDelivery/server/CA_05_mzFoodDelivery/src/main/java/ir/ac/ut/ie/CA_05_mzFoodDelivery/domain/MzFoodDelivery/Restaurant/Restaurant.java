@@ -89,7 +89,10 @@ public class Restaurant {
         for (Food food: menu) {
             foodsPopulationSum += food.getPopularity();
         }
-        return foodsPopulationSum / menu.size();
+        if(menu.size() != 0)
+            return foodsPopulationSum / menu.size();
+        else
+            return 0;
     }
 
 

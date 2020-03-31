@@ -22,6 +22,8 @@ public class RestaurantController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public List<Restaurant> restaurants() {
-        return MzFoodDelivery.getInstance().getNearRestaurants();
+        List<Restaurant> r = MzFoodDelivery.getInstance().getNearRestaurants();
+        System.out.println(r);
+        return r;
     }
 }

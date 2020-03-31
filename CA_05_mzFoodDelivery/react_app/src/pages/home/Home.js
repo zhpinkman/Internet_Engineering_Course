@@ -5,6 +5,7 @@ import Footer from "../general/Footer";
 import HomeTopSection from "./HomeTopSection";
 import HomeSearchBar from "./HomeSearchBar";
 import FoodParty from "./foodParty/FoodParty";
+import Restaurants from "./restaurants/Restaurants";
 
 export default class Home extends React.Component {
 
@@ -27,21 +28,9 @@ export default class Home extends React.Component {
                 <HomeSearchBar/>
 
                 <FoodParty/>
+                <Restaurants/>
 
-                <div className="restaurants-list">
-                    restaurants list
-                    <div className="carousel"
-                         data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": false, "pageDots": false }'>
-                        <div className="carousel-cell"></div>
-                        <div className="carousel-cell"></div>
-                        <div className="carousel-cell"></div>
-                        <div className="carousel-cell"></div>
-                        <div className="carousel-cell"></div>
-                    </div>
-                </div>
                 <br/>
-
-
                 <Footer/>
                 {/*<script src='https://npmcdn.com/flickity@2/dist/flickity.pkgd.js'></script>*/}
             </div>

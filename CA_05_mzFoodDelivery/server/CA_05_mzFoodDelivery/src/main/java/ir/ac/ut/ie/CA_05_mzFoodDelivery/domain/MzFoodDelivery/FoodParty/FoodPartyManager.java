@@ -24,7 +24,9 @@ public class FoodPartyManager {
     public void deleteOldParty(){
         if(partyFoods.size() > 0) {
             for (PartyFood partyFood : partyFoods) {
-                partyFood.getRestaurant().deleteFood(partyFood);
+                Restaurant r = partyFood.getRestaurant();
+                if(r != null)
+                    partyFood.getRestaurant().deleteFood(partyFood);
             }
             partyFoods.clear();
         }

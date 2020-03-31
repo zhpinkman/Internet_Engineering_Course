@@ -52,7 +52,6 @@ export default class FoodParty extends React.Component {
 
     async getPartyFoods() {
         let partyFoods = await FoodPartyService.getPartyFoods();
-        console.log(partyFoods);
         await this.setState({
             partyFoods: partyFoods
         });
@@ -98,7 +97,6 @@ export default class FoodParty extends React.Component {
     }
 
     foodPartyList() {
-        console.log(this.state.partyFoods);
         if (this.state.partyFoods == null) {
             return (
                 <div className="spinner-grow text-danger food-party-loading-box align-self-center" role="status">

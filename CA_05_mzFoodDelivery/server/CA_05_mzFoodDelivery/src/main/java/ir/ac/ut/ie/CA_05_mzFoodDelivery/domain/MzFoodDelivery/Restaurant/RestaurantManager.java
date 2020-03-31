@@ -91,7 +91,7 @@ public class RestaurantManager {
         return restaurants.subList(0, Math.min(recommendCount, restaurants.size()));
     }
 
-    public List<Restaurant> getNearRestaurants(Location userLocation) {
+    public synchronized List<Restaurant> getNearRestaurants(Location userLocation) {
         restaurants.sort(new SortByDistance(userLocation));
         return restaurants.stream().filter(it -> it.isNearUser(userLocation)).collect(Collectors.toList());
     }
