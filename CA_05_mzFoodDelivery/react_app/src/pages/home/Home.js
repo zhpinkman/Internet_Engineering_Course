@@ -20,6 +20,10 @@ export default class Home extends React.Component {
 
     }
 
+    redirectTo(href) {
+        this.props.history.push(href);
+    }
+
     render() {
         return (
             <div>
@@ -28,7 +32,7 @@ export default class Home extends React.Component {
                 <HomeSearchBar/>
 
                 <FoodParty/>
-                <Restaurants/>
+                <Restaurants home={this}/>
 
                 <br/>
                 <Footer/>

@@ -45,7 +45,7 @@ export default class Restaurants extends React.Component {
             );
         } else {
             return this.state.restaurants.slice(0, 8).map((restaurant, i) =>
-                <RestaurantCard restaurant={restaurant} key={"R"+i}/>
+                <RestaurantCard restaurant={restaurant} home={this.props.home} key={"R"+i}/>
             );
         }
     }
