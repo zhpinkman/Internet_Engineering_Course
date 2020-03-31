@@ -1,5 +1,4 @@
 import React from "react";
-import Flickity from 'flickity';
 import 'flickity/dist/flickity.min.css';
 
 import TextTitleCenter from "../../general/text/TextTitleCenter";
@@ -43,7 +42,8 @@ export default class FoodParty extends React.Component {
             this.setState({
                 partyFoods: null
             });
-            this.sliderRef.current.refreshFlickity();
+            if(this.sliderRef != null)
+                this.sliderRef.current.refreshFlickity();
             this.getPartyFoods();
             this.getRemainingTime();
         }
@@ -54,7 +54,8 @@ export default class FoodParty extends React.Component {
         await this.setState({
             partyFoods: partyFoods
         });
-        this.sliderRef.current.refreshFlickity();
+        if(this.sliderRef != null)
+            this.sliderRef.current.refreshFlickity();
     }
 
 

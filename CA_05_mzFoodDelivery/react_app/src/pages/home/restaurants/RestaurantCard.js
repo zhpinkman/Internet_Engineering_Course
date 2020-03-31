@@ -1,6 +1,6 @@
 import React from "react";
 import "./restaurants.css";
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 export default class RestaurantCard extends React.Component {
     constructor(props) {
