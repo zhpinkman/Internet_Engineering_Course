@@ -11,6 +11,8 @@ import java.time.LocalTime;
 
 public class Order {
 
+    public Order () {}
+
 
     private static double max_id = 0;
 

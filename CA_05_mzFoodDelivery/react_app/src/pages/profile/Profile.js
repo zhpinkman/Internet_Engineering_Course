@@ -4,6 +4,7 @@ import Footer from "../general/Footer";
 
 import UserService from "../../services/UserService";
 import "../../Assets/styles/profile-style.css";
+import OrderItem from "./OrderItem";
 
 
 export default class Profile extends React.Component{
@@ -137,7 +138,7 @@ export default class Profile extends React.Component{
                                     <div className="orders tab2">
                                         {
                                             this.state.orders.length > 0
-                                        ?(<div>
+                                        ?(<div> {this.state.orders.map((order, index) => {return <OrderItem order={order} index={index}/>})}
                                         <div className="order-item">
                                             <div className="row">
                                                 <div className="col-2">
