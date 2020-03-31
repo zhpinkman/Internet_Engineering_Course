@@ -5,9 +5,9 @@ import 'flickity/dist/flickity.min.css';
 import TextTitleCenter from "../../general/text/TextTitleCenter";
 import RemainingTime from "./RemainingTime";
 import "./foodParty.css";
-import FoodPartyCard from "./FoodPartyCard";
+import FoodPartyCard from "./foodPartyCard/FoodPartyCard";
 import FoodPartyService from "../../../services/FoodPartyService";
-import Slider from "./Slider";
+import Slider from "../../../utils/Slider";
 
 
 export default class FoodParty extends React.Component {
@@ -48,7 +48,7 @@ export default class FoodParty extends React.Component {
                             pauseAutoPlayOnHover: true,
                             // wrapAround: true,
                             // fullscreen: true,
-                            // adaptiveHeight: true,
+                            adaptiveHeight: true,
 
                             freeScroll: true,
                             contain: true,

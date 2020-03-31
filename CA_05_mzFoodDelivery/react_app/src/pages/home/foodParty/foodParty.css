@@ -87,7 +87,7 @@
 
 .food-party-card .img-wrapper {
     /*border: 1px solid red;*/
-    height: 150px;
+    height: 130px;
     overflow: hidden;
     width: 150px;
     /*padding-top: 50%;*/
@@ -101,8 +101,33 @@
     border-radius: 10%;
 }
 
+.food-party-card-subtitle {
+    color: rgba(0, 0, 0, 0.8);
+    margin-top: 8px;
+}
+
 .old-price {
     text-decoration: line-through;
     text-decoration-color: red;
     color: rgba(0, 0, 0, 0.4);
+}
+
+.stock-tag {
+    border: solid 1px rgba(0, 0, 0, 0.2) !important;
+    font-size: 14px !important;
+    padding: 0.2rem !important;
+    border-radius: 0.5rem !important;
+    background: #F7FFF7;
+}
+
+.price-text {
+    font-size: 18px;
+}
+
+.dash {
+    border: 0 none;
+    border-top: 2px dashed rgba(0, 0, 0, 0.3);
+    background: none;
+    height: 0;
+    margin: 2px;
 }
