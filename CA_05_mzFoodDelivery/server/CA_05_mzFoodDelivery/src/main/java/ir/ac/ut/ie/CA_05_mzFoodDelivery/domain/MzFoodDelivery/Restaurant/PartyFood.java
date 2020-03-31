@@ -44,6 +44,10 @@ public class PartyFood extends Food {
         }
     }
 
+    public String getRestaurantName() {
+        return this.getRestaurant().getName();
+    }
+
     public void setRestaurant(Restaurant restaurant) {
         this.restaurantId = restaurant.getId();
     }

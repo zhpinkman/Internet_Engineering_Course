@@ -1,6 +1,7 @@
 import React from "react";
 import "./foodParty.css";
 import enToFaNumber from "../../../utils/utils"
+import PrimaryButton from "../../general/button/PrimaryButton";
 
 export default class FoodPartyCard extends React.Component {
     render() {
@@ -35,12 +36,24 @@ export default class FoodPartyCard extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-6 text-left">
-                        29000
+                    <div className="col-6 text-left old-price">
+                        {enToFaNumber(this.props.partyFood.oldPrice)}
                     </div>
                     <div className="col-6 text-right">
+                        {enToFaNumber(this.props.partyFood.price)}
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-6 justify-content-center">
+                        <PrimaryButton text={"خرید"} disabled={this.props.partyFood.count == 0}/>
+                    </div>
+                    <div className="col-6 justify-content-center">
                         30000
                     </div>
+
+                </div>
+                <div className="row justify-content-center">
+                    {this.props.partyFood.restaurantName}
                 </div>
 
             </div>

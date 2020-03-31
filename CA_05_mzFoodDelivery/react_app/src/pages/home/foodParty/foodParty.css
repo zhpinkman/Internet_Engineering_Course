@@ -100,3 +100,9 @@
 .food-party-card img {
     border-radius: 10%;
 }
+
+.old-price {
+    text-decoration: line-through;
+    text-decoration-color: red;
+    color: rgba(0, 0, 0, 0.4);
+}
