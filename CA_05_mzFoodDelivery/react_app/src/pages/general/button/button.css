@@ -1,0 +1,28 @@
+.btn-default {
+    /*background-color: rgb(255, 230, 109) !important;*/
+    border: 0px !important;
+    font-size: 19px !important;
+    padding: 0.275rem 0.80rem !important;
+    border-radius: 0.5rem !important;
+}
+
+.btn-default:disabled {
+    cursor: default;
+    background-color: rgb(230, 230, 230) !important;
+}
+
+.btn-default[disabled]:hover {
+    border: 0px !important;
+    background-color: rgb(230, 230, 230) !important;
+}
+
+.btn-primary {
+    background-color: #4ecdc4 !important;
+    color: white !important;
+    margin-bottom: 15px;
+    font-size: 23px !important;
+}
+
+.btn-primary:hover {
+    background-color: rgba(68, 179, 171, 1) !important;
+}
