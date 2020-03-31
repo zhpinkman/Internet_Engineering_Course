@@ -2,7 +2,8 @@ import React from "react";
 import "../../Assets/styles/header.css";
 import Modal from 'react-bootstrap/Modal'
 import Button from "react-bootstrap/Button";
-import Cart from "./Cart";
+import Cart from "./modals/Cart";
+import Food from "./modals/Food";
 
 export default class Header extends React.Component{
     constructor(props) {
@@ -56,7 +57,7 @@ export default class Header extends React.Component{
                 </div>
             </header>
                 <Modal show={this.state.show} onHide={this.handleClose}>
-                  <Cart/>
+                  <Food/>
                 </Modal>
 
             </div>

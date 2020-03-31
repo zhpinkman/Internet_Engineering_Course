@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../../Assets/styles/cart-styles.css";
+import "../../../Assets/styles/cart-styles.css";
 
 
 export default class Cart extends React.Component {

@@ -23,48 +23,48 @@ export default class FoodParty extends React.Component {
         this.sliderRef = React.createRef();
     }
 
+    //
+    // componentDidMount() {
+    //     this.intervalTimer = setInterval(() => {
+    //         this.timerFunc();
+    //     }, 1000);
+    // }
+    //
+    // componentWillUnmount() {
+    //     clearInterval(this.intervalTimer);
+    // }
 
-    componentDidMount() {
-        this.intervalTimer = setInterval(() => {
-            this.timerFunc();
-        }, 1000);
-    }
+    // timerFunc() {
+    //     let oldTime = this.state.remainingTime;
+    //     if (oldTime >= 1) {
+    //         this.setState({
+    //             remainingTime: oldTime - 1
+    //         });
+    //     } else {
+    //         this.setState({
+    //             partyFoods: null
+    //         });
+    //         this.sliderRef.current.refreshFlickity();
+    //         this.getPartyFoods();
+    //         this.getRemainingTime();
+    //     }
+    // }
 
-    componentWillUnmount() {
-        clearInterval(this.intervalTimer);
-    }
-
-    timerFunc() {
-        let oldTime = this.state.remainingTime;
-        if (oldTime >= 1) {
-            this.setState({
-                remainingTime: oldTime - 1
-            });
-        } else {
-            this.setState({
-                partyFoods: null
-            });
-            this.sliderRef.current.refreshFlickity();
-            this.getPartyFoods();
-            this.getRemainingTime();
-        }
-    }
-
-    async getPartyFoods() {
-        let partyFoods = await FoodPartyService.getPartyFoods();
-        await this.setState({
-            partyFoods: partyFoods
-        });
-        this.sliderRef.current.refreshFlickity();
-    }
-
-
-    async getRemainingTime() {
-        let remainingTime = await FoodPartyRemainingTimeService.getRemainingTime();
-        this.setState({
-            remainingTime: remainingTime
-        });
-    }
+    // async getPartyFoods() {
+    //     let partyFoods = await FoodPartyService.getPartyFoods();
+    //     await this.setState({
+    //         partyFoods: partyFoods
+    //     });
+    //     this.sliderRef.current.refreshFlickity();
+    // }
+    //
+    //
+    // async getRemainingTime() {
+    //     let remainingTime = await FoodPartyRemainingTimeService.getRemainingTime();
+    //     this.setState({
+    //         remainingTime: remainingTime
+    //     });
+    // }
 
     render() {
         return (
