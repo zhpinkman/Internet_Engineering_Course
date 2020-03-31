@@ -1,15 +1,6 @@
-import {CHARGE_URL, USER_URL} from "../config/config";
+import {CART_URL, CHARGE_URL, ORDERS_URL, USER_URL} from "../config/config";
 
 const axios = require("axios").default;
-
-// export default function getRestaurants() {
-//     return axios.get(RESTAURANTS_URL);
-// };
-//
-// export default function getUser() {
-//     return axios.get(USER_URL);
-// };
-
 
 
 export default class UserService {
@@ -21,6 +12,14 @@ export default class UserService {
 
     static charge(amount) {
         return axios.post(CHARGE_URL, {amount: amount});
+    }
+
+    static getCart() {
+        return axios.get(CART_URL);
+    }
+
+    static getOrders() {
+        return axios.get(ORDERS_URL);
     }
 
 }

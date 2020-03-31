@@ -12,7 +12,8 @@ export default class Profile extends React.Component{
         super(props);
         this.state = {
             user: {},
-            amount: 0
+            amount: 0,
+            orders: []
         };
 
 
@@ -40,6 +41,11 @@ export default class Profile extends React.Component{
         UserService.getUser().then(user => {
             console.log(user.data)
             this.setState({user: user.data})
+        });
+        UserService.getOrders().then(orders => {
+            this.setState({orders: orders.data});
+            console.log("orders");
+            console.log(orders.data);
         })
     }
 
@@ -128,8 +134,10 @@ export default class Profile extends React.Component{
                                             </div>
                                         </form>
                                     </div>
-
                                     <div className="orders tab2">
+                                        {
+                                            this.state.orders.length > 0
+                                        ?(<div>
                                         <div className="order-item">
                                             <div className="row">
                                                 <div className="col-2">
@@ -305,7 +313,11 @@ export default class Profile extends React.Component{
                                                 </div>
                                             </div>
                                         </div>
-
+                                        </div>) : (
+                                            <div className="d-flex justify-content-center align-items-center w-100 m-2">
+                                                <span>خالی</span>
+                                            </div>
+                                                ) }
                                     </div>
 
 
