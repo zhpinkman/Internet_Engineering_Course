@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Flickity from 'flickity';
@@ -29,17 +30,17 @@ export default class Slider extends React.Component {
     }
 
     componentWillUnmount() {
-        this.flickity.destroy();
+        // this.flickity.destroy();
+        // MOHSEN WAS HERE AND HE WAS ANGRY!!!  THIS IS WHY LINK WASN'T WORKING :(
     }
 
     componentDidUpdate(prevProps, prevState) {
-        // const flickityDidBecomeActive = !prevState.flickityReady && this.state.flickityReady;
-        // const childrenDidChange = prevProps.children.length !== this.props.children.length;
-        //
-        // if (flickityDidBecomeActive || childrenDidChange) {
-        //     this.refreshFlickity();
-        // }
-        // this.refreshFlickity();
+        const flickityDidBecomeActive = !prevState.flickityReady && this.state.flickityReady;
+        const childrenDidChange = prevProps.children.length !== this.props.children.length;
+
+        if (flickityDidBecomeActive || childrenDidChange) {
+            this.refreshFlickity();
+        }
     }
 
     renderPortal() {

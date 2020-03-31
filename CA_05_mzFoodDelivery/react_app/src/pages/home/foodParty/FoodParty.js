@@ -12,8 +12,6 @@ import {secondsToMMSS} from "../../../utils/utils";
 
 
 export default class FoodParty extends React.Component {
-    intervalTimer;
-
     constructor(props) {
         super(props);
         this.state = {
@@ -21,6 +19,7 @@ export default class FoodParty extends React.Component {
             remainingTime: 0
         };
         this.sliderRef = React.createRef();
+        this.intervalTimer = null;
     }
 
 

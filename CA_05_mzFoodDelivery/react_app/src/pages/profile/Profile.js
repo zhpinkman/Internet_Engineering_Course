@@ -5,6 +5,7 @@ import Footer from "../general/Footer";
 import UserService from "../../services/UserService";
 import "../../Assets/styles/profile-style.css";
 import OrderItem from "./OrderItem";
+import {Link} from "react-router-dom";
 
 
 export default class Profile extends React.Component{
@@ -98,7 +99,7 @@ export default class Profile extends React.Component{
                         </div>
                     </div>
 
-
+                    <Link to={"/p"} >LINK</Link>
                     <div className="orders-charge-wrapper">
                         <div className="orders-charge">
 
