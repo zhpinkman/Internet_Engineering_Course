@@ -104,8 +104,8 @@ export default class FoodParty extends React.Component {
                 </div>
             );
         } else {
-            return this.state.partyFoods.map((partyFood) =>
-                <FoodPartyCard partyFood={partyFood}/>
+            return this.state.partyFoods.map((partyFood, i) =>
+                <FoodPartyCard partyFood={partyFood} key={"party"+i}/>
             );
         }
     }
