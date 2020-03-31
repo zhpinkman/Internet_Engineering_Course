@@ -27,6 +27,8 @@ public class MzFoodDelivery {
     private FoodPartyManager foodPartyManager = new FoodPartyManager();
     private List<Delivery> deliveries = new ArrayList<Delivery>();
     private List<Order> orderList = new ArrayList<Order>();
+    private int foodPartyPeriod;
+    private long foodPartyStartTime;
 
 
     private MzFoodDelivery() {}
@@ -191,5 +193,17 @@ public class MzFoodDelivery {
 
     public List<PartyFood> getPartyFoods(){
         return foodPartyManager.getPartyFoods();
+    }
+
+    public void setFoodPartyPeriod(int period) {
+        this.foodPartyPeriod = period;
+    }
+
+    public void resetFoodPartyTimer(){
+        this.foodPartyStartTime = System.currentTimeMillis();
+    }
+
+    public long getFoodPartyRemainingTime(){
+        return this.foodPartyPeriod - (System.currentTimeMillis() - this.foodPartyStartTime)/1000;
     }
 }

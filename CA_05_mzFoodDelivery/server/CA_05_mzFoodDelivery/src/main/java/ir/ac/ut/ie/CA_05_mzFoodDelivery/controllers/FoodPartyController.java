@@ -17,7 +17,16 @@ public class FoodPartyController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public List<PartyFood> restaurants() {
+    public List<PartyFood> PartyFoods() {
         return MzFoodDelivery.getInstance().getPartyFoods();
+    }
+
+    @RequestMapping(
+            value = "/partyFoodsRemainingTime",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public long RemainingTime() {
+        return MzFoodDelivery.getInstance().getFoodPartyRemainingTime();
     }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import "../foodParty.css";
-import enToFaNumber from "../../../../utils/utils"
+import {enToFaNumber} from "../../../../utils/utils"
 import PrimaryButton from "../../../general/button/PrimaryButton";
 import StockTag from "./StockTag";
 
@@ -10,10 +10,10 @@ export default class FoodPartyCard extends React.Component {
             <div className="food-party-card">
 
                 <div className="row m-0">
-                    <div className="col-6 img-wrapper">
+                    <div className="col-5 img-wrapper">
                         <img alt="tmp" src={this.props.partyFood.image} className="img"/>
                     </div>
-                    <div className="col-6 justify-content-center pt-2">
+                    <div className="col-7 justify-content-center pt-2">
                         <span className="title-text float-right text-right w-100">{this.props.partyFood.name}</span>
                         <br/>
                         <span className="rating-star-text float-right">{enToFaNumber(this.props.partyFood.popularity * 5)}</span>

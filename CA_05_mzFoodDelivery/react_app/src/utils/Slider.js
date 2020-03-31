@@ -39,7 +39,7 @@ export default class Slider extends React.Component {
         // if (flickityDidBecomeActive || childrenDidChange) {
         //     this.refreshFlickity();
         // }
-        this.refreshFlickity();
+        // this.refreshFlickity();
     }
 
     renderPortal() {

@@ -14,11 +14,14 @@ import java.util.concurrent.TimeUnit;
 public class Ca05MzFoodDeliveryApplication {
 	public static void main(String[] args) {
 		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+		int foodPartyPeriod = 15; //Seconds
 		try {
 			RestaurantsService.getInstance().importRestaurantsFromWeb();
-			MzFoodDelivery.getInstance().importFoodPartyFromWeb();
-			new ScheduledParty().run();
-			scheduler.scheduleAtFixedRate(new ScheduledParty(), 15, 15, TimeUnit.SECONDS);
+
+			// Start Food Party
+			new ScheduledParty(foodPartyPeriod).run();
+			scheduler.scheduleAtFixedRate(new ScheduledParty(foodPartyPeriod), 0, foodPartyPeriod, TimeUnit.SECONDS);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

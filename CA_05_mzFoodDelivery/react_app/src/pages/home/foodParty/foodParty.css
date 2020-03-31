@@ -16,6 +16,7 @@
     background: rgba(0, 0, 0, 0);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 20px 0px;
+    min-height: 325px;
 }
 
 .carousel-cell {
@@ -48,7 +49,7 @@
     justify-content: center;
     align-content: center;
     align-items: center;
-    min-height: 250px;
+    min-height: 266px;
     width: 260px;
     transition: all 0.3s ease;
 }
@@ -87,7 +88,7 @@
 
 .food-party-card .img-wrapper {
     /*border: 1px solid red;*/
-    height: 130px;
+    height: 105px;
     overflow: hidden;
     width: 150px;
     /*padding-top: 50%;*/
@@ -130,4 +131,9 @@
     background: none;
     height: 0;
     margin: 2px;
+}
+
+.food-party-loading-box {
+    /*margin-top: 133px;*/
+    /*margin-bottom: 133px;*/
 }
