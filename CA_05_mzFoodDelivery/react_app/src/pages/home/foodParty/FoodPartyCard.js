@@ -1,5 +1,6 @@
 import React from "react";
 import "./foodParty.css";
+import enToFaNumber from "../../../utils/utils"
 
 export default class FoodPartyCard extends React.Component {
     render() {
@@ -23,13 +24,13 @@ export default class FoodPartyCard extends React.Component {
 
                 <div className="row m-0">
                     <div className="col-6 img-wrapper">
-                        <img alt="tmp" src={require("./../../../Assets/images/italian-pizza-square.jpg")} className="img"/>
+                        <img alt="tmp" src={this.props.partyFood.image} className="img"/>
                     </div>
                     <div className="col-6 justify-content-center">
                         <br/>
-                        <span className="title-text float-right text-right">پیتزا نیمه اعلا</span>
+                        <span className="title-text float-right text-right w-100">{this.props.partyFood.name}</span>
                         <br/>
-                        <span className="rating-star-text float-right">۴</span>
+                        <span className="rating-star-text float-right">{enToFaNumber(this.props.partyFood.popularity * 5)}</span>
                         <span className="rating-star-img float-right">⭐</span>
                     </div>
                 </div>

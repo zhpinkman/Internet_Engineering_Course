@@ -44,8 +44,8 @@ export default class FoodParty extends React.Component {
                 <div className="carousel">
                     <Slider
                         options={{
-                            // autoPlay: 4000,
-                            // pauseAutoPlayOnHover: true,
+                            autoPlay: 4000,
+                            pauseAutoPlayOnHover: true,
                             // wrapAround: true,
                             // fullscreen: true,
                             // adaptiveHeight: true,
@@ -69,13 +69,13 @@ export default class FoodParty extends React.Component {
         console.log(this.state.partyFoods);
         if (this.state.partyFoods == null) {
             return (
-                <div className="spinner-border text-success" role="status">
+                <div className="spinner-grow text-danger" role="status">
                     <span className="sr-only">Loading...</span>
                 </div>
             );
         } else {
             return this.state.partyFoods.map((partyFood) =>
-                <FoodPartyCard/>
+                <FoodPartyCard partyFood={partyFood}/>
             );
         }
     }
