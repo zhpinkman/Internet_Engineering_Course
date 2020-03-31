@@ -14,8 +14,9 @@ const axios = require("axios").default;
 
 export default class RestaurantService {
 
-    static getRestaurants() {
-        let restaurants = axios.get(RESTAURANTS_URL);
+    static async getRestaurants() {
+        let restaurants = await axios.get(RESTAURANTS_URL);
+        console.log(restaurants);
         return restaurants.data;
     }
 

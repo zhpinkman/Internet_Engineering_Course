@@ -25,7 +25,7 @@ export default class Restaurants extends React.Component {
 
     render() {
         return (
-            <div className="restaurantsContainer mt-5">
+            <div className="restaurants-container mt-5">
                 <TextTitleCenter text="رستوران ها"/>
 
                 <div className="row justify-content-center mt-3">
@@ -44,8 +44,8 @@ export default class Restaurants extends React.Component {
                 </div>
             );
         } else {
-            return this.state.partyFoods.map((partyFood) =>
-                <RestaurantCard partyFood={partyFood}/>
+            return this.state.restaurants.slice(0, 8).map((restaurant, i) =>
+                <RestaurantCard restaurant={restaurant} key={"R"+i}/>
             );
         }
     }
