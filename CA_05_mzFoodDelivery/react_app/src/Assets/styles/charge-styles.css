@@ -89,7 +89,7 @@ main {
   display: flex;
   justify-content: space-around;
   height: 60px;
-  z-index: 100000000;
+  z-index: 1000;
   align-items: center;
   background: white;
   width: 70%;
