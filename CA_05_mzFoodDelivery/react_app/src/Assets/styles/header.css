@@ -30,6 +30,8 @@ header {
 
 .cart {
   position: relative;
+  cursor: pointer;
+  width: 20px;
 }
 
 .cart .cart-icon {
