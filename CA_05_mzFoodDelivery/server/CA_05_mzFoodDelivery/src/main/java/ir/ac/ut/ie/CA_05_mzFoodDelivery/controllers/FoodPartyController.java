@@ -13,7 +13,7 @@ import java.util.List;
 public class FoodPartyController {
 
     @RequestMapping(
-            value = "/foodParty",
+            value = "/partyFoods",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )

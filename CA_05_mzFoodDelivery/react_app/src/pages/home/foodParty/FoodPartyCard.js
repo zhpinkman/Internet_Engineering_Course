@@ -4,7 +4,6 @@ import "./foodParty.css";
 export default class FoodPartyCard extends React.Component {
     render() {
         return (
-
             <div className="food-party-card">
 
                 {/*<div className="row img-wrapper">*/}
