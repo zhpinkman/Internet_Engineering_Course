@@ -30,7 +30,7 @@ export default class Food extends  React.Component {
                                     </div>
                                     <div className="food-rate">
                                         ۵
-                                        <i className="flaticon-star"></i>
+                                        <span className="star-icon">⋆</span>
                                     </div>
                                 </div>
                                 <div className="food-description">

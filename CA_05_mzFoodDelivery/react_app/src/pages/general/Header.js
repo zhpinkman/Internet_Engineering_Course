@@ -57,7 +57,7 @@ export default class Header extends React.Component{
                 </div>
             </header>
                 <Modal show={this.state.show} onHide={this.handleClose}>
-                  <Food/>
+                  <Cart/>
                 </Modal>
 
             </div>
