@@ -10,18 +10,18 @@ export default class Restaurants extends React.Component {
         this.state = {
             restaurants: null
         };
-        // this.getRestaurants();
+        this.getRestaurants();
     }
 
-    // async getRestaurants() {
-    //     let restaurants = await RestaurantService.getRestaurants();
-    //     console.log(restaurants);
-    //     this.setState(
-    //         {
-    //             restaurants: restaurants
-    //         }
-    //     )
-    // }
+    async getRestaurants() {
+        let restaurants = await RestaurantService.getRestaurants();
+        console.log(restaurants);
+        this.setState(
+            {
+                restaurants: restaurants
+            }
+        )
+    }
 
     render() {
         return (
