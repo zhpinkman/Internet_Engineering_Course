@@ -1,16 +1,35 @@
 import React from "react";
 import "../../Assets/styles/header.css";
+import Modal from 'react-bootstrap/Modal'
+import Button from "react-bootstrap/Button";
+import Cart from "./Cart";
 
 export default class Header extends React.Component{
     constructor(props) {
         super(props);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+
         this.state = {
-            test: 1
+            show: false,
         };
     }
 
+    handleClose() {
+        this.setState({ show: false });
+
+    }
+
+    handleShow() {
+        this.setState({ show: true });
+
+    }
+
+
+
     render() {
         return (
+            <div>
             <header>
                 <div className="header">
                     <div className="loghme-icon  ml-auto">
@@ -18,7 +37,7 @@ export default class Header extends React.Component{
                             <img alt="tmp" src={require("../../Assets/images/LOGO.png")}/>
                         </a>
                     </div>
-                    <div className="cart m-2">
+                    <div className="cart m-2" onClick={this.handleShow}>
                         <div className="cart-icon">
                             <i className="flaticon-smart-cart"></i>
                         </div>
@@ -36,6 +55,12 @@ export default class Header extends React.Component{
                     </div>
                 </div>
             </header>
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                  <Cart/>
+                </Modal>
+
+            </div>
+
         );
     }
 }
