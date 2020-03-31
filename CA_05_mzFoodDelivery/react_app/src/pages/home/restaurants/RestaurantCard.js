@@ -21,14 +21,14 @@ export default class RestaurantCard extends React.Component {
                     <div className="row title-wrapper">
                         <span className="title-text">{this.props.restaurant.name}</span>
                     </div>
-                    <Link to={"/restaurant?id=s"}>
+                    {/*<Link to={"/restaurant?id=s"}>*/}
                     <div className="row card-button-wrapper">
                             <button type="button" className="btn btn-warning btn-default btn-orange"
-                                    onClick={this.props.history.push("/profile")}>
+                                    onClick={() => (window.location = "/restaurants?id=" + this.props.restaurant.id)}>
                                 نمایش منو
                             </button>
                     </div>
-                    </Link>
+                    {/*</Link>*/}
                 </div>
             </div>
         );

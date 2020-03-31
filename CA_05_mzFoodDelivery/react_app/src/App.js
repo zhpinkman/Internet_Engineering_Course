@@ -27,7 +27,7 @@ function App() {
         <Route path="/profile">
           <Profile />
         </Route>
-        <Route path="/restaurant" component={withRouter(Restaurant)} />
+        <Route path="/restaurants" component={withRouter(Restaurant)} />
         <Route path="/login">
           <Login/>
         </Route>
@@ -37,7 +37,7 @@ function App() {
         <Route path="/test">
           <Example/>
         </Route>
-        <Route exact path="/" component={withRouter(Home)} />
+        <Route exact path="/" component={Home} />
       </Switch>
     </Router>
   );
