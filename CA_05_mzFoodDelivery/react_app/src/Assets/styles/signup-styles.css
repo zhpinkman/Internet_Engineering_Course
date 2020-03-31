@@ -10,11 +10,15 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
-  overflow: hidden;
-  background: white !important;
+
   direction: rtl;
   font-family: "Vazir" !important;
   position: relative;
+}
+
+.main-box {
+  overflow: hidden;
+  background: white !important;
 }
 
 img {
