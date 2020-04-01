@@ -14,6 +14,7 @@ import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.User.UserManager;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.utils.schedulers.BackgroundJobManager;
 
+import javax.servlet.http.Part;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +86,7 @@ public class MzFoodDelivery {
     }
 
     public synchronized void addToCart(String restaurantId, String foodName, int amount) throws Exception {
+
         Restaurant restaurant = getRestaurantById(restaurantId);
         Food food = restaurant.getFood(foodName);
 
@@ -104,6 +106,14 @@ public class MzFoodDelivery {
             }
         }
 
+    }
+
+    public void deleteFromCart(String restaurantId, String foodName) throws Exception {
+        Restaurant restaurant = getRestaurantById(restaurantId);
+        Food food = restaurant.getFood(foodName);
+        if(food instanceof PartyFood)
+            ((PartyFood) food).increaseFoodAmount();
+        userManager.deleteFromCart(restaurant, food);
     }
 
     public Order getOrderById(double id) throws Exception {

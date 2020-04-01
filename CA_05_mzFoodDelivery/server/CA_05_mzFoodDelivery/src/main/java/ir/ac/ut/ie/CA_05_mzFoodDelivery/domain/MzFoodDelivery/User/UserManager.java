@@ -5,7 +5,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
+import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
+import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 
 public class UserManager {
     private User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0));
@@ -65,5 +67,9 @@ public class UserManager {
 
     public void chargeUserCredit(double amount) {
         user.chargeUserCredit(amount);
+    }
+
+    public void deleteFromCart(Restaurant restaurant, Food food) throws Exception {
+        user.deleteFromCart(restaurant, food);
     }
 }

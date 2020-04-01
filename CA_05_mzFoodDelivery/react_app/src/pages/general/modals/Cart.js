@@ -2,6 +2,8 @@ import * as React from "react";
 import "../../../Assets/styles/cart-styles.css";
 import UserService from "../../../services/UserService";
 import {enToFaNumber} from "../../../utils/utils";
+import {toast} from "react-toastify";
+import CartItem from "./CartItem";
 
 
 export default class Cart extends React.Component {
@@ -15,6 +17,10 @@ export default class Cart extends React.Component {
 
 
     componentDidMount() {
+        this.getUserCart();
+    }
+
+    getUserCart () {
         UserService.getCart().then(cart => {
             this.setState({cart: cart.data});
             console.log(this.state.cart);
@@ -37,6 +43,7 @@ export default class Cart extends React.Component {
         );
     }
 
+
     getCart() {
         if (this.state.cart && this.state.cart.cartItems)
         return (
@@ -44,27 +51,7 @@ export default class Cart extends React.Component {
             <div className="cart-list-wrapper d-flex justify-content-center">
                         {this.state.cart.cartItems.map(cartItem => {
                             return (
-                                <>
-                                <div className="cart-list-item-wrapper d-flex flex-column">
-                                    <div className="d-flex flex-row justify-space-between">
-                                        <div className="align-self-start">
-                                            {cartItem.food.name}
-                                        </div>
-                                        <div className="align-self-end mr-auto">
-                                            <a><i className="glyph-icon flaticon-minus cart-icon"></i></a>
-                                            <span className="p-1">
-                                                {cartItem.quantity}
-                                            </span>
-                                            <a><i className="glyph-icon flaticon-plus cart-icon"></i></a>
-                                        </div>
-                                    </div>
-                                    <div className="price d-flex flex-row justify-content-end">
-                                        {enToFaNumber(cartItem.food.price * cartItem.quantity)}
-                                        تومان
-                                    </div>
-                                </div>
-                                <div className="break"></div>
-                                </>
+                             <CartItem cartItem={cartItem}/>
                             )
                         })}
 

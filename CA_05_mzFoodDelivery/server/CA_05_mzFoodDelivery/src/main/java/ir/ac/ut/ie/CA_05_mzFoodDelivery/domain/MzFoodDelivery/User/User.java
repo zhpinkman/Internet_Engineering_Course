@@ -1,6 +1,7 @@
 package ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.User;
 
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
+import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 
@@ -89,5 +90,9 @@ public class User {
 
     public void withdrawCredit(double amount) {
         credit -= amount;
+    }
+
+    public void deleteFromCart(Restaurant restaurant, Food food) throws Exception {
+        userCart.delete(restaurant, food);
     }
 }

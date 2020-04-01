@@ -41,7 +41,10 @@ public class ProfileController {
             String restaurantId = properties.getProperty("restaurantId");
             String foodName = properties.getProperty("foodName");
             Integer amount = Integer.parseInt(properties.getProperty("amount"));
-            MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount);
+            if (amount > 0)
+                MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount);
+            else
+                MzFoodDelivery.getInstance().deleteFromCart(restaurantId, foodName);
             return "ok";
 
         } catch (Exception e) {

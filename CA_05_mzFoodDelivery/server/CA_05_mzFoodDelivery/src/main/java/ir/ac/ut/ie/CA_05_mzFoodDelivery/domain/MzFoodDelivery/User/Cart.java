@@ -1,5 +1,6 @@
 package ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.User;
 
+import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFood;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 
@@ -41,7 +42,7 @@ public class Cart {
 
         CartItem cartItem = findCartItem(newCartItem);
         if (cartItem != null)
-            cartItem.increaseQuantity();
+            cartItem.increaseQuantity(1);
         else
             cartItems.add(newCartItem);
     }
@@ -71,6 +72,21 @@ public class Cart {
         for (CartItem cartItem: cartItems) {
             if (cartItem.getFood().getName().equals(partyFood.getName()) && cartItem.getRestaurant().getId().equals(partyFood.getRestaurant().getId())) {
                 cartItems.remove(cartItem);
+            }
+        }
+    }
+
+    public void delete(Restaurant restaurant, Food food) throws Exception {
+        for (CartItem cartItem: cartItems) {
+            if (cartItem.getFood().getName().equals(food.getName()) && cartItem.getRestaurant().getId().equals(restaurant.getId())) {
+                if (cartItem.getQuantity() > 1) {
+                    cartItem.decreaseQuantity(1);
+                }
+                else if (cartItem.getQuantity() == 1){
+                    cartItems.remove(cartItem);
+                } else {
+                    throw new Exception("bad request");
+                }
             }
         }
     }
