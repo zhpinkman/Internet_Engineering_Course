@@ -1,47 +1,49 @@
 import * as React from "react";
 import "../../../Assets/styles/food-modal-styles.scss";
+import {enToFaNumber} from "../../../utils/utils";
 
 
 export default class Food extends  React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            userChosenEntity: 1
+        };
     }
-
 
     render() {
         return (
             <div>
                 <div className="top-part">
                     <div className="restaurant-name">
-                        رستوران خامس
+                        {this.props.food.restaurantName}
                     </div>
                     <div className="food-wrapper">
                         <div className="food-img-wrapper">
                             <div className="food-img">
-                                <img src={require("../../../Assets/images/italian-pizza-square.jpg")} alt="temp" />
+                                <img src={this.props.food.image} alt="temp" />
                             </div>
                         </div>
                         <div className="food-detail-wrapper">
                             <div className="food-detail">
                                 <div className="name-rate">
                                     <div className="food-name">
-                                        پیتزا
+                                        {this.props.food.name}
                                     </div>
                                     <div className="food-rate">
-                                        ۵
+                                        {enToFaNumber(this.props.food.popularity * 5)}
                                         <span className="star-icon">⋆</span>
                                     </div>
                                 </div>
                                 <div className="food-description">
-                                    پخته‌شده با مرغوب‌ترین مواد اولیه
+                                    {this.props.food.description}
                                 </div>
                                 <div className="food-prices">
                                     <div className="old-price">
-                                        ۳۹۰۰۰
+                                        {enToFaNumber(this.props.food.oldPrice)}
                                     </div>
                                     <div className="curr-price">
-                                        ۲۹۰۰۰ تومان
+                                        {enToFaNumber(this.props.food.price)} تومان
                                     </div>
                                 </div>
                             </div>
@@ -56,14 +58,14 @@ export default class Food extends  React.Component {
                 <div className="bottom-part">
                     <div className="remaining">
                         <span> موجودی : </span>
-                        <span> ۳ </span>
+                        <span> {enToFaNumber(this.props.food.count)} </span>
                     </div>
                     <div className="actions">
                         <div className="inc-amount mx-1">
                             <i className="flaticon-plus"></i>
                         </div>
                         <div className="amount mx-1">
-                            ۲
+                            {enToFaNumber(this.state.userChosenEntity)}
                         </div>
                         <div className="dec-amount mx-1">
                             <i className="flaticon-minus"></i>

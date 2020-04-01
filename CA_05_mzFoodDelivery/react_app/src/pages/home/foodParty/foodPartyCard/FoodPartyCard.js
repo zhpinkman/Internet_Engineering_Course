@@ -65,7 +65,7 @@ export default class FoodPartyCard extends React.Component {
                 </div>
 
                 <Modal show={this.state.modalShow} onHide={this.handleModalClose} centered>
-                    <Food/>
+                    <Food food={this.props.partyFood}/>
                 </Modal>
             </div>
 
