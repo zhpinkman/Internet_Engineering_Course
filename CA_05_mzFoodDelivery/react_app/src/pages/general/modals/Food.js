@@ -32,7 +32,8 @@ export default class Food extends React.Component {
     }
 
     incrementEntity() {
-        if (this.state.userChosenEntity < this.props.food.count) {
+        console.log(this.props.food.count);
+        if (this.state.userChosenEntity < this.props.food.count || Number.POSITIVE_INFINITY) {
             this.setState({
                 userChosenEntity: this.state.userChosenEntity + 1
             })
@@ -94,7 +95,10 @@ export default class Food extends React.Component {
                 <div className="bottom-part">
                     <div className="remaining">
                         <span> موجودی : </span>
-                        <span> {enToFaNumber(this.props.food.count)} </span>
+                        {
+                            this.props.food.count == null ? (<span> - </span>) : ( <span> {enToFaNumber(this.props.food.count)} </span> )
+                        }
+
                     </div>
                     <div className="actions">
                         <div className="inc-amount mx-1" onClick={() => this.incrementEntity()}>
