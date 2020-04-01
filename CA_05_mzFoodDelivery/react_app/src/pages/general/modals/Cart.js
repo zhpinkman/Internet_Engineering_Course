@@ -24,8 +24,8 @@ export default class Cart extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="card cart-container">
+            <div className="cart-wrapper">
+                <div className="cart-container">
                     {this.state.cart && this.state.cart.cartItems && (
                         <span className="cart-title">
                             سبد خرید

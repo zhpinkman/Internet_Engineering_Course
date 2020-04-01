@@ -3,6 +3,8 @@ import "../../Assets/styles/header.css";
 import Modal from 'react-bootstrap/Modal'
 import Cart from "./modals/Cart";
 import {Link} from "react-router-dom";
+import UserService from "../../services/UserService";
+import {enToFaNumber} from "../../utils/utils";
 
 export default class Header extends React.Component{
     constructor(props) {
@@ -12,6 +14,7 @@ export default class Header extends React.Component{
 
         this.state = {
             show: false,
+            cartSize: 0
         };
     }
 
@@ -22,9 +25,14 @@ export default class Header extends React.Component{
 
     handleShow() {
         this.setState({ show: true });
-
     }
 
+
+    componentDidMount() {
+        UserService.getCart().then(cart => {
+            this.setState({cartSize: cart.data.size})
+        })
+    }
 
 
     render() {
@@ -42,7 +50,9 @@ export default class Header extends React.Component{
                             <i className="flaticon-smart-cart"></i>
                         </div>
                         <div className="cart-items">
-                            <span>۳</span>
+                            <span>
+                                {enToFaNumber(this.state.cartSize)}
+                            </span>
                         </div>
                     </div>
                     <div className="profile m-2">
