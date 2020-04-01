@@ -2,8 +2,9 @@ import * as React from "react";
 import "../../../Assets/styles/food-modal-styles.scss";
 import {enToFaNumber} from "../../../utils/utils";
 import UserService from "../../../services/UserService";
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {OK} from "../../../config/config";
 
 
 export default class Food extends React.Component {
@@ -15,18 +16,24 @@ export default class Food extends React.Component {
         };
     }
 
+    componentDidMount() {
+        toast.configure({
+            rtl: true
+        });
+    }
+
     async addToCart() {
         this.setState({isLoading: true});
-        try {
-            let response = await UserService.addToCart(this.props.food.restaurantId, this.props.food.name, this.state.userChosenEntity);
-            // toast.success('عملیات با موفقیت انجام شد', {
-            //     position: "top-center"
-            // });
-        }catch (e) {
-            // toast.error(e, {
-            //     position: "top-center",
-            // });
-            console.log("asas");
+        let response = await UserService.addToCart(this.props.food.restaurantId, this.props.food.name, this.state.userChosenEntity);
+        if(response === OK) {
+            toast.success('عملیات با موفقیت انجام شد', {
+                position: "top-center"
+            });
+        }else {
+            toast.error(response.toString(), {
+                position: "top-center",
+
+            });
         }
         this.setState({isLoading: false});
     }
@@ -96,7 +103,8 @@ export default class Food extends React.Component {
                     <div className="remaining">
                         <span> موجودی : </span>
                         {
-                            this.props.food.count == null ? (<span> - </span>) : ( <span> {enToFaNumber(this.props.food.count)} </span> )
+                            this.props.food.count == null ? (<span> - </span>) : (
+                                <span> {enToFaNumber(this.props.food.count)} </span>)
                         }
 
                     </div>

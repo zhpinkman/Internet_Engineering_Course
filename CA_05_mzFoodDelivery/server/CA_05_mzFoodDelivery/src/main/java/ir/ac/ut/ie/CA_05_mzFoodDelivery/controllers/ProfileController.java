@@ -42,7 +42,7 @@ public class ProfileController {
             String foodName = properties.getProperty("foodName");
             Integer amount = Integer.parseInt(properties.getProperty("amount"));
             MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount);
-            return "ok" + restaurantId + " " + foodName + " " + amount;
+            return "ok";
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

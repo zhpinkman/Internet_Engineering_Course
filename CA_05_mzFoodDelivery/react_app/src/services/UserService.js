@@ -23,15 +23,16 @@ export default class UserService {
     }
 
     static async addToCart(restaurantId, foodName, amount = 1) {
-        axios.post(CART_URL, {restaurantId: restaurantId, foodName: foodName, amount: amount})
-            .then(function (response) {
-                if (response.data !== "")
-                    return response.data;
-            })
-            .catch(function (error) {
-                console.log(error);
-                throw "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
-            });
+        try {
+            let response = await axios.post(CART_URL, {restaurantId: restaurantId, foodName: foodName, amount: amount})
+            if (response.data !== "" || response.data === undefined)
+                return response.data;
+            else
+                return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
+        }catch (e) {
+            return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
+            // return e.toString();
+        }
     }
 
 }
