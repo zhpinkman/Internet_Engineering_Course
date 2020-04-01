@@ -87,8 +87,14 @@ public class MzFoodDelivery {
     public synchronized void addToCart(String restaurantId, String foodName, int amount) throws Exception {
         Restaurant restaurant = getRestaurantById(restaurantId);
         Food food = restaurant.getFood(foodName);
-        if (food instanceof PartyFood && ((PartyFood)food).getCount() < amount)
-            throw new Exception();
+        if (food instanceof PartyFood){
+            PartyFood partyFood = (PartyFood)food;
+            if(partyFood.getCount() < amount){
+                throw new Exception();
+            }else{
+                partyFood.decreaseFoodAmount(amount);
+            }
+        }
 
         for (int i = 0; i < amount; i++) {
             CartItem cartItem = new CartItem(restaurant, restaurant.getFood(foodName));
