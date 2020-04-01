@@ -99,7 +99,7 @@ export default class Profile extends React.Component{
                         </div>
                     </div>
 
-                    <Link to={"/p"} >LINK</Link>
+                    {/*<Link to={"/p"} >LINK</Link>*/}
                     <div className="orders-charge-wrapper">
                         <div className="orders-charge">
 

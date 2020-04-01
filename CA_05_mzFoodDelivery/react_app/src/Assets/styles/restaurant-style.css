@@ -121,6 +121,8 @@ body {
 .cart-container {
     min-height: 250px;
     padding: 5px;
+    position: sticky;
+    top: 100px;
 }
 
 .cart-container .cart-title {
