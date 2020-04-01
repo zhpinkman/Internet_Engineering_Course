@@ -137,3 +137,7 @@
     /*margin-top: 133px;*/
     /*margin-bottom: 133px;*/
 }
+
+.modal-content {
+    border-radius: 1.3rem !important;
+}

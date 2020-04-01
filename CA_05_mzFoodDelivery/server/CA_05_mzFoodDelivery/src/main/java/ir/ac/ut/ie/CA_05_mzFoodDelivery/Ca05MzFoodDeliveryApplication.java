@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class Ca05MzFoodDeliveryApplication {
 	public static void main(String[] args) {
 		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-		int foodPartyPeriod = 15; //Seconds
+		int foodPartyPeriod = 120; //Seconds
 		try {
 			RestaurantsService.getInstance().importRestaurantsFromWeb();
 

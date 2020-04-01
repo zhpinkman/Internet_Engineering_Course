@@ -33,9 +33,9 @@ export default class Header extends React.Component{
             <header>
                 <div className="header">
                     <div className="loghme-icon  ml-auto">
-                        <a href="home.html">
+                        <Link to="/">
                             <img alt="tmp" src={require("../../Assets/images/LOGO.png")}/>
-                        </a>
+                        </Link>
                     </div>
                     <div className="cart m-2" onClick={this.handleShow}>
                         <div className="cart-icon">

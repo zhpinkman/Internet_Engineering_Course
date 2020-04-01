@@ -3,8 +3,31 @@ import "../foodParty.css";
 import {enToFaNumber} from "../../../../utils/utils"
 import PrimaryButton from "../../../general/button/PrimaryButton";
 import StockTag from "./StockTag";
+import Cart from "../../../general/modals/Cart";
+import Modal from "react-bootstrap/Modal";
+import Food from "../../../general/modals/Food";
 
 export default class FoodPartyCard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleModalShow = this.handleModalShow.bind(this);
+        this.handleModalClose = this.handleModalClose.bind(this);
+
+        this.state = {
+            modalShow: false,
+        };
+    }
+
+    handleModalClose() {
+        this.setState({ modalShow: false });
+
+    }
+
+    handleModalShow() {
+        this.setState({ modalShow: true });
+
+    }
+
     render() {
         return (
             <div className="food-party-card">
@@ -32,8 +55,8 @@ export default class FoodPartyCard extends React.Component {
                     <div className="col-6 justify-content-center">
                         <StockTag stock={this.props.partyFood.count} />
                     </div>
-                    <div className="col-6 justify-content-center">
-                        <PrimaryButton text={"خرید"} disabled={this.props.partyFood.count === 0}/>
+                    <div className="col-6 justify-content-center" onClick={this.handleModalShow}>
+                        <PrimaryButton text={"خرید"} onClick={this.handleModalShow} disabled={this.props.partyFood.count === 0}/>
                     </div>
                 </div>
                 <hr className="dash" />
@@ -41,6 +64,9 @@ export default class FoodPartyCard extends React.Component {
                     {this.props.partyFood.restaurantName}
                 </div>
 
+                <Modal show={this.state.modalShow} onHide={this.handleModalClose} centered>
+                    <Food/>
+                </Modal>
             </div>
 
         );
