@@ -84,8 +84,8 @@ public class Restaurant {
         menu.add(food);
     }
 
-    public int getFoodsPopularityAverage() {
-        int foodsPopulationSum = 0;
+    public double getFoodsPopularityAverage() {
+        double foodsPopulationSum = 0;
         for (Food food: menu) {
             foodsPopulationSum += food.getPopularity();
         }
