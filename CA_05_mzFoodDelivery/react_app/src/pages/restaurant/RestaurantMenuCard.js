@@ -1,9 +1,33 @@
 import React from "react";
 import {enToFaNumber} from "../../utils/utils";
+import Cart from "../general/modals/Cart";
+import Modal from "react-bootstrap/Modal";
+import Food from "../general/modals/Food";
 
 export default class RestaurantMenuCard extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+
+        this.state = {
+            show: false,
+        };
+    }
+
+    handleClose() {
+        this.setState({ show: false });
+    }
+
+    handleShow() {
+        this.setState({ show: true });
+    }
+
+
     render() {
         return (
+            <>
             <div className="col-xl-4 col-lg-6">
                 <div className="card food-item-container">
                     <div className="row img-wrapper">
@@ -20,13 +44,18 @@ export default class RestaurantMenuCard extends React.Component{
                         {/*<button type="button" className="btn btn-warning btn-default btn-orange"*/}
                         {/*        disabled>ناموجود*/}
                         {/*</button>*/}
-                        <button type="button"
+                        <button type="button" onClick={this.handleShow}
                                 className="btn btn-warning btn-default btn-orange">افزودن به سبد
                             خرید
                         </button>
                     </div>
                 </div>
             </div>
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                    <Food food={this.props.food}/>
+                </Modal>
+            </>
+
         );
     }
 }
