@@ -17,7 +17,6 @@ public class Ca05MzFoodDeliveryApplication {
 		int foodPartyPeriod = 120; //Seconds
 		try {
 			RestaurantsService.getInstance().importRestaurantsFromWeb();
-
 			// Start Food Party
 			new ScheduledParty(foodPartyPeriod).run();
 			scheduler.scheduleAtFixedRate(new ScheduledParty(foodPartyPeriod), 0, foodPartyPeriod, TimeUnit.SECONDS);

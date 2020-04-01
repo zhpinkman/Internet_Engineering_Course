@@ -1,7 +1,6 @@
 package ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery;
 
 
-
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Delivery;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.FoodParty.FoodPartyManager;
@@ -31,7 +30,8 @@ public class MzFoodDelivery {
     private long foodPartyStartTime;
 
 
-    private MzFoodDelivery() {}
+    private MzFoodDelivery() {
+    }
 
     public static MzFoodDelivery getInstance() {
         if (instance == null) {
@@ -79,8 +79,21 @@ public class MzFoodDelivery {
         userManager.addToCart(cartItem);
     }
 
+    public synchronized void addToCart(String restaurantName, String foodName, int amount) throws Exception {
+        Restaurant restaurant = getRestaurant(restaurantName);
+        PartyFood partyFood = (PartyFood) restaurant.getFood(foodName);
+        if (partyFood.getCount() < amount)
+            throw new Exception();
+        else {
+            for (int i = 0; i < amount; i++) {
+                CartItem cartItem = new CartItem(restaurant, restaurant.getFood(foodName));
+                userManager.addToCart(cartItem);
+            }
+        }
+    }
+
     public Order getOrderById(double id) throws Exception {
-        for (Order order: orderList) {
+        for (Order order : orderList) {
             if (order.getId() == id) {
                 return order;
             }
@@ -120,11 +133,11 @@ public class MzFoodDelivery {
         return restaurantManager.getRecommendedRestaurants(userManager.getLocation(), recommendCount);
     }
 
-    public List<Restaurant> getNearRestaurants(){
+    public List<Restaurant> getNearRestaurants() {
         return restaurantManager.getNearRestaurants(userManager.getLocation());
     }
 
-    public Restaurant getNearRestaurantById(String id) throws Exception{
+    public Restaurant getNearRestaurantById(String id) throws Exception {
         return restaurantManager.getNearRestaurantById(id, userManager.getLocation());
     }
 
@@ -179,19 +192,19 @@ public class MzFoodDelivery {
         return distanceToGetToCustomer + distanceToGetToRestaurant;
     }
 
-    public void importFoodPartyFromWeb() throws Exception{
+    public void importFoodPartyFromWeb() throws Exception {
         removeOlderOffers();
         foodPartyManager.importFoodPartyFromWeb();
     }
 
     private void removeOlderOffers() {
-        for (CartItem cartItem: userManager.getCart().getCartItems()) {
+        for (CartItem cartItem : userManager.getCart().getCartItems()) {
             if (cartItem.getFood() instanceof PartyFood)
                 userManager.getCart().removeCartItem((PartyFood) cartItem.getFood());
         }
     }
 
-    public List<PartyFood> getPartyFoods(){
+    public List<PartyFood> getPartyFoods() {
         return foodPartyManager.getPartyFoods();
     }
 
@@ -199,11 +212,11 @@ public class MzFoodDelivery {
         this.foodPartyPeriod = period;
     }
 
-    public void resetFoodPartyTimer(){
+    public void resetFoodPartyTimer() {
         this.foodPartyStartTime = System.currentTimeMillis();
     }
 
-    public long getFoodPartyRemainingTime(){
-        return this.foodPartyPeriod - (System.currentTimeMillis() - this.foodPartyStartTime)/1000;
+    public long getFoodPartyRemainingTime() {
+        return this.foodPartyPeriod - (System.currentTimeMillis() - this.foodPartyStartTime) / 1000;
     }
 }

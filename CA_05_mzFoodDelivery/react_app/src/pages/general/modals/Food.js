@@ -1,6 +1,7 @@
 import * as React from "react";
 import "../../../Assets/styles/food-modal-styles.scss";
 import {enToFaNumber} from "../../../utils/utils";
+import UserService from "../../../services/UserService";
 
 
 export default class Food extends  React.Component {
@@ -9,6 +10,26 @@ export default class Food extends  React.Component {
         this.state = {
             userChosenEntity: 1
         };
+    }
+
+    async addToCart(){
+        await UserService.addToCart(this.props.food.restaurantId, this.props.food.name, this.state.userChosenEntity);
+    }
+
+    incrementEntity() {
+        if(this.state.userChosenEntity < this.props.food.count){
+            this.setState({
+                userChosenEntity: this.state.userChosenEntity + 1
+            })
+        }
+    }
+
+    decrementEntity() {
+        if(this.state.userChosenEntity > 1) {
+            this.setState({
+                userChosenEntity: this.state.userChosenEntity - 1
+            })
+        }
     }
 
     render() {
@@ -61,16 +82,16 @@ export default class Food extends  React.Component {
                         <span> {enToFaNumber(this.props.food.count)} </span>
                     </div>
                     <div className="actions">
-                        <div className="inc-amount mx-1">
+                        <div className="inc-amount mx-1" onClick={() => this.incrementEntity()}>
                             <i className="flaticon-plus"></i>
                         </div>
                         <div className="amount mx-1">
                             {enToFaNumber(this.state.userChosenEntity)}
                         </div>
-                        <div className="dec-amount mx-1">
+                        <div className="dec-amount mx-1" onClick={() => this.decrementEntity()}>
                             <i className="flaticon-minus"></i>
                         </div>
-                        <div className="add-to-cart mx-2">
+                        <div className="add-to-cart mx-2" onClick={this.addToCart()}>
                             <span>
                                 افزودن به سبد خرید
                             </span>

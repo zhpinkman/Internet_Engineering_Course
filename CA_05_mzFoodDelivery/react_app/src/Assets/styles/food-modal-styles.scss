@@ -36,11 +36,13 @@
           display: flex;
           align-items: center;
           margin-bottom: 10px;
+
           .food-rate {
             display: flex;
             align-items: center;
             flex-direction: row-reverse;
             font-size: 25px;
+
             .star-icon {
               font-size: 50px;
               color: #ffa526;
@@ -115,12 +117,17 @@
       font-weight: bold;
 
       border-radius: 8px;
+      cursor: pointer;
     }
+
     .inc-amount {
       width: 20px;
+
       i {
         width: 20px;
       }
+
+      cursor: pointer;
     }
 
     .dec-amount {
@@ -129,6 +136,8 @@
       i {
         width: 20px;
       }
+
+      cursor: pointer;
     }
   }
 }

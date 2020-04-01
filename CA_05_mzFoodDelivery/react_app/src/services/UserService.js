@@ -1,4 +1,4 @@
-import {CART_URL, CHARGE_URL, ORDERS_URL, USER_URL} from "../config/config";
+import {CART_URL, CHARGE_URL, ORDERS_URL, RESTAURANTS_URL, USER_URL} from "../config/config";
 
 const axios = require("axios").default;
 
@@ -20,6 +20,14 @@ export default class UserService {
 
     static getOrders() {
         return axios.get(ORDERS_URL);
+    }
+
+    static async addToCart(restaurantId, foodName, amount = 1) {
+        let restaurant = await axios.post(CART_URL, {restaurantId: restaurantId, foodName: foodName, amount: amount});
+        if(restaurant.data !== "")
+            return restaurant.data;
+        else
+            return null;
     }
 
 }

@@ -7,7 +7,6 @@ import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 class ChargeAmount {
     public double amount;
@@ -16,7 +15,6 @@ class ChargeAmount {
 @RestController
 @RequestMapping("/user")
 public class ProfileController {
-
 
 
     @PostMapping("/charge")
@@ -32,9 +30,9 @@ public class ProfileController {
     }
 
 
-    @PostMapping("/addToCart")
-    public void addToCart(@RequestParam String restaurantId, @RequestParam String foodName) {
-        System.out.println(restaurantId + " " + foodName);
+    @PostMapping(path = "/cart", produces = "application/json")
+    public void addToCart(@RequestParam(name = "restaurantId") String restaurantId, @RequestParam String foodName, @RequestParam(required = false, defaultValue="1") int amount) {
+        System.out.println(restaurantId + " " + foodName + " " + amount);
     }
 
     @GetMapping("/cart")
