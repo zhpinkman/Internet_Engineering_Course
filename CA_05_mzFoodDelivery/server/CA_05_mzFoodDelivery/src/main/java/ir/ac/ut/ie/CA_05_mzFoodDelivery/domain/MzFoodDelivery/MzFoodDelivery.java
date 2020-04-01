@@ -65,9 +65,9 @@ public class MzFoodDelivery {
 
     public Restaurant getRestaurantById(String restaurantId) throws Exception {
         Restaurant r = restaurantManager.findRestaurantById(restaurantId);
-        if(r == null){
+        if (r == null) {
             throw new Exception("Error: restaurant does not exists");
-        }else{
+        } else {
             return r;
         }
     }
@@ -86,15 +86,15 @@ public class MzFoodDelivery {
 
     public synchronized void addToCart(String restaurantId, String foodName, int amount) throws Exception {
         Restaurant restaurant = getRestaurantById(restaurantId);
-        PartyFood partyFood = (PartyFood) restaurant.getFood(foodName);
-        if (partyFood.getCount() < amount)
+        Food food = restaurant.getFood(foodName);
+        if (food instanceof PartyFood && ((PartyFood)food).getCount() < amount)
             throw new Exception();
-        else {
-            for (int i = 0; i < amount; i++) {
-                CartItem cartItem = new CartItem(restaurant, restaurant.getFood(foodName));
-                userManager.addToCart(cartItem);
-            }
+
+        for (int i = 0; i < amount; i++) {
+            CartItem cartItem = new CartItem(restaurant, restaurant.getFood(foodName));
+            userManager.addToCart(cartItem);
         }
+
     }
 
     public Order getOrderById(double id) throws Exception {

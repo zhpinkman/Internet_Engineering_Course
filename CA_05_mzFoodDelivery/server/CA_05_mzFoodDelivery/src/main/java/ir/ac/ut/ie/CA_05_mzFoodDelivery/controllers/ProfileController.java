@@ -1,7 +1,6 @@
 package ir.ac.ut.ie.CA_05_mzFoodDelivery.controllers;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.controllers.Exceptions.ExceptionBadRequest;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
@@ -37,23 +36,18 @@ public class ProfileController {
     @PostMapping(path = "/cart", consumes = "application/json", produces = "application/json")
     public String addToCart(@RequestBody(required = true) String jsonString) {
         Gson gson = new Gson();
-        Properties properties = gson.fromJson(jsonString, Properties.class);
-        String restaurantId = properties.getProperty("restaurantId");
-        String foodName = properties.getProperty("foodName");
-        Integer amount =  properties.containsKey("amount") ? Integer.parseInt(properties.getProperty("amount")) : null;
         try {
-            if (amount == null) {
-                amount = 1;
-                MzFoodDelivery.getInstance().addToCart(restaurantId, foodName);
-            } else {
-                MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount);
-            }
-        }catch (Exception e){
+            Properties properties = gson.fromJson(jsonString, Properties.class);
+            String restaurantId = properties.getProperty("restaurantId");
+            String foodName = properties.getProperty("foodName");
+            Integer amount = Integer.parseInt(properties.getProperty("amount"));
+            MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount);
+            return "ok" + restaurantId + " " + foodName + " " + amount;
+
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new ExceptionBadRequest();
         }
-
-        return "ok" + restaurantId + " " + foodName + " " + amount;
     }
 
     @GetMapping("/cart")

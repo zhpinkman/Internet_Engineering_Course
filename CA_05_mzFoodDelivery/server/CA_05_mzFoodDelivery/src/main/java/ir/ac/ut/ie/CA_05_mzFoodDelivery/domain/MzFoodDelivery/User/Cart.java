@@ -63,7 +63,7 @@ public class Cart {
     }
 
 
-    public void removeCartItem(PartyFood partyFood) {
+    public synchronized void removeCartItem(PartyFood partyFood) {
         for (CartItem cartItem: cartItems) {
             if (cartItem.getFood().getName().equals(partyFood.getName()) && cartItem.getRestaurant().getId().equals(partyFood.getRestaurant().getId())) {
                 cartItems.remove(cartItem);
