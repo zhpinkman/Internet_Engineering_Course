@@ -1,5 +1,6 @@
 package ir.ac.ut.ie.CA_05_mzFoodDelivery.controllers;
 
+import ir.ac.ut.ie.CA_05_mzFoodDelivery.controllers.Exceptions.ExceptionBadRequest;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
@@ -30,9 +31,22 @@ public class ProfileController {
     }
 
 
-    @PostMapping(path = "/cart", produces = "application/json")
-    public void addToCart(@RequestParam(name = "restaurantId") String restaurantId, @RequestParam String foodName, @RequestParam(required = false, defaultValue="1") int amount) {
+    @PostMapping(path = "/cart", consumes = "application/json", produces = "application/json")
+    public String addToCart(@RequestBody(required = false) String restaurantId, @RequestBody(required = false) String foodName, @RequestBody(required = false) Integer amount) {
         System.out.println(restaurantId + " " + foodName + " " + amount);
+        try {
+            if (amount == null) {
+                amount = 1;
+                MzFoodDelivery.getInstance().addToCart(restaurantId, foodName);
+            } else {
+                MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount.intValue());
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            throw new ExceptionBadRequest();
+        }
+
+        return "ok" + restaurantId + " " + foodName + " " + amount;
     }
 
     @GetMapping("/cart")

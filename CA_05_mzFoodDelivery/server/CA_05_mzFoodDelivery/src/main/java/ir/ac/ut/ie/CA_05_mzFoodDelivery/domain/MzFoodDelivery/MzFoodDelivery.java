@@ -72,15 +72,15 @@ public class MzFoodDelivery {
     }
 
     //    USER MANAGER
-    public void addToCart(String restaurantName, String foodName) throws Exception {
-        Restaurant restaurant = getRestaurant(restaurantName);
+    public void addToCart(String restaurantId, String foodName) throws Exception {
+        Restaurant restaurant = getRestaurantById(restaurantId);
         Food food = restaurant.getFood(foodName);
         CartItem cartItem = new CartItem(restaurant, restaurant.getFood(foodName));
         userManager.addToCart(cartItem);
     }
 
-    public synchronized void addToCart(String restaurantName, String foodName, int amount) throws Exception {
-        Restaurant restaurant = getRestaurant(restaurantName);
+    public synchronized void addToCart(String restaurantId, String foodName, int amount) throws Exception {
+        Restaurant restaurant = getRestaurantById(restaurantId);
         PartyFood partyFood = (PartyFood) restaurant.getFood(foodName);
         if (partyFood.getCount() < amount)
             throw new Exception();

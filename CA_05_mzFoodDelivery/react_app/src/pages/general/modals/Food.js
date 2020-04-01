@@ -2,22 +2,28 @@ import * as React from "react";
 import "../../../Assets/styles/food-modal-styles.scss";
 import {enToFaNumber} from "../../../utils/utils";
 import UserService from "../../../services/UserService";
+import Spinner from "react-bootstrap/Spinner";
 
 
-export default class Food extends  React.Component {
+export default class Food extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userChosenEntity: 1
+            userChosenEntity: 1,
+            isLoading: false
         };
     }
 
-    async addToCart(){
-        await UserService.addToCart(this.props.food.restaurantId, this.props.food.name, this.state.userChosenEntity);
+    async addToCart() {
+        this.setState({isLoading: true});
+        let response = await UserService.addToCart(this.props.food.restaurantId, this.props.food.name, this.state.userChosenEntity);
+        console.log("SSS");
+        console.log(response);
+        this.setState({isLoading: false});
     }
 
     incrementEntity() {
-        if(this.state.userChosenEntity < this.props.food.count){
+        if (this.state.userChosenEntity < this.props.food.count) {
             this.setState({
                 userChosenEntity: this.state.userChosenEntity + 1
             })
@@ -25,7 +31,7 @@ export default class Food extends  React.Component {
     }
 
     decrementEntity() {
-        if(this.state.userChosenEntity > 1) {
+        if (this.state.userChosenEntity > 1) {
             this.setState({
                 userChosenEntity: this.state.userChosenEntity - 1
             })
@@ -42,7 +48,7 @@ export default class Food extends  React.Component {
                     <div className="food-wrapper">
                         <div className="food-img-wrapper">
                             <div className="food-img">
-                                <img src={this.props.food.image} alt="temp" />
+                                <img src={this.props.food.image} alt="temp"/>
                             </div>
                         </div>
                         <div className="food-detail-wrapper">
@@ -73,7 +79,7 @@ export default class Food extends  React.Component {
                 </div>
 
 
-                <div className="separator-border"></div>
+                <div className="separator-border"/>
 
 
                 <div className="bottom-part">
@@ -83,18 +89,22 @@ export default class Food extends  React.Component {
                     </div>
                     <div className="actions">
                         <div className="inc-amount mx-1" onClick={() => this.incrementEntity()}>
-                            <i className="flaticon-plus"></i>
+                            <i className="flaticon-plus"/>
                         </div>
                         <div className="amount mx-1">
                             {enToFaNumber(this.state.userChosenEntity)}
                         </div>
                         <div className="dec-amount mx-1" onClick={() => this.decrementEntity()}>
-                            <i className="flaticon-minus"></i>
+                            <i className="flaticon-minus"/>
                         </div>
-                        <div className="add-to-cart mx-2" onClick={this.addToCart()}>
+                        <div className="add-to-cart mx-2"
+                             onClick={() => (!this.state.isLoading ? this.addToCart() : {/*pass*/})}>
                             <span>
                                 افزودن به سبد خرید
                             </span>
+                            {this.state.isLoading &&
+                            <span className="spinner-border spinner-border-sm m-1" role="status" aria-hidden="true"/>
+                            }
                         </div>
                     </div>
                 </div>

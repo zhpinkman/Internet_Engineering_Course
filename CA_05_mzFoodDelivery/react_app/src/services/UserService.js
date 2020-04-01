@@ -23,11 +23,15 @@ export default class UserService {
     }
 
     static async addToCart(restaurantId, foodName, amount = 1) {
-        let restaurant = await axios.post(CART_URL, {restaurantId: restaurantId, foodName: foodName, amount: amount});
-        if(restaurant.data !== "")
-            return restaurant.data;
-        else
-            return null;
+        await axios.post(CART_URL, {restaurantId: restaurantId, foodName: foodName, amount: amount})
+            .then(function (response) {
+                if (response.data !== "")
+                    return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+                return null;
+            });
     }
 
 }
