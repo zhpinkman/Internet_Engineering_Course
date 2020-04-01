@@ -46,7 +46,8 @@ public class ProfileController {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            throw new ExceptionBadRequest();
+            return e.getMessage();
+//            throw new ExceptionBadRequest();
         }
     }
 
