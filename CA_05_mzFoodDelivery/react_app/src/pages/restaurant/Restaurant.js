@@ -69,8 +69,13 @@ export default class Restaurant extends React.Component {
 
     renderMenu() {
         return this.state.restaurant.menu.map((foodItem, i) =>
-            <RestaurantMenuCard food={foodItem} key={"FOOD" + i}/>
+            <RestaurantMenuCard food={this.createFoodItem(foodItem)} key={"FOOD" + i}/>
         );
+    }
+
+    createFoodItem(foodItem) {
+        foodItem.restaurantId = this.state.restaurantId;
+        return foodItem;
     }
 
     renderLoading() {
