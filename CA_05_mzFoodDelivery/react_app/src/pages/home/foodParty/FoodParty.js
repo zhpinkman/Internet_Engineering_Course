@@ -54,7 +54,7 @@ export default class FoodParty extends React.Component {
         await this.setState({
             partyFoods: partyFoods
         });
-        if(this.sliderRef != null)
+        if(this.sliderRef.current != null)
             this.sliderRef.current.refreshFlickity();
     }
 
