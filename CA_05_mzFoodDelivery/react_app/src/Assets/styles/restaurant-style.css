@@ -91,6 +91,7 @@ body {
     font-weight: bold;
     font-size: 20px;
     margin-left: 20px;
+    text-align: center;
 }
 
 .food-item-container .title-wrapper .rating-star-text {
@@ -110,7 +111,7 @@ body {
 .food-item-container .card-button-wrapper {
     margin-top: 20px;
     margin-bottom: 5px;
-    width: 100%;
+    width: 90%;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -223,6 +224,7 @@ body {
     color: white !important;
     margin-bottom: 15px;
     font-size: 23px !important;
+    width: auto;
 }
 
 .btn-cyan:hover {

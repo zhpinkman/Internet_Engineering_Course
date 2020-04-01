@@ -23,7 +23,7 @@ function App() {
         <Route path="/profile">
           <Profile />
         </Route>
-        <Route path="/restaurants" component={Restaurant} />
+        <Route path="/restaurant" component={Restaurant} />
         <Route path="/login">
           <Login/>
         </Route>
