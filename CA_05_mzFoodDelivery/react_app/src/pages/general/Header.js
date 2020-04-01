@@ -2,6 +2,7 @@ import React from "react";
 import "../../Assets/styles/header.css";
 import Modal from 'react-bootstrap/Modal'
 import Cart from "./modals/Cart";
+import {Link} from "react-router-dom";
 
 export default class Header extends React.Component{
     constructor(props) {
@@ -45,9 +46,9 @@ export default class Header extends React.Component{
                         </div>
                     </div>
                     <div className="profile m-2">
-                        <a href="profile.html">
+                        <Link to="/profile">
                             حساب کاربری
-                        </a>
+                        </Link>
                     </div>
                     <div className="logout m-2">
                         خروج
