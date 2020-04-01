@@ -64,7 +64,12 @@ public class MzFoodDelivery {
     }
 
     public Restaurant getRestaurantById(String restaurantId) throws Exception {
-        return restaurantManager.findRestaurantById(restaurantId);
+        Restaurant r = restaurantManager.findRestaurantById(restaurantId);
+        if(r == null){
+            throw new Exception("Error: restaurant does not exists");
+        }else{
+            return r;
+        }
     }
 
     public Food getFood(String restaurantName, String foodName) throws Exception {

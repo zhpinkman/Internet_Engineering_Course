@@ -2,7 +2,8 @@ import * as React from "react";
 import "../../../Assets/styles/food-modal-styles.scss";
 import {enToFaNumber} from "../../../utils/utils";
 import UserService from "../../../services/UserService";
-import Spinner from "react-bootstrap/Spinner";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default class Food extends React.Component {
@@ -16,9 +17,17 @@ export default class Food extends React.Component {
 
     async addToCart() {
         this.setState({isLoading: true});
-        let response = await UserService.addToCart(this.props.food.restaurantId, this.props.food.name, this.state.userChosenEntity);
-        console.log("SSS");
-        console.log(response);
+        try {
+            let response = await UserService.addToCart(this.props.food.restaurantId, this.props.food.name, this.state.userChosenEntity);
+            // toast.success('عملیات با موفقیت انجام شد', {
+            //     position: "top-center"
+            // });
+        }catch (e) {
+            // toast.error(e, {
+            //     position: "top-center",
+            // });
+            console.log("asas");
+        }
         this.setState({isLoading: false});
     }
 

@@ -1,5 +1,7 @@
 package ir.ac.ut.ie.CA_05_mzFoodDelivery.controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.controllers.Exceptions.ExceptionBadRequest;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
@@ -8,6 +10,7 @@ import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Properties;
 
 class ChargeAmount {
     public double amount;
@@ -32,14 +35,18 @@ public class ProfileController {
 
 
     @PostMapping(path = "/cart", consumes = "application/json", produces = "application/json")
-    public String addToCart(@RequestBody(required = false) String restaurantId, @RequestBody(required = false) String foodName, @RequestBody(required = false) Integer amount) {
-        System.out.println(restaurantId + " " + foodName + " " + amount);
+    public String addToCart(@RequestBody(required = true) String jsonString) {
+        Gson gson = new Gson();
+        Properties properties = gson.fromJson(jsonString, Properties.class);
+        String restaurantId = properties.getProperty("restaurantId");
+        String foodName = properties.getProperty("foodName");
+        Integer amount =  properties.containsKey("amount") ? Integer.parseInt(properties.getProperty("amount")) : null;
         try {
             if (amount == null) {
                 amount = 1;
                 MzFoodDelivery.getInstance().addToCart(restaurantId, foodName);
             } else {
-                MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount.intValue());
+                MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount);
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
