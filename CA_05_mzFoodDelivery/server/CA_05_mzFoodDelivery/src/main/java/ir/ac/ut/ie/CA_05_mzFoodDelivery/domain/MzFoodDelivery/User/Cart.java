@@ -51,7 +51,11 @@ public class Cart {
     }
 
     public int getSize() {
-        return cartItems.size();
+        int cartSize = 0;
+        for (CartItem cartItem: cartItems) {
+            cartSize += cartItem.getQuantity();
+        }
+        return cartSize;
     }
 
     public double getTotalPrice() {
