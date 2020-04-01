@@ -4,6 +4,7 @@ import UserService from "../../../services/UserService";
 import {enToFaNumber} from "../../../utils/utils";
 import {toast} from "react-toastify";
 import CartItem from "./CartItem";
+import cartRefresh from "../../../services/MessageService";
 
 
 export default class Cart extends React.Component {
@@ -18,6 +19,10 @@ export default class Cart extends React.Component {
 
     componentDidMount() {
         this.getUserCart();
+
+        cartRefresh.asObservable().subscribe(() => {
+            this.getUserCart();
+        })
     }
 
     getUserCart () {

@@ -5,6 +5,7 @@ import UserService from "../../../services/UserService";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {OK} from "../../../config/config";
+import cartRefresh from "../../../services/MessageService";
 
 
 export default class Food extends React.Component {
@@ -29,6 +30,7 @@ export default class Food extends React.Component {
             toast.success('عملیات با موفقیت انجام شد', {
                 position: "top-center"
             });
+            cartRefresh.next();
         }else {
             toast.error(response.toString(), {
                 position: "top-center",

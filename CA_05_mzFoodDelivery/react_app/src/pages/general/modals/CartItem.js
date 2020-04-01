@@ -2,6 +2,7 @@ import {enToFaNumber} from "../../../utils/utils";
 import * as React from "react";
 import UserService from "../../../services/UserService";
 import {toast} from "react-toastify";
+import cartRefresh from "../../../services/MessageService";
 
 
 export default class CartItem extends React.Component {
@@ -29,6 +30,7 @@ export default class CartItem extends React.Component {
             toast.success('عملیات با موفقیت انجام شد', {
                 position: "top-center"
             });
+            cartRefresh.next();
 
         }).catch(error => {
             toast.error(error.toString(), {
@@ -43,6 +45,7 @@ export default class CartItem extends React.Component {
             toast.success('عملیات با موفقیت انجام شد', {
                 position: "top-center"
             });
+            cartRefresh.next();
 
         }).catch(error => {
             toast.error(error.toString(), {

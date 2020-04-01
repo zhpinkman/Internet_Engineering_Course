@@ -5,6 +5,7 @@ import Cart from "./modals/Cart";
 import {Link} from "react-router-dom";
 import UserService from "../../services/UserService";
 import {enToFaNumber} from "../../utils/utils";
+import cartRefresh from "../../services/MessageService";
 
 export default class Header extends React.Component{
     constructor(props) {
@@ -28,9 +29,17 @@ export default class Header extends React.Component{
     }
 
 
-    componentDidMount() {
+    getCartSize() {
         UserService.getCart().then(cart => {
             this.setState({cartSize: cart.data.size})
+        })
+    }
+
+
+    componentDidMount() {
+        this.getCartSize()
+        cartRefresh.asObservable().subscribe(() => {
+            this.getCartSize();
         })
     }
 
