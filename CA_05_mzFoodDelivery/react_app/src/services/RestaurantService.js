@@ -21,7 +21,7 @@ export default class RestaurantService {
     }
 
     static async getRestaurantById(id) {
-        let restaurant = await axios.get(RESTAURANTS_URL + "?id=" + id);
+        let restaurant = await axios.get(RESTAURANTS_URL + id);
         if(restaurant.data !== "")
             return restaurant.data;
         else

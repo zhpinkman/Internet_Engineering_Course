@@ -39,7 +39,7 @@ export default class Restaurant extends React.Component {
         };
         scrollToTop();
     }
-    
+
     async getRestaurantById(id) {
         let restaurant = await RestaurantService.getRestaurantById(id);
         if (restaurant == null) {
