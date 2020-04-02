@@ -32,7 +32,7 @@ export default class RestaurantMenuCard extends React.Component{
             <div className="col-xl-4 col-lg-6">
                 <div className="card food-item-container">
                     <div className="row img-wrapper">
-                        <img alt="tmp" src={this.props.food.image}
+                        <img alt="" src={this.props.food.image}
                              className="img"/>
                     </div>
                     <div className="row title-wrapper">

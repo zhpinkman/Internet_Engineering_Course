@@ -86,7 +86,7 @@ export default class Restaurant extends React.Component {
             <main>
                 <div className="sub-header-red">
                     <div className="sub-header-over">
-                        <img alt="tmp" className="sub-header-over-img"
+                        <img alt="" className="sub-header-over-img"
                              src={this.state.restaurant.logo}/>
                     </div>
                 </div>
