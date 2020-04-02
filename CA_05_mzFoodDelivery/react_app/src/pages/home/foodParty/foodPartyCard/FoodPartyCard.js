@@ -34,7 +34,7 @@ export default class FoodPartyCard extends React.Component {
 
                 <div className="row m-0">
                     <div className="col-5 img-wrapper">
-                        <img alt="..." src={this.props.partyFood.image} className="img"/>
+                        <img alt="" src={this.props.partyFood.image} className="img"/>
                     </div>
                     <div className="col-7 justify-content-center pt-2">
                         <span className="title-text float-right text-right w-100">{this.props.partyFood.name}</span>

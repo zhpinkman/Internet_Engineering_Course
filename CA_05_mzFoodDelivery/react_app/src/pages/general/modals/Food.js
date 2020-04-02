@@ -71,7 +71,7 @@ export default class Food extends React.Component {
                     <div className="food-wrapper">
                         <div className="food-img-wrapper">
                             <div className="food-img">
-                                <img src={this.props.food.image} alt="temp"/>
+                                <img src={this.props.food.image} alt=""/>
                             </div>
                         </div>
                         <div className="food-detail-wrapper">
