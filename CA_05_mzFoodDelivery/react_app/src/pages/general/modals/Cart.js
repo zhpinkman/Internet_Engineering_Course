@@ -91,7 +91,7 @@ export default class Cart extends React.Component {
                             </span>
                     </div>
 
-                    <button type="button" className="btn btn-default btn-cyan" onClick={() => this.finalizeOrder()}>
+                    <button type="button" className="btn btn-default btn-cyan" onClick={() => (!this.state.isLoading ? this.finalizeOrder() : {/*pass*/})}>
                         تایید نهایی
                         {this.state.isLoading &&
                         <span className="spinner-border mr-2" role="status" aria-hidden="true"/>
