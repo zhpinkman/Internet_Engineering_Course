@@ -2,7 +2,7 @@ import * as React from "react";
 import "../../../Assets/styles/food-modal-styles.scss";
 import {enToFaNumber} from "../../../utils/utils";
 import UserService from "../../../services/UserService";
-import {ToastContainer, toast} from 'react-toastify';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {OK, TOAST_MESSAGE_OK} from "../../../config/config";
 import {cartRefresh} from "../../../services/subjects/MessageService";
@@ -40,7 +40,7 @@ export default class Food extends React.Component {
 
     incrementEntity() {
         console.log(this.props.food.count);
-        if (this.state.userChosenEntity < this.props.food.count || Number.POSITIVE_INFINITY) {
+        if (this.state.userChosenEntity < this.props.food.count || this.props.food.oldPrice === undefined) {
             this.setState({
                 userChosenEntity: this.state.userChosenEntity + 1
             })
