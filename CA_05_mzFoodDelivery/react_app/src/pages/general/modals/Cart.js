@@ -4,7 +4,7 @@ import UserService from "../../../services/UserService";
 import {enToFaNumber} from "../../../utils/utils";
 import {toast} from "react-toastify";
 import CartItem from "./CartItem";
-import cartRefresh from "../../../services/MessageService";
+import {cartRefresh, creditRefresh} from "../../../services/subjects/MessageService";
 import {OK, TOAST_MESSAGE_OK} from "../../../config/config";
 
 
@@ -13,43 +13,45 @@ export default class Cart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cart: {}
+            cart: {},
+            isLoading: true
         }
     }
 
 
     componentDidMount() {
+        toast.configure({position: "top-right"});
         this.getUserCart();
-
         cartRefresh.asObservable().subscribe(() => {
             this.getUserCart();
         })
     }
 
-    getUserCart() {
+    async getUserCart() {
+        this.setState({isLoading: true});
         UserService.getCart().then(cart => {
-            this.setState({cart: cart.data});
+            this.setState({
+                cart: cart.data,
+                isLoading: false
+            });
             console.log(this.state.cart);
         })
     }
 
     finalizeOrder() {
+        this.setState({isLoading: true});
         UserService.finalizeOrder().then(data => {
             if(data === OK) {
-                toast.success(TOAST_MESSAGE_OK, {
-                    position: "top-center"
-                });
+                toast.success(TOAST_MESSAGE_OK);
                 cartRefresh.next();
-                
+                creditRefresh.next();
             }else{
-                toast.error(data, {
-                    position: "top-center",
-                });
+                toast.error(data);
             }
+            this.setState({isLoading: false});
         }).catch(error => {
-            toast.error(error.toString(), {
-                position: "top-center",
-            });
+            toast.error(error.toString());
+            this.setState({isLoading: false});
         })
     }
 
@@ -91,6 +93,9 @@ export default class Cart extends React.Component {
 
                     <button type="button" className="btn btn-default btn-cyan" onClick={() => this.finalizeOrder()}>
                         تایید نهایی
+                        {this.state.isLoading &&
+                        <span className="spinner-border mr-2" role="status" aria-hidden="true"/>
+                        }
                     </button>
 
                 </>

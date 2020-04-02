@@ -6,9 +6,10 @@ import UserService from "../../services/UserService";
 import "../../Assets/styles/profile-style.css";
 import OrderItem from "./OrderItem";
 import {Link} from "react-router-dom";
+import {cartRefresh, creditRefresh} from "../../services/subjects/MessageService";
 
 
-export default class Profile extends React.Component{
+export default class Profile extends React.Component {
 
     constructor(props) {
         super(props);
@@ -25,11 +26,11 @@ export default class Profile extends React.Component{
 
 
     handleChange(event) {
-
         event.preventDefault();
         this.setState({amount: event.target.value});
         event.preventDefault();
     }
+
     handleSubmit(event) {
         event.preventDefault();
         UserService.charge(this.state.amount).then(resp => {
@@ -39,11 +40,23 @@ export default class Profile extends React.Component{
     }
 
     componentDidMount() {
+        creditRefresh.asObservable().subscribe(() => {
+            this.getUser();
+            this.getOrders();
+        });
+        this.getUser();
+        this.getOrders();
         console.log("started getting user");
+    }
+
+    async getUser() {
         UserService.getUser().then(user => {
             console.log(user.data)
             this.setState({user: user.data})
         });
+    }
+
+    async getOrders() {
         UserService.getOrders().then(orders => {
             this.setState({orders: orders.data});
             console.log("orders");
@@ -103,224 +116,228 @@ export default class Profile extends React.Component{
                     <div className="orders-charge-wrapper">
                         <div className="orders-charge">
 
-                            <input type="radio" id="tab-1" name="tab-group-1" />
-                                <input type="radio" id="tab-2" name="tab-group-1" checked />
+                            <input type="radio" id="tab-1" name="tab-group-1"/>
+                            <input type="radio" id="tab-2" name="tab-group-1" checked/>
 
-                                    <div className="selector row">
-                                        <label htmlFor="tab-1" className="selector-item  col select-tab1">
+                            <div className="selector row">
+                                <label htmlFor="tab-1" className="selector-item  col select-tab1">
                         <span>
                             سفارش‌ها
                         </span>
-                                        </label>
+                                </label>
 
-                                        <label htmlFor="tab-2" className="selector-item col select-tab2">
+                                <label htmlFor="tab-2" className="selector-item col select-tab2">
                                             <span>
                             افزایش اعتبار
                         </span>
-                                        </label>
-                                    </div>
+                                </label>
+                            </div>
 
-                                    <div className="tab1 charge-form">
-                                        <form onSubmit={this.handleSubmit}>
-                                            <div className="row justify-content-center align-items-center">
-                                                <div className="col-8 my-2">
-                                                    <div>
-                                                        <input type="text" value={this.state.amount}  onChange={this.handleChange}  name="amount" placeholder="میزان افزایش اعتبار" />
-                                                    </div>
-                                                </div>
-                                                <div className="col-4 my-2">
-                                                    <div>
-                                                        <input type="submit" value="افزایش" />
-                                                    </div>
-                                                </div>
+                            <div className="tab1 charge-form">
+                                <form onSubmit={this.handleSubmit}>
+                                    <div className="row justify-content-center align-items-center">
+                                        <div className="col-8 my-2">
+                                            <div>
+                                                <input type="text" value={this.state.amount}
+                                                       onChange={this.handleChange} name="amount"
+                                                       placeholder="میزان افزایش اعتبار"/>
                                             </div>
-                                        </form>
+                                        </div>
+                                        <div className="col-4 my-2">
+                                            <div>
+                                                <input type="submit" value="افزایش"/>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="orders tab2">
-                                        {
-                                            this.state.orders.length > 0
-                                        ?(<div> {this.state.orders.map((order, index) => {return <OrderItem order={order} index={index}/>})}
-                                        <div className="order-item">
-                                            <div className="row">
-                                                <div className="col-2">
-                                                    <div className="order-index">
+                                </form>
+                            </div>
+                            <div className="orders tab2">
+                                {
+                                    this.state.orders.length > 0
+                                        ? (<div> {this.state.orders.map((order, index) => {
+                                            return <OrderItem order={order} index={index}/>
+                                        })}
+                                            <div className="order-item">
+                                                <div className="row">
+                                                    <div className="col-2">
+                                                        <div className="order-index">
                                     <span>
                                         ۱
                                     </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-6">
-                                                    <div className="order-restaurant">
-                                                        <span>رستوران خامس</span>
+                                                    <div className="col-6">
+                                                        <div className="order-restaurant">
+                                                            <span>رستوران خامس</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-4">
-                                                    <div className="order-status">
-                                                        <div className="status-box delivery">
+                                                    <div className="col-4">
+                                                        <div className="order-status">
+                                                            <div className="status-box delivery">
                                         <span>
                                             پیک در مسیر
                                         </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="order-item">
-                                            <div className="row">
-                                                <div className="col-2">
-                                                    <div className="order-index">
+                                            <div className="order-item">
+                                                <div className="row">
+                                                    <div className="col-2">
+                                                        <div className="order-index">
                                     <span>
                                         ۲
                                     </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-6">
-                                                    <div className="order-restaurant">
-                                                        <span>رستوران خامس</span>
+                                                    <div className="col-6">
+                                                        <div className="order-restaurant">
+                                                            <span>رستوران خامس</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-4">
-                                                    <div className="order-status">
-                                                        <div className="status-box searching">
+                                                    <div className="col-4">
+                                                        <div className="order-status">
+                                                            <div className="status-box searching">
                                         <span>
                                             در جست‌و‌جوی پیک
                                         </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="order-item">
-                                            <div className="row">
-                                                <div className="col-2">
-                                                    <div className="order-index">
+                                            <div className="order-item">
+                                                <div className="row">
+                                                    <div className="col-2">
+                                                        <div className="order-index">
                                     <span>
                                         ۳
                                     </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-6">
-                                                    <div className="order-restaurant">
-                                                        <span>رستوران خامس</span>
+                                                    <div className="col-6">
+                                                        <div className="order-restaurant">
+                                                            <span>رستوران خامس</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-4">
-                                                    <div className="order-status">
-                                                        <div className="status-box delivered clickable">
+                                                    <div className="col-4">
+                                                        <div className="order-status">
+                                                            <div className="status-box delivered clickable">
                                         <span>
                                             مشاهده فاکتور
                                         </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="order-item">
-                                            <div className="row">
-                                                <div className="col-2">
-                                                    <div className="order-index">
+                                            <div className="order-item">
+                                                <div className="row">
+                                                    <div className="col-2">
+                                                        <div className="order-index">
                                     <span>
                                         ۴
                                     </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-6">
-                                                    <div className="order-restaurant">
-                                                        <span>رستوران خامس</span>
+                                                    <div className="col-6">
+                                                        <div className="order-restaurant">
+                                                            <span>رستوران خامس</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-4">
-                                                    <div className="order-status">
-                                                        <div className="status-box delivered clickable">
+                                                    <div className="col-4">
+                                                        <div className="order-status">
+                                                            <div className="status-box delivered clickable">
                                         <span>
                                             مشاهده فاکتور
                                         </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="order-item">
-                                            <div className="row">
-                                                <div className="col-2">
-                                                    <div className="order-index">
+                                            <div className="order-item">
+                                                <div className="row">
+                                                    <div className="col-2">
+                                                        <div className="order-index">
                                     <span>
                                         ۵
                                     </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-6">
-                                                    <div className="order-restaurant">
-                                                        <span>رستوران خامس</span>
+                                                    <div className="col-6">
+                                                        <div className="order-restaurant">
+                                                            <span>رستوران خامس</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-4">
-                                                    <div className="order-status">
-                                                        <div className="status-box delivered clickable">
+                                                    <div className="col-4">
+                                                        <div className="order-status">
+                                                            <div className="status-box delivered clickable">
                                         <span>
                                             مشاهده فاکتور
                                         </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="order-item">
-                                            <div className="row">
-                                                <div className="col-2">
-                                                    <div className="order-index">
+                                            <div className="order-item">
+                                                <div className="row">
+                                                    <div className="col-2">
+                                                        <div className="order-index">
                                     <span>
                                         ۶
                                     </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-6">
-                                                    <div className="order-restaurant">
-                                                        <span>رستوران خامس</span>
+                                                    <div className="col-6">
+                                                        <div className="order-restaurant">
+                                                            <span>رستوران خامس</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-4">
-                                                    <div className="order-status">
-                                                        <div className="status-box delivered clickable">
+                                                    <div className="col-4">
+                                                        <div className="order-status">
+                                                            <div className="status-box delivered clickable">
                                         <span>
                                             مشاهده فاکتور
                                         </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="order-item">
-                                            <div className="row">
-                                                <div className="col-2">
-                                                    <div className="order-index">
+                                            <div className="order-item">
+                                                <div className="row">
+                                                    <div className="col-2">
+                                                        <div className="order-index">
                                     <span>
                                         ۷
                                     </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-6">
-                                                    <div className="order-restaurant">
-                                                        <span>رستوران خامس</span>
+                                                    <div className="col-6">
+                                                        <div className="order-restaurant">
+                                                            <span>رستوران خامس</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-4">
-                                                    <div className="order-status">
-                                                        <div className="status-box delivered clickable">
+                                                    <div className="col-4">
+                                                        <div className="order-status">
+                                                            <div className="status-box delivered clickable">
                                         <span>
                                             مشاهده فاکتور
                                         </span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         </div>) : (
                                             <div className="d-flex justify-content-center align-items-center w-100 m-2">
                                                 <span>خالی</span>
                                             </div>
-                                                ) }
-                                    </div>
+                                        )}
+                            </div>
 
 
                         </div>

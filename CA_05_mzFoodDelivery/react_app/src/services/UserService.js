@@ -14,8 +14,8 @@ export default class UserService {
         return axios.post(CHARGE_URL, {amount: amount});
     }
 
-    static getCart() {
-        return axios.get(CART_URL);
+    static async getCart() {
+        return await axios.get(CART_URL);
     }
 
     static getOrders() {

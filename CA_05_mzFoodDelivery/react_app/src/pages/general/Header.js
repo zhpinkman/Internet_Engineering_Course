@@ -5,7 +5,7 @@ import Cart from "./modals/Cart";
 import {Link} from "react-router-dom";
 import UserService from "../../services/UserService";
 import {enToFaNumber} from "../../utils/utils";
-import cartRefresh from "../../services/MessageService";
+import {cartRefresh} from "../../services/subjects/MessageService";
 
 export default class Header extends React.Component{
     constructor(props) {

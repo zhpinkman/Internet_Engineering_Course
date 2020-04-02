@@ -5,7 +5,7 @@ import UserService from "../../../services/UserService";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {OK, TOAST_MESSAGE_OK} from "../../../config/config";
-import cartRefresh from "../../../services/MessageService";
+import {cartRefresh} from "../../../services/subjects/MessageService";
 
 
 export default class Food extends React.Component {
