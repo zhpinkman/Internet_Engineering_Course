@@ -5,6 +5,7 @@ import PrimaryButton from "../../../general/button/PrimaryButton";
 import StockTag from "./StockTag";
 import Modal from "react-bootstrap/Modal";
 import Food from "../../../general/modals/Food";
+import PropTypes from "prop-types";
 
 export default class FoodPartyCard extends React.Component {
     constructor(props) {
@@ -71,3 +72,16 @@ export default class FoodPartyCard extends React.Component {
         );
     }
 }
+
+FoodPartyCard.propTypes = {
+    partyFood: PropTypes.shape({
+        restaurantName: PropTypes.string,
+        name: PropTypes.string,
+        description: PropTypes.string,
+        price: PropTypes.number,
+        oldPrice: PropTypes.number,
+        count: PropTypes.number,
+        popularity: PropTypes.number,
+        image: PropTypes.string
+    })
+};

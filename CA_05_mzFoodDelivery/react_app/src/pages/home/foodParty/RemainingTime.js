@@ -1,5 +1,6 @@
 import React from "react";
 import "./foodParty.css";
+import PropTypes from "prop-types";
 
 export default class RemainingTime extends React.Component {
     remainingTime;
@@ -12,3 +13,7 @@ export default class RemainingTime extends React.Component {
         );
     }
 }
+
+RemainingTime.propTypes = {
+    remainingTime: PropTypes.string
+};

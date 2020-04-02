@@ -1,6 +1,7 @@
 import React from "react";
 import "./restaurants.css";
 import {Link} from 'react-router-dom'
+import PropTypes from "prop-types";
 
 export default class RestaurantCard extends React.Component {
     constructor(props) {
@@ -31,3 +32,11 @@ export default class RestaurantCard extends React.Component {
         );
     }
 }
+
+RestaurantCard.propTypes = {
+    restaurant: PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+        logo: PropTypes.string,
+    })
+};

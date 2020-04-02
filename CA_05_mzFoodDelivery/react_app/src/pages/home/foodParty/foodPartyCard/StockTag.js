@@ -1,6 +1,7 @@
 import React from "react";
 import {enToFaNumber} from "../../../../utils/utils";
 import "../foodParty.css"
+import PropTypes from "prop-types";
 
 export default class StockTag extends React.Component {
     render() {
@@ -20,3 +21,7 @@ export default class StockTag extends React.Component {
         }
     }
 }
+
+StockTag.propTypes = {
+    stock: PropTypes.number
+};

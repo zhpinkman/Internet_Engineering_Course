@@ -20,10 +20,6 @@ export default class Home extends React.Component {
         document.title = "MzFood Delivery";
     }
 
-    redirectTo(href) {
-        this.props.history.push(href);
-    }
-
     render() {
         return (
             <div>
@@ -32,11 +28,10 @@ export default class Home extends React.Component {
                 <HomeSearchBar/>
 
                 <FoodParty/>
-                <Restaurants home={this}/>
+                <Restaurants/>
 
                 <br/>
                 <Footer/>
-                {/*<script src='https://npmcdn.com/flickity@2/dist/flickity.pkgd.js'></script>*/}
             </div>
         );
     }
