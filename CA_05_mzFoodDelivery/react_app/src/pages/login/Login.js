@@ -9,6 +9,9 @@ export default class Login extends React.Component {
         this.state = {}
     }
 
+    componentDidMount() {
+        document.title = "Sign in - MzFood Accounts";
+    }
 
     render() {
         return (

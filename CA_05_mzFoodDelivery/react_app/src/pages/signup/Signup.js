@@ -10,6 +10,9 @@ export default class Signup extends React.Component {
         this.state = {}
     }
 
+    componentDidMount() {
+        document.title = "Create your MzFood Account";
+    }
 
     render() {
         return (

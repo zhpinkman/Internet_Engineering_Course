@@ -52,6 +52,7 @@ export default class Profile extends React.Component {
     }
 
     componentDidMount() {
+        document.title = "MzFood Account";
         scrollToTop();
         toast.configure({rtl: true, className: "text-center"});
         creditRefresh.asObservable().subscribe(() => {
@@ -65,8 +66,9 @@ export default class Profile extends React.Component {
 
     async getUser() {
         UserService.getUser().then(user => {
-            console.log(user.data)
-            this.setState({user: user.data})
+            console.log(user.data);
+            this.setState({user: user.data});
+            document.title = this.state.user.fullName + " - MzFood";
         });
     }
 

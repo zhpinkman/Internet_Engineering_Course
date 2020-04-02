@@ -17,19 +17,18 @@ export default class Restaurant extends React.Component {
             restaurant: null,
             notFound: false
         };
-
-        if (this.state.restaurantId == null) {
-            this.props.history.push("/");
-        } else {
-            this.getRestaurantById(this.state.restaurantId);
-        }
-
     }
 
 
 
     componentDidMount() {
+        document.title = "Restaurant - MzFood";
         scrollToTop();
+        if (this.state.restaurantId == null) {
+            this.props.history.push("/");
+        } else {
+            this.getRestaurantById(this.state.restaurantId);
+        }
     }
 
     async getRestaurantById(id) {
@@ -42,6 +41,7 @@ export default class Restaurant extends React.Component {
             this.setState({
                 restaurant: restaurant
             });
+            document.title = restaurant.name + " - MzFood";
         }
     }
 

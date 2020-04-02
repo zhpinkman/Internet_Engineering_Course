@@ -17,7 +17,7 @@ export default class Home extends React.Component {
     }
 
     async componentDidMount() {
-
+        document.title = "MzFood Delivery";
     }
 
     redirectTo(href) {
