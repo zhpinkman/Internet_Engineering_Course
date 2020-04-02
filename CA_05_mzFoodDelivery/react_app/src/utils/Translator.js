@@ -9,6 +9,8 @@ export default class Translator {
                 return "سبد خرید شما خالی است";
             case "Error: you have some food from another restaurant, then you can not add foods from another restaurant to your cart":
                 return "سفارش شما از رستوران قبلی تمام نشده است";
+            case "credit is not enough for finalizing your order":
+                return "اعتبار شما کافی نیست";
             default:
                 return enText
         }
