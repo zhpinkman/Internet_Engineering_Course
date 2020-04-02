@@ -1,6 +1,7 @@
 import * as React from "react";
 import "../../Assets/styles/order-detail-styles.scss";
 import {enToFaNumber} from "../../utils/utils";
+import PropTypes from "prop-types";
 
 
 export default class OrderDetail extends React.Component {
@@ -71,4 +72,23 @@ export default class OrderDetail extends React.Component {
             </div>
         );
     }
+}
+
+
+OrderDetail.propTypes = {
+    cart: PropTypes.shape({
+        restaurant: PropTypes.shape({
+            name: PropTypes.string
+        }),
+        size: PropTypes.number,
+        cartItems: PropTypes.arrayOf({
+            food: PropTypes.shape({
+                name: PropTypes.string,
+                price: PropTypes.number
+            }),
+            quantity: PropTypes.number
+
+        }),
+        totalPrice: PropTypes.number
+    })
 }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import Translator from "../../utils/Translator";
-import OrderDetail from "./orderDetail";
+import OrderDetail from "./OrderDetail";
 import Modal from "react-bootstrap/Modal";
 
 export default class Orderitem extends React.Component {
