@@ -18,9 +18,7 @@ export default class Food extends React.Component {
     }
 
     componentDidMount() {
-        toast.configure({
-            rtl: true
-        });
+        toast.configure({rtl: true, className: "text-center"});
     }
 
     async addToCart() {

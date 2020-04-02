@@ -11,3 +11,4 @@ export let PARTY_FOODS_REMAINING_TIME_URL = DOMAIN + "partyFoodsRemainingTime/";
 export let OK = "ok";
 
 export let TOAST_MESSAGE_OK = 'عملیات با موفقیت انجام شد';
+export let TOAST_MESSAGE_CREDIT_MORE_THAN_0 = "اعتبار برای افزایش باید بیش از صفر باشد";

@@ -135,7 +135,7 @@ main {
   min-width: 120px;
 }
 
-.orders-charge-wrapper .orders-charge .charge-form form .col-4 input {
+.orders-charge-wrapper .orders-charge .charge-form form .col-4 button {
   width: 100%;
   height: 60px;
   background: #4ecdc4;

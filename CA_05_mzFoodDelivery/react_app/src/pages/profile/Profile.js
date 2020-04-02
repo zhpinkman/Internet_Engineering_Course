@@ -5,8 +5,9 @@ import Footer from "../general/Footer";
 import UserService from "../../services/UserService";
 import "../../Assets/styles/profile-style.css";
 import OrderItem from "./OrderItem";
-import {Link} from "react-router-dom";
-import {cartRefresh, creditRefresh} from "../../services/subjects/MessageService";
+import {creditRefresh} from "../../services/subjects/MessageService";
+import {toast} from "react-toastify";
+import {TOAST_MESSAGE_CREDIT_MORE_THAN_0, TOAST_MESSAGE_OK} from "../../config/config";
 
 
 export default class Profile extends React.Component {
@@ -16,7 +17,8 @@ export default class Profile extends React.Component {
         this.state = {
             user: {},
             amount: 0,
-            orders: []
+            orders: [],
+            isLoading: false
         };
 
 
@@ -33,13 +35,23 @@ export default class Profile extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        UserService.charge(this.state.amount).then(resp => {
-            console.log(resp);
-            this.setState({user: resp.data});
-        });
+        if(this.state.amount > 0) {
+            this.setState({isLoading: true});
+            UserService.charge(this.state.amount).then(resp => {
+                toast.success(TOAST_MESSAGE_OK);
+                console.log(resp);
+                this.setState({
+                    user: resp.data,
+                    isLoading: false
+                });
+            });
+        }else{
+            toast.warn(TOAST_MESSAGE_CREDIT_MORE_THAN_0);
+        }
     }
 
     componentDidMount() {
+        toast.configure({rtl: true, className: "text-center"});
         creditRefresh.asObservable().subscribe(() => {
             this.getUser();
             this.getOrders();
@@ -75,7 +87,7 @@ export default class Profile extends React.Component {
                         <div className="col-auto">
                             <div className="name">
                                 <div className="profile-icon">
-                                    <i className="flaticon-account"></i>
+                                    <i className="flaticon-account"/>
                                 </div>
                                 <div className="name-text">
                                     {this.state.user.fullName}
@@ -86,7 +98,7 @@ export default class Profile extends React.Component {
                             <div className="other-info h-100">
                                 <div className="phone row justify-content-center align-items-center">
                                     <div className="col-auto">
-                                        <i className="flaticon-phone"></i>
+                                        <i className="flaticon-phone"/>
                                     </div>
                                     <div className="col-auto">
                                         {this.state.user.phoneNumber}
@@ -94,7 +106,7 @@ export default class Profile extends React.Component {
                                 </div>
                                 <div className="email  row justify-content-center align-items-center">
                                     <div className="col-auto">
-                                        <i className="flaticon-mail"></i>
+                                        <i className="flaticon-mail"/>
                                     </div>
                                     <div className="col-auto">
                                         {this.state.user.email}
@@ -102,7 +114,7 @@ export default class Profile extends React.Component {
                                 </div>
                                 <div className="credit  row justify-content-center align-items-center">
                                     <div className="col-auto">
-                                        <i className="flaticon-card"></i>
+                                        <i className="flaticon-card"/>
                                     </div>
                                     <div className="col-auto">
                                         {this.state.user.credit} تومان
@@ -145,7 +157,12 @@ export default class Profile extends React.Component {
                                         </div>
                                         <div className="col-4 my-2">
                                             <div>
-                                                <input type="submit" value="افزایش"/>
+                                                <button type="submit" value="افزایش" >
+                                                    افزایش
+                                                {this.state.isLoading &&
+                                                <span className="spinner-border mr-2" role="status" aria-hidden="true"/>
+                                                }
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
