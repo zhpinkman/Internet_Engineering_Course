@@ -78,6 +78,9 @@
     font-weight: bold;
 }
 
+.blur-loading {
+    filter: blur(1px);
+}
 
 
 .flaticon-plus {

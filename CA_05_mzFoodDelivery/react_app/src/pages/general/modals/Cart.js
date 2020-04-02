@@ -14,7 +14,8 @@ export default class Cart extends React.Component {
         super(props);
         this.state = {
             cart: {},
-            isLoading: false
+            isLoading: false,
+            getCartLoading: false
         }
     }
 
@@ -28,9 +29,11 @@ export default class Cart extends React.Component {
     }
 
     async getUserCart() {
+        this.setState({getCartLoading: true});
         UserService.getCart().then(cart => {
             this.setState({
                 cart: cart.data,
+                getCartLoading: false
             });
             console.log(this.state.cart);
         })
@@ -68,12 +71,22 @@ export default class Cart extends React.Component {
         );
     }
 
+    renderGetCartLoading() {
+        if (this.state.getCartLoading)
+            return (
+                <div className="spinner-grow text-danger food-party-loading-box align-self-center position-absolute" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
+            );
+
+    }
 
     getCart() {
         if (this.state.cart && this.state.cart.cartItems)
             return (
                 <>
-                    <div className="cart-list-wrapper d-flex justify-content-center">
+                    <div
+                        className={"cart-list-wrapper d-flex justify-content-center " + (this.state.getCartLoading ? "blur-loading" : "")}>
                         {(this.state.cart.cartItems.length === 0) &&
                         <div className="w-75">
                             <img src="https://www.digikala.com/static/files/68b7acd6.png"/>
@@ -88,6 +101,7 @@ export default class Cart extends React.Component {
                             )
                         })}
 
+                        {this.renderGetCartLoading()}
                     </div>
                     <div className="total-price">
                         جمع کل:

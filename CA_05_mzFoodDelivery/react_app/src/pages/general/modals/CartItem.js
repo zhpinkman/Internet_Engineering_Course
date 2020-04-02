@@ -1,6 +1,7 @@
 import {enToFaNumber} from "../../../utils/utils";
 import * as React from "react";
 import UserService from "../../../services/UserService";
+import "../../../Assets/styles/cart-styles.css";
 import {toast} from "react-toastify";
 import {cartRefresh} from "../../../services/subjects/MessageService";
 
@@ -8,7 +9,9 @@ import {cartRefresh} from "../../../services/subjects/MessageService";
 export default class CartItem extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            isLoading: false
+        };
 
         this.incFood = this.incFood.bind(this);
         this.decFood = this.decFood.bind(this);
@@ -23,32 +26,36 @@ export default class CartItem extends React.Component {
     }
 
     incFood() {
+        this.setState({isLoading: true});
         console.log(this.props)
         UserService.addToCart(this.props.cartItem.restaurant.id, this.props.cartItem.food.name).then(data => {
             toast.success('عملیات با موفقیت انجام شد', {
                 position: "top-center"
             });
             cartRefresh.next();
-
+            this.setState({isLoading: false});
         }).catch(error => {
             toast.error(error.toString(), {
                 position: "top-center",
             });
+            this.setState({isLoading: false});
         })
     }
 
 
     decFood() {
+        this.setState({isLoading: true});
         UserService.addToCart(this.props.cartItem.restaurant.id, this.props.cartItem.food.name, -1).then(data => {
             toast.success('عملیات با موفقیت انجام شد', {
                 position: "top-center"
             });
             cartRefresh.next();
-
+            this.setState({isLoading: false});
         }).catch(error => {
             toast.error(error.toString(), {
                 position: "top-center",
             });
+            this.setState({isLoading: false});
         })
 
     }
@@ -57,7 +64,7 @@ export default class CartItem extends React.Component {
     render() {
         return (
             <>
-                <div className="cart-list-item-wrapper d-flex flex-column">
+                <div className={"cart-list-item-wrapper d-flex flex-column " + (this.state.isLoading ? "blur-loading" : "")}>
                     <div className="d-flex flex-row justify-space-between">
                         <div className="align-self-start">
                             {this.props.cartItem.food.name}
