@@ -1,4 +1,3 @@
-import {OK} from "../config/config";
 
 export default class Translator {
     static toFa(enText) {

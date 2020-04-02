@@ -1,6 +1,5 @@
 import React from "react";
 import {enToFaNumber} from "../../utils/utils";
-import Cart from "../general/modals/Cart";
 import Modal from "react-bootstrap/Modal";
 import Food from "../general/modals/Food";
 import "./restaurant.css";

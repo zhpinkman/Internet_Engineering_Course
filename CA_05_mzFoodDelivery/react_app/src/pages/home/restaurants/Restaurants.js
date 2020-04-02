@@ -10,6 +10,9 @@ export default class Restaurants extends React.Component {
         this.state = {
             restaurants: null
         };
+    }
+
+    componentDidMount() {
         this.getRestaurants();
     }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import "./button.css";
+import PropTypes from 'prop-types';
 
 export default class PrimaryButton extends React.Component{
     render() {
@@ -10,3 +11,8 @@ export default class PrimaryButton extends React.Component{
         );
     }
 }
+
+PrimaryButton.propTypes = {
+    text: PropTypes.string,
+    disabled: PropTypes.bool
+};

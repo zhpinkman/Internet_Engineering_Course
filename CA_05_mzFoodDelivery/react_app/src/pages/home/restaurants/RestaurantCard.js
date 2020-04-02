@@ -16,7 +16,7 @@ export default class RestaurantCard extends React.Component {
             <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-4">
                 <div className="card restaurant-item-container">
                     <div className="row img-wrapper">
-                        <img alt="tmp" src={this.props.restaurant.logo} className="img"/>
+                        <img alt="..." src={this.props.restaurant.logo} className="img"/>
                     </div>
                     <div className="row title-wrapper">
                         <span className="title-text">{this.props.restaurant.name}</span>

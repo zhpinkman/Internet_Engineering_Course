@@ -1,4 +1,4 @@
-import {CART_URL, CHARGE_URL, ORDERS_URL, RESTAURANTS_URL, USER_URL} from "../config/config";
+import {CART_URL, CHARGE_URL, ORDERS_URL, USER_URL} from "../config/config";
 import Translator from "../utils/Translator";
 
 const axios = require("axios").default;

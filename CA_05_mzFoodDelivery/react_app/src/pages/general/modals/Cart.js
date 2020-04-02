@@ -74,7 +74,8 @@ export default class Cart extends React.Component {
     renderGetCartLoading() {
         if (this.state.getCartLoading)
             return (
-                <div className="spinner-grow text-danger food-party-loading-box align-self-center position-absolute" role="status">
+                <div className="spinner-grow text-danger food-party-loading-box align-self-center position-absolute"
+                     role="status">
                     <span className="sr-only">Loading...</span>
                 </div>
             );
@@ -89,7 +90,7 @@ export default class Cart extends React.Component {
                         className={"cart-list-wrapper d-flex justify-content-center " + (this.state.getCartLoading ? "blur-loading" : "")}>
                         {(this.state.cart.cartItems.length === 0) &&
                         <div className="w-75">
-                            <img src="https://www.digikala.com/static/files/68b7acd6.png"/>
+                            <img src="https://www.digikala.com/static/files/68b7acd6.png" alt={""}/>
                             <div className="center-text mb-4">
                                 سبد خرید شما خالی است!
                             </div>
@@ -105,10 +106,11 @@ export default class Cart extends React.Component {
                     </div>
                     <div className="total-price">
                         جمع کل:
-                        <span>
-                    {enToFaNumber(this.state.cart.totalPrice || 0)}
+                        <span className={"p-1"}>
+                            {enToFaNumber(this.state.cart.totalPrice || 0)}
+                            <span className={"m-1"}/>
                             تومان
-                            </span>
+                        </span>
                     </div>
 
                     <button type="button" className="btn btn-default btn-cyan"

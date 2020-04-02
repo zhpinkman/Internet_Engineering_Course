@@ -3,7 +3,6 @@ import "../foodParty.css";
 import {enToFaNumber} from "../../../../utils/utils"
 import PrimaryButton from "../../../general/button/PrimaryButton";
 import StockTag from "./StockTag";
-import Cart from "../../../general/modals/Cart";
 import Modal from "react-bootstrap/Modal";
 import Food from "../../../general/modals/Food";
 
@@ -34,13 +33,13 @@ export default class FoodPartyCard extends React.Component {
 
                 <div className="row m-0">
                     <div className="col-5 img-wrapper">
-                        <img alt="tmp" src={this.props.partyFood.image} className="img"/>
+                        <img alt="..." src={this.props.partyFood.image} className="img"/>
                     </div>
                     <div className="col-7 justify-content-center pt-2">
                         <span className="title-text float-right text-right w-100">{this.props.partyFood.name}</span>
                         <br/>
                         <span className="rating-star-text float-right">{enToFaNumber(this.props.partyFood.popularity * 5)}</span>
-                        <span className="rating-star-img float-right">⭐</span>
+                        <span role={"img"} aria-label={"star"} className="rating-star-img float-right">⭐</span>
                     </div>
                 </div>
                 <div className="row price-text">
