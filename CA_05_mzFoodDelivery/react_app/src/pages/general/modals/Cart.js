@@ -15,12 +15,14 @@ export default class Cart extends React.Component {
         this.state = {
             cart: {},
             isLoading: false,
-            getCartLoading: false
-        }
+            getCartLoading: false,
+        };
+        this._isMounted = false;
     }
 
 
     componentDidMount() {
+        this._isMounted = true;
         toast.configure({rtl: true, className: "text-center", position: "top-right"});
         this.getUserCart();
         cartRefresh.asObservable().subscribe(() => {
@@ -28,10 +30,14 @@ export default class Cart extends React.Component {
         })
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     async getUserCart() {
-        this.setState({getCartLoading: true});
+        this._isMounted && this.setState({getCartLoading: true});
         UserService.getCart().then(cart => {
-            this.setState({
+            this._isMounted && this.setState({
                 cart: cart.data,
                 getCartLoading: false
             });
@@ -40,7 +46,7 @@ export default class Cart extends React.Component {
     }
 
     finalizeOrder() {
-        this.setState({isLoading: true});
+        this._isMounted && this.setState({isLoading: true});
         UserService.finalizeOrder().then(data => {
             if (data === OK) {
                 toast.success(TOAST_MESSAGE_OK);
@@ -49,10 +55,10 @@ export default class Cart extends React.Component {
             } else {
                 toast.error(data);
             }
-            this.setState({isLoading: false});
+            this._isMounted && this.setState({isLoading: false});
         }).catch(error => {
             toast.error(error.toString());
-            this.setState({isLoading: false});
+            this._isMounted && this.setState({isLoading: false});
         })
     }
 
@@ -96,9 +102,9 @@ export default class Cart extends React.Component {
                             </div>
                         </div>
                         }
-                        {this.state.cart.cartItems.map(cartItem => {
+                        {this.state.cart.cartItems.map((cartItem, i) => {
                             return (
-                                <CartItem cartItem={cartItem}/>
+                                <CartItem cartItem={cartItem} key={"CART" + i}/>
                             )
                         })}
 

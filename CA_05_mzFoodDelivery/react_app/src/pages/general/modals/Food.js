@@ -15,14 +15,20 @@ export default class Food extends React.Component {
             userChosenEntity: 1,
             isLoading: false
         };
+        this._isMounted = false;
     }
 
     componentDidMount() {
+        this._isMounted = true;
         toast.configure({rtl: true, className: "text-center"});
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     async addToCart() {
-        this.setState({isLoading: true});
+        this._isMounted && this.setState({isLoading: true});
         let response = await UserService.addToCart(this.props.food.restaurantId, this.props.food.name, this.state.userChosenEntity);
         if (response === OK) {
             toast.success(TOAST_MESSAGE_OK, {
@@ -32,10 +38,9 @@ export default class Food extends React.Component {
         } else {
             toast.error(response.toString(), {
                 position: "top-right",
-
             });
         }
-        this.setState({isLoading: false});
+        this._isMounted && this.setState({isLoading: false});
     }
 
     incrementEntity() {

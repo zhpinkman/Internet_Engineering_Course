@@ -4,6 +4,7 @@ import UserService from "../../../services/UserService";
 import "../../../Assets/styles/cart-styles.css";
 import {toast} from "react-toastify";
 import {cartRefresh} from "../../../services/subjects/MessageService";
+import PropTypes from 'prop-types';
 
 
 export default class CartItem extends React.Component {
@@ -24,7 +25,7 @@ export default class CartItem extends React.Component {
 
     incFood() {
         this.setState({isLoading: true});
-        console.log(this.props)
+        console.log(this.props);
         UserService.addToCart(this.props.cartItem.restaurant.id, this.props.cartItem.food.name).then(data => {
             toast.success('عملیات با موفقیت انجام شد');
             cartRefresh.next();
@@ -76,3 +77,16 @@ export default class CartItem extends React.Component {
         );
     }
 }
+
+CartItem.propTypes = {
+    cartItem: PropTypes.shape({
+        food: PropTypes.shape({
+            name: PropTypes.string,
+            price: PropTypes.number
+        }),
+        restaurant: PropTypes.shape({
+            id: PropTypes.string
+        }),
+        quantity: PropTypes.number
+    })
+};

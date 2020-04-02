@@ -19,16 +19,19 @@ export default class FoodParty extends React.Component {
         };
         this.sliderRef = React.createRef();
         this.intervalTimer = null;
+        this._isMounted = false;
     }
 
 
     componentDidMount() {
+        this._isMounted = true;
         this.intervalTimer = setInterval(() => {
             this.timerFunc();
         }, 1000);
     }
 
     componentWillUnmount() {
+        this._isMounted = false;
         clearInterval(this.intervalTimer);
     }
 
@@ -39,11 +42,11 @@ export default class FoodParty extends React.Component {
                 remainingTime: oldTime - 1
             });
         } else {
-            this.setState({
+            this._isMounted && this.setState({
                 partyFoods: null
             });
             if(this.sliderRef != null)
-                this.sliderRef.current.refreshFlickity();
+                this._isMounted && this.sliderRef.current.refreshFlickity();
             this.getPartyFoods();
             this.getRemainingTime();
         }
@@ -51,17 +54,17 @@ export default class FoodParty extends React.Component {
 
     async getPartyFoods() {
         let partyFoods = await FoodPartyService.getPartyFoods();
-        await this.setState({
+        this._isMounted && await this.setState({
             partyFoods: partyFoods
         });
         if(this.sliderRef.current != null)
-            this.sliderRef.current.refreshFlickity();
+            this._isMounted && this.sliderRef.current.refreshFlickity();
     }
 
 
     async getRemainingTime() {
         let remainingTime = await FoodPartyRemainingTimeService.getRemainingTime();
-        this.setState({
+        this._isMounted && this.setState({
             remainingTime: remainingTime
         });
     }
