@@ -26,14 +26,14 @@ export default class Food extends React.Component {
     async addToCart() {
         this.setState({isLoading: true});
         let response = await UserService.addToCart(this.props.food.restaurantId, this.props.food.name, this.state.userChosenEntity);
-        if(response === OK) {
+        if (response === OK) {
             toast.success('عملیات با موفقیت انجام شد', {
-                position: "top-center"
+                position: "top-right"
             });
             cartRefresh.next();
-        }else {
+        } else {
             toast.error(response.toString(), {
-                position: "top-center",
+                position: "top-right",
 
             });
         }
@@ -85,9 +85,11 @@ export default class Food extends React.Component {
                                     {this.props.food.description}
                                 </div>
                                 <div className="food-prices">
+                                    {(this.props.food.oldPrice !== undefined) &&
                                     <div className="old-price">
                                         {enToFaNumber(this.props.food.oldPrice)}
                                     </div>
+                                    }
                                     <div className="curr-price">
                                         {enToFaNumber(this.props.food.price)} تومان
                                     </div>
@@ -102,7 +104,8 @@ export default class Food extends React.Component {
 
 
                 <div className="bottom-part">
-                    <div className="remaining">
+
+                    <div className={"remaining " + (this.props.food.count !== undefined ? "visible" : "invisible") }>
                         <span> موجودی : </span>
                         {
                             this.props.food.count == null ? (<span> - </span>) : (
@@ -110,6 +113,7 @@ export default class Food extends React.Component {
                         }
 
                     </div>
+
                     <div className="actions">
                         <div className="inc-amount mx-1" onClick={() => this.incrementEntity()}>
                             <i className="flaticon-plus"/>

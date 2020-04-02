@@ -76,6 +76,7 @@ export default class Restaurant extends React.Component {
 
     createFoodItem(foodItem) {
         foodItem.restaurantId = this.state.restaurantId;
+        foodItem.restaurantName = this.state.restaurant.name;
         return foodItem;
     }
 

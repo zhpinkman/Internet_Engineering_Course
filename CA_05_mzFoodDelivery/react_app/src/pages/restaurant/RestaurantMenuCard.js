@@ -52,7 +52,7 @@ export default class RestaurantMenuCard extends React.Component{
                     </div>
                 </div>
             </div>
-                <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal show={this.state.show} onHide={this.handleClose} centered>
                     <Food food={this.props.food} />
                 </Modal>
             </>
