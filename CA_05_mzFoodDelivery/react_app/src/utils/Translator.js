@@ -1,0 +1,16 @@
+import {OK} from "../config/config";
+
+export default class Translator {
+    static toFa(enText) {
+        switch (enText) {
+            case "count of this offer is not enough for you to submit":
+                return "موجودی غذای درخواستی کافی نیست. لطفا تعداد را کاهش دهید.";
+            case "user cart is empty":
+                return "سبد خرید شما خالی است";
+            case "Error: you have some food from another restaurant, then you can not add foods from another restaurant to your cart":
+                return "سفارش شما از رستوران قبلی تمام نشده است";
+            default:
+                return enText
+        }
+    }
+}

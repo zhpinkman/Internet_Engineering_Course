@@ -1,4 +1,5 @@
 import {CART_URL, CHARGE_URL, ORDERS_URL, RESTAURANTS_URL, USER_URL} from "../config/config";
+import Translator from "../utils/Translator";
 
 const axios = require("axios").default;
 
@@ -26,7 +27,7 @@ export default class UserService {
         try {
             let response = await axios.post(CART_URL, {restaurantId: restaurantId, foodName: foodName, amount: amount})
             if (response.data !== "" || response.data === undefined)
-                return response.data;
+                return Translator.toFa(response.data);
             else
                 return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
         }catch (e) {
@@ -39,7 +40,7 @@ export default class UserService {
         try {
             let response = await axios.post(ORDERS_URL);
             if (response.data !== "" || response.data === undefined)
-                return response.data;
+                return Translator.toFa(response.data);
             else
                 return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
         }catch (e) {
