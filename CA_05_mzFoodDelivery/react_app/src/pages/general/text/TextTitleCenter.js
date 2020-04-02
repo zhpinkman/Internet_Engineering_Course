@@ -1,5 +1,6 @@
 import * as React from "react";
 import "./text.css";
+import PropTypes from "prop-types";
 
 export default class TextTitleCenter extends React.Component {
     render() {
@@ -12,3 +13,7 @@ export default class TextTitleCenter extends React.Component {
         );
     }
 }
+
+TextTitleCenter.propTypes = {
+    text: PropTypes.string
+};

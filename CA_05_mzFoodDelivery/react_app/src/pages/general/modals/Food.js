@@ -6,6 +6,7 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {OK, TOAST_MESSAGE_OK} from "../../../config/config";
 import {cartRefresh} from "../../../services/subjects/MessageService";
+import PropTypes from "prop-types";
 
 
 export default class Food extends React.Component {
@@ -108,7 +109,7 @@ export default class Food extends React.Component {
 
                 <div className="bottom-part">
 
-                    <div className={"remaining " + (this.props.food.count !== undefined ? "visible" : "invisible") }>
+                    <div className={"remaining " + (this.props.food.count !== undefined ? "visible" : "invisible")}>
                         <span> موجودی : </span>
                         {
                             this.props.food.count == null ? (<span> - </span>) : (
@@ -142,3 +143,17 @@ export default class Food extends React.Component {
         );
     }
 }
+
+Food.propTypes = {
+    food: PropTypes.shape({
+        restaurantId: PropTypes.string,
+        restaurantName: PropTypes.string,
+        name: PropTypes.string,
+        description: PropTypes.string,
+        price: PropTypes.number,
+        oldPrice: PropTypes.number,
+        count: PropTypes.number,
+        popularity: PropTypes.number,
+        image: PropTypes.string
+    })
+};
