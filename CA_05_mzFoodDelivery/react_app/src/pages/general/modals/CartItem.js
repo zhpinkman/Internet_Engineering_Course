@@ -63,11 +63,11 @@ export default class CartItem extends React.Component {
                             {this.props.cartItem.food.name}
                         </div>
                         <div className="align-self-end mr-auto d-flex align-items-center">
-                            <div onClick={this.decFood}><i className="glyph-icon flaticon-minus cart-icon"/></div>
+                            <div onClick={this.decFood}><i className="glyph-icon flaticon-minus cart-icon clickable-tag"/></div>
                             <span className="p-1">
-                                                {enToFaNumber(this.props.cartItem.quantity)}
-                                            </span>
-                            <div onClick={this.incFood}><i className="glyph-icon flaticon-plus cart-icon"/></div>
+                                {enToFaNumber(this.props.cartItem.quantity)}
+                            </span>
+                            <div onClick={this.incFood}><i className="glyph-icon flaticon-plus cart-icon clickable-tag"/></div>
                         </div>
                     </div>
                     <div className="price d-flex flex-row justify-content-end">

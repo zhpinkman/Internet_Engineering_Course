@@ -14,7 +14,7 @@ export default class Cart extends React.Component {
         super(props);
         this.state = {
             cart: {},
-            isLoading: true
+            isLoading: false
         }
     }
 
@@ -28,11 +28,9 @@ export default class Cart extends React.Component {
     }
 
     async getUserCart() {
-        this.setState({isLoading: true});
         UserService.getCart().then(cart => {
             this.setState({
                 cart: cart.data,
-                isLoading: false
             });
             console.log(this.state.cart);
         })
@@ -41,11 +39,11 @@ export default class Cart extends React.Component {
     finalizeOrder() {
         this.setState({isLoading: true});
         UserService.finalizeOrder().then(data => {
-            if(data === OK) {
+            if (data === OK) {
                 toast.success(TOAST_MESSAGE_OK);
                 cartRefresh.next();
                 creditRefresh.next();
-            }else{
+            } else {
                 toast.error(data);
             }
             this.setState({isLoading: false});
@@ -76,6 +74,14 @@ export default class Cart extends React.Component {
             return (
                 <>
                     <div className="cart-list-wrapper d-flex justify-content-center">
+                        {(this.state.cart.cartItems.length === 0) &&
+                        <div className="w-75">
+                            <img src="https://www.digikala.com/static/files/68b7acd6.png"/>
+                            <div className="center-text mb-4">
+                                سبد خرید شما خالی است!
+                            </div>
+                        </div>
+                        }
                         {this.state.cart.cartItems.map(cartItem => {
                             return (
                                 <CartItem cartItem={cartItem}/>
@@ -91,7 +97,8 @@ export default class Cart extends React.Component {
                             </span>
                     </div>
 
-                    <button type="button" className="btn btn-default btn-cyan" onClick={() => (!this.state.isLoading ? this.finalizeOrder() : {/*pass*/})}>
+                    <button type="button" className="btn btn-default btn-cyan"
+                            onClick={() => (!this.state.isLoading ? this.finalizeOrder() : {/*pass*/})}>
                         تایید نهایی
                         {this.state.isLoading &&
                         <span className="spinner-border mr-2" role="status" aria-hidden="true"/>
