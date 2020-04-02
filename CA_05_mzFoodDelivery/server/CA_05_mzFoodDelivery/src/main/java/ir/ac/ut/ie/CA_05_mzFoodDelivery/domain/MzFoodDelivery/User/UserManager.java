@@ -65,7 +65,7 @@ public class UserManager {
         return user;
     }
 
-    public void chargeUserCredit(double amount) {
+    public void chargeUserCredit(double amount) throws Exception {
         user.chargeUserCredit(amount);
     }
 

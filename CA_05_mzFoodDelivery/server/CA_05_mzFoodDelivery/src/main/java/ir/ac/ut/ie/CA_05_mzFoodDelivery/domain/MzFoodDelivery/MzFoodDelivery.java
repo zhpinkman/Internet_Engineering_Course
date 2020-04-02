@@ -93,7 +93,7 @@ public class MzFoodDelivery {
         if (food instanceof PartyFood) {
             PartyFood partyFood = (PartyFood) food;
             if (partyFood.getCount() < amount) {
-                throw new Exception();
+                throw new Exception("not enough food in inventory");
             }
         }
 
@@ -144,7 +144,7 @@ public class MzFoodDelivery {
         return userManager.getUserCartSize();
     }
 
-    public void chargeUserCredit(double amount) {
+    public void chargeUserCredit(double amount) throws Exception {
         userManager.chargeUserCredit(amount);
     }
 

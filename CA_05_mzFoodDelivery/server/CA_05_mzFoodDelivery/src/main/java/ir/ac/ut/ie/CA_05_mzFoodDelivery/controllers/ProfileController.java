@@ -6,8 +6,11 @@ import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.User.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
@@ -17,13 +20,18 @@ public class ProfileController {
 
 
     @PostMapping("/charge")
-    public User chargeCredit(@RequestBody String jsonString) {
+    public User chargeCredit(@RequestBody String jsonString, final HttpServletResponse response) throws IOException {
         Gson gson = new Gson();
         Properties properties = gson.fromJson(jsonString, Properties.class);
         String amountString = properties.getProperty("amount");
         double amount = Double.parseDouble(amountString);
-        MzFoodDelivery.getInstance().chargeUserCredit(amount);
-        return MzFoodDelivery.getInstance().getUser();
+        try {
+            MzFoodDelivery.getInstance().chargeUserCredit(amount);
+            return MzFoodDelivery.getInstance().getUser();
+        } catch (Exception e) {
+            response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+            return null;
+        }
     }
 
     @GetMapping("")
@@ -33,7 +41,7 @@ public class ProfileController {
 
 
     @PostMapping(path = "/cart", consumes = "application/json", produces = "application/json")
-    public String addToCart(@RequestBody(required = true) String jsonString) {
+    public String addToCart(@RequestBody(required = true) String jsonString, final HttpServletResponse response) throws IOException {
         Gson gson = new Gson();
         try {
             Properties properties = gson.fromJson(jsonString, Properties.class);
@@ -42,17 +50,15 @@ public class ProfileController {
             Integer amount = Integer.parseInt(properties.getProperty("amount"));
             MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount);
             return Config.OK_RESPONSE;
-
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return e.getMessage();
-//            throw new ExceptionBadRequest();
+            response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+            return null;
         }
     }
 
 
     @DeleteMapping("/cart")
-    public String removeFromCart(@RequestBody String jsonString){
+    public String removeFromCart(@RequestBody String jsonString, final HttpServletResponse response) throws IOException {
         Gson gson = new Gson();
         Properties properties = gson.fromJson(jsonString, Properties.class);
         String restaurantId = properties.getProperty("restaurantId");
@@ -61,7 +67,8 @@ public class ProfileController {
             MzFoodDelivery.getInstance().deleteFromCart(restaurantId, foodName);
             return Config.OK_RESPONSE;
         } catch (Exception e) {
-            return e.getMessage();
+            response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+            return null;
         }
     }
 
@@ -77,13 +84,13 @@ public class ProfileController {
     }
 
     @PostMapping(path = "/orders")
-    public String finalizeOrder() {
+    public String finalizeOrder(final HttpServletResponse response) throws IOException {
         try {
             MzFoodDelivery.getInstance().finalizeOrder();
             return Config.OK_RESPONSE;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return e.getMessage();
+            response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+            return null;
         }
     }
 }

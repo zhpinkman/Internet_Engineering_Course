@@ -79,9 +79,11 @@ public class User {
     }
 
 
-    public void chargeUserCredit(double amount) {
+    public void chargeUserCredit(double amount) throws Exception {
         if (amount > 0)
             credit += amount;
+        else
+            throw new Exception("negative amount is not allowed");
     }
 
     public double getCartTotalPrice() {
