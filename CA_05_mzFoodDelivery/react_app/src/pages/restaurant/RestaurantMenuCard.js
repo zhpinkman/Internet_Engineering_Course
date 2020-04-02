@@ -3,6 +3,7 @@ import {enToFaNumber} from "../../utils/utils";
 import Modal from "react-bootstrap/Modal";
 import Food from "../general/modals/Food";
 import "./restaurant.css";
+import PropTypes from "prop-types";
 
 export default class RestaurantMenuCard extends React.Component{
 
@@ -59,3 +60,17 @@ export default class RestaurantMenuCard extends React.Component{
         );
     }
 }
+
+RestaurantMenuCard.propTypes = {
+    food: PropTypes.shape({
+        restaurantId: PropTypes.string,
+        restaurantName: PropTypes.string,
+        name: PropTypes.string,
+        description: PropTypes.string,
+        price: PropTypes.number,
+        oldPrice: PropTypes.number,
+        count: PropTypes.number,
+        popularity: PropTypes.number,
+        image: PropTypes.string
+    })
+};

@@ -150,7 +150,7 @@ export default class Profile extends React.Component {
                     <div className="orders-charge">
 
                         <input type="radio" id="tab-1" name="tab-group-1"/>
-                        <input type="radio" id="tab-2" name="tab-group-1" checked/>
+                        <input type="radio" id="tab-2" name="tab-group-1" defaultChecked/>
 
                         <div className="selector row">
                             <label htmlFor="tab-1" className="selector-item  col select-tab1">
@@ -193,7 +193,7 @@ export default class Profile extends React.Component {
                             {
                                 this.state.orders.length > 0
                                     ? (<div> {this.state.orders.map((order, index) => {
-                                        return <OrderItem order={order} index={index}/>
+                                        return <OrderItem order={order} index={index} key={"ORDER" + index}/>
                                     })}
                                         <div className="order-item">
                                             <div className="row">
