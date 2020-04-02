@@ -11,19 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Properties;
 
-class ChargeAmount {
-    public double amount;
-}
-
 @RestController
 @RequestMapping("/user")
 public class ProfileController {
 
 
     @PostMapping("/charge")
-    public User chargeCredit(@RequestBody ChargeAmount chargeAmount) {
-        System.out.println(chargeAmount);
-        MzFoodDelivery.getInstance().chargeUserCredit(chargeAmount.amount);
+    public User chargeCredit(@RequestBody String jsonString) {
+        Gson gson = new Gson();
+        Properties properties = gson.fromJson(jsonString, Properties.class);
+        String amountString = properties.getProperty("amount");
+        double amount = Double.parseDouble(amountString);
+        MzFoodDelivery.getInstance().chargeUserCredit(amount);
         return MzFoodDelivery.getInstance().getUser();
     }
 
