@@ -100,10 +100,6 @@ public class MzFoodDelivery {
         for (int i = 0; i < amount; i++) {
             CartItem cartItem = new CartItem(restaurant, restaurant.getFood(foodName));
             userManager.addToCart(cartItem);
-            if (food instanceof PartyFood) {
-                PartyFood partyFood = (PartyFood) food;
-                partyFood.decreaseFoodAmount(amount);
-            }
         }
 
     }
