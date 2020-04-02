@@ -8,7 +8,7 @@ import OrderItem from "./OrderItem";
 import {creditRefresh} from "../../services/subjects/MessageService";
 import {toast} from "react-toastify";
 import {TOAST_MESSAGE_CREDIT_MORE_THAN_0, TOAST_MESSAGE_OK} from "../../config/config";
-import {scrollToTop} from "../../utils/utils";
+import {enToFaNumber, scrollToTop} from "../../utils/utils";
 
 
 export default class Profile extends React.Component {
@@ -122,7 +122,7 @@ export default class Profile extends React.Component {
                                     <i className="flaticon-phone"/>
                                 </div>
                                 <div className="col-auto">
-                                    {this.state.user.phoneNumber}
+                                    {enToFaNumber(this.state.user.phoneNumber)}
                                 </div>
                             </div>
                             <div className="email  row justify-content-center align-items-center">
@@ -138,7 +138,7 @@ export default class Profile extends React.Component {
                                     <i className="flaticon-card"/>
                                 </div>
                                 <div className="col-auto">
-                                    {this.state.user.credit} تومان
+                                    {enToFaNumber(this.state.user.credit)} تومان
                                 </div>
                             </div>
                         </div>

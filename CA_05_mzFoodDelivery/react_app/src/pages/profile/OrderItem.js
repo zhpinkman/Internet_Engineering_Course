@@ -23,7 +23,7 @@ export default class Orderitem extends React.Component {
     }
 
     handleShow() {
-        if (this.props.order.status) {
+        if (this.props.order.status === "DELIVERED") {
             this.setState({show: true});
         }
     }
