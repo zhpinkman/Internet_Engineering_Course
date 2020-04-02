@@ -6,3 +6,7 @@ img {
     height: 100%;
     min-height: 30px;
 }
+
+.Toastify__toast {
+    border-radius: 10px !important;
+}
