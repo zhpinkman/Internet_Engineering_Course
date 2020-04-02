@@ -7,6 +7,7 @@ import RestaurantService from "../../services/RestaurantService";
 import FoodPartyCard from "../home/foodParty/foodPartyCard/FoodPartyCard";
 import RestaurantMenuCard from "./RestaurantMenuCard";
 import Cart from "../general/modals/Cart";
+import {scrollToTop} from "../../utils/utils";
 
 export default class Restaurant extends React.Component {
     constructor(props) {
@@ -30,14 +31,6 @@ export default class Restaurant extends React.Component {
 
 
     componentDidMount() {
-        // window.scrollTo(0, 0);
-        const scrollToTop = () => {
-            const c = document.documentElement.scrollTop || document.body.scrollTop;
-            if (c > 0) {
-                window.requestAnimationFrame(scrollToTop);
-                window.scrollTo(0, c - c / 8);
-            }
-        };
         scrollToTop();
     }
 
@@ -104,7 +97,7 @@ export default class Restaurant extends React.Component {
                 <div className="container restaurant-main-container">
 
                     <div className="row">
-                        <div className="col-lg-4 col-6 center-text"></div>
+                        <div className="col-lg-4 col-6 center-text"/>
                         <div className="col-lg-8 col-6 center-text">
                     <span className="menu-text">
                         منوی غذا
