@@ -1,15 +1,53 @@
 import * as React from "react";
 import PropTypes from "prop-types";
+import Translator from "../../utils/Translator";
+import OrderDetail from "./orderDetail";
+import Modal from "react-bootstrap/Modal";
 
 export default class Orderitem extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            show: false
+        };
+
+        this.getStatusStyle = this.getStatusStyle.bind(this);
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+    }
+
+    handleClose() {
+        this.setState({ show: false });
+
+    }
+
+    handleShow() {
+        if (this.props.order.status) {
+            this.setState({show: true});
+        }
+    }
+
+
+    getStatusStyle(status) {
+        let style = "status-box ";
+        switch (status) {
+            case "SEARCHING":
+                return style + "searching";
+            case "DELIVERING":
+                return style + "delivering";
+            case "DELIVERED":
+                return style + "delivered clickable";
+
+            default:
+                return style
+        }
+
     }
 
     render() {
         return (
+            <>
             <div className="order-item">
                 <div className="row">
                     <div className="col-2">
@@ -28,15 +66,19 @@ export default class Orderitem extends React.Component {
                     </div>
                     <div className="col-4">
                         <div className="order-status">
-                            <div className="status-box delivery">
-                                        <span>
-                                            {this.props.order.status}
-                                        </span>
+                            <div className={this.getStatusStyle(this.props.order.status)} onClick={this.handleShow}>
+                                <span>
+                                    {Translator.toFa(this.props.order.status)}
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
+            <OrderDetail cart={this.props.order.cart}/>
+            </Modal>
+        </>
         );
     }
 

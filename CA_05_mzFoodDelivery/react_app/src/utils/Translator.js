@@ -10,6 +10,13 @@ export default class Translator {
                 return "سفارش شما از رستوران قبلی تمام نشده است";
             case "credit is not enough for finalizing your order":
                 return "اعتبار شما کافی نیست";
+            case "SEARCHING":
+                return "در جست‌و‌جوی پیک";
+            case "DELIVERING":
+                return "پیک در مسیر"
+            case "DELIVERED":
+                return "مشاهده فاکتور"
+
             default:
                 return enText
         }
