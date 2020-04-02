@@ -8,9 +8,7 @@ import cartRefresh from "../../../services/MessageService";
 export default class CartItem extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
 
         this.incFood = this.incFood.bind(this);
         this.decFood = this.decFood.bind(this);
@@ -65,11 +63,11 @@ export default class CartItem extends React.Component {
                             {this.props.cartItem.food.name}
                         </div>
                         <div className="align-self-end mr-auto d-flex align-items-center">
-                            <div onClick={this.decFood}><i className="glyph-icon flaticon-minus cart-icon"></i></div>
+                            <div onClick={this.decFood}><i className="glyph-icon flaticon-minus cart-icon"/></div>
                             <span className="p-1">
                                                 {enToFaNumber(this.props.cartItem.quantity)}
                                             </span>
-                            <div onClick={this.incFood} ><i className="glyph-icon flaticon-plus cart-icon"></i></div>
+                            <div onClick={this.incFood}><i className="glyph-icon flaticon-plus cart-icon"/></div>
                         </div>
                     </div>
                     <div className="price d-flex flex-row justify-content-end">
@@ -77,7 +75,7 @@ export default class CartItem extends React.Component {
                         تومان
                     </div>
                 </div>
-                <div className="break"></div>
+                <div className="break"/>
             </>
         );
     }

@@ -4,7 +4,7 @@ import {enToFaNumber} from "../../../utils/utils";
 import UserService from "../../../services/UserService";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {OK} from "../../../config/config";
+import {OK, TOAST_MESSAGE_OK} from "../../../config/config";
 import cartRefresh from "../../../services/MessageService";
 
 
@@ -27,7 +27,7 @@ export default class Food extends React.Component {
         this.setState({isLoading: true});
         let response = await UserService.addToCart(this.props.food.restaurantId, this.props.food.name, this.state.userChosenEntity);
         if (response === OK) {
-            toast.success('عملیات با موفقیت انجام شد', {
+            toast.success(TOAST_MESSAGE_OK, {
                 position: "top-right"
             });
             cartRefresh.next();

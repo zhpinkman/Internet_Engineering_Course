@@ -35,4 +35,17 @@ export default class UserService {
         }
     }
 
+    static async finalizeOrder() {
+        try {
+            let response = await axios.post(ORDERS_URL);
+            if (response.data !== "" || response.data === undefined)
+                return response.data;
+            else
+                return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
+        }catch (e) {
+            return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
+            // return e.toString();
+        }
+    }
+
 }

@@ -45,7 +45,7 @@ public class ProfileController {
                 MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount);
             else
                 MzFoodDelivery.getInstance().deleteFromCart(restaurantId, foodName);
-            return "ok";
+            return Config.OK_RESPONSE;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -65,4 +65,14 @@ public class ProfileController {
         return MzFoodDelivery.getInstance().getOrders();
     }
 
+    @PostMapping(path = "/orders")
+    public String finalizeOrder() {
+        try {
+            MzFoodDelivery.getInstance().finalizeOrder();
+            return Config.OK_RESPONSE;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return e.getMessage();
+        }
+    }
 }
