@@ -21,7 +21,7 @@ export default class Cart extends React.Component {
 
 
     componentDidMount() {
-        toast.configure({rtl: true, className: "text-center"});
+        toast.configure({rtl: true, className: "text-center", position: "top-right"});
         this.getUserCart();
         cartRefresh.asObservable().subscribe(() => {
             this.getUserCart();

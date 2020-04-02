@@ -19,9 +19,6 @@ export default class CartItem extends React.Component {
 
 
     componentDidMount() {
-        toast.configure({
-            rtl: true
-        });
         console.log(this.props);
     }
 
@@ -29,15 +26,11 @@ export default class CartItem extends React.Component {
         this.setState({isLoading: true});
         console.log(this.props)
         UserService.addToCart(this.props.cartItem.restaurant.id, this.props.cartItem.food.name).then(data => {
-            toast.success('عملیات با موفقیت انجام شد', {
-                position: "top-center"
-            });
+            toast.success('عملیات با موفقیت انجام شد');
             cartRefresh.next();
             this.setState({isLoading: false});
         }).catch(error => {
-            toast.error(error.toString(), {
-                position: "top-center",
-            });
+            toast.error(error.toString());
             this.setState({isLoading: false});
         })
     }
@@ -46,15 +39,11 @@ export default class CartItem extends React.Component {
     decFood() {
         this.setState({isLoading: true});
         UserService.addToCart(this.props.cartItem.restaurant.id, this.props.cartItem.food.name, -1).then(data => {
-            toast.success('عملیات با موفقیت انجام شد', {
-                position: "top-center"
-            });
+            toast.success('عملیات با موفقیت انجام شد');
             cartRefresh.next();
             this.setState({isLoading: false});
         }).catch(error => {
-            toast.error(error.toString(), {
-                position: "top-center",
-            });
+            toast.error(error.toString());
             this.setState({isLoading: false});
         })
 
