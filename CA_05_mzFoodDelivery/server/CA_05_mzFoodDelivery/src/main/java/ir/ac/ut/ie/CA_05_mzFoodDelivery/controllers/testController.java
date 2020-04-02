@@ -21,7 +21,7 @@ public class testController {
         System.out.println(userMap.get("zhivar"));
     }
 
-    @GetMapping(value = "/cart")
+    @GetMapping("/cart")
     public Cart getCart() {
         return new Cart();
     }
@@ -31,6 +31,11 @@ public class testController {
         Order order  = new Order();
         Gson gson = new Gson();
         return gson.toJson(order);
+    }
+
+    @DeleteMapping("")
+    public void testDelete(@RequestBody String jsonString) {
+        System.out.println(jsonString);
     }
 
 }

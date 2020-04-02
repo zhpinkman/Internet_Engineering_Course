@@ -36,6 +36,19 @@ export default class UserService {
         }
     }
 
+    static async removeFromCart(restaurantId, foodName) {
+        try {
+            let response = await axios.delete(CART_URL, {data: {restaurantId: restaurantId, foodName: foodName}})
+            if (response.data !== "" || response.data === undefined)
+                return Translator.toFa(response.data);
+            else
+                return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
+        }catch (e) {
+            return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
+            // return e.toString();
+        }
+    }
+
     static async finalizeOrder() {
         try {
             let response = await axios.post(ORDERS_URL);

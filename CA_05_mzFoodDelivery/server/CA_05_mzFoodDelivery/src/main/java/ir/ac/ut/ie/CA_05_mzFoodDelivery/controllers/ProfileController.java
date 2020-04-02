@@ -40,16 +40,28 @@ public class ProfileController {
             String restaurantId = properties.getProperty("restaurantId");
             String foodName = properties.getProperty("foodName");
             Integer amount = Integer.parseInt(properties.getProperty("amount"));
-            if (amount > 0)
-                MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount);
-            else
-                MzFoodDelivery.getInstance().deleteFromCart(restaurantId, foodName);
+            MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount);
             return Config.OK_RESPONSE;
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return e.getMessage();
 //            throw new ExceptionBadRequest();
+        }
+    }
+
+
+    @DeleteMapping("/cart")
+    public String removeFromCart(@RequestBody String jsonString){
+        Gson gson = new Gson();
+        Properties properties = gson.fromJson(jsonString, Properties.class);
+        String restaurantId = properties.getProperty("restaurantId");
+        String foodName = properties.getProperty("foodName");
+        try {
+            MzFoodDelivery.getInstance().deleteFromCart(restaurantId, foodName);
+            return Config.OK_RESPONSE;
+        } catch (Exception e) {
+            return e.getMessage();
         }
     }
 

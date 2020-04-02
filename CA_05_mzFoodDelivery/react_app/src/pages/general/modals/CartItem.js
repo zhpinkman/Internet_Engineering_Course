@@ -39,7 +39,7 @@ export default class CartItem extends React.Component {
 
     decFood() {
         this.setState({isLoading: true});
-        UserService.addToCart(this.props.cartItem.restaurant.id, this.props.cartItem.food.name, -1).then(data => {
+        UserService.removeFromCart(this.props.cartItem.restaurant.id, this.props.cartItem.food.name).then(data => {
             toast.success('عملیات با موفقیت انجام شد');
             cartRefresh.next();
             this.setState({isLoading: false});
