@@ -62,6 +62,17 @@ export default class Profile extends React.Component {
         this.getUser();
         this.getOrders();
         console.log("started getting user");
+        this.intervalTimer = setInterval(() => {
+            this.timerFunc();
+        }, 5000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.intervalTimer);
+    }
+
+    timerFunc() {
+        this.getOrders();
     }
 
     async getUser() {
