@@ -57,6 +57,7 @@ export default class Cart extends React.Component {
             }
             this._isMounted && this.setState({isLoading: false});
         }).catch(error => {
+            console.log(error);
             toast.error(error.toString());
             this._isMounted && this.setState({isLoading: false});
         })

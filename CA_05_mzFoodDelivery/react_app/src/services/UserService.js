@@ -31,8 +31,7 @@ export default class UserService {
             else
                 return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
         }catch (e) {
-            return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
-            // return e.toString();
+            return Translator.toFa(e.response.data.message) ||  "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
         }
     }
 
@@ -44,7 +43,7 @@ export default class UserService {
             else
                 return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
         }catch (e) {
-            return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
+            return Translator.toFa(e.response.data.message) ||  "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
             // return e.toString();
         }
     }
@@ -52,14 +51,15 @@ export default class UserService {
     static async finalizeOrder() {
         try {
             let response = await axios.post(ORDERS_URL);
+            console.log(response);
             if (response.data !== "" || response.data === undefined)
                 return Translator.toFa(response.data);
             else
                 return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
         }catch (e) {
-            return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
-            // return e.toString();
+            return Translator.toFa(e.response.data.message) ||  "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
         }
+
     }
 
 }

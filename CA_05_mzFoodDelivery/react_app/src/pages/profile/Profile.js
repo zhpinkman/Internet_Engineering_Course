@@ -18,7 +18,7 @@ export default class Profile extends React.Component {
         this.state = {
             user: null,
             amount: 0,
-            orders: [],
+            orders: {},
             isLoading: false
         };
 
