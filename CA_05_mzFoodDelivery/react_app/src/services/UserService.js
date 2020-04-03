@@ -31,8 +31,8 @@ export default class UserService {
             else
                 return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
         }catch (e) {
-            return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
-            // return e.toString();
+            // return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
+            return Translator.toFa(e.response.data.message);
         }
     }
 
@@ -44,8 +44,8 @@ export default class UserService {
             else
                 return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
         }catch (e) {
-            return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
-            // return e.toString();
+            // return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
+            return Translator.toFa(e.response.data.message);
         }
     }
 
@@ -57,8 +57,8 @@ export default class UserService {
             else
                 return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
         }catch (e) {
-            return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
-            // return e.toString();
+            // return "مشکلی پیش آمده! لطفا دوباره تلاش کنید";
+            return Translator.toFa(e.response.data.message);
         }
     }
 
