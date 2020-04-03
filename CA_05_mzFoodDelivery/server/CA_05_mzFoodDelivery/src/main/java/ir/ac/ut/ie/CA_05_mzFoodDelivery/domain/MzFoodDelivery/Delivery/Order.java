@@ -39,8 +39,8 @@ public class Order {
         BackgroundJobManager.waitForArriving((int) time, this);
     }
 
-    public Duration getRemainingArrivingTime() {
-        return Duration.between(LocalTime.now(), startingDeliveryTime);
+    public long getRemainingArrivingTime() {
+        return Duration.between(LocalTime.now(), startingDeliveryTime).getSeconds();
     }
 
     public LocalTime getStartingDeliveryTime() {
