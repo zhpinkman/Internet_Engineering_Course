@@ -6,6 +6,7 @@ import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
 import ir.ac.ut.ie.CA_05_mzFoodDelivery.utils.schedulers.BackgroundJobManager;
 
+import javax.validation.constraints.Null;
 import java.time.Duration;
 import java.time.LocalTime;
 
@@ -40,7 +41,10 @@ public class Order {
     }
 
     public long getRemainingArrivingTime() {
-        return Duration.between(LocalTime.now(), startingDeliveryTime).getSeconds();
+        if (this.status != Status.SEARCHING) {
+            return Duration.between(LocalTime.now(), startingDeliveryTime).getSeconds();
+        }
+        return 0;
     }
 
     public LocalTime getStartingDeliveryTime() {
