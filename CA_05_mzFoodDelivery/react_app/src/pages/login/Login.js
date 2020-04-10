@@ -1,6 +1,7 @@
 
 import "../../Assets/styles/login-styles.css";
 import * as React from "react";
+import {Link} from "react-router-dom";
 
 export default class Login extends React.Component {
 
@@ -58,8 +59,10 @@ export default class Login extends React.Component {
                                                     <i className="flaticon-arrow"></i>
                                                 </div>
                                                 <span>
-                                            ثبت‌نام
-                                        </span>
+                                                    <Link to="/signup">
+                                                        ثبت‌نام
+                                                    </Link>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

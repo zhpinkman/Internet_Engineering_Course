@@ -1,7 +1,7 @@
-
 import "../../Assets/styles/signup-styles.css";
 
 import * as React from "react";
+import {Link} from "react-router-dom";
 
 export default class Signup extends React.Component {
 
@@ -19,7 +19,7 @@ export default class Signup extends React.Component {
             <div className="main-box w-100 h-100">
                 <div className="d-flex flex-row-reverse no-gutters h-100">
                     <div className="col-lg-9 col-md-8 h-100">
-                        <img className="background-img" src={require("../../Assets/images/food.jpg")} alt="" />
+                        <img className="background-img" src={require("../../Assets/images/food.jpg")} alt=""/>
                     </div>
                     <div className="col-lg-3 col-md-4 overflow-auto">
                         <div className="form-container">
@@ -37,7 +37,7 @@ export default class Signup extends React.Component {
                                                     نام کامل
                                                 </label>
                                             </div>
-                                            <input type="text" name="fullname" id="fullname" placeholder="نام" />
+                                            <input type="text" name="fullname" id="fullname" placeholder="نام"/>
                                         </div>
                                         <div className="form-item">
                                             <div className="d-flex">
@@ -45,7 +45,7 @@ export default class Signup extends React.Component {
                                                     ایمیل
                                                 </label>
                                             </div>
-                                            <input type="text" name="mail" id="mail" placeholder="ایمیل" />
+                                            <input type="text" name="mail" id="mail" placeholder="ایمیل"/>
                                         </div>
                                         <div className="form-item">
                                             <div className="d-flex">
@@ -54,7 +54,7 @@ export default class Signup extends React.Component {
                                                 </label>
                                             </div>
                                             <input type="password" name="password" id="password"
-                                                   placeholder="***********" />
+                                                   placeholder="***********"/>
                                         </div>
                                         <div className="form-item">
                                             <div className="d-flex">
@@ -63,11 +63,11 @@ export default class Signup extends React.Component {
                                                 </label>
                                             </div>
                                             <input type="password" name="password" id="repeatPassword"
-                                                   placeholder="***********" />
+                                                   placeholder="***********"/>
                                         </div>
                                         <div className="form-submit row">
                                             <div className="col-auto">
-                                                <input type="submit" value="ثبت‌نام" />
+                                                <input type="submit" value="ثبت‌نام"/>
                                             </div>
                                             <div
                                                 className="col-auto d-flex justify-content-center align-items-center clickable">
@@ -75,8 +75,10 @@ export default class Signup extends React.Component {
                                                     <i className="flaticon-arrow"></i>
                                                 </div>
                                                 <span>
-                                            ورود
-                                        </span>
+                                                    <Link to="/login">
+                                                         ورود
+                                                    </Link>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
