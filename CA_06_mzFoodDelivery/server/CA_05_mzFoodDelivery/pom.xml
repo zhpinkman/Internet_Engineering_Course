@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ir.ac.ut.ie</groupId>
-	<artifactId>CA_05_mzFoodDelivery</artifactId>
+	<artifactId>CA_06_mzFoodDelivery</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>CA_05_mzFoodDelivery</name>
+	<name>CA_06_mzFoodDelivery</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -20,6 +20,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
