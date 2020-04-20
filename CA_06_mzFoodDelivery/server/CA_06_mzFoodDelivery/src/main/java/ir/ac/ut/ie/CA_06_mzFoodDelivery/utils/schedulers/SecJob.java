@@ -23,7 +23,11 @@ public class SecJob implements Runnable {
         System.out.println("running");
         if (MzFoodDelivery.getInstance().getDeliveries().size() != 0) {
             BackgroundJobManager.stopJob(scheduler);
-            MzFoodDelivery.getInstance().assignDeliveryToOrder();
+            try {
+                MzFoodDelivery.getInstance().assignDeliveryToOrder();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             System.out.println("finished");
         }
         try {

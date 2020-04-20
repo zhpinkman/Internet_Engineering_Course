@@ -87,7 +87,7 @@ public class UserManager {
         user.addOrder(order);
     }
 
-    public Order getLatestOrder() {
+    public Order getLatestOrder() throws Exception {
         return user.getLatestOrder();
     }
 }
