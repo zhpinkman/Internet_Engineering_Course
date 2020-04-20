@@ -125,4 +125,12 @@ public class User {
         }
         return orderList.get(orderList.size() - 1);
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 }

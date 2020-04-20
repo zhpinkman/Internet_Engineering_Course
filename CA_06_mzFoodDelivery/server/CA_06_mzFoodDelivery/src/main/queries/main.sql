@@ -14,6 +14,7 @@ create table USERS (
    locationY double not null default 0
 );
 
+
 describe USERS;
 
 drop table if exists RESTAURANTS;
@@ -82,3 +83,5 @@ create table ORDERS (
 
 
 describe ORDERS;
+
+
