@@ -29,6 +29,16 @@ public class Ca06MzFoodDeliveryApplication {
 //		}
 		SpringApplication.run(Ca06MzFoodDeliveryApplication.class, args);
 
+
+//		testing database
+
+		UserMapper userMapper = new UserMapper(true);
+		userMapper.insert(MzFoodDelivery.getInstance().getUser());
+		List<User> users = userMapper.getAll();
+		for (User user: users) {
+			System.out.println(user.getEmail());
+		}
+//		userMapper.delete("ekhamespanah@yahoo.com");
 	}
 
 }

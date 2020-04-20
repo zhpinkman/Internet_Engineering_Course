@@ -50,12 +50,9 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
 
     @Override
     protected String getInsertStatement(User user) {
-        return "insert into " + TABLE_NAME + " ( " + COLUMNS + " ) " + "values\n" +
-                " ( " + StringUtils.quoteWrapper(user.getEmail()) + ", " +
-                StringUtils.quoteWrapper(user.getFirstName()) +
-                ", " + StringUtils.quoteWrapper(user.getLastName()) +
-                ", " + StringUtils.quoteWrapper(user.getPhoneNumber()) + ", " +
-                user.getLocation().getX() + ", " + user.getLocation().getY() + " ) ;";
+        return String.format("insert into %s ( %s ) values (%s, %s, %s, %s, %f, %f);",TABLE_NAME, COLUMNS, StringUtils.quoteWrapper(user.getEmail()),
+                StringUtils.quoteWrapper(user.getFirstName()), StringUtils.quoteWrapper(user.getLastName()),
+                StringUtils.quoteWrapper(user.getPhoneNumber()), user.getLocation().getX(), user.getLocation().getY());
     }
 
     @Override
