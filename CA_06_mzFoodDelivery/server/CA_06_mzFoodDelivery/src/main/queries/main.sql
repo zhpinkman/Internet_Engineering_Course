@@ -49,5 +49,11 @@ describe FOODS;
 drop table if exists USERCART;
 
 create table USERCART (
-
+    userEmail varchar(255) primary key,
+    restaurantId tinytext not null,
+    foodName tinytext not null,
+    quantity int not null default 1
 );
+
+
+describe USERCART;
