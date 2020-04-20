@@ -10,7 +10,7 @@ public class User {
     private Location location = new Location(0, 0);
     private String firstName;
     private String lastName;
-    private String email;
+    private String email; // this field is used as id
     private double credit;
     private String phoneNumber;
 
