@@ -18,8 +18,6 @@ public class Food {
         this.popularity = popularity;
         this.price = price;
         this.image = image;
-        this.count = -1;
-        this.newPrice = -1;
     }
 
     public Food(String restaurantId, String name, String description, double popularity, double price, String image) {
@@ -29,8 +27,6 @@ public class Food {
         this.popularity = popularity;
         this.price = price;
         this.image = image;
-        this.count = -1;
-        this.newPrice = -1;
     }
 
 
@@ -78,5 +74,10 @@ public class Food {
     }
     public double getNewPrice() {
         return newPrice;
+    }
+
+    public void setDefaultsForNormalFood() {
+        this.count = -1;
+        this.newPrice = -1;
     }
 }

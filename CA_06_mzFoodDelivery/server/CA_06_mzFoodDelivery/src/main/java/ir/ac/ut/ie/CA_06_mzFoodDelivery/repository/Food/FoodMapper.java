@@ -4,8 +4,8 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFood;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.ConnectionPool;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Mapper;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.CustomPair;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.StringUtils;
-import jdk.internal.net.http.common.Pair;
 
 import javax.swing.plaf.IconUIResource;
 import java.sql.Connection;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class FoodMapper extends Mapper<Food, Pair<String, String>> implements IFoodMapper {
+public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper {
 
     private static final String COLUMNS = " name, restaurantId, description, popularity, price, image, count, newPrice ";
     private static final String TABLE_NAME = "FOODS";
@@ -43,9 +43,9 @@ public class FoodMapper extends Mapper<Food, Pair<String, String>> implements IF
     }
 
     @Override
-    protected String getFindStatement(Pair<String, String> id) {
+    protected String getFindStatement(CustomPair id) {
         return String.format("select * from %s where %s.%s = %s and %s.%s = %s", TABLE_NAME, TABLE_NAME, "restaurantId",
-                StringUtils.quoteWrapper(id.first), TABLE_NAME, "name", StringUtils.quoteWrapper(id.second));
+                StringUtils.quoteWrapper(id.getFirst()), TABLE_NAME, "name", StringUtils.quoteWrapper(id.getSecond()));
     }
 
     @Override
@@ -56,9 +56,9 @@ public class FoodMapper extends Mapper<Food, Pair<String, String>> implements IF
     }
 
     @Override
-    protected String getDeleteStatement(Pair<String, String> id) {
+    protected String getDeleteStatement(CustomPair id) {
         return String.format("delete from %s where %s.%s = %s and %s.%s = %s", TABLE_NAME, TABLE_NAME, "restaurantId",
-                StringUtils.quoteWrapper(id.first), TABLE_NAME, "name", StringUtils.quoteWrapper(id.second));
+                StringUtils.quoteWrapper(id.getFirst()), TABLE_NAME, "name", StringUtils.quoteWrapper(id.getSecond()));
     }
 
     @Override

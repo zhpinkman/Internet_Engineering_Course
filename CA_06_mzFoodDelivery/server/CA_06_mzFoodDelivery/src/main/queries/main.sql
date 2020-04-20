@@ -86,3 +86,7 @@ create table ORDERS (
 describe ORDERS;
 
 
+select * from RESTAURANTS;
+
+
+select * from FOODS;

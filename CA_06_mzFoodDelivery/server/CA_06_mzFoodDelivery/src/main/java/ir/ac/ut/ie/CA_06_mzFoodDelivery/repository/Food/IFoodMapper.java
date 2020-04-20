@@ -2,8 +2,9 @@ package ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.IMapper;
-import jdk.internal.net.http.common.Pair;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.CustomPair;
 
-public interface IFoodMapper extends IMapper<Food, Pair<String, String>> {
+
+public interface IFoodMapper extends IMapper<Food, CustomPair> {
 
 }
