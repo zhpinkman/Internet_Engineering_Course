@@ -119,9 +119,9 @@ public class User {
         orderList.add(order);
     }
 
-    public Order getLatestOrder() throws Exception {
+    public Order getLatestOrder() {
         if (orderList.size() == 0) {
-            throw new Exception("no order for this user");
+            return null;
         }
         return orderList.get(orderList.size() - 1);
     }

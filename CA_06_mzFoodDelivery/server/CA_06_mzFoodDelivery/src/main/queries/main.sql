@@ -17,6 +17,7 @@ create table USERS (
 
 describe USERS;
 
+
 drop table if exists RESTAURANTS;
 
 create table RESTAURANTS (

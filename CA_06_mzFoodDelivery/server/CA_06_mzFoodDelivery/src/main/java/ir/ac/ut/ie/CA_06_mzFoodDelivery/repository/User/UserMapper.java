@@ -43,9 +43,7 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
 
     @Override
     protected String getFindStatement(String id) {
-        return "select *\n" +
-                "from USERS\n" +
-                "where USERS.email = " + StringUtils.quoteWrapper(id) + ";";
+        return String.format("select * from %s where %s.%s = %s;", TABLE_NAME, TABLE_NAME, "email", StringUtils.quoteWrapper(id));
     }
 
     @Override
@@ -57,8 +55,7 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
 
     @Override
     protected String getDeleteStatement(String id) {
-        return "delete from USERS\n" +
-                "where USERS.email = " + StringUtils.quoteWrapper(id) + ";";
+        return String.format("delete from %s where %s.%s = %s;", TABLE_NAME, TABLE_NAME, "email", StringUtils.quoteWrapper(id));
     }
 
     @Override

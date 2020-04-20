@@ -1,6 +1,9 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant;
 
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.StringUtils;
+
 public class Food {
+    protected String restaurantId;
     private String name;
     private String description;
     private double popularity;
@@ -14,6 +17,16 @@ public class Food {
         this.price = price;
         this.image = image;
     }
+
+    public Food(String restaurantId, String name, String description, double popularity, double price, String image) {
+        this.restaurantId = restaurantId;
+        this.name = name;
+        this.description = description;
+        this.popularity = popularity;
+        this.price = price;
+        this.image = image;
+    }
+
 
 
     public void print() {

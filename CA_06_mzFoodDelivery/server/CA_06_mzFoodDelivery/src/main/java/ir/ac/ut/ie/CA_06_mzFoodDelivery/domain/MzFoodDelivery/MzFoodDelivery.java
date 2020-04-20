@@ -180,7 +180,7 @@ public class MzFoodDelivery {
         return deliveries;
     }
 
-    public void assignDeliveryToOrder() throws Exception {
+    public void assignDeliveryToOrder() {
         Order latestOrder = userManager.getLatestOrder();
         Delivery delivery = getQuickestDelivery(latestOrder);
         latestOrder.setDelivery(delivery);
