@@ -14,7 +14,7 @@ public class Order {
     public Order () {}
 
 
-    private static double max_id = 0;
+    private double max_id = 0;
 
     private double id;
     private Cart cart;

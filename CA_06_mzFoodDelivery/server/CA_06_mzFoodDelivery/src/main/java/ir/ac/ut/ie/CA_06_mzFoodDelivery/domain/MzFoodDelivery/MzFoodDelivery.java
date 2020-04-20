@@ -196,6 +196,7 @@ public class MzFoodDelivery {
                 quickestDelivery = delivery;
             }
         }
+        deliveries.remove(quickestDelivery); // todo free deliveries after delivering orders
         return quickestDelivery;
     }
 

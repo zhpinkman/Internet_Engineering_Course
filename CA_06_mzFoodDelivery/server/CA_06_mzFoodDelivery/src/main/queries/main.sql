@@ -12,7 +12,6 @@ create table USERS (
    phoneNumber tinytext not null,
    locationX double not null default 0,
    locationY double not null default 0
-#    cartId tinytext
 );
 
 describe USERS;
@@ -49,11 +48,37 @@ describe FOODS;
 drop table if exists USERCART;
 
 create table USERCART (
-    userEmail varchar(255) primary key,
-    restaurantId tinytext not null,
+    userEmail varchar(255) primary key references USERS(email),
+    restaurantId tinytext not null references RESTAURANTS(id),
     foodName tinytext not null,
     quantity int not null default 1
 );
 
 
 describe USERCART;
+
+drop table if exists DELIVERIES;
+
+create table DELIVERIES (
+    id varchar(255) primary key,
+    velocity double not null,
+    locationX double not null,
+    locationY double not null
+);
+
+describe DELIVERIES;
+
+
+drop table if exists ORDERS;
+
+create table ORDERS (
+    orderId int not null,
+    status tinytext not null,
+    deliveryId varchar(255) references DELIVERIES(id),
+    startingDeliveryTime DATE,
+    userEmail varchar(255) not null references USERS(email),
+    primary key (userEmail, orderId)
+);
+
+
+describe ORDERS;
