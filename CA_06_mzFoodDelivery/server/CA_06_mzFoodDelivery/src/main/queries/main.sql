@@ -40,8 +40,8 @@ create table FOODS (
   popularity double not null,
   price double not null,
   image text not null,
-  count int not null default -1,
-  newPrice double,
+  count int default -1,
+  newPrice double default -1,
   primary key(name, restaurantId)
 );
 

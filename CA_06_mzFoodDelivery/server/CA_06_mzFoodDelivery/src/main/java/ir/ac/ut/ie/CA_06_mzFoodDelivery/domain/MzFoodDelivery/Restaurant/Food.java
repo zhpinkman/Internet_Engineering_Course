@@ -9,6 +9,8 @@ public class Food {
     private double popularity;
     private double price;
     private String image;
+    protected double newPrice;
+    protected int count;
 
     public Food(String name, String description, double popularity, double price, String image) {
         this.name = name;
@@ -16,6 +18,8 @@ public class Food {
         this.popularity = popularity;
         this.price = price;
         this.image = image;
+        this.count = -1;
+        this.newPrice = -1;
     }
 
     public Food(String restaurantId, String name, String description, double popularity, double price, String image) {
@@ -25,9 +29,14 @@ public class Food {
         this.popularity = popularity;
         this.price = price;
         this.image = image;
+        this.count = -1;
+        this.newPrice = -1;
     }
 
 
+    public void setRestaurantId(String id) {
+        this.restaurantId = id;
+    }
 
     public void print() {
         System.out.println(
@@ -58,5 +67,16 @@ public class Food {
 
     public boolean hasEnoughAmount(int quantity) {
         return true;
+    }
+
+    public String getRestaurantId() {
+        return restaurantId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+    public double getNewPrice() {
+        return newPrice;
     }
 }

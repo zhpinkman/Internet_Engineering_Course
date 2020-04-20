@@ -5,8 +5,6 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import java.beans.Transient;
 
 public class PartyFood extends Food {
-    private int count;
-    private double newPrice;
 
     public PartyFood(String name, String description, double popularity, double price, String image, double newPrice, int count, String restaurantId) {
         super(restaurantId, name, description, popularity, price, image);
@@ -54,7 +52,6 @@ public class PartyFood extends Food {
         return count;
     }
 
-    public String getRestaurantId() { return restaurantId; }
 
     public void increaseFoodAmount() {
         this.count += 1;
