@@ -9,6 +9,8 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 
+import java.util.List;
+
 public class UserManager {
     private User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0));
 
@@ -71,5 +73,21 @@ public class UserManager {
 
     public void deleteFromCart(Restaurant restaurant, Food food) throws Exception {
         user.deleteFromCart(restaurant, food);
+    }
+
+    public Order getOrderById(double id) throws Exception {
+        return user.getOrderById(id);
+    }
+
+    public List<Order> getOrders() {
+        return user.getOrders();
+    }
+
+    public void addOrder(Order order) {
+        user.addOrder(order);
+    }
+
+    public Order getLatestOrder() {
+        return user.getLatestOrder();
     }
 }

@@ -45,3 +45,9 @@ create table FOODS (
 );
 
 describe FOODS;
+
+drop table if exists USERCART;
+
+create table USERCART (
+
+);

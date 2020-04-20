@@ -25,7 +25,6 @@ public class MzFoodDelivery {
     private UserManager userManager = new UserManager();
     private FoodPartyManager foodPartyManager = new FoodPartyManager();
     private List<Delivery> deliveries = new ArrayList<Delivery>();
-    private List<Order> orderList = new ArrayList<Order>();
     private int foodPartyPeriod;
     private long foodPartyStartTime;
 
@@ -112,16 +111,11 @@ public class MzFoodDelivery {
     }
 
     public Order getOrderById(double id) throws Exception {
-        for (Order order : orderList) {
-            if (order.getId() == id) {
-                return order;
-            }
-        }
-        throw new Exception("orderId not found");
+        return userManager.getOrderById(id);
     }
 
     public List<Order> getOrders() {
-        return orderList;
+        return userManager.getOrders();
     }
 
     public Cart getCart() {
@@ -135,7 +129,7 @@ public class MzFoodDelivery {
     public void finalizeOrder() throws Exception {
         Order order = userManager.finalizeOrder();
         restaurantManager.decreaseFoodAmounts(order);
-        orderList.add(order);
+        userManager.addOrder(order);
         BackgroundJobManager.startJob();
     }
 
@@ -187,7 +181,7 @@ public class MzFoodDelivery {
     }
 
     public void assignDeliveryToOrder() {
-        Order latestOrder = orderList.get(orderList.size() - 1);
+        Order latestOrder = userManager.getLatestOrder();
         Delivery delivery = getQuickestDelivery(latestOrder);
         latestOrder.setDelivery(delivery);
     }

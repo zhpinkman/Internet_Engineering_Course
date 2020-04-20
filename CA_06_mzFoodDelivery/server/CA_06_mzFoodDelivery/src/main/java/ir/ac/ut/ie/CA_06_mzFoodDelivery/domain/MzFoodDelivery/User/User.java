@@ -5,6 +5,9 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private Cart userCart = new Cart();
     private Location location = new Location(0, 0);
@@ -13,6 +16,7 @@ public class User {
     private String email; // this field is used as id
     private double credit;
     private String phoneNumber;
+    private List<Order> orderList = new ArrayList<Order>();
 
     public User(String firstName, String lastName, String email, String phoneNumber, Location location){
         this.firstName = firstName;
@@ -96,5 +100,29 @@ public class User {
 
     public void deleteFromCart(Restaurant restaurant, Food food) throws Exception {
         userCart.delete(restaurant, food);
+    }
+
+    public Order getOrderById(double id) throws Exception {
+        for (Order order : orderList) {
+            if (order.getId() == id) {
+                return order;
+            }
+        }
+        throw new Exception("orderId not found");
+    }
+
+    public List<Order> getOrders() {
+        return orderList;
+    }
+
+    public void addOrder(Order order) {
+        orderList.add(order);
+    }
+
+    public Order getLatestOrder() throws Exception {
+        if (orderList.size() == 0) {
+            throw new Exception("no order for this user");
+        }
+        return orderList.get(orderList.size() - 1);
     }
 }
