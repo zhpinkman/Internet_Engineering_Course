@@ -35,7 +35,11 @@ public class ProfileController {
 
     @GetMapping("")
     public User getUser() {
-        return MzFoodDelivery.getInstance().getUser();
+        try {
+            return MzFoodDelivery.getInstance().getUser();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 

@@ -70,4 +70,8 @@ public class MzRepository {
     public void insertUser(User user) throws SQLException {
         new UserMapper().insert(user);
     }
+
+    public User getUser(String email) throws SQLException {
+        return new UserMapper().find(email);
+    }
 }

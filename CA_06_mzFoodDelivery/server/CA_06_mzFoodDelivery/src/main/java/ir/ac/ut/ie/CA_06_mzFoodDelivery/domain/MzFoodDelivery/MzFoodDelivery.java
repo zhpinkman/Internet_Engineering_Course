@@ -29,6 +29,8 @@ public class MzFoodDelivery {
     private int foodPartyPeriod;
     private long foodPartyStartTime;
 
+    private String userEmail = "ekhamespanah@yahoo.com";
+
 
     private MzFoodDelivery() {
     }
@@ -106,7 +108,7 @@ public class MzFoodDelivery {
     public void deleteFromCart(String restaurantId, String foodName) throws Exception {
         Restaurant restaurant = getRestaurantById(restaurantId);
         Food food = restaurant.getFood(foodName);
-        if(food instanceof PartyFood)
+        if (food instanceof PartyFood)
             ((PartyFood) food).increaseFoodAmount();
         userManager.deleteFromCart(restaurant, food);
     }
@@ -144,19 +146,33 @@ public class MzFoodDelivery {
 
     //    MIXED
     public List<Restaurant> getRecommendedRestaurants(int recommendCount) {
-        return restaurantManager.getRecommendedRestaurants(userManager.getLocation(), recommendCount);
+        try {
+            return restaurantManager.getRecommendedRestaurants(userManager.getLocation(userEmail), recommendCount);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public List<Restaurant> getNearRestaurants() {
-        return restaurantManager.getNearRestaurants(userManager.getLocation());
+        try {
+            return restaurantManager.getNearRestaurants(userManager.getLocation(userEmail));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public Restaurant getNearRestaurantById(String id) throws Exception {
-        return restaurantManager.getNearRestaurantById(id, userManager.getLocation());
+        return restaurantManager.getNearRestaurantById(id, userManager.getLocation(userEmail));
     }
 
-    public User getUser() {
-        return userManager.getUser();
+    public User getUser(String userEmail) throws SQLException {
+        return userManager.getUser(userEmail);
+    }
+
+    public User getUser() throws SQLException {
+        return userManager.getUser(userEmail);
     }
 
     public void addToCartByRestaurantId(String restaurantId, String foodName) throws Exception {
@@ -183,11 +199,15 @@ public class MzFoodDelivery {
 
     public void assignDeliveryToOrder() {
         Order latestOrder = userManager.getLatestOrder();
-        Delivery delivery = getQuickestDelivery(latestOrder);
-        latestOrder.setDelivery(delivery);
+        try {
+            Delivery delivery = getQuickestDelivery(latestOrder);
+            latestOrder.setDelivery(delivery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public Delivery getQuickestDelivery(Order order) {
+    private Delivery getQuickestDelivery(Order order) throws SQLException {
         double minTime = Double.POSITIVE_INFINITY;
         Delivery quickestDelivery = null;
         for (Delivery delivery : deliveries) {
@@ -201,9 +221,9 @@ public class MzFoodDelivery {
         return quickestDelivery;
     }
 
-    public double calcDeliveryDistanceToGo(Restaurant restaurant, Delivery delivery) {
+    public double calcDeliveryDistanceToGo(Restaurant restaurant, Delivery delivery) throws SQLException {
         double distanceToGetToRestaurant = delivery.getLocation().getDistanceFromLocation(restaurant.getLocation());
-        double distanceToGetToCustomer = delivery.getLocation().getDistanceFromLocation(getUser().getLocation());
+        double distanceToGetToCustomer = delivery.getLocation().getDistanceFromLocation(getUser(userEmail).getLocation());
         return distanceToGetToCustomer + distanceToGetToRestaurant;
     }
 
@@ -222,7 +242,7 @@ public class MzFoodDelivery {
     public List<PartyFood> getPartyFoods() {
         try {
             return foodPartyManager.getPartyFoods();
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ArrayList<PartyFood>();
         }
     }

@@ -28,8 +28,8 @@ public class UserManager {
 //        user.addToCart(cartItem);
     }
 
-    public Location getLocation() {
-        return user.getLocation();
+    public Location getLocation(String email) throws SQLException{
+        return MzRepository.getInstance().getUser(email).getLocation();
     }
 
     public Cart getCart() {
@@ -72,8 +72,9 @@ public class UserManager {
         return user.getUserCartSize();
     }
 
-    public User getUser() {
-        return user;
+    public User getUser(String email) throws SQLException{
+        return MzRepository.getInstance().getUser(email);
+//        return user;
     }
 
     public void chargeUserCredit(double amount) throws Exception {

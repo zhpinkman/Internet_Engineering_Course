@@ -6,6 +6,7 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.schedulers.BackgroundJobManager;
 
+import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalTime;
 
@@ -33,10 +34,15 @@ public class Order {
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
         setDeliveringStatus();
-        double distance = MzFoodDelivery.getInstance().calcDeliveryDistanceToGo(cart.getRestaurant(), delivery);
-        double time = distance / delivery.getVelocity();
-        startingDeliveryTime = LocalTime.now().plusSeconds((long) time);
-        BackgroundJobManager.waitForArriving((int) time, this);
+        try {
+            double distance = MzFoodDelivery.getInstance().calcDeliveryDistanceToGo(cart.getRestaurant(), delivery);
+            double time = distance / delivery.getVelocity();
+            startingDeliveryTime = LocalTime.now().plusSeconds((long) time);
+            BackgroundJobManager.waitForArriving((int) time, this);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
     }
 
     public long getRemainingArrivingTime() {
