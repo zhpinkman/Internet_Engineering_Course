@@ -8,15 +8,24 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserManager {
+
     private User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0));
 
+    public UserManager() {
+        User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0));
+        try {
+            MzRepository.getInstance().insertUser(user);
+        } catch (SQLException ignored) {}
+    }
 
     public void addToCart(CartItem cartItem) throws Exception {
-        user.addToCart(cartItem);
+//        user.addToCart(cartItem);
     }
 
     public Location getLocation() {
@@ -52,7 +61,7 @@ public class UserManager {
     }
 
     public boolean foodRepoEmpty(Cart cart) {
-        for (CartItem cartItem: cart.getCartItems()) {
+        for (CartItem cartItem : cart.getCartItems()) {
             if (!cartItem.getFood().hasEnoughAmount(cartItem.getQuantity()))
                 return true;
         }

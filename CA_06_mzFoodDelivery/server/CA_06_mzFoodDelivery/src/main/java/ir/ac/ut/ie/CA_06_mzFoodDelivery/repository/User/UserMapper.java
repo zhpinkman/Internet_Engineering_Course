@@ -5,7 +5,6 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Locatio
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.ConnectionPool;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Mapper;
-import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.User.IUserMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.StringUtils;
 
 import java.sql.*;
@@ -40,10 +39,7 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
     }
 
     public UserMapper() throws SQLException {
-
     }
-
-
 
     @Override
     protected String getFindStatement(String id) {
@@ -52,7 +48,7 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
 
     @Override
     protected String getInsertStatement(User user) {
-        return String.format("INSERT INTO %s ( %s ) values (%s, %s, %s, %s, %f, %f);",TABLE_NAME, COLUMNS, StringUtils.quoteWrapper(user.getEmail()),
+        return String.format("INSERT INTO %s ( %s ) values (%s, %s, %s, %s, %f, %f);", TABLE_NAME, COLUMNS, StringUtils.quoteWrapper(user.getEmail()),
                 StringUtils.quoteWrapper(user.getFirstName()), StringUtils.quoteWrapper(user.getLastName()),
                 StringUtils.quoteWrapper(user.getPhoneNumber()), user.getLocation().getX(), user.getLocation().getY());
     }

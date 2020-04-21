@@ -5,6 +5,7 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food.FoodMapper;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Restaurant.RestaurantMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.User.UserMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.services.RestaurantsService;
@@ -21,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 @SpringBootApplication
 public class Ca06MzFoodDeliveryApplication {
 	public static void main(String[] args) throws SQLException {
+		MzRepository.getInstance().createAllTables();
 		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 		int foodPartyPeriod = 120; //Seconds
 		try {
@@ -50,14 +52,16 @@ public class Ca06MzFoodDeliveryApplication {
 //		} catch (SQLException ex) {
 //			System.out.println("empty");
 //		}
-		RestaurantMapper restaurantMapper = new RestaurantMapper();
-		List<Restaurant> restaurants = restaurantMapper.getAll();
-		String restaurantId = restaurants.get(0).getId();
-		FoodMapper foodMapper = new FoodMapper();
-		List<Food> restaurantMenu = foodMapper.getRestaurantMenu(restaurantId);
-		for (Food food: restaurantMenu) {
-			food.print();
-		}
+
+
+//		RestaurantMapper restaurantMapper = new RestaurantMapper();
+//		List<Restaurant> restaurants = restaurantMapper.getAll();
+//		String restaurantId = restaurants.get(0).getId();
+//		FoodMapper foodMapper = new FoodMapper();
+//		List<Food> restaurantMenu = foodMapper.getRestaurantMenu(restaurantId);
+//		for (Food food: restaurantMenu) {
+//			food.print();
+//		}
 	}
 
 }
