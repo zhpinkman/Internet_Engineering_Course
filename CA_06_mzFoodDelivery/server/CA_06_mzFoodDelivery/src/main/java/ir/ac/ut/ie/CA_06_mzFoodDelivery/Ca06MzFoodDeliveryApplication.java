@@ -1,8 +1,10 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food.FoodMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Restaurant.RestaurantMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.User.UserMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.services.RestaurantsService;
@@ -48,7 +50,14 @@ public class Ca06MzFoodDeliveryApplication {
 //		} catch (SQLException ex) {
 //			System.out.println("empty");
 //		}
-
+		RestaurantMapper restaurantMapper = new RestaurantMapper(false);
+		List<Restaurant> restaurants = restaurantMapper.getAll();
+		String restaurantId = restaurants.get(0).getId();
+		FoodMapper foodMapper = new FoodMapper(false);
+		List<Food> restaurantMenu = foodMapper.getRestaurantMenu(restaurantId);
+		for (Food food: restaurantMenu) {
+			food.print();
+		}
 	}
 
 }

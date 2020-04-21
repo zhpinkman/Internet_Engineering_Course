@@ -75,12 +75,31 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
     @Override
     public void deletePartyFoods() throws SQLException {
         String statement = String.format("delete from %s where %s.%s != -1", TABLE_NAME, TABLE_NAME, "newPrice");
-        System.out.println(statement);
         try (Connection con = ConnectionPool.getConnection();
              PreparedStatement st = con.prepareStatement(statement);
         ) {
             try {
                 st.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("error in Mapper.findAll query.");
+                throw ex;
+            }
+        }
+    }
+
+    @Override
+    public List<Food> getRestaurantMenu(String restaurantId) throws SQLException {
+        List<Food> result = new ArrayList<Food>();
+        String statement = String.format("select * from %s where %s.%s = %s;", TABLE_NAME, TABLE_NAME, "restaurantId", StringUtils.quoteWrapper(restaurantId));
+        try (Connection con = ConnectionPool.getConnection();
+             PreparedStatement st = con.prepareStatement(statement);
+        ) {
+            ResultSet resultSet;
+            try {
+                resultSet = st.executeQuery();
+                while (resultSet.next())
+                    result.add(convertResultSetToObject(resultSet));
+                return result;
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.findAll query.");
                 throw ex;
