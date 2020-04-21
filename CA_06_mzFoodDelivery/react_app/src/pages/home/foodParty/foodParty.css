@@ -1,0 +1,143 @@
+.remaining-time-box {
+    width: max-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    min-width: 2px;
+    text-align: center;
+    margin: 15px auto;
+    height: 39px;
+    padding: 6px 10px;
+    border: solid 2px rgba(0, 0, 0, 0.4);
+    border-radius: 11px;
+}
+
+/* FOOD PARTY CAROUSEL */
+.carousel {
+    background: rgba(0, 0, 0, 0);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 20px 0px;
+    min-height: 325px;
+}
+
+.carousel-cell {
+    width: 200px;
+    height: 200px;
+    margin-right: 10px;
+    background: #8C8;
+    border-radius: 5px;
+    counter-increment: carousel-cell;
+}
+
+/* cell number */
+.carousel-cell:before {
+    display: block;
+    text-align: center;
+    content: counter(carousel-cell);
+    line-height: 200px;
+    font-size: 80px;
+    color: white;
+}
+
+
+.food-party-card {
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0.5rem !important;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    margin: 10px 10px 10px 10px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    min-height: 266px;
+    width: 260px;
+    transition: all 0.3s ease;
+}
+
+.food-party-card:hover {
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 4px 11px 0 rgba(0, 0, 0, 0.19);
+    /*transform: scale(1.01);*/
+}
+
+.food-party-card .title-wrapper {
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.title-text {
+    font-weight: normal;
+    font-size: 18px;
+    /*margin-left: 20px;*/
+}
+
+.rating-star-text {
+    font-weight: lighter;
+    margin-left: 2px;
+}
+
+.rating-star-img {
+    font-size: 110%;
+    color: rgba(255, 165, 40);
+}
+
+.food-party-card .price-wrapper {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.food-party-card .img-wrapper {
+    /*border: 1px solid red;*/
+    height: 105px;
+    overflow: hidden;
+    width: 150px;
+    /*padding-top: 50%;*/
+    box-sizing: border-box;
+    position: relative;
+    padding-right: 15px;
+    padding-left: 0px;
+}
+
+.food-party-card img {
+    border-radius: 10%;
+}
+
+.food-party-card-subtitle {
+    color: rgba(0, 0, 0, 0.8);
+    margin-top: 8px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    text-decoration-color: red;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.stock-tag {
+    border: solid 1px rgba(0, 0, 0, 0.2) !important;
+    font-size: 14px !important;
+    padding: 0.2rem !important;
+    border-radius: 0.5rem !important;
+    background: #F7FFF7;
+}
+
+.price-text {
+    font-size: 18px;
+}
+
+.dash {
+    border: 0 none;
+    border-top: 2px dashed rgba(0, 0, 0, 0.3);
+    background: none;
+    height: 0;
+    margin: 2px;
+}
+
+.food-party-loading-box {
+    /*margin-top: 133px;*/
+    /*margin-bottom: 133px;*/
+}
+
+.modal-content {
+    border-radius: 1.3rem !important;
+}

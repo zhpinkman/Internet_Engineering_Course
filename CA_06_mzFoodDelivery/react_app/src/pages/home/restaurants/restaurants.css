@@ -1,0 +1,99 @@
+.restaurants-container {
+    justify-content: center;
+    padding-right: 5vw;
+    padding-left: 5vw;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0.5rem !important;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    margin: 10px 10px 40px 10px;
+    /*justify-content: center;*/
+    align-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+@media all and (min-width: 1600px) {
+    .restaurants-container {
+        padding-right: 15vw;
+        padding-left: 15vw;
+    }
+}
+
+.card:hover {
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 4px 11px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.1);
+    z-index: 100;
+}
+
+/* FOOD LIST */
+
+.restaurant-item-container {
+    /*width: 100%;*/
+    min-height: 310px;
+    min-width: 270px;
+}
+
+.restaurant-item-container .img-wrapper {
+    /*border: 1px solid red;*/
+    height: 0;
+    overflow: hidden;
+    width: 45%;
+    padding-top: 45%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.restaurant-item-container .img {
+    width: 100%;
+    vertical-align: top;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 10%;
+}
+
+.restaurant-item-container .title-wrapper {
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.restaurant-item-container .title-wrapper .title-text {
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.restaurant-item-container .title-wrapper .rating-star-text {
+    font-weight: lighter;
+    margin-left: 2px;
+}
+
+.restaurant-item-container .title-wrapper .rating-star-img {
+    font-size: 110%;
+    color: rgba(255, 165, 40);
+}
+
+.restaurant-item-container .price-wrapper {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.restaurant-item-container .card-button-wrapper {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    width: 50%;
+    justify-content: end;
+    align-items: center;
+    align-content: center;
+    /*position: absolute;*/
+    bottom: 10px;
+    flex: auto;
+}
