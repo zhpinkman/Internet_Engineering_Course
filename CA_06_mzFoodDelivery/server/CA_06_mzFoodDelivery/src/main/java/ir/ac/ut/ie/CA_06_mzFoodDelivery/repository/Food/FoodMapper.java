@@ -95,6 +95,25 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
         }
     }
 
+    public List<PartyFood> getPartyFoods() throws SQLException {
+        List<PartyFood> result = new ArrayList<PartyFood>();
+        String statement = String.format("SELECT * from %s where %s.%s != -1", TABLE_NAME, TABLE_NAME, "newPrice");
+        try (Connection con = ConnectionPool.getConnection();
+             PreparedStatement st = con.prepareStatement(statement);
+        ) {
+            ResultSet resultSet;
+            try {
+                resultSet = st.executeQuery();
+                while (resultSet.next())
+                    result.add((PartyFood) convertResultSetToObject(resultSet));
+                return result;
+            } catch (SQLException ex) {
+                System.out.println("error in Mapper.findAll query.");
+                throw ex;
+            }
+        }
+    }
+
     @Override
     public List<Food> getRestaurantMenu(String restaurantId) throws SQLException {
         List<Food> result = new ArrayList<Food>();

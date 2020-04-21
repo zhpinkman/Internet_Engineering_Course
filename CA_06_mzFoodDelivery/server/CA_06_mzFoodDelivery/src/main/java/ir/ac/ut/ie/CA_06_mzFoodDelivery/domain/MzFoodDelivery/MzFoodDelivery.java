@@ -14,6 +14,7 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.UserManager;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.schedulers.BackgroundJobManager;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -219,7 +220,11 @@ public class MzFoodDelivery {
     }
 
     public List<PartyFood> getPartyFoods() {
-        return foodPartyManager.getPartyFoods();
+        try {
+            return foodPartyManager.getPartyFoods();
+        }catch (Exception e){
+            return new ArrayList<PartyFood>();
+        }
     }
 
     public void setFoodPartyPeriod(int period) {

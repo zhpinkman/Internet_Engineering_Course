@@ -1,19 +1,19 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery.repository;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFood;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food.FoodMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Restaurant.RestaurantMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.CustomPair;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class MzRepository {
     private static MzRepository instance;
 
-    private MzRepository() {
-
-    }
+    private MzRepository() {}
 
     public static MzRepository getInstance() {
         if (instance == null)
@@ -42,5 +42,9 @@ public class MzRepository {
     public void deletePartyFoods() throws SQLException {
         FoodMapper foodMapper = new FoodMapper();
         foodMapper.deletePartyFoods();
+    }
+
+    public List<PartyFood> getPartyFoods() throws SQLException{
+        return new FoodMapper().getPartyFoods();
     }
 }

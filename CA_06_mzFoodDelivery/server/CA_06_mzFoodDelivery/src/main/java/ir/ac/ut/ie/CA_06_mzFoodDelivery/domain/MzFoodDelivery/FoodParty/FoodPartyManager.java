@@ -17,10 +17,10 @@ import java.util.List;
 
 public class FoodPartyManager {
 
-    private List<PartyFood> partyFoods = new ArrayList<>();
+//    private List<PartyFood> partyFoods = new ArrayList<>();
 
-    public void addFood(PartyFood partyFood) {
-        partyFoods.add(partyFood);
+    public void addFood(PartyFood partyFood) throws SQLException{
+        MzRepository.getInstance().insertFood(partyFood);
     }
 
     private void deleteOldParty() throws SQLException {
@@ -60,8 +60,8 @@ public class FoodPartyManager {
         }
     }
 
-    public List<PartyFood> getPartyFoods() {
-        return partyFoods;
+    public List<PartyFood> getPartyFoods() throws SQLException{
+        return MzRepository.getInstance().getPartyFoods();
     }
 }
 
