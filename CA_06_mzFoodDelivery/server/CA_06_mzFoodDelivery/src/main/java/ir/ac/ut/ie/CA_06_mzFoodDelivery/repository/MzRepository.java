@@ -1,6 +1,7 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery.repository;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFood;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
@@ -73,5 +74,9 @@ public class MzRepository {
 
     public User getUser(String email) throws SQLException {
         return new UserMapper().find(email);
+    }
+
+    public List<Restaurant> findNearRestaurants(Location location, double maxDistance) throws SQLException {
+        return new RestaurantMapper().findNearRestaurants(location, maxDistance);
     }
 }

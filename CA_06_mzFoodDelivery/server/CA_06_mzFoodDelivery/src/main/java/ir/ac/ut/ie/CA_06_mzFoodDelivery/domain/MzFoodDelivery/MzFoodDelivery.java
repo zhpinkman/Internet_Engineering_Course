@@ -145,14 +145,14 @@ public class MzFoodDelivery {
     }
 
     //    MIXED
-    public List<Restaurant> getRecommendedRestaurants(int recommendCount) {
-        try {
-            return restaurantManager.getRecommendedRestaurants(userManager.getLocation(userEmail), recommendCount);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    public List<Restaurant> getRecommendedRestaurants(int recommendCount) {
+//        try {
+//            return restaurantManager.getRecommendedRestaurants(userManager.getLocation(userEmail), recommendCount);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
     public List<Restaurant> getNearRestaurants() {
         try {

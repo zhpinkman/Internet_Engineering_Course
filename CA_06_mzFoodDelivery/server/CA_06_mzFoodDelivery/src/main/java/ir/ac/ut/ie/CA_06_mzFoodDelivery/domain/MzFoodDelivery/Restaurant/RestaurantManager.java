@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 public class RestaurantManager {
     private List<Restaurant> restaurants = new ArrayList<>();
+    private final double MAX_NEAR_DISTANCE = 170;
 
     private boolean doesRestaurantExist(Restaurant restaurant) {
         for (Restaurant restaurantItem : restaurants)
@@ -84,23 +85,24 @@ public class RestaurantManager {
         throw new Exception("Error: restaurant does not exists");
     }
 
-    public List<Restaurant> getRecommendedRestaurants(Location userLocation, int recommendCount) {
-//        for (Restaurant restaurant: restaurants) {
-//            System.out.println(restaurant.getName());
-//        }
-        restaurants.sort(new SortByAveragePopularityDistance(userLocation));
-        Collections.reverse(restaurants);
+//    public List<Restaurant> getRecommendedRestaurants(Location userLocation, int recommendCount) {
+////        for (Restaurant restaurant: restaurants) {
+////            System.out.println(restaurant.getName());
+////        }
+//        restaurants.sort(new SortByAveragePopularityDistance(userLocation));
+//        Collections.reverse(restaurants);
+//
+////        for (Restaurant restaurant: restaurants) {
+////            System.out.println(restaurant.getName());
+////        }
+//
+//        return restaurants.subList(0, Math.min(recommendCount, restaurants.size()));
+//    }
 
-//        for (Restaurant restaurant: restaurants) {
-//            System.out.println(restaurant.getName());
-//        }
-
-        return restaurants.subList(0, Math.min(recommendCount, restaurants.size()));
-    }
-
-    public synchronized List<Restaurant> getNearRestaurants(Location userLocation) {
-        restaurants.sort(new SortByDistance(userLocation));
-        return restaurants.stream().filter(it -> it.isNearUser(userLocation)).collect(Collectors.toList());
+    public synchronized List<Restaurant> getNearRestaurants(Location userLocation) throws SQLException{
+        return MzRepository.getInstance().findNearRestaurants(userLocation, MAX_NEAR_DISTANCE);
+//        restaurants.sort(new SortByDistance(userLocation));
+//        return restaurants.stream().filter(it -> it.isNearUser(userLocation)).collect(Collectors.toList());
     }
 
     public Restaurant getNearRestaurantById(String restaurantId, Location userLocation) throws Exception {

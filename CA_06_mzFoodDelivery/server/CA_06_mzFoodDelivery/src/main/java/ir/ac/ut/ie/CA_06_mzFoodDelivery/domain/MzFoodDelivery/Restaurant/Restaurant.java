@@ -84,16 +84,16 @@ public class Restaurant {
         menu.add(food);
     }
 
-    public double getFoodsPopularityAverage() {
-        double foodsPopulationSum = 0;
-        for (Food food: menu) {
-            foodsPopulationSum += food.getPopularity();
-        }
-        if(menu.size() != 0)
-            return foodsPopulationSum / menu.size();
-        else
-            return 0;
-    }
+//    public double getFoodsPopularityAverage() {
+//        double foodsPopulationSum = 0;
+//        for (Food food: menu) {
+//            foodsPopulationSum += food.getPopularity();
+//        }
+//        if(menu.size() != 0)
+//            return foodsPopulationSum / menu.size();
+//        else
+//            return 0;
+//    }
 
 
     public double getDistanceFromLocation(Location location) {

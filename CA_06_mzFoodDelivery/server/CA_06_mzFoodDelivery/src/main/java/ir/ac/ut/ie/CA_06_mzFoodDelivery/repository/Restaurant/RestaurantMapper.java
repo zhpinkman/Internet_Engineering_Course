@@ -2,12 +2,10 @@ package ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Restaurant;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
-import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.ConnectionPool;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Mapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.StringUtils;
 
-import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +14,6 @@ public class RestaurantMapper extends Mapper<Restaurant, String> implements IRes
 
     private static final String COLUMNS = " id, name, locationX, locationY, logo ";
     private static final String TABLE_NAME = "RESTAURANTS";
-
 
 
     public RestaurantMapper(Boolean doManage) throws SQLException {
@@ -48,7 +45,7 @@ public class RestaurantMapper extends Mapper<Restaurant, String> implements IRes
 
     @Override
     protected String getInsertStatement(Restaurant restaurant) {
-        return String.format("INSERT INTO %s ( %s ) values (%s, %s, %f, %f, %s);",TABLE_NAME, COLUMNS,
+        return String.format("INSERT INTO %s ( %s ) values (%s, %s, %f, %f, %s);", TABLE_NAME, COLUMNS,
                 StringUtils.quoteWrapper(restaurant.getId()), StringUtils.quoteWrapper(restaurant.getName()),
                 restaurant.getLocation().getX(), restaurant.getLocation().getY(), StringUtils.quoteWrapper(restaurant.getLogo()));
     }
@@ -93,4 +90,26 @@ public class RestaurantMapper extends Mapper<Restaurant, String> implements IRes
         }
     }
 
+    public List<Restaurant> findNearRestaurants(Location location, double maxDistance) throws SQLException {
+        List<Restaurant> result = new ArrayList<Restaurant>();
+        String statement = "SELECT * FROM " + TABLE_NAME +
+                " WHERE sqrt(power(? - locationX, 2) + power(? - locationY, 2)) < ?";
+
+        Connection con = ConnectionPool.getConnection();
+        PreparedStatement st = con.prepareStatement(statement);
+        st.setDouble(1, location.getX());
+        st.setDouble(2, location.getY());
+        st.setDouble(3, maxDistance);
+        ResultSet resultSet;
+        try {
+            resultSet = st.executeQuery();
+            while (resultSet.next())
+                result.add(convertResultSetToObject(resultSet));
+            return result;
+        } catch (SQLException ex) {
+            System.out.println("error in Mapper.findAll query.");
+            throw ex;
+        }
+    }
 }
+
