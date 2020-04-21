@@ -2,16 +2,16 @@ package ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFood;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.ConnectionPool;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Mapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.CustomPair;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.StringUtils;
 
 import javax.swing.plaf.IconUIResource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper {
@@ -69,6 +69,22 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
         } else {
             return new PartyFood(rs.getString("name"), rs.getString("description"), rs.getDouble("popularity"),
                     rs.getDouble("price"), rs.getString("image"), rs.getDouble("newPrice"), rs.getInt("count"), rs.getString("restaurantId"));
+        }
+    }
+
+    @Override
+    public void deletePartyFoods() throws SQLException {
+        String statement = String.format("delete from %s where %s.%s != -1", TABLE_NAME, TABLE_NAME, "newPrice");
+        System.out.println(statement);
+        try (Connection con = ConnectionPool.getConnection();
+             PreparedStatement st = con.prepareStatement(statement);
+        ) {
+            try {
+                st.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("error in Mapper.findAll query.");
+                throw ex;
+            }
         }
     }
 }

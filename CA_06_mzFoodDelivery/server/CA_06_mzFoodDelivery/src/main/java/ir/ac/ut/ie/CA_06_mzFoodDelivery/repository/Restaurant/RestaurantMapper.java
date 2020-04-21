@@ -17,6 +17,8 @@ public class RestaurantMapper extends Mapper<Restaurant, String> implements IRes
     private static final String COLUMNS = " id, name, locationX, locationY, logo ";
     private static final String TABLE_NAME = "RESTAURANTS";
 
+
+
     public RestaurantMapper(Boolean doManage) throws SQLException {
         if (doManage) {
             Connection con = ConnectionPool.getConnection();

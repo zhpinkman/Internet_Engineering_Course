@@ -1,7 +1,9 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Restaurant.RestaurantMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.User.UserMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.services.RestaurantsService;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.schedulers.ScheduledParty;
@@ -39,6 +41,14 @@ public class Ca06MzFoodDeliveryApplication {
 //			System.out.println(user.getEmail());
 //		}
 //		userMapper.delete("ekhamespanah@yahoo.com");
+
+//		RestaurantMapper restaurantMapper = new RestaurantMapper(false);
+//		try {
+//			Restaurant restaurant = restaurantMapper.find("zhivar");
+//		} catch (SQLException ex) {
+//			System.out.println("empty");
+//		}
+
 	}
 
 }
