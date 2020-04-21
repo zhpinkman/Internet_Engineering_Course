@@ -51,9 +51,16 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
 
     @Override
     protected String getInsertStatement(Food food) {
-        return String.format("INSERT INTO %s ( %s ) values (%s, %s, %s, %f, %f, %s, %d, %f);", TABLE_NAME, COLUMNS,
-                StringUtils.quoteWrapper(food.getName()), StringUtils.quoteWrapper(food.getRestaurantId()), StringUtils.quoteWrapper(food.getDescription()),
-                food.getPopularity(), food.getPrice(), StringUtils.quoteWrapper(food.getImage()), food.getCount(), food.getNewPrice());
+        if (food instanceof PartyFood) {
+            PartyFood partyFood = (PartyFood) food;
+            return String.format("INSERT INTO %s ( %s ) values (%s, %s, %s, %f, %f, %s, %d, %f);", TABLE_NAME, COLUMNS,
+                    StringUtils.quoteWrapper(food.getName()), StringUtils.quoteWrapper(food.getRestaurantId()), StringUtils.quoteWrapper(food.getDescription()),
+                    food.getPopularity(), food.getPrice(), StringUtils.quoteWrapper(food.getImage()), partyFood.getCount(), partyFood.getNewPrice());
+        } else {
+            return String.format("INSERT INTO %s ( %s ) values (%s, %s, %s, %f, %f, %s, %d, %f);", TABLE_NAME, COLUMNS,
+                    StringUtils.quoteWrapper(food.getName()), StringUtils.quoteWrapper(food.getRestaurantId()), StringUtils.quoteWrapper(food.getDescription()),
+                    food.getPopularity(), food.getPrice(), StringUtils.quoteWrapper(food.getImage()), -1, -1.0);
+        }
     }
 
     @Override

@@ -33,7 +33,6 @@ public class RestaurantsService {
         for (Restaurant restaurant : restaurants) {
             for (Food food : restaurant.getMenu()) {
                 food.setRestaurantId(restaurant.getId());
-                food.setDefaultsForNormalFood();
             }
         }
 

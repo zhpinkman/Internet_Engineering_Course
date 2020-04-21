@@ -9,8 +9,6 @@ public class Food {
     private double popularity;
     private double price;
     private String image;
-    protected double newPrice;
-    protected int count;
 
     public Food(String name, String description, double popularity, double price, String image) {
         this.name = name;
@@ -69,15 +67,4 @@ public class Food {
         return restaurantId;
     }
 
-    public int getCount() {
-        return count;
-    }
-    public double getNewPrice() {
-        return newPrice;
-    }
-
-    public void setDefaultsForNormalFood() {
-        this.count = -1;
-        this.newPrice = -1;
-    }
 }

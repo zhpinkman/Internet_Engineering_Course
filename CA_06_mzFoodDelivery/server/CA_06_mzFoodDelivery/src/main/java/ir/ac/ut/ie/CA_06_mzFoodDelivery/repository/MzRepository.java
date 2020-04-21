@@ -4,6 +4,7 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food.FoodMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Restaurant.RestaurantMapper;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.CustomPair;
 
 import java.sql.SQLException;
 
@@ -25,8 +26,21 @@ public class MzRepository {
         restaurantMapper.insert(restaurant);
     }
 
+    public Restaurant findRestaurantById(String restaurantId) throws SQLException{
+        return new RestaurantMapper().find(restaurantId);
+    }
+
     public void insertFood(Food food) throws SQLException{
         FoodMapper foodMapper = new FoodMapper();
         foodMapper.insert(food);
+    }
+
+    public void deleteFood(CustomPair id) throws SQLException{
+        new FoodMapper().delete(id);
+    }
+
+    public void deletePartyFoods() throws SQLException {
+        FoodMapper foodMapper = new FoodMapper();
+        foodMapper.deletePartyFoods();
     }
 }
