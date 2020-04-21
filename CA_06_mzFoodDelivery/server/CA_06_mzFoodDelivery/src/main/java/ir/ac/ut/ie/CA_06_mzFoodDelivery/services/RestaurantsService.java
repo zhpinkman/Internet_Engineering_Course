@@ -3,12 +3,9 @@ package ir.ac.ut.ie.CA_06_mzFoodDelivery.services;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
-import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food.FoodMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
-import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Restaurant.RestaurantMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.HTTPRequestHandler.HTTPRequestHandler;
 
 import java.util.List;
@@ -18,7 +15,8 @@ public class RestaurantsService {
     private static RestaurantsService instance;
 
 
-    private RestaurantsService() {}
+    private RestaurantsService() {
+    }
 
     public static RestaurantsService getInstance() {
         if (instance == null) {
@@ -32,18 +30,27 @@ public class RestaurantsService {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<Restaurant> restaurants = gson.fromJson(RestaurantsJsonString, new TypeToken<List<Restaurant>>() {
         }.getType());
-        for (Restaurant restaurant: restaurants) {
-            for (Food food: restaurant.getMenu()) {
+        for (Restaurant restaurant : restaurants) {
+            for (Food food : restaurant.getMenu()) {
                 food.setRestaurantId(restaurant.getId());
                 food.setDefaultsForNormalFood();
             }
         }
 
-        for (Restaurant restaurant: restaurants) {
-            MzRepository.getInstance().insertRestaurant(restaurant);
-            for (Food food: restaurant.getMenu()) {
-                MzRepository.getInstance().insertFood(food);
+        for (Restaurant restaurant : restaurants) {
+            try {
+                MzRepository.getInstance().insertRestaurant(restaurant);
+            } catch (Exception e) {
+
             }
+            for (Food food : restaurant.getMenu()) {
+                try {
+                    MzRepository.getInstance().insertFood(food);
+                } catch (Exception e) {
+
+                }
+            }
+
         }
         System.out.println("done");
 //

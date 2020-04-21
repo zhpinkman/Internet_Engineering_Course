@@ -51,7 +51,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
 
     @Override
     protected String getInsertStatement(Food food) {
-        return String.format("insert into %s ( %s ) values (%s, %s, %s, %f, %f, %s, %d, %f);", TABLE_NAME, COLUMNS,
+        return String.format("INSERT INTO %s ( %s ) values (%s, %s, %s, %f, %f, %s, %d, %f);", TABLE_NAME, COLUMNS,
                 StringUtils.quoteWrapper(food.getName()), StringUtils.quoteWrapper(food.getRestaurantId()), StringUtils.quoteWrapper(food.getDescription()),
                 food.getPopularity(), food.getPrice(), StringUtils.quoteWrapper(food.getImage()), food.getCount(), food.getNewPrice());
     }

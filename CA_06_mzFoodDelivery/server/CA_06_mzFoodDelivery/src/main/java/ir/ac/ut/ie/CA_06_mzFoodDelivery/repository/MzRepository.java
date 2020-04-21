@@ -20,22 +20,13 @@ public class MzRepository {
         return instance;
     }
 
-    public void insertRestaurant(Restaurant restaurant) {
-        try {
-            RestaurantMapper restaurantMapper = new RestaurantMapper();
-            restaurantMapper.insert(restaurant);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+    public void insertRestaurant(Restaurant restaurant) throws SQLException{
+        RestaurantMapper restaurantMapper = new RestaurantMapper();
+        restaurantMapper.insert(restaurant);
     }
 
-    public void insertFood(Food food) {
-        try {
-            FoodMapper foodMapper = new FoodMapper();
-            foodMapper.insert(food);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void insertFood(Food food) throws SQLException{
+        FoodMapper foodMapper = new FoodMapper();
+        foodMapper.insert(food);
     }
 }

@@ -48,7 +48,7 @@ public class RestaurantMapper extends Mapper<Restaurant, String> implements IRes
 
     @Override
     protected String getInsertStatement(Restaurant restaurant) {
-        return String.format("insert into %s ( %s ) values (%s, %s, %f, %f, %s);",TABLE_NAME, COLUMNS,
+        return String.format("INSERT INTO %s ( %s ) values (%s, %s, %f, %f, %s);",TABLE_NAME, COLUMNS,
                 StringUtils.quoteWrapper(restaurant.getId()), StringUtils.quoteWrapper(restaurant.getName()),
                 restaurant.getLocation().getX(), restaurant.getLocation().getY(), StringUtils.quoteWrapper(restaurant.getLogo()));
     }
