@@ -50,10 +50,10 @@ public class Ca06MzFoodDeliveryApplication {
 //		} catch (SQLException ex) {
 //			System.out.println("empty");
 //		}
-		RestaurantMapper restaurantMapper = new RestaurantMapper(false);
+		RestaurantMapper restaurantMapper = new RestaurantMapper();
 		List<Restaurant> restaurants = restaurantMapper.getAll();
 		String restaurantId = restaurants.get(0).getId();
-		FoodMapper foodMapper = new FoodMapper(false);
+		FoodMapper foodMapper = new FoodMapper();
 		List<Food> restaurantMenu = foodMapper.getRestaurantMenu(restaurantId);
 		for (Food food: restaurantMenu) {
 			food.print();

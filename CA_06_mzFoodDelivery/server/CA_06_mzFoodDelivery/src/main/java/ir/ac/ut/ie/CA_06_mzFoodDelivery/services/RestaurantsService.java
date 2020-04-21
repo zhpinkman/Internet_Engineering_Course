@@ -7,6 +7,7 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food.FoodMapper;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Restaurant.RestaurantMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.HTTPRequestHandler.HTTPRequestHandler;
 
@@ -37,12 +38,11 @@ public class RestaurantsService {
                 food.setDefaultsForNormalFood();
             }
         }
-        RestaurantMapper restaurantMapper = new RestaurantMapper(true);
-        FoodMapper foodMapper = new FoodMapper(true);
+
         for (Restaurant restaurant: restaurants) {
-            restaurantMapper.insert(restaurant);
+            MzRepository.getInstance().insertRestaurant(restaurant);
             for (Food food: restaurant.getMenu()) {
-                foodMapper.insert(food);
+                MzRepository.getInstance().insertFood(food);
             }
         }
         System.out.println("done");

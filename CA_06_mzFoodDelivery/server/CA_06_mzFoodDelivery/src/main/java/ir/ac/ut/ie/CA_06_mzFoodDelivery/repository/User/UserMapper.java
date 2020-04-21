@@ -39,6 +39,10 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
         }
     }
 
+    public UserMapper() throws SQLException {
+
+    }
+
 
 
     @Override

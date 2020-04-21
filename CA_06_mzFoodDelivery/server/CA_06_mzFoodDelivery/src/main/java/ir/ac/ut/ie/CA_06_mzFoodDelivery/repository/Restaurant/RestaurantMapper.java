@@ -38,6 +38,8 @@ public class RestaurantMapper extends Mapper<Restaurant, String> implements IRes
         }
     }
 
+    public RestaurantMapper() throws SQLException {
+    }
 
     @Override
     protected String getFindStatement(String id) {

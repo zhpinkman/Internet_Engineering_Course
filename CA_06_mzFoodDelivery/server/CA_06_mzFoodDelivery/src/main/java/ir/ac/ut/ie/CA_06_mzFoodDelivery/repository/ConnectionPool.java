@@ -12,16 +12,21 @@ public class ConnectionPool {
     static {
         ds.setDriverClassName("com.mysql.jdbc.Driver");
         // remote db
-        ds.setUrl("jdbc:mysql://localhost:3306/test1");
+        ds.setUrl("jdbc:mysql://localhost:3306/mzFoodDelivery");
         ds.setUsername("root");
-        ds.setPassword("");
+        ds.setPassword("123456");
         ds.setMinIdle(1);
         ds.setMaxIdle(5);
         ds.setMaxOpenPreparedStatements(100);
     }
 
     public static Connection getConnection() throws SQLException {
-        return ds.getConnection();
+        try {
+            return ds.getConnection();
+        }catch (Exception e){
+            ds.setPassword("");
+            return ds.getConnection();
+        }
     }
 
     private ConnectionPool() {
