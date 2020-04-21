@@ -18,7 +18,9 @@ public class FoodPartyController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public List<PartyFood> PartyFoods() {
-        return MzFoodDelivery.getInstance().getPartyFoods();
+        List<PartyFood> partyFoods = MzFoodDelivery.getInstance().getPartyFoods();
+        System.out.println(partyFoods.size());
+        return partyFoods;
     }
 
     @RequestMapping(

@@ -7,7 +7,9 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Exceptions.Restaur
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Exceptions.RestaurantNotFoundException;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,10 +26,15 @@ public class RestaurantManager {
     }
 
     public Restaurant findRestaurantById(String id){
-        for (Restaurant restaurantItem : restaurants)
-            if (restaurantItem.getId().equals(id))
-                return restaurantItem;
-        return null;
+        try {
+            return MzRepository.getInstance().findRestaurantById(id);
+        }catch (SQLException e){
+            return null;
+        }
+//        for (Restaurant restaurantItem : restaurants)
+//            if (restaurantItem.getId().equals(id))
+//                return restaurantItem;
+//        return null;
     }
 
     private Restaurant findRestaurantByName(String name){
