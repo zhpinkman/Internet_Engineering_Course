@@ -111,5 +111,23 @@ public class RestaurantMapper extends Mapper<Restaurant, String> implements IRes
             throw ex;
         }
     }
+
+    public List<Restaurant> search(String searchPhrase) throws SQLException{
+        List<Restaurant> result = new ArrayList<Restaurant>();
+        String statement = "SELECT * FROM " + TABLE_NAME + " WHERE name LIKE '%" + searchPhrase + "%'";
+
+        try {
+            Connection con = ConnectionPool.getConnection();
+            PreparedStatement st = con.prepareStatement(statement);
+            ResultSet resultSet = st.executeQuery();
+            while (resultSet.next())
+                result.add(convertResultSetToObject(resultSet));
+            return result;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("error in Mapper.findAll query.");
+            throw ex;
+        }
+    }
 }
 

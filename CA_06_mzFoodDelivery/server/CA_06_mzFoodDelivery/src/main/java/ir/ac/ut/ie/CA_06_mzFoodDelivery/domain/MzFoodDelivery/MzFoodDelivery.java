@@ -258,4 +258,8 @@ public class MzFoodDelivery {
     public long getFoodPartyRemainingTime() {
         return this.foodPartyPeriod - (System.currentTimeMillis() - this.foodPartyStartTime) / 1000;
     }
+
+    public List<Restaurant> searchRestaurants(String searchPhrase) {
+        return MzRepository.getInstance().searchRestaurants(searchPhrase);
+    }
 }

@@ -153,4 +153,11 @@ public class MzRepository {
     }
 
 
+    public List<Restaurant> searchRestaurants(String searchPhrase) {
+        try {
+            return new RestaurantMapper().search(searchPhrase);
+        }catch (SQLException e){
+            return new ArrayList<Restaurant>();
+        }
+    }
 }
