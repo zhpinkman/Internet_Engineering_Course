@@ -90,7 +90,6 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
         ) {
             try {
                 st.executeUpdate();
-                con.close();
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.deletePartyFoods query.");
                 throw ex;
@@ -160,6 +159,26 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
             throw ex;
         }
     }
+
+    @Override
+    public void updateFood(PartyFood food) throws SQLException {
+        String statement = String.format("update %s set %s = %d where %s = %s and %s = %s;", TABLE_NAME,
+                "count", food.getCount(),
+                "restaurantId", StringUtils.quoteWrapper(food.getRestaurantId()),
+                "foodName", StringUtils.quoteWrapper(food.getName())
+        );
+        try (Connection con = ConnectionPool.getConnection();
+             PreparedStatement st = con.prepareStatement(statement);
+        ) {
+            try {
+                st.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("error in Mapper.updateCartItem query.");
+                throw ex;
+            }
+        }
+    }
+
 
     public List<Food> searchUniqueRestaurants(String searchPhrase, int limit, int offset) throws SQLException{
         List<Food> result = new ArrayList<>();

@@ -123,9 +123,8 @@ public class MzFoodDelivery {
     }
 
     public void finalizeOrder() throws Exception {
-        Order order = userManager.finalizeOrder();
-        restaurantManager.decreaseFoodAmounts(order);
-        userManager.addOrder(order);
+        List<CartItem> cartItems = userManager.finalizeOrder();
+        restaurantManager.decreaseFoodAmounts(cartItems);
         BackgroundJobManager.startJob();
     }
 

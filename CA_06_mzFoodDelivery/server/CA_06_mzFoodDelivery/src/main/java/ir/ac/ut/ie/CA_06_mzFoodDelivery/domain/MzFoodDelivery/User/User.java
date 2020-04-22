@@ -1,6 +1,7 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.OrderItem;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
@@ -18,16 +19,22 @@ public class User {
     private String lastName;
     private String email; // this field is used as id
     private double credit;
+    private int orders;
     private String phoneNumber;
     private List<Order> orderList = new ArrayList<Order>();
 
-    public User(String firstName, String lastName, String email, String phoneNumber, Location location, double credit){
+    public User(String firstName, String lastName, String email, String phoneNumber, Location location, double credit, int orders){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.location = location;
         this.credit = credit;
+        this.orders = orders;
+    }
+
+    public int getNumOfOrders() {
+        return orders;
     }
 
     public void addToCart(CartItem cartItem) throws Exception {
@@ -47,27 +54,29 @@ public class User {
         return location;
     }
 
-    public Order finalizeOrder() {
-        Cart cart = cloneCart();
+    public List<CartItem> finalizeOrder() throws SQLException {
+        List<CartItem> cartItems = addOrder();
         userCart.emptyCart();
-        return new Order(cart);
+        return cartItems;
     }
 
 
-//    todo kollan in order bayad avaz she chon qablesh clone mikardim
-//     alan dg addToCart beshe too cart asli ezafe mishe asan nmikhad inkaro kard too hamoon order database ezafe mikonim
+    public List<CartItem> addOrder() throws SQLException {
+        User user = MzRepository.getInstance().getUser(userEmail);
+        increaseUserOrders();
+        int orderId = user.getNumOfOrders();
+        List<CartItem> cartItems = user.getUserCart();
+        for (CartItem cartItem: cartItems) {
+            MzRepository.getInstance().addOrderItem(new OrderItem(userEmail, orderId, cartItem));
+        }
+        Order userOrder = new Order(userEmail, orderId);
+        MzRepository.getInstance().addUserOrder(userOrder);
+        return cartItems;
+    }
 
-    public Cart cloneCart() {
-//        Cart cart = new Cart();
-//        for (CartItem cartItem: userCart.getCartItems()) {
-//            try {
-//                cart.addToCart(cartItem);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return cart;
-        return null;
+    private void increaseUserOrders() throws SQLException {
+        orders += 1;
+        MzRepository.getInstance().updateUser(this);
     }
 
     public int getUserCartSize() throws SQLException {
@@ -105,8 +114,9 @@ public class User {
         return userCart.getTotalPrice();
     }
 
-    public void withdrawCredit(double amount) {
+    public void withdrawCredit(double amount) throws SQLException {
         credit -= amount;
+        MzRepository.getInstance().updateUser(this);
     }
 
     public void deleteFromCart(String restaurantId, String foodName) throws Exception {
@@ -126,9 +136,6 @@ public class User {
         return orderList;
     }
 
-    public void addOrder(Order order) {
-        orderList.add(order);
-    }
 
     public Order getLatestOrder() {
         if (orderList.size() == 0) {
