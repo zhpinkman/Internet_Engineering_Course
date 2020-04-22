@@ -1,4 +1,4 @@
-import {RESTAURANTS_URL} from "../config/config";
+import {RESTAURANTS_LIST_PAGE_SIZE, RESTAURANTS_URL} from "../config/config";
 
 const axios = require("axios").default;
 
@@ -14,8 +14,8 @@ const axios = require("axios").default;
 
 export default class RestaurantService {
 
-    static async getRestaurants() {
-        let restaurants = await axios.get(RESTAURANTS_URL);
+    static async getRestaurants(page) {
+        let restaurants = await axios.get(RESTAURANTS_URL + "?pageNumber=" + page + "&pageSize=" + RESTAURANTS_LIST_PAGE_SIZE);
         console.log(restaurants);
         return restaurants.data;
     }

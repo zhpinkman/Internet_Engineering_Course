@@ -108,6 +108,7 @@ public class RestaurantMapper extends Mapper<Restaurant, String> implements IRes
             resultSet = st.executeQuery();
             while (resultSet.next())
                 result.add(convertResultSetToObject(resultSet));
+            con.close();
             return result;
         } catch (SQLException ex) {
             System.out.println("error in Mapper.findAll query.");
