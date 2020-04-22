@@ -2,6 +2,7 @@ package ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFood;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.ConnectionPool;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Mapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.CustomPair;
@@ -132,6 +133,26 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
                 System.out.println("error in Mapper.findAll query.");
                 throw ex;
             }
+        }
+    }
+
+    public List<Food> search(String searchPhrase) throws SQLException{
+        List<Food> result = new ArrayList<>();
+        String searchString = "'%" + searchPhrase + "%'";
+        String statement = "SELECT * FROM " + TABLE_NAME +
+                " WHERE name LIKE " + searchString +
+                " OR description LIKE " + searchString ;
+
+        try {
+            Connection con = ConnectionPool.getConnection();
+            PreparedStatement st = con.prepareStatement(statement);
+            ResultSet resultSet = st.executeQuery();
+            while (resultSet.next())
+                result.add(convertResultSetToObject(resultSet));
+            return result;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw ex;
         }
     }
 }

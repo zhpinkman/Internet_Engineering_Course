@@ -262,4 +262,8 @@ public class MzFoodDelivery {
     public List<Restaurant> searchRestaurants(String searchPhrase) {
         return MzRepository.getInstance().searchRestaurants(searchPhrase);
     }
+
+    public List<Restaurant> searchFoods(String searchPhrase) {
+        return MzRepository.getInstance().searchFoods(searchPhrase);
+    }
 }

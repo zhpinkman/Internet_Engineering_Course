@@ -20,7 +20,7 @@ public class SearchController {
 
     @GetMapping("/foods")
     public List<Restaurant> searchFoods(@RequestParam(required = false, defaultValue = "", value="q") String searchPhrase) {
-        return MzFoodDelivery.getInstance().searchRestaurants(searchPhrase);
+        return MzFoodDelivery.getInstance().searchFoods(searchPhrase);
     }
 
 }
