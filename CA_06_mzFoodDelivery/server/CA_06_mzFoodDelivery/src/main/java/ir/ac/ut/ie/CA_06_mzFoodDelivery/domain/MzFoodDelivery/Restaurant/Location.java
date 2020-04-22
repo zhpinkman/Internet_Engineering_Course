@@ -10,7 +10,7 @@ public class Location {
     }
 
     public void print(){
-        System.out.println("X: " + x + " | Y: " + y);
+//        System.out.println("X: " + x + " | Y: " + y);
     }
 
     public double getX() {

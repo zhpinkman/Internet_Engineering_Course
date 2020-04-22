@@ -50,7 +50,7 @@ public class Cart {
 
         CartItem cartItem = findCartItem(newCartItem);
         if (cartItem != null)
-            cartItem.increaseQuantity(1);
+            cartItem.increaseQuantity(newCartItem.getQuantity());
         else
             MzRepository.getInstance().insertCartItem(newCartItem);
     }

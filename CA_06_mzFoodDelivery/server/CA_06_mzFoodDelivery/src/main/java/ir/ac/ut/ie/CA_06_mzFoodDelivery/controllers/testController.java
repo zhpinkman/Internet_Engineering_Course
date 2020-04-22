@@ -15,8 +15,8 @@ public class testController {
 
     @PostMapping("/login")
     public void login(@RequestBody Map<String, Object> userMap) {
-        System.out.println(userMap.get("firstName"));
-        System.out.println(userMap.get("zhivar"));
+//        System.out.println(userMap.get("firstName"));
+//        System.out.println(userMap.get("zhivar"));
     }
 
     @GetMapping("/cart")

@@ -63,7 +63,7 @@ public class RestaurantManager {
             System.out.println("No added Restaurants yet");
         }
         for (Restaurant restaurant : restaurants) {
-            System.out.println(restaurant.getName());
+//            System.out.println(restaurant.getName());
         }
     }
 

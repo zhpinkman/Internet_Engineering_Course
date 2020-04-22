@@ -1,5 +1,7 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant;
 
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
+
 import java.util.List;
 
 public class Restaurant {
@@ -32,18 +34,18 @@ public class Restaurant {
     }
 
 
-    public void print() {
-        System.out.println(
-                "id: " + id + "\n" +
-                        "name: " + name + "\n" +
-                        "logo: " + logo + "\n" +
-                        "description: " + description + "\n" +
-                        "Location: ");
-        location.print();
-        for (Food food : menu) {
-            food.print();
-        }
-    }
+//    public void print() {
+//        System.out.println(
+//                "id: " + id + "\n" +
+//                        "name: " + name + "\n" +
+//                        "logo: " + logo + "\n" +
+//                        "description: " + description + "\n" +
+//                        "Location: ");
+//        location.print();
+//        for (Food food : menu) {
+//            food.print();
+//        }
+//    }
 
     public Food getFood(String foodName) throws Exception {
         for (Food food : menu) {
@@ -135,7 +137,7 @@ public class Restaurant {
         } catch (NoSuchFieldException | IllegalAccessException exception) {
 //            System.out.println(exception.getMessage());
         }
-        System.out.println(fieldValue);
+//        System.out.println(fieldValue);
         if (fieldValue != null)
             return fieldValue;
         return defaultValue;

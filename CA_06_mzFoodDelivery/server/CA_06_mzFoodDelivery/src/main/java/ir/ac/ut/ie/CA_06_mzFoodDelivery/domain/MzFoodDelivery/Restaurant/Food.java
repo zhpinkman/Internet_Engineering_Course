@@ -33,13 +33,13 @@ public class Food {
     }
 
     public void print() {
-        System.out.println(
-                "name: " + name +
-                " | description: " + description +
-                " | Popularity: " + popularity +
-                " | Price: " + price +
-                " | Image: " + image
-        );
+//        System.out.println(
+//                "name: " + name +
+//                " | description: " + description +
+//                " | Popularity: " + popularity +
+//                " | Price: " + price +
+//                " | Image: " + image
+//        );
     }
 
 

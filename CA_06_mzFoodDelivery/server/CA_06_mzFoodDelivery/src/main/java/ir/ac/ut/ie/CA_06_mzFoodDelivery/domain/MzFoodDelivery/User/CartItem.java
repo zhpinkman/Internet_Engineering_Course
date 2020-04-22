@@ -11,9 +11,18 @@ public class CartItem {
     private String restaurantId;
     private String foodName;
     private int quantity;
+    private double unitPrice;
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public CartItem(String userEmail, String restaurantId, String foodName) {

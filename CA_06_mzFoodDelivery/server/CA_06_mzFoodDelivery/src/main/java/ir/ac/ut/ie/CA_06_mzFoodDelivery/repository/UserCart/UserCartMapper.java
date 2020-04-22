@@ -52,7 +52,8 @@ public class UserCartMapper extends Mapper<CartItem, CustomPair> implements IUse
     @Override
     protected String getInsertStatement(CartItem cartItem) {
         return String.format("insert into %s ( %s ) values (%s, %s, %s, %d);", TABLE_NAME, COLUMNS,
-                cartItem.getUserEmail(), cartItem.getRestaurantId(), cartItem.getFoodName(), cartItem.getQuantity());
+                StringUtils.quoteWrapper(cartItem.getUserEmail()), StringUtils.quoteWrapper(cartItem.getRestaurantId()),
+                StringUtils.quoteWrapper(cartItem.getFoodName()), cartItem.getQuantity());
     }
 
     @Override

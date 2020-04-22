@@ -16,6 +16,11 @@ export default class CartItem extends React.Component {
 
         this.incFood = this.incFood.bind(this);
         this.decFood = this.decFood.bind(this);
+        this.getNetPrice = this.getNetPrice.bind(this);
+    }
+
+    getNetPrice() {
+        return (this.props.cartItem.unitPrice || 0) * (this.props.cartItem.quantity || 0);
     }
 
 
@@ -26,7 +31,7 @@ export default class CartItem extends React.Component {
     incFood() {
         this.setState({isLoading: true});
         console.log(this.props);
-        UserService.addToCart(this.props.cartItem.restaurant.id, this.props.cartItem.food.name).then(data => {
+        UserService.addToCart(this.props.cartItem.restaurantId, this.props.cartItem.foodName).then(data => {
             toast.success('عملیات با موفقیت انجام شد');
             cartRefresh.next();
             this.setState({isLoading: false});
@@ -39,7 +44,7 @@ export default class CartItem extends React.Component {
 
     decFood() {
         this.setState({isLoading: true});
-        UserService.removeFromCart(this.props.cartItem.restaurant.id, this.props.cartItem.food.name).then(data => {
+        UserService.removeFromCart(this.props.cartItem.restaurantId, this.props.cartItem.foodName).then(data => {
             toast.success('عملیات با موفقیت انجام شد');
             cartRefresh.next();
             this.setState({isLoading: false});
@@ -57,7 +62,7 @@ export default class CartItem extends React.Component {
                 <div className={"cart-list-item-wrapper d-flex flex-column " + (this.state.isLoading ? "blur-loading" : "")}>
                     <div className="d-flex flex-row justify-space-between">
                         <div className="align-self-start">
-                            {this.props.cartItem.food.name}
+                            {this.props.cartItem.foodName}
                         </div>
                         <div className="align-self-end mr-auto d-flex align-items-center">
                             <div onClick={this.decFood}><i className="glyph-icon flaticon-minus cart-icon clickable-tag"/></div>
@@ -68,7 +73,7 @@ export default class CartItem extends React.Component {
                         </div>
                     </div>
                     <div className="price d-flex flex-row justify-content-end">
-                        {enToFaNumber(this.props.cartItem.food.price * this.props.cartItem.quantity)}
+                        {enToFaNumber(this.getNetPrice())}
                         تومان
                     </div>
                 </div>

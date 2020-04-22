@@ -86,9 +86,7 @@ public class MzFoodDelivery {
     }
 
     public synchronized void addToCart(String restaurantId, String foodName, int amount) throws Exception {
-
-        Restaurant restaurant = getRestaurantById(restaurantId);
-        Food food = restaurant.getFood(foodName);
+        Food food = MzRepository.getInstance().getFood(restaurantId, foodName);
 
         if (food instanceof PartyFood) {
             PartyFood partyFood = (PartyFood) food;
@@ -120,7 +118,7 @@ public class MzFoodDelivery {
         return userManager.getOrders();
     }
 
-    public Cart getCart() throws SQLException {
+    public List<CartItem> getCart() throws SQLException {
         return userManager.getCart();
     }
 
@@ -232,11 +230,11 @@ public class MzFoodDelivery {
     }
 
     private void removeOlderOffers() throws SQLException {
-        for (CartItem cartItem : userManager.getCart().getCartItems()) {
-            Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
-            if (food instanceof PartyFood)
-                userManager.getCart().removeCartItem((PartyFood) food);
-        }
+//        for (CartItem cartItem : userManager.getCart().getCartItems()) {
+//            Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
+//            if (food instanceof PartyFood)
+//                userManager.getCart().removeCartItem((PartyFood) food);
+//        }
     }
 
     public List<PartyFood> getPartyFoods() {

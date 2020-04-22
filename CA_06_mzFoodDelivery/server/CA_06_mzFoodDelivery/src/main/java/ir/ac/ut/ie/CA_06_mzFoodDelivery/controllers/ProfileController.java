@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -77,7 +78,7 @@ public class ProfileController {
     }
 
     @GetMapping("/cart")
-    public Cart getCart() throws SQLException {
+    public List<CartItem> getCart() throws SQLException {
         return MzFoodDelivery.getInstance().getCart();
     }
 

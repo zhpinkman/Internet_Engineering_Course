@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+    public static final String userEmail = "ekhamespanah@yahoo.com";
     private Cart userCart = new Cart();
     private Location location;
     private String firstName;
@@ -33,7 +34,13 @@ public class User {
         userCart.addToCart(cartItem);
     }
 
-    public Cart getUserCart() {
+    public List<CartItem> getUserCart() throws SQLException {
+        List<CartItem> userCart = MzRepository.getInstance().getUserCart(userEmail);
+        for (CartItem cartItem: userCart) {
+            Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
+            System.out.println(food.getPrice());
+            cartItem.setUnitPrice(food.getPrice());
+        }
         return userCart;
     }
 
@@ -88,7 +95,7 @@ public class User {
     public void chargeUserCredit(double amount) throws Exception {
         if (amount > 0) {
             credit += amount;
-            System.out.println();
+//            System.out.println();
             MzRepository.getInstance().updateUser(this);
         }
         else

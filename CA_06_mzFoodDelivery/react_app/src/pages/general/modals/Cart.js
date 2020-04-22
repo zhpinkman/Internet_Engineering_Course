@@ -13,11 +13,12 @@ export default class Cart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cart: {},
+            cart: null,
             isLoading: false,
             getCartLoading: false,
         };
         this._isMounted = false;
+        this.getTotalPrice = this.getTotalPrice.bind(this);
     }
 
 
@@ -41,8 +42,16 @@ export default class Cart extends React.Component {
                 cart: cart.data,
                 getCartLoading: false
             });
+            console.log("getting user cart");
             console.log(this.state.cart);
         })
+    }
+
+    getTotalPrice() {
+        if (!this.state.cart) return 0;
+        return this.state.cart.reduce((total, cartItem) => {
+            return total + cartItem.unitPrice * cartItem.quantity;
+        }, 0)
     }
 
     finalizeOrder() {
@@ -67,7 +76,7 @@ export default class Cart extends React.Component {
         return (
             <div className="cart-wrapper">
                 <div className="cart-container">
-                    {this.state.cart && this.state.cart.cartItems && (
+                    {this.state.cart  && (
                         <span className="cart-title">
                             سبد خرید
                         </span>
@@ -90,12 +99,12 @@ export default class Cart extends React.Component {
     }
 
     getCart() {
-        if (this.state.cart && this.state.cart.cartItems)
+        if (this.state.cart)
             return (
                 <>
                     <div
                         className={"cart-list-wrapper d-flex justify-content-center " + (this.state.getCartLoading ? "blur-loading" : "")}>
-                        {(this.state.cart.cartItems.length === 0) &&
+                        {(this.state.cart.length === 0) &&
                         <div className="w-75">
                             <img src="https://www.digikala.com/static/files/68b7acd6.png" alt={""}/>
                             <div className="center-text mb-4">
@@ -103,7 +112,7 @@ export default class Cart extends React.Component {
                             </div>
                         </div>
                         }
-                        {this.state.cart.cartItems.map((cartItem, i) => {
+                        {this.state.cart.map((cartItem, i) => {
                             return (
                                 <CartItem cartItem={cartItem} key={"CART" + i}/>
                             )
@@ -114,7 +123,7 @@ export default class Cart extends React.Component {
                     <div className="total-price">
                         جمع کل:
                         <span className={"p-1"}>
-                            {enToFaNumber(this.state.cart.totalPrice || 0)}
+                            {enToFaNumber(this.getTotalPrice())}
                             <span className={"m-1"}/>
                             تومان
                         </span>

@@ -19,23 +19,24 @@ public class UserManager {
     public static final String userEmail = "ekhamespanah@yahoo.com";
 
     public UserManager() {
-        System.out.println("mohsen here");
+//        System.out.println("mohsen here");
         User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0), 0);
         try {
             MzRepository.getInstance().insertUser(user);
-            System.out.println("zhivar here");
+//            System.out.println("zhivar here");
         } catch (SQLException ignored) {}
     }
 
     public void addToCart(CartItem cartItem) throws Exception {
-//        user.addToCart(cartItem);
+        User user = MzRepository.getInstance().getUser(userEmail);
+        user.addToCart(cartItem);
     }
 
     public Location getLocation(String email) throws SQLException{
         return MzRepository.getInstance().getUser(email).getLocation();
     }
 
-    public Cart getCart() throws SQLException {
+    public List<CartItem> getCart() throws SQLException {
         User user = MzRepository.getInstance().getUser(userEmail);
         return user.getUserCart();
     }

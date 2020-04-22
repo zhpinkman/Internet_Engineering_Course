@@ -31,8 +31,14 @@ export default class Header extends React.Component{
 
     getCartSize() {
         UserService.getCart().then(cart => {
-            this.setState({cartSize: cart.data.size})
+            this.setState({cartSize: this.calcUserCartSize(cart.data)})
         })
+    }
+
+    calcUserCartSize(cart) {
+        return cart.reduce((total, cartItem) => {
+            return total + cartItem.quantity;
+        }, 0)
     }
 
 

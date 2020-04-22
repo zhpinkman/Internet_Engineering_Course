@@ -19,7 +19,7 @@ public class FoodPartyController {
     )
     public List<PartyFood> PartyFoods() {
         List<PartyFood> partyFoods = MzFoodDelivery.getInstance().getPartyFoods();
-        System.out.println(partyFoods.size());
+//        System.out.println(partyFoods.size());
         return partyFoods;
     }
 
