@@ -8,6 +8,16 @@ public class Delivery {
     private double velocity;
     private Location location;
 
+    public String getId() {
+        return id;
+    }
+
+    public Delivery(String id, double velocity, Location location) {
+        this.id = id;
+        this.velocity = velocity;
+        this.location = location;
+    }
+
     public Location getLocation() {
         return location;
     }

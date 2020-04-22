@@ -15,14 +15,19 @@ public class Order {
     public Order () {}
 
 
-    private double max_id = 0;
+    private int max_id = 0;
 
-    private double id;
+    private String userEmail;
+    private int id;
     private Cart cart;
     private Status status;
     private Delivery delivery;
     private LocalTime startingDeliveryTime;
 
+
+    public String getUserEmail() {
+        return userEmail;
+    }
 
     public Order(Cart cart) {
         this.id = max_id ++;
@@ -64,7 +69,7 @@ public class Order {
         return cart;
     }
 
-    public double getId() {
+    public int getId() {
         return id;
     }
 

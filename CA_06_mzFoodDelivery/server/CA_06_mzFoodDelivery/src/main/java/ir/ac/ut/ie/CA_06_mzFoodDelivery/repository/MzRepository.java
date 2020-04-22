@@ -6,6 +6,7 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFo
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Delivery.DeliveryMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food.FoodMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Restaurant.RestaurantMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.User.UserMapper;
@@ -30,21 +31,26 @@ public class MzRepository {
 
     public void createAllTables() {
         try {
-            RestaurantMapper restaurantMapper = new RestaurantMapper(true);
-        } catch (Exception ignored) {
+            DeliveryMapper deliveryMapper = new DeliveryMapper(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            UserCartMapper userCartMapper = new UserCartMapper(true);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         try {
             FoodMapper foodMapper = new FoodMapper(true);
         } catch (Exception ignored) {
         }
         try {
-            UserMapper userMapper = new UserMapper(true);
+            RestaurantMapper restaurantMapper = new RestaurantMapper(true);
         } catch (Exception ignored) {
         }
         try {
-            UserCartMapper userCartMapper = new UserCartMapper(true);
-        } catch (Exception e) {
-            e.printStackTrace();
+            UserMapper userMapper = new UserMapper(true);
+        } catch (Exception ignored) {
         }
     }
 
@@ -180,4 +186,7 @@ public class MzRepository {
             return new ArrayList<Restaurant>();
         }
     }
+
+
+
 }

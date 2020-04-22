@@ -27,8 +27,8 @@ public class UserCartMapper extends Mapper<CartItem, CustomPair> implements IUse
                             "    restaurantId varchar(255),\n" +
                             "    foodName varchar(255) not null,\n" +
                             "    quantity int not null default 1,\n" +
-                            "    foreign key (foodName, restaurantId) references FOODS(name, restaurantId),\n" +
-                            "    foreign key (userEmail) references USERS(email), \n" +
+//                            "    foreign key (foodName, restaurantId) references FOODS(name, restaurantId),\n" +
+//                            "    foreign key (userEmail) references USERS(email), \n" +
                             "    primary key (userEmail, restaurantId, foodName) \n" +
                             ");",
                     TABLE_NAME));

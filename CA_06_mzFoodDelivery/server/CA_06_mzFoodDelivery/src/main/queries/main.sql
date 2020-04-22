@@ -1,4 +1,4 @@
-use test1;
+use mzFoodDelivery;
 
 show tables;
 
@@ -78,23 +78,26 @@ drop table if exists ORDERS;
 
 create table ORDERS (
     orderId int not null,
-    status tinytext not null,
+    status varchar(255) not null default 'SEARCHING',
     deliveryId varchar(255) references DELIVERIES(id),
     startingDeliveryTime DATE,
     userEmail varchar(255) not null references USERS(email),
-    primary key (userEmail, orderId)
+    restaurantId varchar(255) not null,
+    foodName varchar(255) not null,
+    foreign key (restaurantId, foodName) references FOODS(restaurantId, name),
+    primary key (userEmail, orderId, restaurantId, foodName)
 );
-
 
 describe ORDERS;
 
-use mzFoodDelivery;
-
-# INSERT INTO USERS (  email, firstName, lastName, phoneNumber, locationX, locationY  ) values ('ekhamespanah@yahoo.com', 'Ehsan', 'Khames', '989123456789', 0.000000, 0.000000);
-
-show tables ;
-
-
-describe USERCART;
-
 select * from USERS;
+
+show TABLES ;
+
+show tables;
+
+drop table DELIVERY;
+drop table USERCART;
+drop table FOODS;
+drop table RESTAURANTS;
+drop table USERS;

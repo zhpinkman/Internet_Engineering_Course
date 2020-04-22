@@ -33,8 +33,8 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
                             "  image text not null,\n" +
                             "  count int default -1,\n" +
                             "  newPrice double default -1,\n" +
-                            "  primary key(name, restaurantId),\n" +
-                            "  foreign key (restaurantId) references RESTAURANTS(id)\n" +
+                            "  primary key(name, restaurantId)\n" +
+//                            "  foreign key (restaurantId) references RESTAURANTS(id)\n" +
                             ");",
                     TABLE_NAME));
             st.close();
