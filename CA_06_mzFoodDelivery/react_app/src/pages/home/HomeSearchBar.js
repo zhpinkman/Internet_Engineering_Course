@@ -1,9 +1,10 @@
 import React from "react";
+import {animationStyles} from "../../config/configStyle";
 
 export default class HomeSearchBar extends React.Component {
     render() {
         return (
-            <div className="search-bar">
+            <div className="search-bar" style={animationStyles.bounce}>
                 <div className="outer-box">
                     <form
                         action=""
