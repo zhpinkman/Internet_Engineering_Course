@@ -29,10 +29,6 @@ public class PartyFood extends Food {
         return newPrice;
     }
 
-    public double getNewPrice() {
-        return newPrice;
-    }
-
     public double getOldPrice() {
         return super.getPrice();
     }

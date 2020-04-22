@@ -35,14 +35,15 @@ drop table if exists FOODS;
 
 create table FOODS (
   name varchar(255),
-  restaurantId varchar(255) references RESTAURANTS(id),
+  restaurantId varchar(255),
   description text not null,
   popularity double not null,
   price double not null,
   image text not null,
   count int default -1,
   newPrice double default -1,
-  primary key(name, restaurantId)
+  primary key(name, restaurantId),
+  foreign key (restaurantId) references RESTAURANTS(id)
 );
 
 describe FOODS;
@@ -50,10 +51,12 @@ describe FOODS;
 drop table if exists USERCART;
 
 create table USERCART (
-    userEmail varchar(255) primary key references USERS(email),
-    restaurantId tinytext not null references RESTAURANTS(id),
-    foodName tinytext not null,
-    quantity int not null default 1
+    userEmail varchar(255) references USERS(email),
+    restaurantId varchar(255),
+    foodName varchar(255) not null,
+    quantity int not null default 1,
+    foreign key (foodName, restaurantId) references FOODS(name, restaurantId),
+    primary key (userEmail, restaurantId, foodName)
 );
 
 
@@ -90,3 +93,6 @@ use mzFoodDelivery;
 # INSERT INTO USERS (  email, firstName, lastName, phoneNumber, locationX, locationY  ) values ('ekhamespanah@yahoo.com', 'Ehsan', 'Khames', '989123456789', 0.000000, 0.000000);
 
 show tables ;
+
+
+select * from FOODS where count != -1;

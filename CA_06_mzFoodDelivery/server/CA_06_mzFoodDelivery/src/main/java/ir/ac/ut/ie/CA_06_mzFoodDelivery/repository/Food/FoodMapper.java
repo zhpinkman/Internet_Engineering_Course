@@ -25,14 +25,15 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
             st.executeUpdate(String.format(
                     "create table FOODS (\n" +
                             "  name varchar(255),\n" +
-                            "  restaurantId varchar(255) references RESTAURANTS(id),\n" +
+                            "  restaurantId varchar(255),\n" +
                             "  description text not null,\n" +
                             "  popularity double not null,\n" +
                             "  price double not null,\n" +
                             "  image text not null,\n" +
-                            "  count int not null default -1,\n" +
-                            "  newPrice double,\n" +
-                            "  primary key(name, restaurantId)\n" +
+                            "  count int default -1,\n" +
+                            "  newPrice double default -1,\n" +
+                            "  primary key(name, restaurantId),\n" +
+                            "  foreign key (restaurantId) references RESTAURANTS(id)\n" +
                             ");",
                     TABLE_NAME));
             st.close();
@@ -55,7 +56,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
             PartyFood partyFood = (PartyFood) food;
             return String.format("INSERT INTO %s ( %s ) values (%s, %s, %s, %f, %f, %s, %d, %f);", TABLE_NAME, COLUMNS,
                     StringUtils.quoteWrapper(food.getName()), StringUtils.quoteWrapper(food.getRestaurantId()), StringUtils.quoteWrapper(food.getDescription()),
-                    food.getPopularity(), food.getPrice(), StringUtils.quoteWrapper(food.getImage()), partyFood.getCount(), partyFood.getNewPrice());
+                    food.getPopularity(), ((PartyFood) food).getOldPrice(), StringUtils.quoteWrapper(food.getImage()), partyFood.getCount(), partyFood.getPrice());
         } else {
             return String.format("INSERT INTO %s ( %s ) values (%s, %s, %s, %f, %f, %s, %d, %f);", TABLE_NAME, COLUMNS,
                     StringUtils.quoteWrapper(food.getName()), StringUtils.quoteWrapper(food.getRestaurantId()), StringUtils.quoteWrapper(food.getDescription()),

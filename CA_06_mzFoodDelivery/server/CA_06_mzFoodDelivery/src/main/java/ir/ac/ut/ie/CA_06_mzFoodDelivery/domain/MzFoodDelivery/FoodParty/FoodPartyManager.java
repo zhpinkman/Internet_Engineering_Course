@@ -50,6 +50,7 @@ public class FoodPartyManager {
                     item.menu.get(0).popularity, item.menu.get(0).oldPrice, item.menu.get(0).image,
                     item.menu.get(0).price, item.menu.get(0).count, restaurant.getId());
 
+            partyFood.print();
 //            Delete usual food if exists
             try {
                 MzRepository.getInstance().deleteFood(new CustomPair(restaurant.getId(), partyFood.getName()));
