@@ -41,7 +41,9 @@ public class MzRepository {
         } catch (Exception ignored) {}
         try {
             UserCartMapper userCartMapper = new UserCartMapper(true);
-        } catch (Exception ignored) {}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //    RESTAURANT
