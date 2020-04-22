@@ -20,7 +20,7 @@ public class UserManager {
 
     public UserManager() {
 //        System.out.println("mohsen here");
-        User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0), 0);
+        User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0), 0, 0);
         try {
             MzRepository.getInstance().insertUser(user);
 //            System.out.println("zhivar here");
@@ -53,22 +53,21 @@ public class UserManager {
         return gson.toJson(cartJsonElement);
     }
 
-    public Order finalizeOrder() throws Exception {
-//        double totalPrice = user.getCartTotalPrice();
-//        if (user.getUserCartSize() == 0)
-//            throw new Exception("user cart is empty");
-//        if (totalPrice > user.getCredit())
-//            throw new Exception("credit is not enough for finalizing your order");
-//        if (foodRepoEmpty(user.getUserCart()))
-//            throw new Exception("count of this offer is not enough for you to submit");
-//        user.withdrawCredit(totalPrice);
-//        return user.finalizeOrder();
-        return null;
+    public List<CartItem> finalizeOrder() throws Exception {
+        User user = MzRepository.getInstance().getUser(userEmail);
+        double totalPrice = user.getCartTotalPrice();
+        if (user.getUserCartSize() == 0)
+            throw new Exception("user cart is empty");
+        if (totalPrice > user.getCredit())
+            throw new Exception("credit is not enough for finalizing your order");
+        if (foodRepoEmpty(user.getUserCart()))
+            throw new Exception("count of this offer is not enough for you to submit");
+        user.withdrawCredit(totalPrice);
+        return user.finalizeOrder();
     }
 
-    public boolean foodRepoEmpty(Cart cart) throws SQLException {
-
-        for (CartItem cartItem : cart.getCartItems()) {
+    public boolean foodRepoEmpty(List<CartItem> cartItems) throws SQLException {
+        for (CartItem cartItem : cartItems) {
             Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
             if (!food.hasEnoughAmount(cartItem.getQuantity()))
                 return true;
@@ -105,10 +104,6 @@ public class UserManager {
         return user.getOrders();
     }
 
-    public void addOrder(Order order) throws SQLException {
-        User user = MzRepository.getInstance().getUser(userEmail);
-        user.addOrder(order);
-    }
 
     public Order getLatestOrder() throws SQLException {
         User user = MzRepository.getInstance().getUser(userEmail);

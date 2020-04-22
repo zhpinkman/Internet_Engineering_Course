@@ -6,9 +6,11 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.schedulers.BackgroundJobManager;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.List;
 
 public class Order {
 
@@ -21,8 +23,26 @@ public class Order {
     private int id;
     private Cart cart;
     private Status status;
+    private String statusString;
     private Delivery delivery;
     private LocalTime startingDeliveryTime;
+    private String deliveryId;
+    private List<OrderItem> orderItems;
+
+    public Order(String userEmail, int id, String status, String deliveryId, Date localTime) {
+        this.userEmail = userEmail;
+        this.id = id;
+        this.statusString = status;
+        this.deliveryId = deliveryId;
+    }
+
+    public Order(String userEmail, int id) {
+        this.userEmail = userEmail;
+        this.id = id;
+        this.statusString = "SEARCHING";
+        this.deliveryId = "";
+        this.startingDeliveryTime = null;
+    }
 
 
     public String getUserEmail() {
@@ -35,6 +55,9 @@ public class Order {
         this.cart = cart;
     }
 
+    public String getDeliveryId() {
+        return deliveryId;
+    }
 
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;

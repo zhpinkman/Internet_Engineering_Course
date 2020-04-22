@@ -1,8 +1,10 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
 
 import java.beans.Transient;
+import java.sql.SQLException;
 
 public class PartyFood extends Food {
     private double newPrice;
@@ -15,8 +17,9 @@ public class PartyFood extends Food {
     }
 
     @Override
-    public void decreaseFoodAmount(int quantity) {
+    public void decreaseFoodAmount(int quantity) throws SQLException {
         count -= quantity;
+        MzRepository.getInstance().updatePartyFood(this);
     }
 
     @Override
@@ -55,7 +58,8 @@ public class PartyFood extends Food {
     }
 
 
-    public void increaseFoodAmount() {
+    public void increaseFoodAmount() throws SQLException {
         this.count += 1;
+        MzRepository.getInstance().updatePartyFood(this);
     }
 }

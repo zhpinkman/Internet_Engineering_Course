@@ -2,6 +2,8 @@ package ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.StringUtils;
 
+import java.sql.SQLException;
+
 public class Food {
     protected String restaurantId;
     private String name;
@@ -57,7 +59,7 @@ public class Food {
 
     public String getDescription() { return description; }
 
-    public void decreaseFoodAmount(int quantity) {}
+    public void decreaseFoodAmount(int quantity) throws SQLException {}
 
     public boolean hasEnoughAmount(int quantity) {
         return true;

@@ -77,15 +77,12 @@ describe DELIVERIES;
 drop table if exists ORDERS;
 
 create table ORDERS (
+    userEmail varchar(255) not null,
     orderId int not null,
     status varchar(255) not null default 'SEARCHING',
-    deliveryId varchar(255) references DELIVERIES(id),
+    deliveryId varchar(255) not null,
     startingDeliveryTime DATE,
-    userEmail varchar(255) not null references USERS(email),
-    restaurantId varchar(255) not null,
-    foodName varchar(255) not null,
-    foreign key (restaurantId, foodName) references FOODS(restaurantId, name),
-    primary key (userEmail, orderId, restaurantId, foodName)
+    primary key (userEmail, orderId)
 );
 
 describe ORDERS;
@@ -96,8 +93,11 @@ show TABLES ;
 
 show tables;
 
-drop table DELIVERY;
-drop table USERCART;
-drop table FOODS;
-drop table RESTAURANTS;
-drop table USERS;
+create table ORDERITEMS (
+    userEmail varchar(255),
+    id int,
+    restaurantId varchar(255),
+    foodName varchar(255),
+    quantity int not null,
+    primary key (userEmail, id, restaurantId, foodName)
+);

@@ -1,5 +1,7 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery.repository;
 
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.OrderItem;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFood;
@@ -8,6 +10,8 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Delivery.DeliveryMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food.FoodMapper;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Order.OrderMapper;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.OrderItem.OrderItemMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Restaurant.RestaurantMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.User.UserMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.UserCart.UserCartMapper;
@@ -30,6 +34,16 @@ public class MzRepository {
     }
 
     public void createAllTables() {
+        try {
+            OrderMapper orderMapper = new OrderMapper(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            OrderItemMapper orderItemMapper = new OrderItemMapper(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try {
             DeliveryMapper deliveryMapper = new DeliveryMapper(true);
         } catch (Exception e) {
@@ -188,5 +202,15 @@ public class MzRepository {
     }
 
 
+    public void addOrderItem(OrderItem orderItem) throws SQLException {
+        new OrderItemMapper().insert(orderItem);
+    }
 
+    public void addUserOrder(Order userOrder) throws SQLException {
+        new OrderMapper().insert(userOrder);
+    }
+
+    public void updatePartyFood(PartyFood partyFood) throws SQLException {
+        new FoodMapper().updateFood(partyFood);
+    }
 }

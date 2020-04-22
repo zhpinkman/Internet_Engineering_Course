@@ -28,6 +28,7 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
                             "   firstName tinytext not null,\n" +
                             "   lastName tinytext not null,\n" +
                             "   credit double not null default 0,\n" +
+                            "   orders int not null default 0,\n" +
                             "   phoneNumber tinytext not null,\n" +
                             "   locationX double not null default 0,\n" +
                             "   locationY double not null default 0\n" +
@@ -69,7 +70,8 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
                         rs.getDouble("locationX"),
                         rs.getDouble("locationY")
                 ),
-                rs.getDouble("credit")
+                rs.getDouble("credit"),
+                rs.getInt("orders")
         );
     }
 
@@ -96,8 +98,8 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
 
     @Override
     public void updateUserCredit(User user) throws SQLException {
-        String statement = String.format("update %s set %s = %s where %s = %s;", TABLE_NAME, "credit",
-                user.getCredit(), "email", StringUtils.quoteWrapper(user.getEmail()));
+        String statement = String.format("update %s set %s = %s, %s = %d where %s = %s;", TABLE_NAME, "credit",
+                user.getCredit(), "orders", user.getNumOfOrders(), "email", StringUtils.quoteWrapper(user.getEmail()));
         try (Connection con = ConnectionPool.getConnection();
              PreparedStatement st = con.prepareStatement(statement);
         ) {
