@@ -111,10 +111,11 @@ public class UserCartMapper extends Mapper<CartItem, CustomPair> implements IUse
 
     @Override
     public void updateCartItem(CartItem cartItem) throws SQLException {
-        String statement = String.format("update %s set %s = %s where %s = %s and %s = %s and %s;", TABLE_NAME,
+        String statement = String.format("update %s set %s = %s where %s = %s and %s = %s and %s = %s;", TABLE_NAME,
                 "quantity", cartItem.getQuantity(), "userEmail", StringUtils.quoteWrapper(cartItem.getUserEmail()),
                 "restaurantId", StringUtils.quoteWrapper(cartItem.getRestaurantId()),
                 "foodName", StringUtils.quoteWrapper(cartItem.getFoodName()));
+        System.out.println(statement);
         try (Connection con = ConnectionPool.getConnection();
              PreparedStatement st = con.prepareStatement(statement);
         ) {

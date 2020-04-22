@@ -38,7 +38,6 @@ public class User {
         List<CartItem> userCart = MzRepository.getInstance().getUserCart(userEmail);
         for (CartItem cartItem: userCart) {
             Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
-            System.out.println(food.getPrice());
             cartItem.setUnitPrice(food.getPrice());
         }
         return userCart;

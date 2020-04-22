@@ -94,11 +94,9 @@ public class MzFoodDelivery {
                 throw new Exception("not enough food in inventory");
             }
         }
-
-        for (int i = 0; i < amount; i++) {
-            CartItem cartItem = new CartItem(userEmail, restaurantId, foodName, amount);
-            userManager.addToCart(cartItem);
-        }
+        
+        CartItem cartItem = new CartItem(userEmail, restaurantId, foodName, amount);
+        userManager.addToCart(cartItem);
 
     }
 

@@ -53,6 +53,8 @@ public class CartItem {
 
     public void increaseQuantity(int quantity) throws SQLException {
         this.quantity += quantity;
+        System.out.println("cart item here zhviar");
+        System.out.println(this.quantity);
         MzRepository.getInstance().updateCartItem(this);
     }
 
