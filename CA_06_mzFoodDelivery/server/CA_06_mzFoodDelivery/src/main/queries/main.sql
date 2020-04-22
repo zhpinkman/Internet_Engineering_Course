@@ -95,4 +95,4 @@ use mzFoodDelivery;
 show tables ;
 
 
-select * from FOODS where count != -1;
+describe USERCART;

@@ -47,7 +47,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
     @Override
     protected String getFindStatement(CustomPair id) {
         return String.format("select * from %s where %s.%s = %s and %s.%s = %s", TABLE_NAME, TABLE_NAME, "restaurantId",
-                StringUtils.quoteWrapper(id.getFirst()), TABLE_NAME, "name", StringUtils.quoteWrapper(id.getSecond()));
+                StringUtils.quoteWrapper(id.getArgs().get(0)), TABLE_NAME, "name", StringUtils.quoteWrapper(id.getArgs().get(1)));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
     @Override
     protected String getDeleteStatement(CustomPair id) {
         return String.format("delete from %s where %s.%s = %s and %s.%s = %s", TABLE_NAME, TABLE_NAME, "restaurantId",
-                StringUtils.quoteWrapper(id.getFirst()), TABLE_NAME, "name", StringUtils.quoteWrapper(id.getSecond()));
+                StringUtils.quoteWrapper(id.getArgs().get(0)), TABLE_NAME, "name", StringUtils.quoteWrapper(id.getArgs().get(1)));
     }
 
     @Override
@@ -90,7 +90,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
             try {
                 st.executeUpdate();
             } catch (SQLException ex) {
-                System.out.println("error in Mapper.findAll query.");
+                System.out.println("error in Mapper.deletePartyFoods query.");
                 throw ex;
             }
         }

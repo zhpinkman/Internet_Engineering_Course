@@ -1,36 +1,61 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User;
 
 
-import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
-import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
+
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
+
+import java.sql.SQLException;
 
 public class CartItem {
-    private Restaurant restaurant;
-    private Food food;
-    private int quantity = 1;
+    private String userEmail;
+    private String restaurantId;
+    private String foodName;
+    private int quantity;
 
     public int getQuantity() {
         return quantity;
     }
 
-    public CartItem(Restaurant restaurant, Food food) {
-        this.restaurant = restaurant;
-        this.food = food;
+    public CartItem(String userEmail, String restaurantId, String foodName) {
+        this.userEmail = userEmail;
+        this.restaurantId = restaurantId;
+        this.foodName = foodName;
+        this.quantity = 1;
     }
 
-    public Food getFood() {
-        return food;
+    public CartItem(String userEmail, String restaurantId, String foodName, int quantity) {
+        this.userEmail = userEmail;
+        this.restaurantId = restaurantId;
+        this.foodName = foodName;
+        this.quantity = quantity;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public String getFoodName() {
+        return foodName;
     }
 
-    public void increaseQuantity(int quantity) {
+    public String getRestaurantId() {
+        return restaurantId;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void increaseQuantity(int quantity) throws SQLException {
         this.quantity += quantity;
+        MzRepository.getInstance().updateCartItem(this);
     }
 
-    public void decreaseQuantity(int quantity) {
+    public void decreaseQuantity(int quantity) throws SQLException {
         this.quantity -= quantity;
+        MzRepository.getInstance().updateCartItem(this);
     }
+
+
+    public boolean matches(CartItem newCartItem) {
+        return this.foodName.equals(newCartItem.foodName) && this.restaurantId.equals(newCartItem.restaurantId);
+    }
+
+
 }

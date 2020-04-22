@@ -12,6 +12,7 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.UserManager;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.schedulers.BackgroundJobManager;
 
 import java.sql.SQLException;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class MzFoodDelivery {
 
+    public static final String userEmail = "ekhamespanah@yahoo.com";
     private static MzFoodDelivery instance;
 
     private RestaurantManager restaurantManager = new RestaurantManager();
@@ -29,7 +31,6 @@ public class MzFoodDelivery {
     private int foodPartyPeriod;
     private long foodPartyStartTime;
 
-    private String userEmail = "ekhamespanah@yahoo.com";
 
 
     private MzFoodDelivery() {
@@ -80,9 +81,7 @@ public class MzFoodDelivery {
 
     //    USER MANAGER
     public void addToCart(String restaurantId, String foodName) throws Exception {
-        Restaurant restaurant = getRestaurantById(restaurantId);
-        Food food = restaurant.getFood(foodName);
-        CartItem cartItem = new CartItem(restaurant, restaurant.getFood(foodName));
+        CartItem cartItem = new CartItem(userEmail, restaurantId, foodName);
         userManager.addToCart(cartItem);
     }
 
@@ -99,7 +98,7 @@ public class MzFoodDelivery {
         }
 
         for (int i = 0; i < amount; i++) {
-            CartItem cartItem = new CartItem(restaurant, restaurant.getFood(foodName));
+            CartItem cartItem = new CartItem(userEmail, restaurantId, foodName, amount);
             userManager.addToCart(cartItem);
         }
 
@@ -110,7 +109,7 @@ public class MzFoodDelivery {
         Food food = restaurant.getFood(foodName);
         if (food instanceof PartyFood)
             ((PartyFood) food).increaseFoodAmount();
-        userManager.deleteFromCart(restaurant, food);
+        userManager.deleteFromCart(restaurantId, foodName);
     }
 
     public Order getOrderById(double id) throws Exception {
@@ -136,7 +135,7 @@ public class MzFoodDelivery {
         BackgroundJobManager.startJob();
     }
 
-    public int getUserCartSize() {
+    public int getUserCartSize() throws SQLException {
         return userManager.getUserCartSize();
     }
 
@@ -232,10 +231,11 @@ public class MzFoodDelivery {
         foodPartyManager.importFoodPartyFromWeb();
     }
 
-    private void removeOlderOffers() {
+    private void removeOlderOffers() throws SQLException {
         for (CartItem cartItem : userManager.getCart().getCartItems()) {
-            if (cartItem.getFood() instanceof PartyFood)
-                userManager.getCart().removeCartItem((PartyFood) cartItem.getFood());
+            Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
+            if (food instanceof PartyFood)
+                userManager.getCart().removeCartItem((PartyFood) food);
         }
     }
 

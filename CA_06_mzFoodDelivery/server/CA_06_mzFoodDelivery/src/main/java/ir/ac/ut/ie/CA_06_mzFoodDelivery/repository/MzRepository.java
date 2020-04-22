@@ -4,13 +4,17 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFood;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food.FoodMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Restaurant.RestaurantMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.User.UserMapper;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.UserCart.UserCartMapper;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.CustomPair;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MzRepository {
@@ -35,6 +39,9 @@ public class MzRepository {
         try {
             UserMapper userMapper = new UserMapper(true);
         } catch (Exception ignored) {}
+        try {
+            UserCartMapper userCartMapper = new UserCartMapper(true);
+        } catch (Exception ignored) {}
     }
 
     //    RESTAURANT
@@ -47,6 +54,8 @@ public class MzRepository {
         return new RestaurantMapper().find(restaurantId);
     }
 
+
+
     //    FOOD
     public void insertFood(Food food) throws SQLException {
         FoodMapper foodMapper = new FoodMapper();
@@ -55,6 +64,13 @@ public class MzRepository {
 
     public void deleteFood(CustomPair id) throws SQLException {
         new FoodMapper().delete(id);
+    }
+
+    public Food getFood(String restaurantId, String foodName) throws SQLException {
+        List<String> args = new ArrayList<>();
+        args.add(restaurantId);
+        args.add(foodName);
+        return new FoodMapper().find(new CustomPair(args));
     }
 
     //    FOOD PART
@@ -78,5 +94,39 @@ public class MzRepository {
 
     public List<Restaurant> findNearRestaurants(Location location, double maxDistance) throws SQLException {
         return new RestaurantMapper().findNearRestaurants(location, maxDistance);
+    }
+
+    //      USERCART
+    public void insertCartItem(CartItem cartItem) throws SQLException {
+        new UserCartMapper().insert(cartItem);
+    }
+
+    public void emptyUserCart(String userEmail) throws SQLException {
+        new UserCartMapper().emptyUserCart(userEmail);
+    }
+
+    public List<CartItem> getUserCart(String userEmail) throws SQLException {
+        return new UserCartMapper().getUserCart(userEmail);
+    }
+
+    public void updateCartItem(CartItem cartItem) throws SQLException{
+        new UserCartMapper().updateCartItem(cartItem);
+    }
+
+    public void removeCartItem(CartItem cartItem) throws SQLException {
+        List<String> args = new ArrayList<>();
+        args.add(cartItem.getUserEmail());
+        args.add(cartItem.getRestaurantId());
+        args.add(cartItem.getFoodName());
+        new UserCartMapper().delete(new CustomPair(args));
+    }
+
+
+    public CartItem findCartItem(CartItem cartItem) throws SQLException {
+        List<String> args = new ArrayList<>();
+        args.add(cartItem.getUserEmail());
+        args.add(cartItem.getRestaurantId());
+        args.add(cartItem.getFoodName());
+        return new UserCartMapper().find(new CustomPair(args));
     }
 }

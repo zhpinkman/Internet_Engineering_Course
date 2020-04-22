@@ -62,15 +62,17 @@ public class UserManager {
         return user.finalizeOrder();
     }
 
-    public boolean foodRepoEmpty(Cart cart) {
+    public boolean foodRepoEmpty(Cart cart) throws SQLException {
+
         for (CartItem cartItem : cart.getCartItems()) {
-            if (!cartItem.getFood().hasEnoughAmount(cartItem.getQuantity()))
+            Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
+            if (!food.hasEnoughAmount(cartItem.getQuantity()))
                 return true;
         }
         return false;
     }
 
-    public int getUserCartSize() {
+    public int getUserCartSize() throws SQLException {
         return user.getUserCartSize();
     }
 
@@ -82,8 +84,8 @@ public class UserManager {
         user.chargeUserCredit(amount);
     }
 
-    public void deleteFromCart(Restaurant restaurant, Food food) throws Exception {
-        user.deleteFromCart(restaurant, food);
+    public void deleteFromCart(String restaurantId, String foodName) throws Exception {
+        user.deleteFromCart(restaurantId, foodName);
     }
 
     public Order getOrderById(double id) throws Exception {

@@ -53,7 +53,10 @@ public class FoodPartyManager {
             partyFood.print();
 //            Delete usual food if exists
             try {
-                MzRepository.getInstance().deleteFood(new CustomPair(restaurant.getId(), partyFood.getName()));
+                List<String> args = new ArrayList<>();
+                args.add(restaurant.getId());
+                args.add(partyFood.getName());
+                MzRepository.getInstance().deleteFood(new CustomPair(args));
             } catch (SQLException ignored) {
             }
 

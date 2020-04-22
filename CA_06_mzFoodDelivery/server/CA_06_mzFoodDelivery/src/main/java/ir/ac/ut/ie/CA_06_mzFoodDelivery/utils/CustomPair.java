@@ -1,18 +1,15 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomPair {
-    String first;
-    String second;
-    public CustomPair(String first, String second) {
-        this.first = first;
-        this.second = second;
+    List<String> args;
+    public CustomPair(List<String> args) {
+        this.args = args;
     }
 
-    public String getFirst() {
-        return first;
-    }
-
-    public String getSecond() {
-        return second;
+    public List<String> getArgs() {
+        return args;
     }
 }

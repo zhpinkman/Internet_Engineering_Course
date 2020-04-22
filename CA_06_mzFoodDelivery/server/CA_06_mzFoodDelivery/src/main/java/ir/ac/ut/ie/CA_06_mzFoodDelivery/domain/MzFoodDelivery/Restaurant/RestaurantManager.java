@@ -124,13 +124,12 @@ public class RestaurantManager {
         throw new Exception("Error: restaurant does not exists");
     }
 
-    public void decreaseFoodAmounts(Order order) {
+    public void decreaseFoodAmounts(Order order) throws SQLException {
         Cart cart = order.getCart();
         for (CartItem cartItem: cart.getCartItems()) {
-            cartItem.getFood().decreaseFoodAmount(cartItem.getQuantity());
+            Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
+            food.decreaseFoodAmount(cartItem.getQuantity());
         }
     }
 }
-
-
 

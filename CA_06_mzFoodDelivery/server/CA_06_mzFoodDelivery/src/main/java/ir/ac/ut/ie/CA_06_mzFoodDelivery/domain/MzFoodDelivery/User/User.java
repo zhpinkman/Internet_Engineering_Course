@@ -5,12 +5,13 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private Cart userCart = new Cart();
-    private Location location = new Location(0, 0);
+    private Location location;
     private String firstName;
     private String lastName;
     private String email; // this field is used as id
@@ -35,10 +36,6 @@ public class User {
         return userCart;
     }
 
-    public Restaurant getActiveRestaurant() {
-        return userCart.getRestaurant();
-    }
-
     public Location getLocation() {
         return location;
     }
@@ -50,19 +47,23 @@ public class User {
     }
 
 
+//    todo kollan in order bayad avaz she chon qablesh clone mikardim
+//     alan dg addToCart beshe too cart asli ezafe mishe asan nmikhad inkaro kard too hamoon order database ezafe mikonim
+
     public Cart cloneCart() {
-        Cart cart = new Cart();
-        for (CartItem cartItem: userCart.getCartItems()) {
-            try {
-                cart.addToCart(cartItem);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return cart;
+//        Cart cart = new Cart();
+//        for (CartItem cartItem: userCart.getCartItems()) {
+//            try {
+//                cart.addToCart(cartItem);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return cart;
+        return null;
     }
 
-    public int getUserCartSize() {
+    public int getUserCartSize() throws SQLException {
         return userCart.getSize();
     }
 
@@ -90,7 +91,7 @@ public class User {
             throw new Exception("negative amount is not allowed");
     }
 
-    public double getCartTotalPrice() {
+    public double getCartTotalPrice() throws SQLException {
         return userCart.getTotalPrice();
     }
 
@@ -98,8 +99,8 @@ public class User {
         credit -= amount;
     }
 
-    public void deleteFromCart(Restaurant restaurant, Food food) throws Exception {
-        userCart.delete(restaurant, food);
+    public void deleteFromCart(String restaurantId, String foodName) throws Exception {
+        userCart.delete(restaurantId, foodName);
     }
 
     public Order getOrderById(double id) throws Exception {
