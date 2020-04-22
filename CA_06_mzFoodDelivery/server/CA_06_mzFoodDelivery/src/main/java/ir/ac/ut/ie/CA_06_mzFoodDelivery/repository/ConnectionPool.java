@@ -16,8 +16,8 @@ public class ConnectionPool {
         ds.setUsername("root");
         ds.setPassword("");
         ds.setMinIdle(1);
-        ds.setMaxIdle(5);
-        ds.setMaxOpenPreparedStatements(100);
+        ds.setMaxIdle(2000);
+        ds.setMaxOpenPreparedStatements(2000);
     }
 
     public static Connection getConnection() throws SQLException {

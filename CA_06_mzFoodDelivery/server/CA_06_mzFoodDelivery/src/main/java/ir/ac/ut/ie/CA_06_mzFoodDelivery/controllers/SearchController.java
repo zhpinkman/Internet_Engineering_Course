@@ -14,13 +14,25 @@ import java.util.List;
 public class SearchController {
 
     @GetMapping("/restaurants")
-    public List<Restaurant> searchRestaurants(@RequestParam(required = false, defaultValue = "", value="q") String searchPhrase) {
-        return MzFoodDelivery.getInstance().searchRestaurants(searchPhrase);
+    public List<Restaurant> searchRestaurants(
+            @RequestParam(required = true, value = "q") String searchPhrase,
+            @RequestParam(defaultValue = Config.DEFAULT_PAGE_NUMBER, value = "pageNumber") int pageNumber,
+            @RequestParam(defaultValue = Config.DEFAULT_PAGE_SIZE, value = "pageSize") int pageSize) {
+
+        int limit = pageSize;
+        int offset = (pageNumber - 1) * pageSize;
+        return MzFoodDelivery.getInstance().searchRestaurants(searchPhrase, limit, offset);
     }
 
     @GetMapping("/foods")
-    public List<Restaurant> searchFoods(@RequestParam(required = false, defaultValue = "", value="q") String searchPhrase) {
-        return MzFoodDelivery.getInstance().searchFoods(searchPhrase);
+    public List<Restaurant> searchFoods(
+            @RequestParam(required = true, value = "q") String searchPhrase,
+            @RequestParam(defaultValue = Config.DEFAULT_PAGE_NUMBER, value = "pageNumber") int pageNumber,
+            @RequestParam(defaultValue = Config.DEFAULT_PAGE_SIZE, value = "pageSize") int pageSize) {
+
+        int limit = pageSize;
+        int offset = (pageNumber - 1) * pageSize;
+        return MzFoodDelivery.getInstance().searchFoods(searchPhrase, limit, offset);
     }
 
 }

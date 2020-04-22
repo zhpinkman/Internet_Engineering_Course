@@ -99,8 +99,8 @@ public class RestaurantManager {
 //        return restaurants.subList(0, Math.min(recommendCount, restaurants.size()));
 //    }
 
-    public synchronized List<Restaurant> getNearRestaurants(Location userLocation) throws SQLException{
-        return MzRepository.getInstance().findNearRestaurants(userLocation, MAX_NEAR_DISTANCE);
+    public synchronized List<Restaurant> getNearRestaurants(Location userLocation, int limit, int offset) throws SQLException{
+        return MzRepository.getInstance().findNearRestaurants(userLocation, MAX_NEAR_DISTANCE, limit, offset);
 //        restaurants.sort(new SortByDistance(userLocation));
 //        return restaurants.stream().filter(it -> it.isNearUser(userLocation)).collect(Collectors.toList());
     }

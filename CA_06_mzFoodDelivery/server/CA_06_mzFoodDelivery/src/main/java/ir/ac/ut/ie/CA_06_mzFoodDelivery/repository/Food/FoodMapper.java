@@ -108,6 +108,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
                 resultSet = st.executeQuery();
                 while (resultSet.next())
                     result.add((PartyFood) convertResultSetToObject(resultSet));
+                con.close();
                 return result;
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.findAll query.");
@@ -128,6 +129,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
                 resultSet = st.executeQuery();
                 while (resultSet.next())
                     result.add(convertResultSetToObject(resultSet));
+                con.close();
                 return result;
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.findAll query.");
@@ -136,6 +138,27 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
         }
     }
 
+    public List<Food> search(String searchPhrase, int limit, int offset) throws SQLException{
+        List<Food> result = new ArrayList<>();
+        String searchString = "'%" + searchPhrase + "%'";
+        String statement = "SELECT * FROM " + TABLE_NAME +
+                " WHERE name LIKE " + searchString +
+                " OR description LIKE " + searchString +
+                " LIMIT " + limit + " OFFSET " + offset;
+
+        try {
+            Connection con = ConnectionPool.getConnection();
+            PreparedStatement st = con.prepareStatement(statement);
+            ResultSet resultSet = st.executeQuery();
+            while (resultSet.next())
+                result.add(convertResultSetToObject(resultSet));
+            con.close();
+            return result;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw ex;
+        }
+    }
 
     @Override
     public void updateFood(PartyFood food) throws SQLException {
@@ -143,7 +166,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
                 "count", food.getCount(),
                 "restaurantId", StringUtils.quoteWrapper(food.getRestaurantId()),
                 "foodName", StringUtils.quoteWrapper(food.getName())
-                );
+        );
         try (Connection con = ConnectionPool.getConnection();
              PreparedStatement st = con.prepareStatement(statement);
         ) {
@@ -156,12 +179,15 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
         }
     }
 
-    public List<Food> search(String searchPhrase) throws SQLException{
+
+    public List<Food> searchUniqueRestaurants(String searchPhrase, int limit, int offset) throws SQLException{
         List<Food> result = new ArrayList<>();
         String searchString = "'%" + searchPhrase + "%'";
         String statement = "SELECT * FROM " + TABLE_NAME +
                 " WHERE name LIKE " + searchString +
-                " OR description LIKE " + searchString ;
+                " OR description LIKE " + searchString +
+                " GROUP BY restaurantId" +
+                " LIMIT " + limit + " OFFSET " + offset;
 
         try {
             Connection con = ConnectionPool.getConnection();
@@ -169,6 +195,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
             ResultSet resultSet = st.executeQuery();
             while (resultSet.next())
                 result.add(convertResultSetToObject(resultSet));
+            con.close();
             return result;
         } catch (SQLException ex) {
             ex.printStackTrace();
