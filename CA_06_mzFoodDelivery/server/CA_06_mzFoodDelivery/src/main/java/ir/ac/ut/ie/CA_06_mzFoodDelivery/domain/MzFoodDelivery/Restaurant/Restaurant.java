@@ -3,16 +3,15 @@ package ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant;
 import java.util.List;
 
 public class Restaurant {
+    private final double MAX_NEAR_DISTANCE = 170;
+    private final double averageDeliveryVelocity = 5;
+    private final double averageTimeToFindDelivery = 60;
     private String id;
     private String name;
     private String description;
     private Location location;
     private String logo;
     private List<Food> menu;
-
-    private final double MAX_NEAR_DISTANCE = 170;
-    private final double averageDeliveryVelocity = 5;
-    private final double averageTimeToFindDelivery = 60;
 
     public Restaurant(String id, String name, String description, Location location, List<Food> menu, String logo) {
         this.id = id;
@@ -36,18 +35,18 @@ public class Restaurant {
     public void print() {
         System.out.println(
                 "id: " + id + "\n" +
-                "name: " + name + "\n" +
-                "logo: " + logo + "\n" +
-                "description: " + description + "\n" +
-                "Location: ");
+                        "name: " + name + "\n" +
+                        "logo: " + logo + "\n" +
+                        "description: " + description + "\n" +
+                        "Location: ");
         location.print();
-        for (Food food:menu) {
+        for (Food food : menu) {
             food.print();
         }
     }
 
     public Food getFood(String foodName) throws Exception {
-        for (Food food: menu) {
+        for (Food food : menu) {
             if (food.getName().equals(foodName))
                 return food;
         }
@@ -71,14 +70,19 @@ public class Restaurant {
         return menu;
     }
 
-    private boolean isFoodInMenu(Food food){
-        for(Food foodItem: menu){
-            if(foodItem.getName().equals(food.getName()) && !(food instanceof PartyFood))
+    public void setMenu(List<Food> menu) {
+        this.menu = menu;
+    }
+
+    private boolean isFoodInMenu(Food food) {
+        for (Food foodItem : menu) {
+            if (foodItem.getName().equals(food.getName()) && !(food instanceof PartyFood))
                 return true;
         }
         return false;
     }
-    public void addFood(Food food) throws Exception{
+
+    public void addFood(Food food) throws Exception {
         if (isFoodInMenu(food))
             throw new Exception("Error: Duplicate food");
         menu.add(food);
@@ -128,9 +132,7 @@ public class Restaurant {
         String fieldValue = null;
         try {
             fieldValue = (String) getClass().getDeclaredField(propertyName).get(this);
-        }
-        catch (NoSuchFieldException | IllegalAccessException exception)
-        {
+        } catch (NoSuchFieldException | IllegalAccessException exception) {
 //            System.out.println(exception.getMessage());
         }
         System.out.println(fieldValue);

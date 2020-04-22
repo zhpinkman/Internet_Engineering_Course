@@ -28,7 +28,7 @@ public class RestaurantManager {
 
     public Restaurant findRestaurantById(String id){
         try {
-            return MzRepository.getInstance().findRestaurantById(id);
+            return MzRepository.getInstance().findRestaurantById(id, true);
         }catch (SQLException e){
             return null;
         }

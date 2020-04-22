@@ -4,7 +4,6 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFood;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
-import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.Food.FoodMapper;
@@ -32,13 +31,16 @@ public class MzRepository {
     public void createAllTables() {
         try {
             RestaurantMapper restaurantMapper = new RestaurantMapper(true);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         try {
             FoodMapper foodMapper = new FoodMapper(true);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         try {
             UserMapper userMapper = new UserMapper(true);
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         try {
             UserCartMapper userCartMapper = new UserCartMapper(true);
         } catch (Exception e) {
@@ -56,6 +58,16 @@ public class MzRepository {
         return new RestaurantMapper().find(restaurantId);
     }
 
+    public Restaurant findRestaurantById(String restaurantId, boolean includeMenu) throws SQLException {
+        if (includeMenu) {
+            Restaurant restaurant = new RestaurantMapper().find(restaurantId);
+            List<Food> menu = MzRepository.getInstance().getRestaurantMenu(restaurantId);
+            restaurant.setMenu(menu);
+            return restaurant;
+        } else {
+            return findRestaurantById(restaurantId);
+        }
+    }
 
 
     //    FOOD
@@ -75,7 +87,11 @@ public class MzRepository {
         return new FoodMapper().find(new CustomPair(args));
     }
 
-    //    FOOD PART
+    private List<Food> getRestaurantMenu(String restaurantId) throws SQLException {
+        return new FoodMapper().getRestaurantMenu(restaurantId);
+    }
+
+    //    FOOD PARTY
     public void deletePartyFoods() throws SQLException {
         FoodMapper foodMapper = new FoodMapper();
         foodMapper.deletePartyFoods();
@@ -115,7 +131,7 @@ public class MzRepository {
         return new UserCartMapper().getUserCart(userEmail);
     }
 
-    public void updateCartItem(CartItem cartItem) throws SQLException{
+    public void updateCartItem(CartItem cartItem) throws SQLException {
         new UserCartMapper().updateCartItem(cartItem);
     }
 
