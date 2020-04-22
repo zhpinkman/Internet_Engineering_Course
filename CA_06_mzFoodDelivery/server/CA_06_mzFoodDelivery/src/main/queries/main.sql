@@ -96,3 +96,5 @@ show tables ;
 
 
 describe USERCART;
+
+select * from USERS;

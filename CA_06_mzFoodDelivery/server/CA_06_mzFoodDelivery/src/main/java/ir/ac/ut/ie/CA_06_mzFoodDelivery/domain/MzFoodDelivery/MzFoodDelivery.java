@@ -116,15 +116,15 @@ public class MzFoodDelivery {
         return userManager.getOrderById(id);
     }
 
-    public List<Order> getOrders() {
+    public List<Order> getOrders() throws SQLException {
         return userManager.getOrders();
     }
 
-    public Cart getCart() {
+    public Cart getCart() throws SQLException {
         return userManager.getCart();
     }
 
-    public String getBriefCartJson() {
+    public String getBriefCartJson() throws SQLException {
         return userManager.getBriefCartJson();
     }
 
@@ -196,7 +196,7 @@ public class MzFoodDelivery {
         return deliveries;
     }
 
-    public void assignDeliveryToOrder() {
+    public void assignDeliveryToOrder() throws SQLException {
         Order latestOrder = userManager.getLatestOrder();
         try {
             Delivery delivery = getQuickestDelivery(latestOrder);

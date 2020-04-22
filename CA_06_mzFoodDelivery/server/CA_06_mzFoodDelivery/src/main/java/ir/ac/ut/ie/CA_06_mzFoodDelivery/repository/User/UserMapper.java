@@ -68,7 +68,8 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
                 new Location(
                         rs.getDouble("locationX"),
                         rs.getDouble("locationY")
-                )
+                ),
+                rs.getDouble("credit")
         );
     }
 
@@ -88,6 +89,22 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
                 return result;
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.findAll query.");
+                throw ex;
+            }
+        }
+    }
+
+    @Override
+    public void updateUserCredit(User user) throws SQLException {
+        String statement = String.format("update %s set %s = %s where %s = %s;", TABLE_NAME, "credit",
+                user.getCredit(), "email", StringUtils.quoteWrapper(user.getEmail()));
+        try (Connection con = ConnectionPool.getConnection();
+             PreparedStatement st = con.prepareStatement(statement);
+        ) {
+            try {
+                st.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("error in Mapper.updateCartItem query.");
                 throw ex;
             }
         }

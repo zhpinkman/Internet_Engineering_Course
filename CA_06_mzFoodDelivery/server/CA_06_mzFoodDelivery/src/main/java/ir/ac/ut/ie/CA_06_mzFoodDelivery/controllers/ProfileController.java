@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 
@@ -76,13 +77,13 @@ public class ProfileController {
     }
 
     @GetMapping("/cart")
-    public Cart getCart() {
+    public Cart getCart() throws SQLException {
         return MzFoodDelivery.getInstance().getCart();
     }
 
 
     @GetMapping("/orders")
-    public List<Order> getOrders() {
+    public List<Order> getOrders() throws SQLException {
         return MzFoodDelivery.getInstance().getOrders();
     }
 

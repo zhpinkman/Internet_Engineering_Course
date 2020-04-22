@@ -12,4 +12,5 @@ import java.util.List;
 
 public interface IUserMapper extends IMapper<User, String> {
     List<User> getAll() throws SQLException;
+    void updateUserCredit(User user) throws SQLException;
 }

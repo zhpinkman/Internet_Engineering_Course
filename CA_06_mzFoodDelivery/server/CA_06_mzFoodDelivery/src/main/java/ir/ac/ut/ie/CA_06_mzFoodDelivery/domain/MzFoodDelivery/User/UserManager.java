@@ -15,11 +15,12 @@ import java.util.List;
 
 public class UserManager {
 
-    private User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0));
+
+    public static final String userEmail = "ekhamespanah@yahoo.com";
 
     public UserManager() {
         System.out.println("mohsen here");
-        User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0));
+        User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0), 0);
         try {
             MzRepository.getInstance().insertUser(user);
             System.out.println("zhivar here");
@@ -34,11 +35,12 @@ public class UserManager {
         return MzRepository.getInstance().getUser(email).getLocation();
     }
 
-    public Cart getCart() {
+    public Cart getCart() throws SQLException {
+        User user = MzRepository.getInstance().getUser(userEmail);
         return user.getUserCart();
     }
 
-    public String getBriefCartJson() {
+    public String getBriefCartJson() throws SQLException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonElement cartJsonElement = gson.toJsonTree(this.getCart());
         JsonArray array = cartJsonElement.getAsJsonObject().get("cartItems").getAsJsonArray();
@@ -51,15 +53,16 @@ public class UserManager {
     }
 
     public Order finalizeOrder() throws Exception {
-        double totalPrice = user.getCartTotalPrice();
-        if (user.getUserCartSize() == 0)
-            throw new Exception("user cart is empty");
-        if (totalPrice > user.getCredit())
-            throw new Exception("credit is not enough for finalizing your order");
-        if (foodRepoEmpty(user.getUserCart()))
-            throw new Exception("count of this offer is not enough for you to submit");
-        user.withdrawCredit(totalPrice);
-        return user.finalizeOrder();
+//        double totalPrice = user.getCartTotalPrice();
+//        if (user.getUserCartSize() == 0)
+//            throw new Exception("user cart is empty");
+//        if (totalPrice > user.getCredit())
+//            throw new Exception("credit is not enough for finalizing your order");
+//        if (foodRepoEmpty(user.getUserCart()))
+//            throw new Exception("count of this offer is not enough for you to submit");
+//        user.withdrawCredit(totalPrice);
+//        return user.finalizeOrder();
+        return null;
     }
 
     public boolean foodRepoEmpty(Cart cart) throws SQLException {
@@ -73,6 +76,7 @@ public class UserManager {
     }
 
     public int getUserCartSize() throws SQLException {
+        User user = MzRepository.getInstance().getUser(userEmail);
         return user.getUserCartSize();
     }
 
@@ -81,26 +85,32 @@ public class UserManager {
     }
 
     public void chargeUserCredit(double amount) throws Exception {
+        User user = MzRepository.getInstance().getUser(userEmail);
         user.chargeUserCredit(amount);
     }
 
     public void deleteFromCart(String restaurantId, String foodName) throws Exception {
+        User user = MzRepository.getInstance().getUser(userEmail);
         user.deleteFromCart(restaurantId, foodName);
     }
 
     public Order getOrderById(double id) throws Exception {
+        User user = MzRepository.getInstance().getUser(userEmail);
         return user.getOrderById(id);
     }
 
-    public List<Order> getOrders() {
+    public List<Order> getOrders() throws SQLException {
+        User user = MzRepository.getInstance().getUser(userEmail);
         return user.getOrders();
     }
 
-    public void addOrder(Order order) {
+    public void addOrder(Order order) throws SQLException {
+        User user = MzRepository.getInstance().getUser(userEmail);
         user.addOrder(order);
     }
 
-    public Order getLatestOrder() {
+    public Order getLatestOrder() throws SQLException {
+        User user = MzRepository.getInstance().getUser(userEmail);
         return user.getLatestOrder();
     }
 }

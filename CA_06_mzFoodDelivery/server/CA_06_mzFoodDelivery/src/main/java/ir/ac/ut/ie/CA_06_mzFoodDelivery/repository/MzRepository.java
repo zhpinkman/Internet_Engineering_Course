@@ -96,6 +96,10 @@ public class MzRepository {
         return new RestaurantMapper().findNearRestaurants(location, maxDistance);
     }
 
+    public void updateUser(User user) throws SQLException {
+        new UserMapper().updateUserCredit(user);
+    }
+
     //      USERCART
     public void insertCartItem(CartItem cartItem) throws SQLException {
         new UserCartMapper().insert(cartItem);
@@ -129,4 +133,6 @@ public class MzRepository {
         args.add(cartItem.getFoodName());
         return new UserCartMapper().find(new CustomPair(args));
     }
+
+
 }

@@ -4,6 +4,7 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,13 +20,13 @@ public class User {
     private String phoneNumber;
     private List<Order> orderList = new ArrayList<Order>();
 
-    public User(String firstName, String lastName, String email, String phoneNumber, Location location){
+    public User(String firstName, String lastName, String email, String phoneNumber, Location location, double credit){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.location = location;
-        this.credit = 0;
+        this.credit = credit;
     }
 
     public void addToCart(CartItem cartItem) throws Exception {
@@ -85,8 +86,11 @@ public class User {
 
 
     public void chargeUserCredit(double amount) throws Exception {
-        if (amount > 0)
+        if (amount > 0) {
             credit += amount;
+            System.out.println();
+            MzRepository.getInstance().updateUser(this);
+        }
         else
             throw new Exception("negative amount is not allowed");
     }
