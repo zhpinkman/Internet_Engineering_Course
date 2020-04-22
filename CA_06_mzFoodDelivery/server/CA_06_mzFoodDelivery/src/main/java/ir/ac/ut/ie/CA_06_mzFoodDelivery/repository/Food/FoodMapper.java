@@ -90,6 +90,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
         ) {
             try {
                 st.executeUpdate();
+                con.close();
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.deletePartyFoods query.");
                 throw ex;
@@ -108,6 +109,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
                 resultSet = st.executeQuery();
                 while (resultSet.next())
                     result.add((PartyFood) convertResultSetToObject(resultSet));
+                con.close();
                 return result;
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.findAll query.");
@@ -128,6 +130,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
                 resultSet = st.executeQuery();
                 while (resultSet.next())
                     result.add(convertResultSetToObject(resultSet));
+                con.close();
                 return result;
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.findAll query.");
@@ -149,6 +152,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
             ResultSet resultSet = st.executeQuery();
             while (resultSet.next())
                 result.add(convertResultSetToObject(resultSet));
+            con.close();
             return result;
         } catch (SQLException ex) {
             ex.printStackTrace();

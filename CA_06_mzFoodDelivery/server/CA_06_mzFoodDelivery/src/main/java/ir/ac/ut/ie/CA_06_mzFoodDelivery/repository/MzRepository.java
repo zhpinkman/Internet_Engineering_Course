@@ -116,8 +116,8 @@ public class MzRepository {
         return new UserMapper().find(email);
     }
 
-    public List<Restaurant> findNearRestaurants(Location location, double maxDistance) throws SQLException {
-        return new RestaurantMapper().findNearRestaurants(location, maxDistance);
+    public List<Restaurant> findNearRestaurants(Location location, double maxDistance, int limit, int offset) throws SQLException {
+        return new RestaurantMapper().findNearRestaurants(location, maxDistance, limit, offset);
     }
 
     public void updateUser(User user) throws SQLException {

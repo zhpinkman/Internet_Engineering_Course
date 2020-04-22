@@ -14,8 +14,10 @@ import java.util.List;
 public class RestaurantController {
 
     @GetMapping("")
-    public List<Restaurant> getRestaurants() {
-        return MzFoodDelivery.getInstance().getNearRestaurants();
+    public List<Restaurant> getRestaurants(@RequestParam(defaultValue = "1", value="pageNumber") int pageNumber, @RequestParam(defaultValue = "8", value="pageSize") int pageSize) {
+        int limit = pageSize;
+        int offset = (pageNumber - 1) * pageSize;
+        return MzFoodDelivery.getInstance().getNearRestaurants(limit, offset);
     }
 
     @GetMapping("/{restaurantId}")

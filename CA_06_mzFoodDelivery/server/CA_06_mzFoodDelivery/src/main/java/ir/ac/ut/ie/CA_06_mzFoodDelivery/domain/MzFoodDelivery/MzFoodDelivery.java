@@ -149,9 +149,9 @@ public class MzFoodDelivery {
 //        }
 //    }
 
-    public List<Restaurant> getNearRestaurants() {
+    public List<Restaurant> getNearRestaurants(int limit, int offset) {
         try {
-            return restaurantManager.getNearRestaurants(userManager.getLocation(userEmail));
+            return restaurantManager.getNearRestaurants(userManager.getLocation(userEmail), limit, offset);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

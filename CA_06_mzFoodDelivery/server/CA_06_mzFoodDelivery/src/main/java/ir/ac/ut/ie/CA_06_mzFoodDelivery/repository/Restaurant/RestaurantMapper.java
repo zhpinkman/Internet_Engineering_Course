@@ -90,16 +90,19 @@ public class RestaurantMapper extends Mapper<Restaurant, String> implements IRes
         }
     }
 
-    public List<Restaurant> findNearRestaurants(Location location, double maxDistance) throws SQLException {
+    public List<Restaurant> findNearRestaurants(Location location, double maxDistance, int limit, int offset) throws SQLException {
         List<Restaurant> result = new ArrayList<Restaurant>();
         String statement = "SELECT * FROM " + TABLE_NAME +
-                " WHERE sqrt(power(? - locationX, 2) + power(? - locationY, 2)) < ?";
+                " WHERE sqrt(power(? - locationX, 2) + power(? - locationY, 2)) < ? " +
+                "LIMIT ? OFFSET ?";
 
         Connection con = ConnectionPool.getConnection();
         PreparedStatement st = con.prepareStatement(statement);
         st.setDouble(1, location.getX());
         st.setDouble(2, location.getY());
         st.setDouble(3, maxDistance);
+        st.setInt(4, limit);
+        st.setInt(5, offset);
         ResultSet resultSet;
         try {
             resultSet = st.executeQuery();

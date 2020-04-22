@@ -14,12 +14,12 @@ import java.util.List;
 public class SearchController {
 
     @GetMapping("/restaurants")
-    public List<Restaurant> searchRestaurants(@RequestParam(required = false, defaultValue = "", value="q") String searchPhrase) {
+    public List<Restaurant> searchRestaurants(@RequestParam(required = true, defaultValue = "", value="q") String searchPhrase) {
         return MzFoodDelivery.getInstance().searchRestaurants(searchPhrase);
     }
 
     @GetMapping("/foods")
-    public List<Restaurant> searchFoods(@RequestParam(required = false, defaultValue = "", value="q") String searchPhrase) {
+    public List<Restaurant> searchFoods(@RequestParam(required = true, defaultValue = "", value="q") String searchPhrase) {
         return MzFoodDelivery.getInstance().searchFoods(searchPhrase);
     }
 
