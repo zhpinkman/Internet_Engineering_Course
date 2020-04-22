@@ -14,7 +14,7 @@ public class ConnectionPool {
         // remote db
         ds.setUrl("jdbc:mysql://localhost:3306/mzFoodDelivery");
         ds.setUsername("root");
-        ds.setPassword("123456");
+        ds.setPassword("");
         ds.setMinIdle(1);
         ds.setMaxIdle(5);
         ds.setMaxOpenPreparedStatements(100);

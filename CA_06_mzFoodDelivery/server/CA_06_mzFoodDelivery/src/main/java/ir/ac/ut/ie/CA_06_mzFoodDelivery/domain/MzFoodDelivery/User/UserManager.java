@@ -18,9 +18,11 @@ public class UserManager {
     private User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0));
 
     public UserManager() {
+        System.out.println("mohsen here");
         User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0));
         try {
             MzRepository.getInstance().insertUser(user);
+            System.out.println("zhivar here");
         } catch (SQLException ignored) {}
     }
 
@@ -74,7 +76,6 @@ public class UserManager {
 
     public User getUser(String email) throws SQLException{
         return MzRepository.getInstance().getUser(email);
-//        return user;
     }
 
     public void chargeUserCredit(double amount) throws Exception {

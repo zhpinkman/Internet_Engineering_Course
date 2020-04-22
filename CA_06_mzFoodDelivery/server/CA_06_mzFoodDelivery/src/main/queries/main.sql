@@ -85,8 +85,8 @@ create table ORDERS (
 
 describe ORDERS;
 
+use mzFoodDelivery;
 
-select * from RESTAURANTS;
+# INSERT INTO USERS (  email, firstName, lastName, phoneNumber, locationX, locationY  ) values ('ekhamespanah@yahoo.com', 'Ehsan', 'Khames', '989123456789', 0.000000, 0.000000);
 
-
-select * from FOODS;
+show tables ;

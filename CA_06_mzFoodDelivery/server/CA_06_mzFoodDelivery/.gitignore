@@ -3,6 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+src/main/java/ir/ac/ut/ie/CA_06_mzFoodDelivery/repository/ConnectionPool.java
 
 ### STS ###
 .apt_generated

@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 @SpringBootApplication
 public class Ca06MzFoodDeliveryApplication {
 	public static void main(String[] args) throws SQLException {
-		MzRepository.getInstance().createAllTables();
+//		MzRepository.getInstance().createAllTables();
 		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 		int foodPartyPeriod = 120; //Seconds
 		try {
@@ -35,33 +35,6 @@ public class Ca06MzFoodDeliveryApplication {
 		}
 		SpringApplication.run(Ca06MzFoodDeliveryApplication.class, args);
 
-
-////		testing database
-//
-//		UserMapper userMapper = new UserMapper(true);
-//		userMapper.insert(MzFoodDelivery.getInstance().getUser());
-//		List<User> users = userMapper.getAll();
-//		for (User user: users) {
-//			System.out.println(user.getEmail());
-//		}
-//		userMapper.delete("ekhamespanah@yahoo.com");
-
-//		RestaurantMapper restaurantMapper = new RestaurantMapper(false);
-//		try {
-//			Restaurant restaurant = restaurantMapper.find("zhivar");
-//		} catch (SQLException ex) {
-//			System.out.println("empty");
-//		}
-
-
-//		RestaurantMapper restaurantMapper = new RestaurantMapper();
-//		List<Restaurant> restaurants = restaurantMapper.getAll();
-//		String restaurantId = restaurants.get(0).getId();
-//		FoodMapper foodMapper = new FoodMapper();
-//		List<Food> restaurantMenu = foodMapper.getRestaurantMenu(restaurantId);
-//		for (Food food: restaurantMenu) {
-//			food.print();
-//		}
 	}
 
 }
