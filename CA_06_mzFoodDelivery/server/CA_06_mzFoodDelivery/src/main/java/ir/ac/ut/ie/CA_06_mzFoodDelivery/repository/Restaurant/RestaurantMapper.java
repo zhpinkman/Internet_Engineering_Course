@@ -115,9 +115,10 @@ public class RestaurantMapper extends Mapper<Restaurant, String> implements IRes
         }
     }
 
-    public List<Restaurant> search(String searchPhrase) throws SQLException{
+    public List<Restaurant> search(String searchPhrase, int limit, int offset) throws SQLException{
         List<Restaurant> result = new ArrayList<Restaurant>();
-        String statement = "SELECT * FROM " + TABLE_NAME + " WHERE name LIKE '%" + searchPhrase + "%'";
+        String statement = "SELECT * FROM " + TABLE_NAME + " WHERE name LIKE '%" + searchPhrase + "%'" +
+                " LIMIT " + limit + " OFFSET " + offset;
 
         try {
             Connection con = ConnectionPool.getConnection();

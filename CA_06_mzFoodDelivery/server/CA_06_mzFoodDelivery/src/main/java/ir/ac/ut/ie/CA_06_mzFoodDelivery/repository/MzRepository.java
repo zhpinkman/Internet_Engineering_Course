@@ -159,34 +159,34 @@ public class MzRepository {
     }
 
 
-    public List<Restaurant> searchRestaurants(String searchPhrase) {
+    public List<Restaurant> searchRestaurants(String searchPhrase, int limit, int offset) {
         try {
-            return new RestaurantMapper().search(searchPhrase);
+            return new RestaurantMapper().search(searchPhrase, limit, offset);
         } catch (SQLException e) {
             return new ArrayList<Restaurant>();
         }
     }
 
-    public List<Restaurant> searchFoods(String searchPhrase) {
+    public List<Restaurant> searchFoods(String searchPhrase, int limit, int offset) {
         try {
-            List<Food> foods = new FoodMapper().search(searchPhrase);
+            List<Food> foods = new FoodMapper().searchUniqueRestaurants(searchPhrase, limit, offset);
             List<Restaurant> resultRestaurants = new ArrayList<>();
             List<String> restaurantIds = new ArrayList<>();
             for (Food food : foods) {
                 try {
                     Restaurant newRestaurant = MzRepository.getInstance().findRestaurantById(food.getRestaurantId());
-                    if (!restaurantIds.contains(newRestaurant.getId())){
+                    if (!restaurantIds.contains(newRestaurant.getId())) {
                         restaurantIds.add(newRestaurant.getId());
                         resultRestaurants.add(newRestaurant);
                     }
-                } catch (SQLException ignored) {}
+                } catch (SQLException ignored) {
+                }
             }
             return resultRestaurants;
         } catch (SQLException e) {
             return new ArrayList<Restaurant>();
         }
     }
-
 
 
 }

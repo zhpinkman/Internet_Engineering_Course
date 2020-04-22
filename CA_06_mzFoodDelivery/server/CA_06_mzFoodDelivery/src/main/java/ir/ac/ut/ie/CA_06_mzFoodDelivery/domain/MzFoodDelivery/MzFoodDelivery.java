@@ -8,7 +8,6 @@ import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFood;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.RestaurantManager;
-import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.UserManager;
@@ -30,7 +29,6 @@ public class MzFoodDelivery {
     private List<Delivery> deliveries = new ArrayList<Delivery>();
     private int foodPartyPeriod;
     private long foodPartyStartTime;
-
 
 
     private MzFoodDelivery() {
@@ -255,11 +253,11 @@ public class MzFoodDelivery {
         return this.foodPartyPeriod - (System.currentTimeMillis() - this.foodPartyStartTime) / 1000;
     }
 
-    public List<Restaurant> searchRestaurants(String searchPhrase) {
-        return MzRepository.getInstance().searchRestaurants(searchPhrase);
+    public List<Restaurant> searchRestaurants(String searchPhrase, int limit, int offset) {
+        return MzRepository.getInstance().searchRestaurants(searchPhrase, limit, offset);
     }
 
-    public List<Restaurant> searchFoods(String searchPhrase) {
-        return MzRepository.getInstance().searchFoods(searchPhrase);
+    public List<Restaurant> searchFoods(String searchPhrase, int limit, int offset) {
+        return MzRepository.getInstance().searchFoods(searchPhrase, limit, offset);
     }
 }
