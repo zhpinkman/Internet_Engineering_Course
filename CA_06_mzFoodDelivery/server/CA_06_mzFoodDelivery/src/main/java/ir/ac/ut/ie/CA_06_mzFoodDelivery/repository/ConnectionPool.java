@@ -24,7 +24,7 @@ public class ConnectionPool {
         try {
             return ds.getConnection();
         }catch (Exception e){
-            ds.setPassword("");
+            ds.setPassword("123456");
             return ds.getConnection();
         }
     }
