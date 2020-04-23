@@ -33,7 +33,8 @@ export default class Restaurants extends React.Component {
                     searchPhrase: searchPhrase,
                     page: 1,
                     restaurants: null,
-                    enableLoadMore: true
+                    enableLoadMore: true,
+                    noContent: false
                 },
                 function () {
                     this.getRestaurants();
