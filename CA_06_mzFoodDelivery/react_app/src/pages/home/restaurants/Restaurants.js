@@ -25,22 +25,23 @@ export default class Restaurants extends React.Component {
         document.addEventListener('scroll', this.trackScrolling);
 
         homeRestaurantsRefresh.asObservable().subscribe((argsList) => {
-            let serviceFunction = argsList[0];
-            let searchPhrase = argsList[1];
-            console.log(argsList);
-            this.setState({
-                    serviceFunction: serviceFunction,
-                    searchPhrase: searchPhrase,
-                    page: 1,
-                    restaurants: null,
-                    enableLoadMore: true,
-                    noContent: false
-                },
-                function () {
-                    this.getRestaurants();
-                }
-            );
-
+            if (!this.state.loadingMore) {
+                let serviceFunction = argsList[0];
+                let searchPhrase = argsList[1];
+                console.log(argsList);
+                this.setState({
+                        serviceFunction: serviceFunction,
+                        searchPhrase: searchPhrase,
+                        page: 1,
+                        restaurants: null,
+                        enableLoadMore: true,
+                        noContent: false
+                    },
+                    function () {
+                        this.getRestaurants();
+                    }
+                );
+            }
         });
 
     }
