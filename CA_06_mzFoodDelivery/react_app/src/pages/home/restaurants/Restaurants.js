@@ -3,6 +3,7 @@ import "./restaurants.css";
 import TextTitleCenter from "../../general/text/TextTitleCenter";
 import RestaurantCard from "./RestaurantCard";
 import RestaurantService from "../../../services/RestaurantService";
+import {homeRestaurantsRefresh} from "../../../services/subjects/MessageService";
 
 export default class Restaurants extends React.Component {
 
@@ -11,13 +12,36 @@ export default class Restaurants extends React.Component {
         this.state = {
             restaurants: null,
             page: 1,
-            loadingMore: false
+            loadingMore: false,
+            enableLoadMore: true,
+            serviceFunction: RestaurantService.getRestaurants,
+            searchPhrase: null,
+            noContent: false
         };
     }
 
     componentDidMount() {
         this.getRestaurants();
         document.addEventListener('scroll', this.trackScrolling);
+
+        homeRestaurantsRefresh.asObservable().subscribe((argsList) => {
+            let serviceFunction = argsList[0];
+            let searchPhrase = argsList[1];
+            console.log(argsList);
+            this.setState({
+                    serviceFunction: serviceFunction,
+                    searchPhrase: searchPhrase,
+                    page: 1,
+                    restaurants: null,
+                    enableLoadMore: true
+                },
+                function () {
+                    this.getRestaurants();
+                }
+            );
+
+        });
+
     }
 
     componentWillUnmount() {
@@ -25,9 +49,20 @@ export default class Restaurants extends React.Component {
     }
 
     async getRestaurants() {
-        this.setState({loadingMore: true})
-        let restaurants = await RestaurantService.getRestaurants(this.state.page);
-        if(this.state.restaurants != null){
+        this.setState({loadingMore: true});
+        let restaurants;
+        if (this.state.searchPhrase === "" || this.state.searchPhrase === null) {
+            restaurants = await this.state.serviceFunction(this.state.page);
+        } else {
+            restaurants = await this.state.serviceFunction(this.state.searchPhrase, this.state.page);
+        }
+        if (!restaurants.length > 0) {
+            this.setState({enableLoadMore: false});
+            if (this.state.restaurants == null || this.state.restaurants.length === 0) {
+                this.setState({noContent: true});
+            }
+        }
+        if (this.state.restaurants != null) {
             restaurants = this.state.restaurants.concat(restaurants);
         }
         console.log(restaurants);
@@ -40,12 +75,14 @@ export default class Restaurants extends React.Component {
     }
 
     gotoNextPage() {
-        if(this.state.loadingMore === false){
+        if (this.state.loadingMore === false) {
             this.setState({
-                loadingMore: true,
-                page: this.state.page + 1
-            });
-            this.getRestaurants();
+                    loadingMore: true,
+                    page: this.state.page + 1
+                }, function () {
+                    this.getRestaurants();
+                }
+            );
         }
     }
 
@@ -55,10 +92,13 @@ export default class Restaurants extends React.Component {
 
     trackScrolling = () => {
         const wrappedElement = document.getElementById('restaurants-container');
-        if (this.isBottom(wrappedElement)) {
+        if (this.isBottom(wrappedElement) && this.state.enableLoadMore) {
             this.gotoNextPage();
-            console.log('header bottom reached');
+            // console.log('header bottom reached');
             // document.removeEventListener('scroll', this.trackScrolling);
+        }
+        if (!this.state.enableLoadMore) {
+            this.setState({loadingMore: false});
         }
     };
 
@@ -82,6 +122,16 @@ export default class Restaurants extends React.Component {
             //         <span className="sr-only">Loading...</span>
             //     </div>
             // );
+        } else if (this.state.noContent) {
+            return (
+                <div className="align-self-center">
+                    <img className="align-self-center no-content-img"
+                         src={require("../../../Assets/images/no_content_illustration_v2.svg")} alt={""}/>
+                    <div className="text-center">
+                        چیزی پیدا نشد!
+                    </div>
+                </div>
+            );
         } else {
             return this.state.restaurants.map((restaurant, i) =>
                 <RestaurantCard restaurant={restaurant} key={"R" + i}/>

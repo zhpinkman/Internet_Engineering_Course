@@ -127,6 +127,8 @@ public class RestaurantMapper extends Mapper<Restaurant, String> implements IRes
             ResultSet resultSet = st.executeQuery();
             while (resultSet.next())
                 result.add(convertResultSetToObject(resultSet));
+
+            con.close();
             return result;
         } catch (SQLException ex) {
             ex.printStackTrace();
