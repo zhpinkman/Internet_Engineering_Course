@@ -210,11 +210,11 @@ public class MzFoodDelivery {
     }
 
     private void removeOlderOffers() throws SQLException {
-//        for (CartItem cartItem : userManager.getCart().getCartItems()) {
-//            Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
-//            if (food instanceof PartyFood)
-//                userManager.getCart().removeCartItem((PartyFood) food);
-//        }
+        for (CartItem cartItem : userManager.getCart()) {
+            Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
+            if (food instanceof PartyFood)
+                MzRepository.getInstance().removeCartItem(cartItem);
+        }
     }
 
     public List<PartyFood> getPartyFoods() {
