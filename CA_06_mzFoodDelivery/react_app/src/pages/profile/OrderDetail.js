@@ -8,6 +8,15 @@ export default class OrderDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
+
+        this.calcTotalPrice = this.calcTotalPrice.bind(this);
+    }
+
+
+    calcTotalPrice() {
+        return this.props.cart.reduce((total, item) => {
+            return total + item.foodPrice * item.quantity;
+        }, 0);
     }
 
 
@@ -16,7 +25,7 @@ export default class OrderDetail extends React.Component {
             <div className="wrapper">
                 <div className="restaurant-title">
                     <span>
-                        {this.props.cart.restaurant.name}
+                        {this.props.restaurant.name}
                     </span>
                 </div>
 
@@ -35,20 +44,20 @@ export default class OrderDetail extends React.Component {
                         </thead>
                         <tbody>
                         {
-                            this.props.cart && this.props.cart.size > 0 &&
-                                this.props.cart.cartItems.map((cartItem, index) => {
+                            this.props.cart && this.props.cart.length > 0 &&
+                                this.props.cart.map((cartItem, index) => {
                                     return (
                                         <tr>
                                             <th scope="row">{enToFaNumber(index + 1)}</th>
-                                            <td>{cartItem.food.name}</td>
+                                            <td>{cartItem.foodName}</td>
                                             <td>{enToFaNumber(cartItem.quantity)}</td>
-                                            <td>{enToFaNumber(cartItem.food.price * cartItem.quantity)}</td>
+                                            <td>{enToFaNumber(cartItem.foodPrice * cartItem.quantity)}</td>
                                         </tr>
                                     )
                                 })
                         }
                         {
-                            this.props.cart.size === 0 && (
+                            this.props.cart.length === 0 && (
                                 <div className="text-center">
                                     خالی
                                 </div>
@@ -61,7 +70,7 @@ export default class OrderDetail extends React.Component {
                 <div className="price-wrapper">
                     <div className="price">
                         <span>
-                            {enToFaNumber(this.props.cart.totalPrice)}
+                            {enToFaNumber(this.calcTotalPrice())}
                             تومان
                         </span>
                         <span>

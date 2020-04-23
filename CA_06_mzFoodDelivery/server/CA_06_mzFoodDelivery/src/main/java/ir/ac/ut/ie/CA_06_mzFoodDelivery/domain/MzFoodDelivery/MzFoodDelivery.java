@@ -26,7 +26,6 @@ public class MzFoodDelivery {
     private RestaurantManager restaurantManager = new RestaurantManager();
     private UserManager userManager = new UserManager();
     private FoodPartyManager foodPartyManager = new FoodPartyManager();
-    private List<Delivery> deliveries = new ArrayList<Delivery>();
     private int foodPartyPeriod;
     private long foodPartyStartTime;
 
@@ -106,10 +105,6 @@ public class MzFoodDelivery {
         userManager.deleteFromCart(restaurantId, foodName);
     }
 
-    public Order getOrderById(double id) throws Exception {
-        return userManager.getOrderById(id);
-    }
-
     public List<Order> getOrders() throws SQLException {
         return userManager.getOrders();
     }
@@ -176,18 +171,6 @@ public class MzFoodDelivery {
         return restaurantManager.getRestaurantNameById(restaurantId);
     }
 
-    public void removeDeliveries() {
-        deliveries.clear();
-    }
-
-    public void addDeliveries(List<Delivery> deliveryList) {
-        deliveries.addAll(deliveryList);
-    }
-
-
-    public List<Delivery> getDeliveries() {
-        return deliveries;
-    }
 
     public void assignDeliveryToOrder() throws SQLException {
         Order latestOrder = userManager.getLatestOrder();
@@ -202,14 +185,16 @@ public class MzFoodDelivery {
     private Delivery getQuickestDelivery(Order order) throws SQLException {
         double minTime = Double.POSITIVE_INFINITY;
         Delivery quickestDelivery = null;
+        List<Delivery> deliveries = MzRepository.getInstance().getDeliveries();
         for (Delivery delivery : deliveries) {
-            double distanceToDeliverOrder = calcDeliveryDistanceToGo(order.getCart().getRestaurant(), delivery);
+            Restaurant restaurant = order.getOrderRestaurant();
+            double distanceToDeliverOrder = calcDeliveryDistanceToGo(restaurant, delivery);
             double timeToDeliverOrder = distanceToDeliverOrder / delivery.getVelocity();
             if (timeToDeliverOrder < minTime) {
                 quickestDelivery = delivery;
             }
         }
-        deliveries.remove(quickestDelivery); // todo free deliveries after delivering orders
+        MzRepository.getInstance().removeDelivery(quickestDelivery.getId());
         return quickestDelivery;
     }
 
@@ -258,5 +243,9 @@ public class MzFoodDelivery {
 
     public List<Restaurant> searchFoods(String searchPhrase, int limit, int offset) {
         return MzRepository.getInstance().searchFoods(searchPhrase, limit, offset);
+    }
+
+    public int getDeliveriesCount() throws SQLException {
+        return MzRepository.getInstance().getDeliveriesCount();
     }
 }

@@ -3,10 +3,12 @@ package ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.schedulers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.HTTPRequestHandler.HTTPRequestHandler;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Delivery;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -21,14 +23,18 @@ public class SecJob implements Runnable {
     @Override
     public void run() {
         System.out.println("running");
-        if (MzFoodDelivery.getInstance().getDeliveries().size() != 0) {
-            BackgroundJobManager.stopJob(scheduler);
-            try {
-                MzFoodDelivery.getInstance().assignDeliveryToOrder();
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            if (MzFoodDelivery.getInstance().getDeliveriesCount() != 0) {
+                BackgroundJobManager.stopJob(scheduler);
+                try {
+                    MzFoodDelivery.getInstance().assignDeliveryToOrder();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                System.out.println("finished");
             }
-            System.out.println("finished");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         try {
             importDeliveriesFromWeb();
@@ -44,8 +50,12 @@ public class SecJob implements Runnable {
         List<Delivery> deliveries = gson.fromJson(deliveriesJsonString, new TypeToken<List<Delivery>>() {
         }.getType());
         try {
-            MzFoodDelivery.getInstance().removeDeliveries();
-            MzFoodDelivery.getInstance().addDeliveries(deliveries);
+            MzRepository.getInstance().removeAllDeliveries();
+//            MzFoodDelivery.getInstance().removeDeliveries();
+            for (Delivery delivery: deliveries) {
+                MzRepository.getInstance().addDelivery(delivery);
+            }
+//            MzFoodDelivery.getInstance().addDeliveries(deliveries);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

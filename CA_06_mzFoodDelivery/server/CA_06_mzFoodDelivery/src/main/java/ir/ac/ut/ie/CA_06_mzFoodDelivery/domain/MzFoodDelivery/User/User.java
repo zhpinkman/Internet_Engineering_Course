@@ -21,7 +21,6 @@ public class User {
     private double credit;
     private int orders;
     private String phoneNumber;
-    private List<Order> orderList = new ArrayList<Order>();
 
     public User(String firstName, String lastName, String email, String phoneNumber, Location location, double credit, int orders){
         this.firstName = firstName;
@@ -64,12 +63,11 @@ public class User {
     public List<CartItem> addOrder() throws SQLException {
         User user = MzRepository.getInstance().getUser(userEmail);
         increaseUserOrders();
-        int orderId = user.getNumOfOrders();
         List<CartItem> cartItems = user.getUserCart();
         for (CartItem cartItem: cartItems) {
-            MzRepository.getInstance().addOrderItem(new OrderItem(userEmail, orderId, cartItem));
+            MzRepository.getInstance().addOrderItem(new OrderItem(userEmail, orders, cartItem));
         }
-        Order userOrder = new Order(userEmail, orderId);
+        Order userOrder = new Order(userEmail, orders);
         MzRepository.getInstance().addUserOrder(userOrder);
         return cartItems;
     }
@@ -121,27 +119,6 @@ public class User {
 
     public void deleteFromCart(String restaurantId, String foodName) throws Exception {
         userCart.delete(restaurantId, foodName);
-    }
-
-    public Order getOrderById(double id) throws Exception {
-        for (Order order : orderList) {
-            if (order.getId() == id) {
-                return order;
-            }
-        }
-        throw new Exception("orderId not found");
-    }
-
-    public List<Order> getOrders() {
-        return orderList;
-    }
-
-
-    public Order getLatestOrder() {
-        if (orderList.size() == 0) {
-            return null;
-        }
-        return orderList.get(orderList.size() - 1);
     }
 
     public String getFirstName() {

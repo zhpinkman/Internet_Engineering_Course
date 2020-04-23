@@ -1,6 +1,10 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery;
 
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
+
+import java.sql.SQLException;
 
 public class OrderItem {
     private String restaurantId;
@@ -26,6 +30,10 @@ public class OrderItem {
         this.quantity = cartItem.getQuantity();
     }
 
+    public double getFoodPrice() throws SQLException {
+        Food food = MzRepository.getInstance().getFood(restaurantId, foodName);
+        return food.getPrice();
+    }
 
     public String getRestaurantId() {
         return restaurantId;

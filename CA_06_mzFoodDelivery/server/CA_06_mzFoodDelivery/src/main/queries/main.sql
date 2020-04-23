@@ -101,3 +101,22 @@ create table ORDERITEMS (
     quantity int not null,
     primary key (userEmail, id, restaurantId, foodName)
 );
+
+
+select * from ORDERITEMS;
+
+delete from ORDERITEMS where userEmail = 'ekhamespanah@yahoo.com' and orderId = 0 and restaurantId = '5e4fcf14af68ed25d5900e9f' and foodName = 'الفردو با مرغ ';
+
+
+select * from ORDERS;
+
+delete from ORDERS where userEmail = 'ekhamespanah@yahoo.com' and orderId = 0;
+
+select count(*) from DELIVERY;
+
+
+select * from ORDERS;
+
+select * from USERS;
+
+select * from ORDERS where userEmail = 'ekhamespanah@yahoo.com' and orderId = 1;

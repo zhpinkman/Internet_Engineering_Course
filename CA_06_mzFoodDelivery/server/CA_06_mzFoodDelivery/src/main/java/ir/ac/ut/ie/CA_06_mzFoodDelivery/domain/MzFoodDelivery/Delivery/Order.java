@@ -3,37 +3,34 @@ package ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery;
 
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.repository.MzRepository;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.schedulers.BackgroundJobManager;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.Duration;
-import java.time.LocalTime;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class Order {
 
     public Order () {}
 
-
-    private int max_id = 0;
-
     private String userEmail;
     private int id;
-    private Cart cart;
-    private Status status;
     private String statusString;
-    private Delivery delivery;
-    private LocalTime startingDeliveryTime;
+    private LocalDateTime startingDeliveryTime;
     private String deliveryId;
-    private List<OrderItem> orderItems;
 
-    public Order(String userEmail, int id, String status, String deliveryId, Date localTime) {
+    public Order(String userEmail, int id, String status, String deliveryId, LocalDateTime localTime) {
         this.userEmail = userEmail;
         this.id = id;
         this.statusString = status;
         this.deliveryId = deliveryId;
+        if (localTime != null)
+            this.startingDeliveryTime = localTime;
     }
 
     public Order(String userEmail, int id) {
@@ -44,15 +41,18 @@ public class Order {
         this.startingDeliveryTime = null;
     }
 
+    public List<OrderItem> getOrderItems() throws SQLException {
+        return MzRepository.getInstance().getOrderItems(userEmail, id);
+    }
+
+    public Restaurant getOrderRestaurant() throws SQLException {
+        List<OrderItem> orderItems = getOrderItems();
+        String restaurantId = orderItems.get(0).getRestaurantId();
+        return MzRepository.getInstance().findRestaurantById(restaurantId);
+    }
 
     public String getUserEmail() {
         return userEmail;
-    }
-
-    public Order(Cart cart) {
-        this.id = max_id ++;
-        this.status = Status.SEARCHING;
-        this.cart = cart;
     }
 
     public String getDeliveryId() {
@@ -60,12 +60,14 @@ public class Order {
     }
 
     public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
+        this.deliveryId = delivery.getId();
         setDeliveringStatus();
         try {
-            double distance = MzFoodDelivery.getInstance().calcDeliveryDistanceToGo(cart.getRestaurant(), delivery);
+            Restaurant restaurant = getOrderRestaurant();
+            double distance = MzFoodDelivery.getInstance().calcDeliveryDistanceToGo(restaurant, delivery);
             double time = distance / delivery.getVelocity();
-            startingDeliveryTime = LocalTime.now().plusSeconds((long) time);
+            startingDeliveryTime = LocalDateTime.now().plusSeconds((long) time);
+            MzRepository.getInstance().updateOrder(this);
             BackgroundJobManager.waitForArriving((int) time, this);
         }catch (SQLException e){
             e.printStackTrace();
@@ -74,42 +76,32 @@ public class Order {
     }
 
     public long getRemainingArrivingTime() {
-        if (this.status != Status.SEARCHING) {
-            return Duration.between(LocalTime.now(), startingDeliveryTime).getSeconds();
+        if (!this.statusString.equals("SEARCHING") || this.statusString.equals("DELIVERED")) {
+            return Duration.between(LocalDateTime.now(), startingDeliveryTime).getSeconds();
         }
         return 0;
     }
 
-    public LocalTime getStartingDeliveryTime() {
+    public LocalDateTime getStartingDeliveryTime() {
         return startingDeliveryTime;
     }
 
-    public Delivery getDelivery() {
-        return delivery;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
 
     public int getId() {
         return id;
     }
 
     public void setDeliveringStatus() {
-        status = Status.DELIVERING;
+        statusString = String.valueOf(Status.DELIVERING);
     }
 
-    public void setDeliveredStatus() {
-        status = Status.DELIVERED;
-    }
-
-    public void setSearchingStatus() {
-        status = Status.SEARCHING;
+    public void setDeliveredStatus() throws SQLException {
+        statusString = "DELIVERED";
+        MzRepository.getInstance().updateOrder(this);
     }
 
 
-    public Status getStatus() {
-        return status;
+    public String getStatusString() {
+        return statusString;
     }
 }

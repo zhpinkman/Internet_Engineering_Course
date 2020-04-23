@@ -23,7 +23,7 @@ export default class Orderitem extends React.Component {
     }
 
     handleShow() {
-        if (this.props.order.status === "DELIVERED") {
+        if (this.props.order.statusString === "DELIVERED") {
             this.setState({show: true});
         }
     }
@@ -60,15 +60,15 @@ export default class Orderitem extends React.Component {
                     <div className="col-6">
                         <div className="order-restaurant">
                                 <span>
-                                    {this.props.order.cart.restaurant.name}
+                                    {this.props.order.orderRestaurant.name}
                                 </span>
                         </div>
                     </div>
                     <div className="col-4">
                         <div className="order-status">
-                            <div className={this.getStatusStyle(this.props.order.status)} onClick={this.handleShow}>
+                            <div className={this.getStatusStyle(this.props.order.statusString)} onClick={this.handleShow}>
                                 <span>
-                                    {Translator.toFa(this.props.order.status)}
+                                    {Translator.toFa(this.props.order.statusString)}
                                 </span>
                             </div>
                         </div>
@@ -76,7 +76,7 @@ export default class Orderitem extends React.Component {
                 </div>
             </div>
             <Modal size="lg" show={this.state.show} onHide={this.handleClose}>
-            <OrderDetail cart={this.props.order.cart}/>
+            <OrderDetail cart={this.props.order.orderItems} restaurant={this.props.order.orderRestaurant}/>
             </Modal>
         </>
         );

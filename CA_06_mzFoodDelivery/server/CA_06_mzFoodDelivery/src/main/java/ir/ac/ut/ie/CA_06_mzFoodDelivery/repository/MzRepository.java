@@ -1,5 +1,6 @@
 package ir.ac.ut.ie.CA_06_mzFoodDelivery.repository;
 
+import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Delivery;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.OrderItem;
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
@@ -211,7 +212,53 @@ public class MzRepository {
         new OrderMapper().insert(userOrder);
     }
 
+    public Order getOrder(String userEmail, int orderId) throws SQLException {
+        List<String> args = new ArrayList<>();
+        args.add(userEmail);
+        args.add(String.valueOf(orderId));
+        return new OrderMapper().find(new CustomPair(args));
+    }
+
+
+    public List<OrderItem> getOrderItems(String userEmail, int orderId) throws SQLException {
+        List<String> args = new ArrayList<>();
+        args.add(userEmail);
+        args.add(String.valueOf(orderId));
+        return new OrderItemMapper().getOrderItems(new CustomPair(args));
+    }
+
+    public void updateOrder(Order order) throws SQLException {
+        new OrderMapper().updateOrder(order);
+    }
+
     public void updatePartyFood(PartyFood partyFood) throws SQLException {
         new FoodMapper().updateFood(partyFood);
+    }
+
+
+//    deliveries
+    public void addDelivery(Delivery delivery) throws  SQLException{
+        new DeliveryMapper().insert(delivery);
+    }
+
+    public int getDeliveriesCount() throws SQLException{
+        return new DeliveryMapper().getDeliveriesCount();
+    }
+
+    public void removeDelivery(String id) throws SQLException {
+        new DeliveryMapper().delete(id);
+    }
+
+    public void removeAllDeliveries() throws SQLException {
+        new DeliveryMapper().removeAllDeliveries();
+    }
+
+
+    public List<Delivery> getDeliveries() throws SQLException {
+        return new DeliveryMapper().getAllDeliveries();
+    }
+
+    public List<Order> getOrders(String userEmail) throws SQLException {
+        return new OrderMapper().getOrders(userEmail);
     }
 }

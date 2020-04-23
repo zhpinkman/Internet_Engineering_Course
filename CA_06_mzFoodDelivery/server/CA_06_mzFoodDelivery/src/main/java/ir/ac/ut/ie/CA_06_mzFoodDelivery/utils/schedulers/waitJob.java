@@ -4,6 +4,7 @@ package ir.ac.ut.ie.CA_06_mzFoodDelivery.utils.schedulers;
 
 import ir.ac.ut.ie.CA_06_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 
+import java.sql.SQLException;
 import java.util.concurrent.ScheduledExecutorService;
 
 public class waitJob implements Runnable {
@@ -25,7 +26,11 @@ public class waitJob implements Runnable {
         } else {
             BackgroundJobManager.stopJob(scheduler);
             System.out.println("stopped");
-            this.order.setDeliveredStatus();
+            try {
+                this.order.setDeliveredStatus();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -94,19 +94,15 @@ public class UserManager {
         user.deleteFromCart(restaurantId, foodName);
     }
 
-    public Order getOrderById(double id) throws Exception {
+    public Order getLatestOrder() throws SQLException {
         User user = MzRepository.getInstance().getUser(userEmail);
-        return user.getOrderById(id);
+        int orderId = user.getNumOfOrders();
+        System.out.println("num of orders");
+        System.out.println(orderId);
+        return MzRepository.getInstance().getOrder(userEmail, orderId);
     }
 
     public List<Order> getOrders() throws SQLException {
-        User user = MzRepository.getInstance().getUser(userEmail);
-        return user.getOrders();
-    }
-
-
-    public Order getLatestOrder() throws SQLException {
-        User user = MzRepository.getInstance().getUser(userEmail);
-        return user.getLatestOrder();
+        return MzRepository.getInstance().getOrders(userEmail);
     }
 }
