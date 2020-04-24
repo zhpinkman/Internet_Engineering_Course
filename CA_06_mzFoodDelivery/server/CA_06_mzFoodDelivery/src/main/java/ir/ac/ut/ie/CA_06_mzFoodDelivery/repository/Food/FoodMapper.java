@@ -165,7 +165,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
         String statement = String.format("update %s set %s = %d where %s = %s and %s = %s;", TABLE_NAME,
                 "count", food.getCount(),
                 "restaurantId", StringUtils.quoteWrapper(food.getRestaurantId()),
-                "foodName", StringUtils.quoteWrapper(food.getName())
+                "name", StringUtils.quoteWrapper(food.getName())
         );
         try (Connection con = ConnectionPool.getConnection();
              PreparedStatement st = con.prepareStatement(statement);
@@ -173,7 +173,7 @@ public class FoodMapper extends Mapper<Food, CustomPair> implements IFoodMapper 
             try {
                 st.executeUpdate();
             } catch (SQLException ex) {
-                System.out.println("error in Mapper.updateCartItem query.");
+                System.out.println("error in Mapper.updateFood query.");
                 throw ex;
             }
         }

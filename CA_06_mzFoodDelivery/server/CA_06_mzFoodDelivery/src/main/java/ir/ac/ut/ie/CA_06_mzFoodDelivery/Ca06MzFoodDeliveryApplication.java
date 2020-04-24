@@ -22,9 +22,9 @@ import java.util.concurrent.TimeUnit;
 @SpringBootApplication
 public class Ca06MzFoodDeliveryApplication {
 	public static void main(String[] args) throws SQLException {
-//		MzRepository.getInstance().createAllTables();
+		MzRepository.getInstance().createAllTables();
 		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-		int foodPartyPeriod = 120; //Seconds
+		int foodPartyPeriod = 600; //Seconds
 		try {
 			RestaurantsService.getInstance().importRestaurantsFromWeb();
 			// Start Food Party

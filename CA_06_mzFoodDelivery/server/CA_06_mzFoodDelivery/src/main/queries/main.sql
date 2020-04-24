@@ -120,3 +120,11 @@ select * from ORDERS;
 select * from USERS;
 
 select * from ORDERS where userEmail = 'ekhamespanah@yahoo.com' and orderId = 1;
+
+select * from FOODS where count != -1;
+
+select * from USERCART;
+
+select  * from ORDERS;
+
+select * from ORDERITEMS;

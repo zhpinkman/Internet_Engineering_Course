@@ -118,7 +118,8 @@ public class User {
     }
 
     public void deleteFromCart(String restaurantId, String foodName) throws Exception {
-        userCart.delete(restaurantId, foodName);
+        CartItem cartItem = MzRepository.getInstance().findCartItem(new CartItem(userEmail, restaurantId, foodName));
+        cartItem.decreaseQuantity(1);
     }
 
     public String getFirstName() {

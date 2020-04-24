@@ -19,6 +19,7 @@ public class PartyFood extends Food {
     @Override
     public void decreaseFoodAmount(int quantity) throws SQLException {
         count -= quantity;
+        System.out.println(count);
         MzRepository.getInstance().updatePartyFood(this);
     }
 

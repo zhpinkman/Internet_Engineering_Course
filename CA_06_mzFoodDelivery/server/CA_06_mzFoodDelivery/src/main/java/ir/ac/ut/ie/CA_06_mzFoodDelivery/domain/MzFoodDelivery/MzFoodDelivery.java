@@ -100,8 +100,6 @@ public class MzFoodDelivery {
     public void deleteFromCart(String restaurantId, String foodName) throws Exception {
         Restaurant restaurant = getRestaurantById(restaurantId);
         Food food = restaurant.getFood(foodName);
-        if (food instanceof PartyFood)
-            ((PartyFood) food).increaseFoodAmount();
         userManager.deleteFromCart(restaurantId, foodName);
     }
 
@@ -119,7 +117,9 @@ public class MzFoodDelivery {
 
     public void finalizeOrder() throws Exception {
         List<CartItem> cartItems = userManager.finalizeOrder();
+        System.out.println("finalized");
         restaurantManager.decreaseFoodAmounts(cartItems);
+        System.out.println("decreased");
         BackgroundJobManager.startJob();
     }
 

@@ -76,7 +76,7 @@ public class Order {
     }
 
     public long getRemainingArrivingTime() {
-        if (!this.statusString.equals("SEARCHING") || this.statusString.equals("DELIVERED")) {
+        if (!this.statusString.equals("SEARCHING") && !this.statusString.equals("DELIVERED")) {
             return Duration.between(LocalDateTime.now(), startingDeliveryTime).getSeconds();
         }
         return 0;

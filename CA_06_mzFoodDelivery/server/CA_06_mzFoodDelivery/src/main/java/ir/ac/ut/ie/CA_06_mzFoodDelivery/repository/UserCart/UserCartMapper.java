@@ -120,7 +120,9 @@ public class UserCartMapper extends Mapper<CartItem, CustomPair> implements IUse
              PreparedStatement st = con.prepareStatement(statement);
         ) {
             try {
+                System.out.println("updating");
                 st.executeUpdate();
+                System.out.println("updated");
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.updateCartItem query.");
                 throw ex;
