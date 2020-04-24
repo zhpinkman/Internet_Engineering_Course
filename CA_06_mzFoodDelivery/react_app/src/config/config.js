@@ -6,11 +6,15 @@ export let PARTY_FOODS_URL = DOMAIN + "partyFoods/";
 export let ORDERS_URL = DOMAIN + "user/orders/";
 export let CART_URL = DOMAIN + "user/cart/";
 export let PARTY_FOODS_REMAINING_TIME_URL = DOMAIN + "partyFoodsRemainingTime/";
+export let SEARCH_RESTAURANTS_URL = DOMAIN + "search/restaurants/";
+export let SEARCH_FOODS_URL = DOMAIN + "search/foods/";
 
 
 export let OK = "ok";
 
 export let TOAST_MESSAGE_OK = 'عملیات با موفقیت انجام شد';
 export let TOAST_MESSAGE_CREDIT_MORE_THAN_0 = "اعتبار برای افزایش باید بیش از صفر باشد";
+export let TOAST_MESSAGE_EMPTY_SEARCH = "متنی برای جستجو وارد نشده است";
+export let TOAST_MESSAGE_FILLED_BOTH_SEARCH = "برای جستجو در غذاها، نام رستوران را پاک کنید.";
 
 export let RESTAURANTS_LIST_PAGE_SIZE = 8;
