@@ -12,27 +12,29 @@ public class OrderItem {
     private String userEmail;
     private int id;
     private int quantity;
+    private double foodPrice;
 
 
-    public OrderItem(String userEmail, int id, String restaurantId, String foodName, int quantity) {
+    public OrderItem(String userEmail, int id, String restaurantId, String foodName, int quantity, double foodPrice) {
         this.restaurantId = restaurantId;
         this.foodName = foodName;
         this.userEmail = userEmail;
         this.id = id;
         this.quantity = quantity;
+        this.foodPrice = foodPrice;
     }
 
-    public OrderItem(String userEmail, int id, CartItem cartItem) {
+    public OrderItem(String userEmail, int id, CartItem cartItem, double foodPrice) {
         this.userEmail = userEmail;
         this.id = id;
         this.restaurantId = cartItem.getRestaurantId();
         this.foodName = cartItem.getFoodName();
         this.quantity = cartItem.getQuantity();
+        this.foodPrice = foodPrice;
     }
 
-    public double getFoodPrice() throws SQLException {
-        Food food = MzRepository.getInstance().getFood(restaurantId, foodName);
-        return food.getPrice();
+    public double getFoodPrice() {
+        return foodPrice;
     }
 
     public String getRestaurantId() {

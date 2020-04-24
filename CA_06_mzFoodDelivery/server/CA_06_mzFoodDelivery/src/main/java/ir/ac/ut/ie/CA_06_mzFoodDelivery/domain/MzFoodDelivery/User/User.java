@@ -65,7 +65,8 @@ public class User {
         increaseUserOrders();
         List<CartItem> cartItems = user.getUserCart();
         for (CartItem cartItem: cartItems) {
-            MzRepository.getInstance().addOrderItem(new OrderItem(userEmail, orders, cartItem));
+            Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
+            MzRepository.getInstance().addOrderItem(new OrderItem(userEmail, orders, cartItem, food.getPrice()));
         }
         Order userOrder = new Order(userEmail, orders);
         MzRepository.getInstance().addUserOrder(userOrder);
@@ -119,7 +120,10 @@ public class User {
 
     public void deleteFromCart(String restaurantId, String foodName) throws Exception {
         CartItem cartItem = MzRepository.getInstance().findCartItem(new CartItem(userEmail, restaurantId, foodName));
-        cartItem.decreaseQuantity(1);
+        if (cartItem.getQuantity() != 1)
+            cartItem.decreaseQuantity(1);
+        else if (cartItem.getQuantity() == 1)
+            MzRepository.getInstance().removeCartItem(cartItem);
     }
 
     public String getFirstName() {

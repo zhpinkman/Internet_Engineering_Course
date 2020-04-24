@@ -13,7 +13,7 @@ import java.util.List;
 
 public class OrderItemMapper extends Mapper<OrderItem, CustomPair> implements IOrderItemMapper {
 
-    private static final String COLUMNS = " userEmail, orderId, restaurantId, foodName, quantity ";
+    private static final String COLUMNS = " userEmail, orderId, restaurantId, foodName, quantity, foodPrice ";
     private static final String TABLE_NAME = "ORDERITEMS";
 
     public OrderItemMapper(Boolean doManage) throws SQLException {
@@ -28,6 +28,7 @@ public class OrderItemMapper extends Mapper<OrderItem, CustomPair> implements IO
                             "    restaurantId varchar(255),\n" +
                             "    foodName varchar(255), \n" +
                             "    quantity int not null,\n" +
+                            "    foodPrice double not null,\n" +
                             "    primary key (userEmail, orderId, restaurantId, foodName)\n" +
                             ");",
                     TABLE_NAME));
@@ -51,18 +52,12 @@ public class OrderItemMapper extends Mapper<OrderItem, CustomPair> implements IO
 
     @Override
     protected String getInsertStatement(OrderItem orderItem) {
-        System.out.println(String.format("insert into %s ( %s ) values (%s, %d, %s, %s, %d);", TABLE_NAME, COLUMNS,
+        return String.format("insert into %s ( %s ) values (%s, %d, %s, %s, %d, %f);", TABLE_NAME, COLUMNS,
                 StringUtils.quoteWrapper(orderItem.getUserEmail()),
                 orderItem.getId(),
                 StringUtils.quoteWrapper(orderItem.getRestaurantId()),
                 StringUtils.quoteWrapper(orderItem.getFoodName()),
-                orderItem.getQuantity()));
-        return String.format("insert into %s ( %s ) values (%s, %d, %s, %s, %d);", TABLE_NAME, COLUMNS,
-                StringUtils.quoteWrapper(orderItem.getUserEmail()),
-                orderItem.getId(),
-                StringUtils.quoteWrapper(orderItem.getRestaurantId()),
-                StringUtils.quoteWrapper(orderItem.getFoodName()),
-                orderItem.getQuantity());
+                orderItem.getQuantity(), orderItem.getFoodPrice());
     }
 
     @Override
@@ -77,7 +72,8 @@ public class OrderItemMapper extends Mapper<OrderItem, CustomPair> implements IO
                 rs.getInt("orderId"),
                 rs.getString("restaurantId"),
                 rs.getString("foodName"),
-                rs.getInt("quantity")
+                rs.getInt("quantity"),
+                rs.getDouble("foodPrice")
         );
     }
 
