@@ -8,6 +8,7 @@ import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.repository.MzRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,7 +16,6 @@ import java.util.List;
 public class UserManager {
 
 
-    public static String userEmail = "";
 
     public UserManager() {
 //        System.out.println("mohsen here");
@@ -27,7 +27,7 @@ public class UserManager {
     }
 
     public void addToCart(CartItem cartItem) throws Exception {
-        User user = MzRepository.getInstance().getUser(userEmail);
+        User user = MzRepository.getInstance().getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         user.addToCart(cartItem);
     }
 
@@ -36,8 +36,8 @@ public class UserManager {
     }
 
     public List<CartItem> getCart() throws SQLException {
-        if (userEmail.isEmpty()) return null;
-        User user = MzRepository.getInstance().getUser(userEmail);
+        if (SecurityContextHolder.getContext().getAuthentication().getName().isEmpty()) return null;
+        User user = MzRepository.getInstance().getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         return user.getUserCart();
     }
 
@@ -54,7 +54,7 @@ public class UserManager {
     }
 
     public List<CartItem> finalizeOrder() throws Exception {
-        User user = MzRepository.getInstance().getUser(userEmail);
+        User user = MzRepository.getInstance().getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         double totalPrice = user.getCartTotalPrice();
         if (user.getUserCartSize() == 0)
             throw new Exception("user cart is empty");
@@ -76,7 +76,7 @@ public class UserManager {
     }
 
     public int getUserCartSize() throws SQLException {
-        User user = MzRepository.getInstance().getUser(userEmail);
+        User user = MzRepository.getInstance().getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         return user.getUserCartSize();
     }
 
@@ -85,32 +85,31 @@ public class UserManager {
     }
 
     public void chargeUserCredit(double amount) throws Exception {
-        User user = MzRepository.getInstance().getUser(userEmail);
+        User user = MzRepository.getInstance().getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         user.chargeUserCredit(amount);
     }
 
     public void deleteFromCart(String restaurantId, String foodName) throws Exception {
-        User user = MzRepository.getInstance().getUser(userEmail);
+        User user = MzRepository.getInstance().getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         user.deleteFromCart(restaurantId, foodName);
     }
 
     public Order getLatestOrder() throws SQLException {
-        User user = MzRepository.getInstance().getUser(userEmail);
+        User user = MzRepository.getInstance().getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         int orderId = user.getNumOfOrders();
         System.out.println("num of orders");
         System.out.println(orderId);
-        return MzRepository.getInstance().getOrder(userEmail, orderId);
+        return MzRepository.getInstance().getOrder(SecurityContextHolder.getContext().getAuthentication().getName(), orderId);
     }
 
     public List<Order> getOrders() throws SQLException {
-        return MzRepository.getInstance().getOrders(userEmail);
+        return MzRepository.getInstance().getOrders(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     public void addUser(String email, String firstName, String lastName, String password) throws Exception {
         try {
             User user = new User(firstName, lastName, email, password, "", new Location(0, 0), 0, 0);
             MzRepository.getInstance().insertUser(user);
-            userEmail = user.getEmail();
         } catch (SQLException e) {
             throw new Exception("email is already taken");
         }
@@ -119,7 +118,6 @@ public class UserManager {
     public User loginUser(String email, String password) throws Exception {
         try {
             User user = MzRepository.getInstance().getUser(email);
-            userEmail = user.getEmail();
             return user;
         } catch (SQLException e) {
             throw new Exception("user not available");

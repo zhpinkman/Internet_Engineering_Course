@@ -13,12 +13,12 @@ import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.UserManager;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.repository.MzRepository;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.utils.schedulers.BackgroundJobManager;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.UserManager.userEmail;
 
 public class MzFoodDelivery {
 
@@ -79,7 +79,7 @@ public class MzFoodDelivery {
 
     //    USER MANAGER
     public void addToCart(String restaurantId, String foodName) throws Exception {
-        CartItem cartItem = new CartItem(userEmail, restaurantId, foodName);
+        CartItem cartItem = new CartItem(SecurityContextHolder.getContext().getAuthentication().getName(), restaurantId, foodName);
         userManager.addToCart(cartItem);
     }
 
@@ -93,7 +93,7 @@ public class MzFoodDelivery {
             }
         }
 
-        CartItem cartItem = new CartItem(userEmail, restaurantId, foodName, amount);
+        CartItem cartItem = new CartItem(SecurityContextHolder.getContext().getAuthentication().getName(), restaurantId, foodName, amount);
         userManager.addToCart(cartItem);
 
     }
@@ -144,7 +144,7 @@ public class MzFoodDelivery {
 
     public List<Restaurant> getNearRestaurants(int limit, int offset) {
         try {
-            return restaurantManager.getNearRestaurants(userManager.getLocation(userEmail), limit, offset);
+            return restaurantManager.getNearRestaurants(userManager.getLocation(SecurityContextHolder.getContext().getAuthentication().getName()), limit, offset);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -152,7 +152,7 @@ public class MzFoodDelivery {
     }
 
     public Restaurant getNearRestaurantById(String id) throws Exception {
-        return restaurantManager.getNearRestaurantById(id, userManager.getLocation(userEmail));
+        return restaurantManager.getNearRestaurantById(id, userManager.getLocation(SecurityContextHolder.getContext().getAuthentication().getName()));
     }
 
     public User getUser(String userEmail) throws SQLException {
@@ -160,7 +160,7 @@ public class MzFoodDelivery {
     }
 
     public User getUser() throws SQLException {
-        return userManager.getUser(userEmail);
+        return userManager.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     public void addToCartByRestaurantId(String restaurantId, String foodName) throws Exception {
@@ -201,12 +201,12 @@ public class MzFoodDelivery {
 
     public double calcDeliveryDistanceToGo(Restaurant restaurant, Delivery delivery) throws SQLException {
         double distanceToGetToRestaurant = delivery.getLocation().getDistanceFromLocation(restaurant.getLocation());
-        double distanceToGetToCustomer = delivery.getLocation().getDistanceFromLocation(getUser(userEmail).getLocation());
+        double distanceToGetToCustomer = delivery.getLocation().getDistanceFromLocation(getUser(SecurityContextHolder.getContext().getAuthentication().getName()).getLocation());
         return distanceToGetToCustomer + distanceToGetToRestaurant;
     }
 
     public void importFoodPartyFromWeb() throws Exception {
-        if (userEmail.isEmpty()) return;
+        if (SecurityContextHolder.getContext().getAuthentication() == null) return;
         removeItemsInCart();
         foodPartyManager.importFoodPartyFromWeb();
     }

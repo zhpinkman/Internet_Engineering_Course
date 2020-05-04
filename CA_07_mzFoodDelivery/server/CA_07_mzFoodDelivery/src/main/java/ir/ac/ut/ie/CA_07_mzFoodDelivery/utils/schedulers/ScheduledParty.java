@@ -1,6 +1,5 @@
 package ir.ac.ut.ie.CA_07_mzFoodDelivery.utils.schedulers;
 
-
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 
 public class ScheduledParty implements Runnable {

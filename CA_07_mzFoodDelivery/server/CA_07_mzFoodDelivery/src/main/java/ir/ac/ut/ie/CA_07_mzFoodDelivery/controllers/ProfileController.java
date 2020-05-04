@@ -7,6 +7,7 @@ import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +38,7 @@ public class ProfileController {
 
     @GetMapping("")
     public User getUser() {
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
         try {
             return MzFoodDelivery.getInstance().getUser();
         } catch (Exception e) {
