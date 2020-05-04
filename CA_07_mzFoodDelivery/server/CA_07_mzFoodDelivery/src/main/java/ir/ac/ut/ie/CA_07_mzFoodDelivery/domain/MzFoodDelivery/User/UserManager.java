@@ -7,7 +7,6 @@ import com.google.gson.JsonElement;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
-import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.repository.MzRepository;
 
 import java.sql.SQLException;
@@ -16,15 +15,15 @@ import java.util.List;
 public class UserManager {
 
 
-    public static final String userEmail = "ekhamespanah@yahoo.com";
+    public static String userEmail = "";
 
     public UserManager() {
 //        System.out.println("mohsen here");
-        User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "989123456789", new Location(0, 0), 0, 0);
-        try {
-            MzRepository.getInstance().insertUser(user);
-//            System.out.println("zhivar here");
-        } catch (SQLException ignored) {}
+//        User user = new User("Ehsan", "Khames", "ekhamespanah@yahoo.com", "1234","989123456789", new Location(0, 0), 0, 0);
+//        try {
+//            MzRepository.getInstance().insertUser(user);
+////            System.out.println("zhivar here");
+//        } catch (SQLException ignored) {}
     }
 
     public void addToCart(CartItem cartItem) throws Exception {
@@ -37,6 +36,7 @@ public class UserManager {
     }
 
     public List<CartItem> getCart() throws SQLException {
+        if (userEmail.isEmpty()) return null;
         User user = MzRepository.getInstance().getUser(userEmail);
         return user.getUserCart();
     }
@@ -104,5 +104,25 @@ public class UserManager {
 
     public List<Order> getOrders() throws SQLException {
         return MzRepository.getInstance().getOrders(userEmail);
+    }
+
+    public void addUser(String email, String firstName, String lastName, String password) throws Exception {
+        try {
+            User user = new User(firstName, lastName, email, password, "", new Location(0, 0), 0, 0);
+            MzRepository.getInstance().insertUser(user);
+            userEmail = user.getEmail();
+        } catch (SQLException e) {
+            throw new Exception("email is already taken");
+        }
+    }
+
+    public User loginUser(String email, String password) throws Exception {
+        try {
+            User user = MzRepository.getInstance().getUser(email);
+            userEmail = user.getEmail();
+            return user;
+        } catch (SQLException e) {
+            throw new Exception("user not available");
+        }
     }
 }

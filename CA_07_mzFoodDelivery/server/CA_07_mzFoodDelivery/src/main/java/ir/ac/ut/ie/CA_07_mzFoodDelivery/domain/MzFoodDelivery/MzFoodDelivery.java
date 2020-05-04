@@ -18,9 +18,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.UserManager.userEmail;
+
 public class MzFoodDelivery {
 
-    public static final String userEmail = "ekhamespanah@yahoo.com";
     private static MzFoodDelivery instance;
 
     private RestaurantManager restaurantManager = new RestaurantManager();
@@ -205,11 +206,12 @@ public class MzFoodDelivery {
     }
 
     public void importFoodPartyFromWeb() throws Exception {
-        removeOlderOffers();
+        if (userEmail.isEmpty()) return;
+        removeItemsInCart();
         foodPartyManager.importFoodPartyFromWeb();
     }
 
-    private void removeOlderOffers() throws SQLException {
+    private void removeItemsInCart() throws SQLException {
         for (CartItem cartItem : userManager.getCart()) {
             Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
             if (food instanceof PartyFood)
@@ -247,5 +249,13 @@ public class MzFoodDelivery {
 
     public int getDeliveriesCount() throws SQLException {
         return MzRepository.getInstance().getDeliveriesCount();
+    }
+
+    public void addUser(String email, String firstName, String lastName, String password) throws Exception {
+        userManager.addUser(email, firstName, lastName, password);
+    }
+
+    public User loginUser(String email, String password) throws Exception {
+        return userManager.loginUser(email, password);
     }
 }

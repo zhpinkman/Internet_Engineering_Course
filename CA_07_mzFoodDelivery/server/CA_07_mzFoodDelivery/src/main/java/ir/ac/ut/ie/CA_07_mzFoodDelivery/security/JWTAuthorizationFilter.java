@@ -62,7 +62,6 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 .setExpiration(new Date(System.currentTimeMillis() + 600000))
                 .signWith(SignatureAlgorithm.HS512,
                         SECRET.getBytes()).compact();
-        System.out.println(token);
 
         return "Bearer " + token;
     }

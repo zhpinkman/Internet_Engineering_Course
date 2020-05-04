@@ -13,7 +13,7 @@ import java.util.List;
 
 public class UserMapper extends Mapper<User, String> implements IUserMapper {
 
-    private static final String COLUMNS = " email, firstName, lastName, phoneNumber, locationX, locationY ";
+    private static final String COLUMNS = " email, password, firstName, lastName, phoneNumber, locationX, locationY ";
     private static final String TABLE_NAME = "USERS";
 
 
@@ -25,11 +25,12 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
             st.executeUpdate(String.format(
                     "create table %s (\n" +
                             "   email varchar(255) primary key,\n" +
+                            "   password varchar(255) not null,\n" +
                             "   firstName tinytext not null,\n" +
                             "   lastName tinytext not null,\n" +
                             "   credit double not null default 0,\n" +
                             "   orders int not null default 0,\n" +
-                            "   phoneNumber tinytext not null,\n" +
+                            "   phoneNumber tinytext,\n" +
                             "   locationX double not null default 0,\n" +
                             "   locationY double not null default 0\n" +
                             ");",
@@ -49,7 +50,8 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
 
     @Override
     protected String getInsertStatement(User user) {
-        return String.format("INSERT INTO %s ( %s ) values (%s, %s, %s, %s, %f, %f);", TABLE_NAME, COLUMNS, StringUtils.quoteWrapper(user.getEmail()),
+        return String.format("INSERT INTO %s ( %s ) values (%s, %s, %s, %s, %s, %f, %f);", TABLE_NAME, COLUMNS,
+                StringUtils.quoteWrapper(user.getEmail()), StringUtils.quoteWrapper(user.getPassword()),
                 StringUtils.quoteWrapper(user.getFirstName()), StringUtils.quoteWrapper(user.getLastName()),
                 StringUtils.quoteWrapper(user.getPhoneNumber()), user.getLocation().getX(), user.getLocation().getY());
     }
@@ -65,6 +67,7 @@ public class UserMapper extends Mapper<User, String> implements IUserMapper {
                 rs.getString("firstName"),
                 rs.getString("lastName"),
                 rs.getString("email"),
+                rs.getString("password"),
                 rs.getString("phoneNumber"),
                 new Location(
                         rs.getDouble("locationX"),

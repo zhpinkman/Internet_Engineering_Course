@@ -11,9 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.UserManager.userEmail;
+
 public class Cart {
 
-    public static final String userEmail = "ekhamespanah@yahoo.com";
 
     private CartItem findCartItem(CartItem newCartItem) throws SQLException {
         List<CartItem> cartItems = MzRepository.getInstance().getUserCart(userEmail);

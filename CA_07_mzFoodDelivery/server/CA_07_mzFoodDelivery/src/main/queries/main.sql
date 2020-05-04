@@ -128,3 +128,6 @@ select * from USERCART;
 select  * from ORDERS;
 
 select * from ORDERITEMS;
+
+
+select * from USERS;

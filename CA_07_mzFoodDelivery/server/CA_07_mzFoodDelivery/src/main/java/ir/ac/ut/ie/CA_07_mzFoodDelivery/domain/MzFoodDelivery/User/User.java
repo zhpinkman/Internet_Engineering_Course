@@ -18,22 +18,29 @@ public class User {
     private String firstName;
     private String lastName;
     private String email; // this field is used as id
+    private String password;
     private double credit;
     private int orders;
     private String phoneNumber;
 
-    public User(String firstName, String lastName, String email, String phoneNumber, Location location, double credit, int orders){
+    public User(String firstName, String lastName, String email, String password,  String phoneNumber, Location location, double credit, int orders){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
         this.phoneNumber = phoneNumber;
         this.location = location;
         this.credit = credit;
         this.orders = orders;
     }
 
+
     public int getNumOfOrders() {
         return orders;
+    }
+
+    public boolean doesPasswordsMatch(String password) {
+        return this.password.equals(password);
     }
 
     public void addToCart(CartItem cartItem) throws Exception {
@@ -132,5 +139,9 @@ public class User {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
