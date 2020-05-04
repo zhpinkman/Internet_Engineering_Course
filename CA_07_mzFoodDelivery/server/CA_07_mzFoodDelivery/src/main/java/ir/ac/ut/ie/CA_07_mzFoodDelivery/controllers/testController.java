@@ -12,6 +12,11 @@ import java.util.Map;
 @RequestMapping("/test")
 public class testController {
 
+    @GetMapping("")
+    public String testing() {
+        return "authorized";
+    }
+
 
     @PostMapping("/login")
     public void login(@RequestBody Map<String, Object> userMap) {
