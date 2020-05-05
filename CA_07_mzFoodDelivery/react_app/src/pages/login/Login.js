@@ -36,9 +36,13 @@ export default class Login extends React.Component {
             email: this.state.email,
             password: this.state.password
         }
+
         AuthService.login(userForm).then(data => {
             console.log(data.data);
-            localStorage.setItem("token", data.data);
+            let bearerToken = data.data;
+            let token = bearerToken.slice(7, bearerToken.length);
+            console.log(token)
+            localStorage.setItem("token", token);
         })
     }
 
@@ -86,7 +90,7 @@ export default class Login extends React.Component {
 
                                         <div className="form-submit row">
                                             <div className="col-auto">
-                                                <input type="submit" value="ورود" />
+                                                <input type="submit" disabled={!this.validateForm()} value="ورود" />
                                             </div>
                                             <div
                                                 className="col-auto d-flex justify-content-center align-items-center clickable">

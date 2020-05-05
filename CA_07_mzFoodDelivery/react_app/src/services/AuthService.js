@@ -24,7 +24,7 @@ export default class AuthService {
 
 
     static logOut() {
-        localStorage.removeItem("userInfo");
+        localStorage.removeItem("token");
         // return axios.post(USER_API_BASE_URL + 'logout', {}, this.getAuthHeader());
     }
 

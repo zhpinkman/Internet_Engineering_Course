@@ -39,7 +39,10 @@ export default class Signup extends React.Component {
         }
         AuthService.signup(userForm).then(data => {
             console.log(data.data);
-            localStorage.setItem("token", data.data);
+            let bearerToken = data.data;
+            let token = bearerToken.slice(7, bearerToken.length);
+            console.log(token)
+            localStorage.setItem("token", token);
         })
     }
 
@@ -119,8 +122,8 @@ export default class Signup extends React.Component {
                                         </div>
                                         <div className="form-submit row">
                                             <div className="col-auto">
-                                                {/*disabled={!this.validateForm()}*/}
-                                                <input type="submit"  value="ثبت‌نام"/>
+
+                                                <input type="submit" disabled={!this.validateForm()} value="ثبت‌نام"/>
                                             </div>
                                             <div
                                                 className="col-auto d-flex justify-content-center align-items-center clickable">

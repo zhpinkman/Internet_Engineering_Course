@@ -65,7 +65,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 .signWith(SignatureAlgorithm.HS512,
                         SECRET.getBytes()).compact();
 
-        return token;
+        return "Bearer " + token;
     }
 
     private Claims validateToken(HttpServletRequest request) {
