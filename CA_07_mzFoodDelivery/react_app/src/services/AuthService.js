@@ -15,11 +15,11 @@ export default class AuthService {
 
     static getUserToken(){
         console.log(localStorage.getItem("token"))
-        return JSON.parse(localStorage.getItem("token"));
+        return localStorage.getItem("token");
     }
 
     static getAuthHeader() {
-        return {headers: {Authorization: 'Bearer ' + this.getUserToken() }};
+        return 'Bearer ' + this.getUserToken();
     }
 
 
