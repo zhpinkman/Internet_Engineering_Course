@@ -1,7 +1,9 @@
 import {CART_URL, CHARGE_URL, ORDERS_URL, USER_URL} from "../config/config";
 import Translator from "../utils/Translator";
+import AuthService from "./AuthService";
 
 const axios = require("axios").default;
+axios.defaults.headers.common['Authorization'] = AuthService.getAuthHeader;
 
 
 export default class UserService {

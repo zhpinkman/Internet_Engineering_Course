@@ -8,6 +8,7 @@ import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import Example from "./pages/Example";
 import Restaurant from "./pages/restaurant/Restaurant";
+import RestaurantService from "./services/RestaurantService";
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         <Route path="/profile">
           <Profile />
         </Route>
-        <Route path="/restaurant" component={Restaurant} />
+        <Route path="/restaurant"
+               component={Restaurant} />
         <Route path="/login">
           <Login/>
         </Route>
@@ -33,7 +35,8 @@ function App() {
         <Route path="/test">
           <Example/>
         </Route>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/"
+               component={Home} />
       </Switch>
     </Router>
   );
@@ -50,7 +53,7 @@ function About() {
 function Dashboard() {
   return (
     <div>
-      <h2>Dashboard</h2>
+      <h2 onClick={RestaurantService.testGet}>Dashboard</h2>
     </div>
   );
 }

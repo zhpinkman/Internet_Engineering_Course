@@ -1,18 +1,19 @@
 import {RESTAURANTS_LIST_PAGE_SIZE, RESTAURANTS_URL, SEARCH_FOODS_URL, SEARCH_RESTAURANTS_URL} from "../config/config";
+import AuthService from "./AuthService";
 
 const axios = require("axios").default;
-
-// export default function getRestaurants() {
-//     return axios.get(RESTAURANTS_URL);
-// };
-//
-// export default function getUser() {
-//     return axios.get(USER_URL);
-// };
-
+axios.defaults.headers.common['Authorization'] = AuthService.getAuthHeader;
 
 
 export default class RestaurantService {
+
+    static testGet() {
+        console.log("zhivar")
+        axios.get("http://localhost:8080/test").then(data => {
+            console.log(data);
+        })
+    }
+
     static generatePageQuery(page) {
         return "?pageNumber=" + page + "&pageSize=" + RESTAURANTS_LIST_PAGE_SIZE;
     }

@@ -7,11 +7,46 @@ export default class Signup extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            repeatPassword: ""
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.validateForm = this.validateForm.bind(this);
+    }
+
+    handleChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({ [name]: value });
+        console.log(this.state);
+    }
+
+    handleSubmit(event) {
+        console.log(this.validateForm())
+        event.preventDefault();
+        console.log("submited")
     }
 
     componentDidMount() {
         document.title = "Create your MzFood Account";
+    }
+
+    validateForm() {
+        return (
+            this.state.firstName.length > 0 &&
+                this.state.lastName.length > 0 &&
+                this.state.email.length > 0 &&
+                this.state.password.length > 0 &&
+                this.state.repeatPassword.length > 0 &&
+                this.state.password === this.state.repeatPassword
+        );
     }
 
     render() {
@@ -29,23 +64,31 @@ export default class Signup extends React.Component {
                                 </h1>
                             </div>
                             <div className="d-flex justify-content-center align-items-center ">
-                                <form action="tmp" className=" w-100">
+                                <form action="tmp" className=" w-100" onSubmit={this.handleSubmit} onChange={this.handleChange}>
                                     <div className="">
                                         <div className="form-item">
                                             <div className="d-flex">
-                                                <label htmlFor="fullname">
-                                                    نام کامل
+                                                <label htmlFor="firstName">
+                                                    نام
                                                 </label>
                                             </div>
-                                            <input type="text" name="fullname" id="fullname" placeholder="نام"/>
+                                            <input type="text" name="firstName" id="firstName" placeholder="نام"/>
                                         </div>
                                         <div className="form-item">
                                             <div className="d-flex">
-                                                <label htmlFor="mail">
+                                                <label htmlFor="lastName">
+                                                    نام خانوادگی
+                                                </label>
+                                            </div>
+                                            <input type="text" name="lastName" id="lastName" placeholder="نام خانوادگی"/>
+                                        </div>
+                                        <div className="form-item">
+                                            <div className="d-flex">
+                                                <label htmlFor="email">
                                                     ایمیل
                                                 </label>
                                             </div>
-                                            <input type="text" name="mail" id="mail" placeholder="ایمیل"/>
+                                            <input type="text" name="email" id="email" placeholder="ایمیل"/>
                                         </div>
                                         <div className="form-item">
                                             <div className="d-flex">
@@ -62,12 +105,12 @@ export default class Signup extends React.Component {
                                                     تکرار رمز عبور
                                                 </label>
                                             </div>
-                                            <input type="password" name="password" id="repeatPassword"
+                                            <input type="password" name="repeatPassword" id="repeatPassword"
                                                    placeholder="***********"/>
                                         </div>
                                         <div className="form-submit row">
                                             <div className="col-auto">
-                                                <input type="submit" value="ثبت‌نام"/>
+                                                <input type="submit" disabled={!this.validateForm()} value="ثبت‌نام"/>
                                             </div>
                                             <div
                                                 className="col-auto d-flex justify-content-center align-items-center clickable">
