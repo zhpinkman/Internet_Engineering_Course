@@ -3,7 +3,7 @@ import Translator from "../utils/Translator";
 import AuthService from "./AuthService";
 
 const axios = require("axios").default;
-axios.defaults.headers.common['Authorization'] = AuthService.getAuthHeader;
+// axios.defaults.headers.common['Authorization'] = AuthService.getAuthHeader;
 
 
 export default class UserService {

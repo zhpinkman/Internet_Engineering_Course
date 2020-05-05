@@ -6,7 +6,7 @@ const axios = require("axios").default;
 export default class AuthService {
 
     static signup(credentials) {
-        return axios.post(SIGNUP_URL, credentials)
+        return axios.post(SIGNUP_URL, credentials);
     }
 
     static login(credentials) {

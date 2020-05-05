@@ -2,16 +2,51 @@
 import "../../Assets/styles/login-styles.css";
 import * as React from "react";
 import {Link} from "react-router-dom";
+import AuthService from "../../services/AuthService";
 
 export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            email: "",
+            password: ""
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.validateForm = this.validateForm.bind(this);
     }
 
     componentDidMount() {
         document.title = "Sign in - MzFood Accounts";
+    }
+
+
+    handleChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({ [name]: value });
+        console.log(this.state);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        let userForm = {
+            email: this.state.email,
+            password: this.state.password
+        }
+        AuthService.login(userForm).then(data => {
+            console.log(data.data);
+            localStorage.setItem("token", data.data);
+        })
+    }
+
+    validateForm() {
+        return (
+            this.state.email.length > 0 &&
+            this.state.password.length > 0
+        );
     }
 
     render() {
@@ -29,15 +64,15 @@ export default class Login extends React.Component {
                                 </h1>
                             </div>
                             <div className="d-flex justify-content-center align-items-center ">
-                                <form action="tmp" className=" w-100">
+                                <form action="tmp" className=" w-100" onChange={this.handleChange} onSubmit={this.handleSubmit}>
                                     <div className="">
                                         <div className="form-item">
                                             <div className="d-flex">
-                                                <label htmlFor="mail">
+                                                <label htmlFor="email">
                                                     ایمیل
                                                 </label>
                                             </div>
-                                            <input type="text" name="mail" id="mail" placeholder="ایمیل" />
+                                            <input type="text" name="email" id="email" placeholder="ایمیل" />
                                         </div>
                                         <div className="form-item">
                                             <div className="d-flex">

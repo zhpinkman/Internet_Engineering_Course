@@ -2,6 +2,7 @@ import "../../Assets/styles/signup-styles.css";
 
 import * as React from "react";
 import {Link} from "react-router-dom";
+import AuthService from "../../services/AuthService";
 
 export default class Signup extends React.Component {
 
@@ -29,9 +30,17 @@ export default class Signup extends React.Component {
     }
 
     handleSubmit(event) {
-        console.log(this.validateForm())
         event.preventDefault();
-        console.log("submited")
+        let userForm = {
+            email: this.state.email,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            password: this.state.password
+        }
+        AuthService.signup(userForm).then(data => {
+            console.log(data.data);
+            localStorage.setItem("token", data.data);
+        })
     }
 
     componentDidMount() {
@@ -110,7 +119,8 @@ export default class Signup extends React.Component {
                                         </div>
                                         <div className="form-submit row">
                                             <div className="col-auto">
-                                                <input type="submit" disabled={!this.validateForm()} value="ثبت‌نام"/>
+                                                {/*disabled={!this.validateForm()}*/}
+                                                <input type="submit"  value="ثبت‌نام"/>
                                             </div>
                                             <div
                                                 className="col-auto d-flex justify-content-center align-items-center clickable">

@@ -2,7 +2,7 @@ import {RESTAURANTS_LIST_PAGE_SIZE, RESTAURANTS_URL, SEARCH_FOODS_URL, SEARCH_RE
 import AuthService from "./AuthService";
 
 const axios = require("axios").default;
-axios.defaults.headers.common['Authorization'] = AuthService.getAuthHeader;
+// axios.defaults.headers.common['Authorization'] = AuthService.getAuthHeader;
 
 
 export default class RestaurantService {
