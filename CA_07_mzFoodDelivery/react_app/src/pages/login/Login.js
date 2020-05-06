@@ -42,6 +42,7 @@ export default class Login extends React.Component {
             let token = bearerToken.slice(7, bearerToken.length);
             console.log(token)
             localStorage.setItem("token", token);
+            window.location = "/";
         })
     }
 

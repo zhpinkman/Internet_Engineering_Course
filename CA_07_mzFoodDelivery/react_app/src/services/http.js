@@ -1,7 +1,10 @@
 import axios from 'axios';
 import AuthService from "./AuthService";
+import {toast} from "react-toastify";
+import {TOAST_PERMISSION_DENIED} from "../config/config";
 
 let instance = axios.create();
+toast.configure({rtl: true, className: "text-center"});
 
 let domain_url = "http://localhost:8080/";
 let auth_url = "auth";
@@ -18,11 +21,15 @@ instance.interceptors.request.use((config) => {
     return config;
 })
 
-instance.interceptors.response.use((response) => {
-    if (response.status === 403) {
-
-    }
+instance.interceptors.response.use(response => {
     return response;
+}, error => {
+    if (error.response.status === 403 ) {
+        window.location = "/login";
+        // toast.error(TOAST_PERMISSION_DENIED);
+    } else {
+        return Promise.reject(error);
+    }
 })
 
 export const http = instance;

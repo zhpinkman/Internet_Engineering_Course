@@ -12,7 +12,6 @@ export default class AuthService {
     }
 
     static getUserToken(){
-        console.log(localStorage.getItem("token"))
         return localStorage.getItem("token");
     }
 

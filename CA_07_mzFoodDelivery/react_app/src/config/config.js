@@ -17,6 +17,7 @@ export let OK = "ok";
 export let TOAST_MESSAGE_OK = 'عملیات با موفقیت انجام شد';
 export let TOAST_MESSAGE_CREDIT_MORE_THAN_0 = "اعتبار برای افزایش باید بیش از صفر باشد";
 export let TOAST_MESSAGE_EMPTY_SEARCH = "متنی برای جستجو وارد نشده است";
+export let TOAST_PERMISSION_DENIED = "برای دسترسی در ابتدا وارد شوید.";
 export let TOAST_MESSAGE_FILLED_BOTH_SEARCH = "برای جستجو در غذاها، نام رستوران را پاک کنید.";
 
 export let RESTAURANTS_LIST_PAGE_SIZE = 8;
