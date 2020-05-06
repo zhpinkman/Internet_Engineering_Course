@@ -3,6 +3,7 @@ import "../../Assets/styles/login-styles.css";
 import * as React from "react";
 import {Link} from "react-router-dom";
 import AuthService from "../../services/AuthService";
+import GoogleBtn from "../general/googleBtn";
 
 export default class Login extends React.Component {
 
@@ -21,6 +22,17 @@ export default class Login extends React.Component {
         document.title = "Sign in - MzFood Accounts";
     }
 
+    onSignIn(googleUser) {
+        console.log(1111)
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+
+
+
 
     handleChange(event) {
         const target = event.target;
@@ -30,6 +42,7 @@ export default class Login extends React.Component {
     }
 
     handleSubmit(event) {
+
         event.preventDefault();
         let userForm = {
             email: this.state.email,
@@ -104,7 +117,7 @@ export default class Login extends React.Component {
                                                 </span>
                                             </div>
                                         </div>
-                                        <div className="d-flex justify-content-center mt-5 g-signin2" data-onsuccess="onSignIn"></div>
+                                        <GoogleBtn/>
                                     </div>
                                 </form>
                             </div>
