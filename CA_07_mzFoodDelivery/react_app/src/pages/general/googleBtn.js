@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import AuthService from "../../services/AuthService";
 
 
 const CLIENT_ID = '584002652429-182cdq0g70sbla6gg58jmtqnsodflk97.apps.googleusercontent.com';
@@ -27,6 +28,17 @@ class GoogleBtn extends Component {
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
         var id_token = response.getAuthResponse().id_token;
+        let userForm = {
+            token: id_token
+        }
+        AuthService.googleLogin(userForm).then(data => {
+            console.log(data.data);
+            let bearerToken = data.data;
+            let token = bearerToken.slice(7, bearerToken.length);
+            console.log(token)
+            localStorage.setItem("token", token);
+            window.location = "/";
+        })
     }
 
     logout (response) {

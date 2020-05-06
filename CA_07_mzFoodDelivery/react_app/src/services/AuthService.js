@@ -1,4 +1,4 @@
-import {LOGIN_URL, SIGNUP_URL} from "../config/config";
+import {GOOGLE_LOGIN_URL, LOGIN_URL, SIGNUP_URL} from "../config/config";
 import { http } from './http'
 
 export default class AuthService {
@@ -9,6 +9,10 @@ export default class AuthService {
 
     static login(credentials) {
         return http.post(LOGIN_URL, credentials);
+    }
+
+    static googleLogin(credentials) {
+        return http.post(GOOGLE_LOGIN_URL, credentials);
     }
 
     static getUserToken(){

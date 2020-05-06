@@ -38,7 +38,7 @@ public class ProfileController {
 
     @GetMapping("")
     public User getUser() {
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
+//        System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
         try {
             return MzFoodDelivery.getInstance().getUser();
         } catch (Exception e) {

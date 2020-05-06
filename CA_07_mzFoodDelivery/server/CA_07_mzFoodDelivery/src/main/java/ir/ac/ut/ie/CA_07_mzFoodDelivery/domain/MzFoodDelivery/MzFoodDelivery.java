@@ -211,7 +211,7 @@ public class MzFoodDelivery {
     }
 
     private void removeItemsInCart() throws SQLException {
-        System.out.println(SecurityContextHolder.getContext().getAuthentication());
+//        System.out.println(SecurityContextHolder.getContext().getAuthentication());
         if (SecurityContextHolder.getContext().getAuthentication() == null) return;
         for (CartItem cartItem : userManager.getCart()) {
             Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());

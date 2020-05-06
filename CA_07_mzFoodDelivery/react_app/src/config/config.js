@@ -9,6 +9,7 @@ export let PARTY_FOODS_REMAINING_TIME_URL = DOMAIN + "partyFoodsRemainingTime/";
 export let SEARCH_RESTAURANTS_URL = DOMAIN + "search/restaurants/";
 export let SEARCH_FOODS_URL = DOMAIN + "search/foods/";
 export let LOGIN_URL = DOMAIN + "auth/login/";
+export let GOOGLE_LOGIN_URL = DOMAIN + "auth/glogin/";
 export let SIGNUP_URL = DOMAIN + "auth/signup/";
 
 
