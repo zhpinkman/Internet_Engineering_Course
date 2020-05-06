@@ -27,7 +27,6 @@ export default class Login extends React.Component {
         const value = target.value;
         const name = target.name;
         this.setState({ [name]: value });
-        console.log(this.state);
     }
 
     handleSubmit(event) {

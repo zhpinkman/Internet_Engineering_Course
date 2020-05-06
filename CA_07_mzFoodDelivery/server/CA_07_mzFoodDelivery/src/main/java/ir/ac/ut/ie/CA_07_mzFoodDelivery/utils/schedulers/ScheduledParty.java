@@ -10,6 +10,7 @@ public class ScheduledParty implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("zhivar");
         try {
             MzFoodDelivery.getInstance().resetFoodPartyTimer();
             MzFoodDelivery.getInstance().importFoodPartyFromWeb();

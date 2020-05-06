@@ -1,16 +1,14 @@
 import {LOGIN_URL, SIGNUP_URL} from "../config/config";
-
-const axios = require("axios").default;
-
+import { http } from './http'
 
 export default class AuthService {
 
     static signup(credentials) {
-        return axios.post(SIGNUP_URL, credentials);
+        return http.post(SIGNUP_URL, credentials);
     }
 
     static login(credentials) {
-        return axios.post(LOGIN_URL, credentials);
+        return http.post(LOGIN_URL, credentials);
     }
 
     static getUserToken(){

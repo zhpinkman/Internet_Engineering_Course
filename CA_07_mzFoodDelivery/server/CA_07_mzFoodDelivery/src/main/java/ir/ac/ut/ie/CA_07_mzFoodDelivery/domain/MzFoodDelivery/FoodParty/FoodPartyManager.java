@@ -35,12 +35,9 @@ public class FoodPartyManager {
         List<FoodPartyWebItem> foodPartyWeb = gson.fromJson(foodPartyJsonString, new TypeToken<List<FoodPartyWebItem>>() {
         }.getType());
         for (FoodPartyWebItem item : foodPartyWeb) {
-            //System.out.println(item);
             Restaurant restaurant = new Restaurant(item.id, item.name, "", item.location, new ArrayList<Food>(), item.logo);
-
             try {
                 restaurant = MzRepository.getInstance().findRestaurantById(restaurant.getId());
-
             } catch (SQLException ex) {
                 MzRepository.getInstance().insertRestaurant(restaurant);
                 System.out.println("Inserted new restaurant for foodParty");
@@ -50,8 +47,7 @@ public class FoodPartyManager {
                     item.menu.get(0).popularity, item.menu.get(0).oldPrice, item.menu.get(0).image,
                     item.menu.get(0).price, item.menu.get(0).count, restaurant.getId());
 
-            partyFood.print();
-//            Delete usual food if exists
+//            partyFood.print();
             try {
                 List<String> args = new ArrayList<>();
                 args.add(restaurant.getId());
@@ -59,7 +55,6 @@ public class FoodPartyManager {
                 MzRepository.getInstance().deleteFood(new CustomPair(args));
             } catch (SQLException ignored) {
             }
-
             MzRepository.getInstance().insertFood(partyFood);
         }
     }

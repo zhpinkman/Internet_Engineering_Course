@@ -1,33 +1,29 @@
 import {CART_URL, CHARGE_URL, ORDERS_URL, USER_URL} from "../config/config";
 import Translator from "../utils/Translator";
-import AuthService from "./AuthService";
-
-const axios = require("axios");
-axios.defaults.headers.common['Authorization'] = AuthService.getAuthHeader();
-
+import { http } from './http'
 
 export default class UserService {
 
     static getUser() {
-        return axios.get(USER_URL);
+        return http.get(USER_URL);
     }
 
 
     static charge(amount) {
-        return axios.post(CHARGE_URL, {amount: amount});
+        return http.post(CHARGE_URL, {amount: amount});
     }
 
     static async getCart() {
-        return await axios.get(CART_URL);
+        return await http.get(CART_URL);
     }
 
     static getOrders() {
-        return axios.get(ORDERS_URL);
+        return http.get(ORDERS_URL);
     }
 
     static async addToCart(restaurantId, foodName, amount = 1) {
         try {
-            let response = await axios.post(CART_URL, {restaurantId: restaurantId, foodName: foodName, amount: amount})
+            let response = await http.post(CART_URL, {restaurantId: restaurantId, foodName: foodName, amount: amount})
             if (response.data !== "" || response.data === undefined)
                 return Translator.toFa(response.data);
             else
@@ -39,7 +35,7 @@ export default class UserService {
 
     static async removeFromCart(restaurantId, foodName) {
         try {
-            let response = await axios.delete(CART_URL, {data: {restaurantId: restaurantId, foodName: foodName}})
+            let response = await http.delete(CART_URL, {data: {restaurantId: restaurantId, foodName: foodName}})
             if (response.data !== "" || response.data === undefined)
                 return Translator.toFa(response.data);
             else
@@ -52,7 +48,7 @@ export default class UserService {
 
     static async finalizeOrder() {
         try {
-            let response = await axios.post(ORDERS_URL);
+            let response = await http.post(ORDERS_URL);
             console.log(response);
             if (response.data !== "" || response.data === undefined)
                 return Translator.toFa(response.data);

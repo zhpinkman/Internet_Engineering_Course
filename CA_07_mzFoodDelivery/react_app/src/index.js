@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import AuthService from "./services/AuthService";
+
+const axios = require("axios");
+axios.defaults.headers.common['Authorization'] = AuthService.getAuthHeader();
+
 
 ReactDOM.render(
   <React.StrictMode>
