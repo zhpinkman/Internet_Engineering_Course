@@ -9,6 +9,7 @@ import Signup from "./pages/signup/Signup";
 import Example from "./pages/Example";
 import Restaurant from "./pages/restaurant/Restaurant";
 import RestaurantService from "./services/RestaurantService";
+import AuthService from "./services/AuthService";
 
 function App() {
   return (
@@ -21,22 +22,14 @@ function App() {
         <Route path="/dashboard">
           <Dashboard />
         </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-        <Route path="/restaurant"
-               component={Restaurant} />
-        <Route path="/login">
-          <Login/>
-        </Route>
-        <Route path="/signup">
-          <Signup/>
-        </Route>
         <Route path="/test">
           <Example/>
         </Route>
-        <Route exact path="/"
-               component={Home} />
+        <Route exact path="/profile" component={()=>AuthService.getUserToken()?<Profile/>:<Login/>} />
+        <Route exact path="/restaurant" component={()=>AuthService.getUserToken()?<Restaurant/>:<Login/>} />
+        <Route exact path="/login" component={()=>AuthService.getUserToken()?<Home/>:<Login/>} />
+        <Route exact path="/signup" component={()=>AuthService.getUserToken()?<Home/>:<Signup/>} />
+        <Route exact path="/" component={()=>AuthService.getUserToken()?<Home/>:<Login/>} />
       </Switch>
     </Router>
   );

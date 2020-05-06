@@ -1,7 +1,6 @@
 import axios from 'axios';
 import AuthService from "./AuthService";
 import {toast} from "react-toastify";
-import {TOAST_PERMISSION_DENIED} from "../config/config";
 
 let instance = axios.create();
 toast.configure({rtl: true, className: "text-center"});
@@ -26,7 +25,6 @@ instance.interceptors.response.use(response => {
 }, error => {
     if (error.response.status === 403 ) {
         window.location = "/login";
-        // toast.error(TOAST_PERMISSION_DENIED);
     } else {
         return Promise.reject(error);
     }

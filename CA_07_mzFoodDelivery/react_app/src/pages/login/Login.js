@@ -61,7 +61,7 @@ export default class Login extends React.Component {
                         <img className="background-img" src={require("../../Assets/images/food.jpg")} alt="" />
                     </div>
                     <div className="col-lg-3 col-md-4 overflow-auto">
-                        <div className="form-container">
+                        <div className="form-container align-items-center">
                             <div className="d-flex">
                                 <h1>
                                     ورود
@@ -104,8 +104,8 @@ export default class Login extends React.Component {
                                                 </span>
                                             </div>
                                         </div>
+                                        <div className="d-flex justify-content-center mt-5 g-signin2" data-onsuccess="onSignIn"></div>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
