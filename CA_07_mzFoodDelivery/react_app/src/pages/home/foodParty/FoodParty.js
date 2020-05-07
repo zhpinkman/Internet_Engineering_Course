@@ -8,6 +8,7 @@ import FoodPartyCard from "./foodPartyCard/FoodPartyCard";
 import {FoodPartyService, FoodPartyRemainingTimeService} from "../../../services/FoodPartyService";
 import Slider from "../../../utils/Slider";
 import {secondsToMMSS} from "../../../utils/utils";
+import {cartRefresh} from "../../../services/subjects/MessageService";
 
 
 export default class FoodParty extends React.Component {
@@ -48,6 +49,7 @@ export default class FoodParty extends React.Component {
             if(this.sliderRef != null)
                 this._isMounted && this.sliderRef.current.refreshFlickity();
             this.getPartyFoods();
+            cartRefresh.next();
             this.getRemainingTime();
         }
     }
