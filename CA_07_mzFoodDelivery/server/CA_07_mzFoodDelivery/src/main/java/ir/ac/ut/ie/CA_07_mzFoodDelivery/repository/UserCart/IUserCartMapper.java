@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface IUserCartMapper extends IMapper<CartItem, CustomPair> {
     List<CartItem> getUserCart(String userEmail) throws SQLException;
+    List<CartItem> getAllCarts() throws SQLException;
     void emptyUserCart(String userEmail) throws SQLException;
     void updateCartItem(CartItem cartItem) throws SQLException;
 }

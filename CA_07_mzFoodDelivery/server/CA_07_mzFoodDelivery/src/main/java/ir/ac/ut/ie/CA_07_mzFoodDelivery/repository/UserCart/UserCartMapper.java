@@ -95,6 +95,26 @@ public class UserCartMapper extends Mapper<CartItem, CustomPair> implements IUse
     }
 
     @Override
+    public List<CartItem> getAllCarts() throws SQLException {
+        List<CartItem> result = new ArrayList<CartItem>();
+        String statement = String.format("select * from %s;", TABLE_NAME);
+        try (Connection con = ConnectionPool.getConnection();
+             PreparedStatement st = con.prepareStatement(statement);
+        ) {
+            ResultSet resultSet;
+            try {
+                resultSet = st.executeQuery();
+                while (resultSet.next())
+                    result.add(convertResultSetToObject(resultSet));
+                return result;
+            } catch (SQLException ex) {
+                System.out.println("error in Mapper.findAll query.");
+                throw ex;
+            }
+        }
+    }
+
+    @Override
     public void emptyUserCart(String userEmail) throws SQLException {
         String statement = String.format("delete from %s where %s.%s = %s;", TABLE_NAME, TABLE_NAME, "userEmail", StringUtils.quoteWrapper(userEmail));
         try (Connection con = ConnectionPool.getConnection();

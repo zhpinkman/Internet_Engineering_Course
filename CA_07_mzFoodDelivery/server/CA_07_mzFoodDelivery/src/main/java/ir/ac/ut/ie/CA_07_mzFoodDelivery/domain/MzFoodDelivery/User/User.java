@@ -6,13 +6,13 @@ import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Location;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.repository.MzRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    public static final String userEmail = "ekhamespanah@yahoo.com";
     private Cart userCart = new Cart();
     private Location location;
     private String firstName;
@@ -48,7 +48,7 @@ public class User {
     }
 
     public List<CartItem> getUserCart() throws SQLException {
-        List<CartItem> userCart = MzRepository.getInstance().getUserCart(userEmail);
+        List<CartItem> userCart = MzRepository.getInstance().getUserCart(SecurityContextHolder.getContext().getAuthentication().getName());
         for (CartItem cartItem: userCart) {
             Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
             cartItem.setUnitPrice(food.getPrice());
@@ -68,14 +68,14 @@ public class User {
 
 
     public List<CartItem> addOrder() throws SQLException {
-        User user = MzRepository.getInstance().getUser(userEmail);
+        User user = MzRepository.getInstance().getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         increaseUserOrders();
         List<CartItem> cartItems = user.getUserCart();
         for (CartItem cartItem: cartItems) {
             Food food = MzRepository.getInstance().getFood(cartItem.getRestaurantId(), cartItem.getFoodName());
-            MzRepository.getInstance().addOrderItem(new OrderItem(userEmail, orders, cartItem, food.getPrice()));
+            MzRepository.getInstance().addOrderItem(new OrderItem(SecurityContextHolder.getContext().getAuthentication().getName(), orders, cartItem, food.getPrice()));
         }
-        Order userOrder = new Order(userEmail, orders);
+        Order userOrder = new Order(SecurityContextHolder.getContext().getAuthentication().getName(), orders);
         MzRepository.getInstance().addUserOrder(userOrder);
         return cartItems;
     }
@@ -126,7 +126,7 @@ public class User {
     }
 
     public void deleteFromCart(String restaurantId, String foodName) throws Exception {
-        CartItem cartItem = MzRepository.getInstance().findCartItem(new CartItem(userEmail, restaurantId, foodName));
+        CartItem cartItem = MzRepository.getInstance().findCartItem(new CartItem(SecurityContextHolder.getContext().getAuthentication().getName(), restaurantId, foodName));
         if (cartItem.getQuantity() != 1)
             cartItem.decreaseQuantity(1);
         else if (cartItem.getQuantity() == 1)

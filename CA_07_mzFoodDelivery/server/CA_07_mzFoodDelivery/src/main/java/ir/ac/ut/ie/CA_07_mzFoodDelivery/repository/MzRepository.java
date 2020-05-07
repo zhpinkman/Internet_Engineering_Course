@@ -153,6 +153,11 @@ public class MzRepository {
         return new UserCartMapper().getUserCart(userEmail);
     }
 
+    public List<CartItem> getAllCarts() throws SQLException {
+        return new UserCartMapper().getAllCarts();
+    }
+
+
     public void updateCartItem(CartItem cartItem) throws SQLException {
         new UserCartMapper().updateCartItem(cartItem);
     }
@@ -262,4 +267,6 @@ public class MzRepository {
     public List<Order> getOrders(String userEmail) throws SQLException {
         return new OrderMapper().getOrders(userEmail);
     }
+
+
 }

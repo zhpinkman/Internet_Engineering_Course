@@ -36,9 +36,12 @@ public class UserManager {
     }
 
     public List<CartItem> getCart() throws SQLException {
-        if (SecurityContextHolder.getContext().getAuthentication().getName().isEmpty()) return null;
         User user = MzRepository.getInstance().getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         return user.getUserCart();
+    }
+
+    public List<CartItem> getAllCarts() throws SQLException {
+        return MzRepository.getInstance().getAllCarts();
     }
 
     public String getBriefCartJson() throws SQLException {
