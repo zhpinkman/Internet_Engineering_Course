@@ -12,6 +12,7 @@ export default class Header extends React.Component{
         super(props);
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.logout = this.logout.bind(this);
 
         this.state = {
             show: false,
@@ -28,6 +29,10 @@ export default class Header extends React.Component{
         this.setState({ show: true });
     }
 
+    logout() {
+        localStorage.removeItem("token");
+        window.location = "/login";
+    }
 
     getCartSize() {
         UserService.getCart().then(cart => {
@@ -75,7 +80,7 @@ export default class Header extends React.Component{
                             حساب کاربری
                         </Link>
                     </div>
-                    <div className="logout m-2">
+                    <div className="logout m-2" onClick={this.logout}>
                         خروج
                     </div>
                 </div>

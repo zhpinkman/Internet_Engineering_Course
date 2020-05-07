@@ -2,6 +2,7 @@ package ir.ac.ut.ie.CA_07_mzFoodDelivery.security;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import io.jsonwebtoken.*;
+import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.User;
+import ir.ac.ut.ie.CA_07_mzFoodDelivery.repository.MzRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -39,6 +42,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             if (checkJWTToken(request, response)) {
                 Claims claims = validateToken(request);
                 if (claims.get("authorities") != null) {
+                    User user = MzRepository.getInstance().getUser(claims.getSubject());
                     setUpSpringAuthentication(claims);
                 } else {
                     SecurityContextHolder.clearContext();
@@ -51,6 +55,9 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             response.sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
             return;
+        } catch (SQLException e) {
+            SecurityContextHolder.clearContext();
+            e.printStackTrace();
         }
     }
 
