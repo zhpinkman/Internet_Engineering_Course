@@ -25,6 +25,7 @@ instance.interceptors.response.use(response => {
 }, error => {
     if (error.response.status === 403 ) {
         window.location = "/login";
+        localStorage.removeItem("token");
     } else {
         return Promise.reject(error);
     }
