@@ -20,7 +20,7 @@ public class SimpleCORSFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp,
                          FilterChain chain) throws IOException, ServletException {
         try {
-            Thread.sleep(1000); // 3 seconds
+            Thread.sleep(1000); // 1 seconds
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

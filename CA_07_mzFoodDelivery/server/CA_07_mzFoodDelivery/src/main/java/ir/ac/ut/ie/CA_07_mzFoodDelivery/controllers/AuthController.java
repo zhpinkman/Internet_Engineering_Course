@@ -1,6 +1,7 @@
 package ir.ac.ut.ie.CA_07_mzFoodDelivery.controllers;
 
 import com.google.gson.Gson;
+import ir.ac.ut.ie.CA_07_mzFoodDelivery.controllers.Exceptions.ExceptionBadCharacters;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.repository.MzRepository;
@@ -44,6 +45,9 @@ public class AuthController {
         String email = properties.getProperty("email");
         String password = properties.getProperty("password");
         try {
+            if(!StringUtils.stripTags(email).equals(email) || !StringUtils.stripTags(password).equals(password)){
+                throw new ExceptionBadCharacters();
+            }
             User user = MzFoodDelivery.getInstance().loginUser(email, password);
             return JWTAuthorizationFilter.getJWTToken(user.getEmail());
         } catch (Exception e) {

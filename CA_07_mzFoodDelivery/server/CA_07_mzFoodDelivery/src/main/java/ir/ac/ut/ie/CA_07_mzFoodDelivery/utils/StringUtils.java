@@ -21,4 +21,11 @@ public class StringUtils {
         LocalDateTime dateTime = LocalDateTime.parse(time, formatter);
         return dateTime;
     }
+
+    public static String stripTags(String str){
+        String stripStr = str.replaceAll("\\<.*?\\>", "");
+        stripStr = str.replace("'", "");
+        stripStr = str.replace("\"", "");
+        return stripStr;
+    }
 }
