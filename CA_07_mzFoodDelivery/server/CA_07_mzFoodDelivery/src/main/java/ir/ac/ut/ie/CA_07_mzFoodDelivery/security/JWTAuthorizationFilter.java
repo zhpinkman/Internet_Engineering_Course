@@ -57,7 +57,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             return;
         } catch (SQLException e) {
             SecurityContextHolder.clearContext();
-            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
         }
     }
 

@@ -63,7 +63,6 @@ public class AuthController {
             User user = MzRepository.getInstance().getUser(userEmail);
             return JWTAuthorizationFilter.getJWTToken(userEmail);
         } catch (SQLException e) {
-            e.printStackTrace();
             response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
             return null;
         }
