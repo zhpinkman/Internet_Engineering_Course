@@ -58,7 +58,7 @@ class GoogleBtn extends Component {
 
     render() {
         return (
-            <div>
+            <div className="d-flex justify-content-center align-items-center mt-5" dir="ltr">
                 { this.state.isLogined ?
                     <GoogleLogout
                         clientId={ CLIENT_ID }
@@ -75,8 +75,6 @@ class GoogleBtn extends Component {
                         responseType='code,token'
                     />
                 }
-                { this.state.accessToken ? <h5>Your Access Token: <br/><br/> { this.state.accessToken }</h5> : null }
-
             </div>
         )
     }
