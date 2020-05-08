@@ -33,6 +33,7 @@ public class AuthController {
             if(StringUtils.hasIllegalChars(email) || StringUtils.hasIllegalChars(firstName) || StringUtils.hasIllegalChars(lastName) || StringUtils.hasIllegalChars(password)){
                 throw new ExceptionBadCharacters();
             }
+            password = StringUtils.hashString(password);
             MzFoodDelivery.getInstance().addUser(email, firstName, lastName, password);
             return JWTAuthorizationFilter.getJWTToken(email);
         } catch (Exception e) {
@@ -51,6 +52,7 @@ public class AuthController {
             if(StringUtils.hasIllegalChars(email) || StringUtils.hasIllegalChars(password)){
                 throw new ExceptionBadCharacters();
             }
+            password = StringUtils.hashString(password);
             User user = MzFoodDelivery.getInstance().loginUser(email, password);
             return JWTAuthorizationFilter.getJWTToken(user.getEmail());
         } catch (Exception e) {
