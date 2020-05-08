@@ -28,4 +28,8 @@ public class StringUtils {
         stripStr = str.replace("\"", "");
         return stripStr;
     }
+
+    public static boolean hasIllegalChars(String str){
+        return !stripTags(str).equals(str);
+    }
 }

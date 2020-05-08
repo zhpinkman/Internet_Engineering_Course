@@ -30,6 +30,9 @@ public class AuthController {
         String lastName = properties.getProperty("lastName");
         String password = properties.getProperty("password");
         try {
+            if(StringUtils.hasIllegalChars(email) || StringUtils.hasIllegalChars(firstName) || StringUtils.hasIllegalChars(lastName) || StringUtils.hasIllegalChars(password)){
+                throw new ExceptionBadCharacters();
+            }
             MzFoodDelivery.getInstance().addUser(email, firstName, lastName, password);
             return JWTAuthorizationFilter.getJWTToken(email);
         } catch (Exception e) {
@@ -45,7 +48,7 @@ public class AuthController {
         String email = properties.getProperty("email");
         String password = properties.getProperty("password");
         try {
-            if(!StringUtils.stripTags(email).equals(email) || !StringUtils.stripTags(password).equals(password)){
+            if(StringUtils.hasIllegalChars(email) || StringUtils.hasIllegalChars(password)){
                 throw new ExceptionBadCharacters();
             }
             User user = MzFoodDelivery.getInstance().loginUser(email, password);

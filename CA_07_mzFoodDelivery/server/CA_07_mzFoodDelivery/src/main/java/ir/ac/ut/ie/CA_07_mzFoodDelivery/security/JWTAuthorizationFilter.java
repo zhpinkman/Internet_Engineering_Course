@@ -21,8 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import io.jsonwebtoken.*;
+import ir.ac.ut.ie.CA_07_mzFoodDelivery.controllers.Exceptions.ExceptionBadCharacters;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.repository.MzRepository;
+import ir.ac.ut.ie.CA_07_mzFoodDelivery.utils.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -41,6 +43,9 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         try {
             if (checkJWTToken(request, response)) {
                 Claims claims = validateToken(request);
+                if(StringUtils.hasIllegalChars(claims.getSubject())){
+                    throw new ExceptionBadCharacters();
+                }
                 if (claims.get("authorities") != null) {
                     User user = MzRepository.getInstance().getUser(claims.getSubject());
                     setUpSpringAuthentication(claims);
@@ -51,10 +56,9 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.clearContext();
             }
             chain.doFilter(request, response);
-        } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException e) {
+        } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException | ExceptionBadCharacters e) {
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
             response.sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
-            return;
         } catch (SQLException e) {
             SecurityContextHolder.clearContext();
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
