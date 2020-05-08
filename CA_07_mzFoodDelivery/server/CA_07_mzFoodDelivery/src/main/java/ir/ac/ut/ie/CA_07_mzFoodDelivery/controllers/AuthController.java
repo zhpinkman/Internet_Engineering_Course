@@ -51,6 +51,7 @@ public class AuthController {
             User user = MzFoodDelivery.getInstance().loginUser(email, password);
             return JWTAuthorizationFilter.getJWTToken(user.getEmail());
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
         }
         return null;

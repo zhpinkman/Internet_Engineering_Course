@@ -4,6 +4,7 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import GoogleBtn from "../general/googleBtn";
+import {toast} from "react-toastify";
 
 export default class Login extends React.Component {
 
@@ -42,15 +43,21 @@ export default class Login extends React.Component {
         };
 
         AuthService.login(userForm).then(data => {
+            toast.success("ورود با موفقیت انجام شد");
             this.setState({
                 isLoading: false
             });
             console.log(data.data);
             let bearerToken = data.data;
             let token = bearerToken.slice(7, bearerToken.length);
-            console.log(token)
+            console.log(token);
             localStorage.setItem("token", token);
             window.location = "/";
+        }).catch(e => {
+            this.setState({
+                isLoading: false
+            });
+            toast.error(e.response.data.message);
         })
     }
 

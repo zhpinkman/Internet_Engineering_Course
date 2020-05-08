@@ -3,6 +3,7 @@ import "../../Assets/styles/signup-styles.css";
 import * as React from "react";
 import {Link} from "react-router-dom";
 import AuthService from "../../services/AuthService";
+import {toast} from "react-toastify";
 
 export default class Signup extends React.Component {
 
@@ -41,6 +42,7 @@ export default class Signup extends React.Component {
             password: this.state.password
         };
         AuthService.signup(userForm).then(data => {
+            toast.success("ثبت نام با موفقیت انجام شد.");
             this.setState({
                 isLoading: false
             });
@@ -50,6 +52,12 @@ export default class Signup extends React.Component {
             console.log(token);
             localStorage.setItem("token", token);
             window.location = "/";
+        }).catch(e => {
+            this.setState({
+                isLoading: false
+            });
+            console.log(e);
+            toast.error(e.response.data.message);
         })
     }
 
