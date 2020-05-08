@@ -10,4 +10,5 @@ import java.util.List;
 public interface IOrderMapper extends IMapper<Order, CustomPair> {
     void updateOrder(Order order) throws SQLException;
     List<Order> getOrders(String userEmail) throws SQLException;
+    List<Order> getAllOrders() throws SQLException;
 }

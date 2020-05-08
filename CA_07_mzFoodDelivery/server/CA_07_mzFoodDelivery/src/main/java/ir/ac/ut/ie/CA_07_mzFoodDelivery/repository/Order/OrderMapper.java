@@ -114,4 +114,25 @@ public class OrderMapper extends Mapper<Order, CustomPair> implements IOrderMapp
             }
         }
     }
+
+    @Override
+    public List<Order> getAllOrders() throws SQLException {
+        List<Order> result = new ArrayList<Order>();
+        String statement = String.format("SELECT * from %s;", TABLE_NAME);
+        try (Connection con = ConnectionPool.getConnection();
+             PreparedStatement st = con.prepareStatement(statement);
+        ) {
+            ResultSet resultSet;
+            try {
+                resultSet = st.executeQuery();
+                while (resultSet.next())
+                    result.add(convertResultSetToObject(resultSet));
+                con.close();
+                return result;
+            } catch (SQLException ex) {
+                System.out.println("error in Mapper.findAll query.");
+                throw ex;
+            }
+        }
+    }
 }

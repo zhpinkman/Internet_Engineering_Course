@@ -98,11 +98,8 @@ public class UserManager {
     }
 
     public Order getLatestOrder() throws SQLException {
-        User user = MzRepository.getInstance().getUser(SecurityContextHolder.getContext().getAuthentication().getName());
-        int orderId = user.getNumOfOrders();
-        System.out.println("num of orders");
-        System.out.println(orderId);
-        return MzRepository.getInstance().getOrder(SecurityContextHolder.getContext().getAuthentication().getName(), orderId);
+        List<Order> orders = MzRepository.getInstance().getAllOrders();
+        return orders.get(orders.size() - 1);
     }
 
     public List<Order> getOrders() throws SQLException {

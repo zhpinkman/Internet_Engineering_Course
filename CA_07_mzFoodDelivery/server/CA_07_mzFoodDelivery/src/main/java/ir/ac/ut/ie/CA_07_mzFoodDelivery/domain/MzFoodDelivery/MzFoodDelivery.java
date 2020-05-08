@@ -4,10 +4,7 @@ package ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Delivery;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.FoodParty.FoodPartyManager;
-import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Food;
-import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.PartyFood;
-import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
-import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.RestaurantManager;
+import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.*;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.UserManager;
@@ -144,16 +141,13 @@ public class MzFoodDelivery {
 
     public List<Restaurant> getNearRestaurants(int limit, int offset) {
         try {
-            return restaurantManager.getNearRestaurants(userManager.getLocation(SecurityContextHolder.getContext().getAuthentication().getName()), limit, offset);
+            return restaurantManager.getNearRestaurants(new Location(0, 0), limit, offset);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public Restaurant getNearRestaurantById(String id) throws Exception {
-        return restaurantManager.getNearRestaurantById(id, userManager.getLocation(SecurityContextHolder.getContext().getAuthentication().getName()));
-    }
 
     public User getUser(String userEmail) throws SQLException {
         return userManager.getUser(userEmail);
@@ -201,7 +195,7 @@ public class MzFoodDelivery {
 
     public double calcDeliveryDistanceToGo(Restaurant restaurant, Delivery delivery) throws SQLException {
         double distanceToGetToRestaurant = delivery.getLocation().getDistanceFromLocation(restaurant.getLocation());
-        double distanceToGetToCustomer = delivery.getLocation().getDistanceFromLocation(getUser(SecurityContextHolder.getContext().getAuthentication().getName()).getLocation());
+        double distanceToGetToCustomer = delivery.getLocation().getDistanceFromLocation(new Location(0, 0));
         return distanceToGetToCustomer + distanceToGetToRestaurant;
     }
 

@@ -225,6 +225,10 @@ public class MzRepository {
         return new OrderMapper().find(new CustomPair(args));
     }
 
+    public List<Order> getAllOrders() throws SQLException {
+        return new OrderMapper().getAllOrders();
+    }
+
 
     public List<OrderItem> getOrderItems(String userEmail, int orderId) throws SQLException {
         List<String> args = new ArrayList<>();
