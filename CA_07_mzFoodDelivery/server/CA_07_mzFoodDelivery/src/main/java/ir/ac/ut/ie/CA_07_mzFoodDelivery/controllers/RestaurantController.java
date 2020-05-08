@@ -2,6 +2,7 @@ package ir.ac.ut.ie.CA_07_mzFoodDelivery.controllers;
 
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
+import ir.ac.ut.ie.CA_07_mzFoodDelivery.utils.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,7 @@ public class RestaurantController {
 
     @GetMapping("/{restaurantId}")
     public Restaurant getRestaurantsById(@PathVariable String restaurantId, final HttpServletResponse response) throws IOException {
+        restaurantId = StringUtils.stripTags(restaurantId);
         try {
             Restaurant restaurant = MzFoodDelivery.getInstance().getRestaurantById(restaurantId);
             return restaurant;

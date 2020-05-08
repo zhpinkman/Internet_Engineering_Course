@@ -1,11 +1,13 @@
 package ir.ac.ut.ie.CA_07_mzFoodDelivery.controllers;
 
 import com.google.gson.Gson;
+import ir.ac.ut.ie.CA_07_mzFoodDelivery.controllers.Exceptions.ExceptionBadCharacters;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Delivery.Order;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.Cart;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.CartItem;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.User;
+import ir.ac.ut.ie.CA_07_mzFoodDelivery.utils.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +28,11 @@ public class ProfileController {
         Gson gson = new Gson();
         Properties properties = gson.fromJson(jsonString, Properties.class);
         String amountString = properties.getProperty("amount");
-        double amount = Double.parseDouble(amountString);
         try {
+            if(StringUtils.hasIllegalChars(amountString)){
+                throw new ExceptionBadCharacters();
+            }
+            double amount = Double.parseDouble(amountString);
             MzFoodDelivery.getInstance().chargeUserCredit(amount);
             return MzFoodDelivery.getInstance().getUser();
         } catch (Exception e) {
@@ -55,6 +60,9 @@ public class ProfileController {
             String restaurantId = properties.getProperty("restaurantId");
             String foodName = properties.getProperty("foodName");
             Integer amount = Integer.parseInt(properties.getProperty("amount"));
+            if(StringUtils.hasIllegalChars(restaurantId + foodName)){
+                throw new ExceptionBadCharacters();
+            }
             MzFoodDelivery.getInstance().addToCart(restaurantId, foodName, amount);
             return Config.OK_RESPONSE;
         } catch (Exception e) {
@@ -68,8 +76,8 @@ public class ProfileController {
     public String removeFromCart(@RequestBody String jsonString, final HttpServletResponse response) throws IOException {
         Gson gson = new Gson();
         Properties properties = gson.fromJson(jsonString, Properties.class);
-        String restaurantId = properties.getProperty("restaurantId");
-        String foodName = properties.getProperty("foodName");
+        String restaurantId = StringUtils.stripTags(properties.getProperty("restaurantId"));
+        String foodName = StringUtils.stripTags(properties.getProperty("foodName"));
         try {
             MzFoodDelivery.getInstance().deleteFromCart(restaurantId, foodName);
             return Config.OK_RESPONSE;

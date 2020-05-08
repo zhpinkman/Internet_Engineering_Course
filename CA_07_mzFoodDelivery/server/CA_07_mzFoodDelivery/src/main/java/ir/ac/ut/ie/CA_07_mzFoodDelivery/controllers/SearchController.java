@@ -2,6 +2,7 @@ package ir.ac.ut.ie.CA_07_mzFoodDelivery.controllers;
 
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.Restaurant.Restaurant;
+import ir.ac.ut.ie.CA_07_mzFoodDelivery.utils.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ public class SearchController {
 
         int limit = pageSize;
         int offset = (pageNumber - 1) * pageSize;
+        searchPhrase = StringUtils.stripTags(searchPhrase);
         return MzFoodDelivery.getInstance().searchRestaurants(searchPhrase, limit, offset);
     }
 
@@ -32,6 +34,7 @@ public class SearchController {
 
         int limit = pageSize;
         int offset = (pageNumber - 1) * pageSize;
+        searchPhrase = StringUtils.stripTags(searchPhrase);
         return MzFoodDelivery.getInstance().searchFoods(searchPhrase, limit, offset);
     }
 

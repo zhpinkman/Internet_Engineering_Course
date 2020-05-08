@@ -4,6 +4,7 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import GoogleBtn from "../general/googleBtn";
+import {toast} from "react-toastify";
 
 export default class Login extends React.Component {
 
@@ -11,8 +12,9 @@ export default class Login extends React.Component {
         super(props);
         this.state = {
             email: "",
-            password: ""
-        }
+            password: "",
+            isLoading: false
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validateForm = this.validateForm.bind(this);
@@ -31,19 +33,31 @@ export default class Login extends React.Component {
     }
 
     handleSubmit(event) {
+        this.setState({
+            isLoading: true
+        });
         event.preventDefault();
         let userForm = {
             email: this.state.email,
             password: this.state.password
-        }
+        };
 
         AuthService.login(userForm).then(data => {
+            toast.success("ورود با موفقیت انجام شد");
+            this.setState({
+                isLoading: false
+            });
             console.log(data.data);
             let bearerToken = data.data;
             let token = bearerToken.slice(7, bearerToken.length);
-            console.log(token)
+            console.log(token);
             localStorage.setItem("token", token);
             window.location = "/";
+        }).catch(e => {
+            this.setState({
+                isLoading: false
+            });
+            toast.error(e.response.data.message);
         })
     }
 
@@ -92,11 +106,14 @@ export default class Login extends React.Component {
                                         <div className="form-submit row">
                                             <div className="col-auto">
                                                 <input type="submit" disabled={!this.validateForm()} value="ورود" />
+                                                {this.state.isLoading &&
+                                                <span className="spinner-border mr-2" role="status" aria-hidden="true"/>
+                                                }
                                             </div>
                                             <div
                                                 className="col-auto d-flex justify-content-center align-items-center clickable">
                                                 <div className="login-arrow">
-                                                    <i className="flaticon-arrow"></i>
+                                                    <i className="flaticon-arrow"/>
                                                 </div>
                                                 <span>
                                                     <Link to="/signup">
