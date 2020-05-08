@@ -2,8 +2,12 @@ package ir.ac.ut.ie.CA_07_mzFoodDelivery.utils;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class StringUtils {
 
@@ -26,12 +30,12 @@ public class StringUtils {
     }
 
     public static String stripTags(String str) {
-        String stripStr = str.replaceAll("\\<.*?\\>", "");
-        stripStr = str.replace("'", "");
-        stripStr = str.replace("\"", "");
-        stripStr = str.replace("_", "");
-        stripStr = str.replace("%", "");
-        stripStr = StringEscapeUtils.escapeSql(str);
+        String stripStr = str;
+        List<String> illegalWords = Arrays.asList("\\<.*?\\>", "'", "\"", "_", "%", "=");
+        for (String illegalWord: illegalWords) {
+            stripStr = stripStr.replaceAll(illegalWord, "");
+        }
+        stripStr = StringEscapeUtils.escapeSql(stripStr);
         return stripStr;
     }
 
