@@ -3,7 +3,7 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import AuthService from "../../services/AuthService";
 
 
-const CLIENT_ID = '584002652429-182cdq0g70sbla6gg58jmtqnsodflk97.apps.googleusercontent.com';
+const CLIENT_ID = '849300740609-vfojcoe1kvrdfb8kika8gbh5mmkp6tbm.apps.googleusercontent.com';
 
 
 class GoogleBtn extends Component {
@@ -53,6 +53,7 @@ class GoogleBtn extends Component {
     }
 
     handleLogoutFailure (response) {
+        console.log(response);
         alert('Failed to log out')
     }
 
@@ -61,7 +62,7 @@ class GoogleBtn extends Component {
             <div className="d-flex justify-content-center align-items-center mt-5" dir="ltr">
                 { this.state.isLogined ?
                     <GoogleLogout
-                        clientId={ CLIENT_ID }
+                        clientId={CLIENT_ID}
                         buttonText='Logout'
                         onLogoutSuccess={ this.logout }
                         onFailure={ this.handleLogoutFailure }
