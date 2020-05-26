@@ -118,7 +118,9 @@ public class UserManager {
     public User loginUser(String email, String password) throws Exception {
         try {
             User user = MzRepository.getInstance().getUser(email);
-            return user;
+            if (user.getPassword().equals(password))
+                return user;
+            else throw new Exception("passwords does not match");
         } catch (SQLException e) {
             throw new Exception("user not available");
         }

@@ -61,7 +61,41 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 
 ### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+you can run the project on docker containers with nginx with these commands:
+
+    npm run-script build
+    
+    sudo docker build -t react-ui .
+    
+    sudo docker run -d --name reactui -p 3000:80 react-ui
+
+#### extra commands 
+
+for not building the whole project again when you want to change something in ngnix you can change the config file and after that just restart the nginx by this command:
+
+    sudo /usr/sbin/nginx -s reload
+
+#### docker commands
+
+you can see the containers with this command:
+
+    docker container ls [-a] (for getting not running ones)
+    
+for removing or stopping the container you can use these:
+
+    docker container stop [name of the container]
+    
+    docker container rm [name of the container]
+    
+for getting shell in the container that is running:
+
+    docker exec -it [name of the container] /bin/sh
+
+for getting the images and removing them:
+
+    docker images
+    
+    docker images rm [name of the image]  
 
 ### `npm run build` fails to minify
 
