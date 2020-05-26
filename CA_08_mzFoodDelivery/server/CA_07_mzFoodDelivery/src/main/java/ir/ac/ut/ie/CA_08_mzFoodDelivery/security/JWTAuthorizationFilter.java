@@ -1,4 +1,4 @@
-package ir.ac.ut.ie.CA_07_mzFoodDelivery.security;
+package ir.ac.ut.ie.CA_08_mzFoodDelivery.security;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -21,10 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import io.jsonwebtoken.*;
-import ir.ac.ut.ie.CA_07_mzFoodDelivery.controllers.Exceptions.ExceptionBadCharacters;
-import ir.ac.ut.ie.CA_07_mzFoodDelivery.domain.MzFoodDelivery.User.User;
-import ir.ac.ut.ie.CA_07_mzFoodDelivery.repository.MzRepository;
-import ir.ac.ut.ie.CA_07_mzFoodDelivery.utils.StringUtils;
+import ir.ac.ut.ie.CA_08_mzFoodDelivery.controllers.Exceptions.ExceptionBadCharacters;
+import ir.ac.ut.ie.CA_08_mzFoodDelivery.domain.MzFoodDelivery.User.User;
+import ir.ac.ut.ie.CA_08_mzFoodDelivery.repository.MzRepository;
+import ir.ac.ut.ie.CA_08_mzFoodDelivery.utils.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -121,12 +121,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     }
 
     public static String checkGoogleAuth(String token) throws GeneralSecurityException, IOException {
-<<<<<<< HEAD
-//        String CLIENT_ID = "849300740609-vfojcoe1kvrdfb8kika8gbh5mmkp6tbm.apps.googleusercontent.com";  // Zhivar
-        String CLIENT_ID = "24544833394-g6l85ggkuui3o5ensg5sbm2pke3pcogl.apps.googleusercontent.com";  // Mohsen
-=======
         String CLIENT_ID = "355342436276-cv166bttml8pconilhtbjnnfulvb1u93.apps.googleusercontent.com";
->>>>>>> master
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
                 .setAudience(Collections.singletonList(CLIENT_ID))
                 .build();
