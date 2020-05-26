@@ -3,8 +3,8 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import AuthService from "../../services/AuthService";
 
 
-const CLIENT_ID = '849300740609-vfojcoe1kvrdfb8kika8gbh5mmkp6tbm.apps.googleusercontent.com';
-
+// const CLIENT_ID = '849300740609-vfojcoe1kvrdfb8kika8gbh5mmkp6tbm.apps.googleusercontent.com';  // Zhivar
+const CLIENT_ID = '24544833394-g6l85ggkuui3o5ensg5sbm2pke3pcogl.apps.googleusercontent.com';  // Mohsen
 
 class GoogleBtn extends Component {
     constructor(props) {

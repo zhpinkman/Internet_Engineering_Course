@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @SpringBootApplication
 public class Ca07MzFoodDeliveryApplication {
 	public static void main(String[] args) throws SQLException {
-		MzRepository.getInstance().createAllTables();
+//		MzRepository.getInstance().createAllTables();
 		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 		int foodPartyPeriod = 30; //Seconds
 		try {
