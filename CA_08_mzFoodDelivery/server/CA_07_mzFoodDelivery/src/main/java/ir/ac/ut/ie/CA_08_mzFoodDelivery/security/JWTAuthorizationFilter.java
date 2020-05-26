@@ -80,7 +80,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                                 .map(GrantedAuthority::getAuthority)
                                 .collect(Collectors.toList()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 3000))
+                .setExpiration(new Date(System.currentTimeMillis() + 600000000))
                 .signWith(SignatureAlgorithm.HS512,
                         SECRET.getBytes()).compact();
 
