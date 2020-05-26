@@ -2,11 +2,15 @@ package ir.ac.ut.ie.CA_07_mzFoodDelivery.utils;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import java.lang.reflect.Array;
+import java.security.spec.KeySpec;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 public class StringUtils {
@@ -41,5 +45,9 @@ public class StringUtils {
 
     public static boolean hasIllegalChars(String str) {
         return !stripTags(str).equals(str);
+    }
+
+    public static String hashString(String str) throws Exception{
+        return Integer.toString(str.hashCode());
     }
 }
