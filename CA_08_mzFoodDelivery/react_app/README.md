@@ -63,10 +63,12 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 
 you can run the project on docker containers with nginx with these commands:
 
-    npm run-script build
+    npm run-script build (maybe not necessary)
     
+    // build the docker image
     sudo docker build -t react-ui .
     
+    // run the app
     sudo docker run -d --name reactui -p 3000:80 react-ui
 
 #### extra commands 
