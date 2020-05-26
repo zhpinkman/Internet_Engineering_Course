@@ -27,6 +27,7 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy from the stahg 1
 COPY --from=builder /react-ui/build /usr/share/nginx/html
 
+# This does'nt matter in nginx! :)
 EXPOSE 3000 80
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

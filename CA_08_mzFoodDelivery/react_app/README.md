@@ -68,7 +68,7 @@ you can run the project on docker containers with nginx with these commands:
     // build the docker image
     sudo docker build -t react-ui .
     
-    // run the app
+    // run the app (80 is nginx listening port and 3000 is deploy port which can be anything)
     sudo docker run -d --name reactui -p 3000:80 react-ui
 
 #### extra commands 
