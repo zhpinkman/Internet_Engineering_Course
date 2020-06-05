@@ -1,0 +1,16 @@
+# This file is a template, and might need editing before it works on your project.
+docker-build-master:
+  # Official docker image.
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" ./CA_08_mzFoodDelivery/server/CA_07_mzFoodDelivery/Dockerfile
+    - docker push "$CI_REGISTRY_IMAGE"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE2" ./CA_08_mzFoodDelivery/react_app/Dockerfile
+    - docker push "$CI_REGISTRY_IMAGE2"
+  only:
+    - master
