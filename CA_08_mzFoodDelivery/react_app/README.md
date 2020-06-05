@@ -97,7 +97,7 @@ for getting the images and removing them:
 
     docker images
     
-    docker images rm [name of the image]  
+    docker image rm [image ID]  
 
 ### `npm run build` fails to minify
 
