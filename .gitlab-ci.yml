@@ -8,7 +8,7 @@ stages:
 
 docker-build-master-backend:
   # Official docker image.
-  image: docker:latest
+  image: docker:"$BACK_TAGNAME"
   stage: build
   services:
     - docker:dind
@@ -23,7 +23,7 @@ docker-build-master-backend:
     
 docker-build-master-frontend:
   # Official docker image.
-  image: docker:latest
+  image: docker:"$FRONT_TAGNAME"
   stage: build
   services:
     - docker:dind
