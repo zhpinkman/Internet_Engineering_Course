@@ -6,11 +6,11 @@ docker-build-master:
   services:
     - docker:dind
   before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker login -u "$DOCKER_HUB_REGISTRY_USER" -p "$DOCKER_HUB_REGISTRY_PASSWORD" $DOCKER_HUB_REGISTRY
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" ./CA_08_mzFoodDelivery/server/CA_07_mzFoodDelivery/Dockerfile
-    - docker push "$CI_REGISTRY_IMAGE"
-    - docker build --pull -t "$CI_REGISTRY_IMAGE2" ./CA_08_mzFoodDelivery/react_app/Dockerfile
-    - docker push "$CI_REGISTRY_IMAGE2"
+    - docker build --pull -t java-server ./CA_08_mzFoodDelivery/server/CA_07_mzFoodDelivery/Dockerfile
+    - docker push java-server
+    - docker build --pull -t react-app ./CA_08_mzFoodDelivery/react_app/Dockerfile
+    - docker push react-app
   only:
     - master
