@@ -4,8 +4,7 @@ variables:
     BACK_TAGNAME: "back"
     
 stages:
-    - docker-build-master-backend
-    - docker-build-master-frontend
+    - build
 
 docker-build-master-backend:
   # Official docker image.
