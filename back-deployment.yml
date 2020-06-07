@@ -17,10 +17,10 @@
         spec:                     # Spec for the containers that will be run in the Pods
           containers:
           - name: back
-            image: callicoder/back:1.0.0
+            image: index.docker.io/mz77/mzfood:back
             imagePullPolicy: IfNotPresent
             ports:
-              - name: http
+              - name: back
                 containerPort: 8080 # The port that the container exposes
             resources:
               limits:
@@ -54,7 +54,7 @@
       selector:
         app: back   # The service exposes Pods with label `app=back`
       ports:                      # Forward incoming connections on port 8080 to the target port 8080
-      - name: http
+      - name: back
         port: 8080
         targetPort: 8080
     
