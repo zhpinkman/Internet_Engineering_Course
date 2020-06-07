@@ -131,3 +131,5 @@ buildNumber.properties
 
 # End of https://www.gitignore.io/api/java,maven,intellij
 CA_05_mzFoodDelivery/server/.idea/workspace.xml
+
+kubectl.exe
