@@ -5,7 +5,7 @@ import {toast} from "react-toastify";
 let instance = axios.create();
 toast.configure({rtl: true, className: "text-center"});
 
-let domain_url = "http://localhost:8080/";
+let domain_url = "http://185.166.105.6:31001/";
 let auth_url = "auth";
 // let partyFoods_url = "partyFoods";
 // let user_url = "user";
