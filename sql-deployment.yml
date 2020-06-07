@@ -4,46 +4,46 @@ kind: PersistentVolumeClaim        # Create a PersistentVolumeClaim to request a
 metadata:                          # Claim name and labels
   name: mysql-pv-claim
   labels:
-    app: polling-app
+    app: mz-food
 spec:                              # Access mode and resource limits
   storageClassName: manual         # Request a certain storage class
   accessModes:
     - ReadWriteOnce                # ReadWriteOnce means the volume can be mounted as read-write by a single Node
   resources:
     requests:
-      storage: 250Mi
+      storage: 300Mi
 ---
 apiVersion: v1                    # API version
 kind: Service                     # Type of kubernetes resource 
 metadata:
-  name: polling-app-mysql         # Name of the resource
+  name: mz-food-mysql         # Name of the resource
   labels:                         # Labels that will be applied to the resource
-    app: polling-app
+    app: mz-food
 spec:
   ports:
     - port: 3306
-  selector:                       # Selects any Pod with labels `app=polling-app,tier=mysql`
-    app: polling-app
+  selector:                       # Selects any Pod with labels `app=mz-food,tier=mysql`
+    app: mz-food
     tier: mysql
   clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment                    # Type of the kubernetes resource
 metadata:
-  name: polling-app-mysql           # Name of the deployment
+  name: mz-food-mysql           # Name of the deployment
   labels:                           # Labels applied to this deployment 
-    app: polling-app
+    app: mz-food
 spec:
   selector:
     matchLabels:                    # This deployment applies to the Pods matching the specified labels
-      app: polling-app
+      app: mz-food
       tier: mysql
   strategy:
     type: Recreate
   template:                         # Template for the Pods in this deployment
     metadata:
       labels:                       # Labels to be applied to the Pods in this deployment
-        app: polling-app
+        app: mz-food
         tier: mysql
     spec:                           # The spec for the containers that will be run inside the Pods in this deployment
       containers:
@@ -75,8 +75,8 @@ spec:
           name: mysql
         resources:
           limits:
-            cpu: 0.2
-            memory: "400Mi"
+            cpu: 0.3
+            memory: "500Mi"
         volumeMounts:
         - name: mysql-persistent-storage  # This name should match the name specified in `volumes.name`
           mountPath: /var/lib/mysql
