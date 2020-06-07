@@ -12,9 +12,9 @@ public class ConnectionPool {
     static {
         ds.setDriverClassName("com.mysql.jdbc.Driver");
         // remote db
-        ds.setUrl("jdbc:mysql://localhost:3307/mzFoodDelivery");
-        ds.setUsername("mysql");
-        ds.setPassword("");
+        ds.setUrl("jdbc:mysql://mz-food-mysql:3306/mzFoodDelivery");
+        ds.setUsername("root");
+        ds.setPassword("R00t");
         ds.setMinIdle(1);
         ds.setMaxIdle(2000);
         ds.setMaxOpenPreparedStatements(2000);
