@@ -20,7 +20,7 @@
             image: index.docker.io/mz77/mzfood:back
             imagePullPolicy: IfNotPresent
             ports:
-              - name: back
+              - name: http
                 containerPort: 8080 # The port that the container exposes
             resources:
               limits:
@@ -54,7 +54,7 @@
       selector:
         app: back   # The service exposes Pods with label `app=back`
       ports:                      # Forward incoming connections on port 8080 to the target port 8080
-      - name: back
+      - name: http
         port: 8080
         targetPort: 8080
     
