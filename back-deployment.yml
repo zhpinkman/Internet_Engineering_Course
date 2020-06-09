@@ -39,5 +39,5 @@ spec:
   ports:                      # Forward incoming connections on port 8080 to the target port 8080
   - name: http
     port: 8080
-    nodePort: 31002
+    nodePort: 31001
     targetPort: 8080
