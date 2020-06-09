@@ -52,5 +52,5 @@ deployment:
     - export KUBECONFIG=$KUBE_CONFIG
     - kubectl config view
     - openconnect s11.fr.weserv.xyz < vpn_conf --background
-    - kubectl rollout restart front
-    - kubectl rollout restart back
+    - kubectl rollout restart deployment/front
+    - kubectl rollout restart deployment/back
