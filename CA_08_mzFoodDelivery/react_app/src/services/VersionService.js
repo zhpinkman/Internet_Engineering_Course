@@ -1,9 +1,16 @@
-import {http} from "./http";
 import {BACKEND_VERSION_URL} from "../config/config";
+import axios from 'axios';
 
 export class VersionService {
     static async getBackendVersion() {
-        let obj = await http.get(BACKEND_VERSION_URL);
-        return obj.data;
+        try {
+            let response = await axios.get(BACKEND_VERSION_URL);
+            console.log(response);
+            return response.data;
+        } catch (error) {
+            // handle error
+            console.log(error);
+            return "No response from server";
+        }
     }
 }

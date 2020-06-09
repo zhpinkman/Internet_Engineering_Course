@@ -23,3 +23,5 @@ export let TOAST_PERMISSION_DENIED = "برای دسترسی در ابتدا وا
 export let TOAST_MESSAGE_FILLED_BOTH_SEARCH = "برای جستجو در غذاها، نام رستوران را پاک کنید.";
 
 export let RESTAURANTS_LIST_PAGE_SIZE = 8;
+
+export let FRONT_VERSION = "1.00"

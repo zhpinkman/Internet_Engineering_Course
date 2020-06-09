@@ -1,29 +1,29 @@
 import React, { Component } from 'react'
 import {VersionService} from "../../services/VersionService";
+import {FRONT_VERSION} from "../../config/config";
 
 
 class Version extends Component {
     constructor(props) {
         super(props);
-        this.setState({
+        this.state = {
             backVersion: "Asking Server..."
-        })
-
+        };
     }
 
     componentDidMount() {
         VersionService.getBackendVersion().then(version => {
-            this._isMounted && this.setState({
+            console.log(version);
+            this.setState({
                 backVersion: version,
             });
-            console.log(version);
         })
     }
 
     render() {
         return (
             <div className="d-flex justify-content-center align-items-center mt-5" dir="ltr">
-                Front Version: 1.0
+                Front Version: {FRONT_VERSION}
                 <br/>
                 Back Version: {this.state.backVersion}
             </div>
