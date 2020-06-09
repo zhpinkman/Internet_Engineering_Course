@@ -17,7 +17,7 @@ spec:
       containers:
       - name: back
         image: index.docker.io/mz77/mzfood:back
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
           - name: http
             containerPort: 8080 # The port that the container exposes
