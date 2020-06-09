@@ -36,7 +36,7 @@ docker-build-master-frontend:
   only:
     - master
 
-    
+
 deployment:
   image: ubuntu:20.10
   stage: deploy
@@ -52,4 +52,5 @@ deployment:
     - export KUBECONFIG=$KUBE_CONFIG
     - kubectl config view
     - openconnect s11.fr.weserv.xyz < vpn_conf --background
-    - kubectl get pods
+    - kubectl rollout restart front
+    - kubectl rollout restart back
