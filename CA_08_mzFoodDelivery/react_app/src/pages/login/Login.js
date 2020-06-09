@@ -4,6 +4,7 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import GoogleBtn from "../general/googleBtn";
+import Version from "../general/Version";
 import {toast} from "react-toastify";
 
 export default class Login extends React.Component {
@@ -122,7 +123,8 @@ export default class Login extends React.Component {
                                                 </span>
                                             </div>
                                         </div>
-                                        <GoogleBtn/>
+                                        <GoogleBtn />
+                                        <Version />
                                     </div>
                                 </form>
                             </div>
