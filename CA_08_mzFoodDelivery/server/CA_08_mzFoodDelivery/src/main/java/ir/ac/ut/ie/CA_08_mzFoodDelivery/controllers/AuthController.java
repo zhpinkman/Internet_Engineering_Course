@@ -6,8 +6,10 @@ import ir.ac.ut.ie.CA_08_mzFoodDelivery.domain.MzFoodDelivery.MzFoodDelivery;
 import ir.ac.ut.ie.CA_08_mzFoodDelivery.domain.MzFoodDelivery.User.User;
 import ir.ac.ut.ie.CA_08_mzFoodDelivery.repository.MzRepository;
 import ir.ac.ut.ie.CA_08_mzFoodDelivery.security.JWTAuthorizationFilter;
+import ir.ac.ut.ie.CA_08_mzFoodDelivery.utils.HTTPRequestHandler.HTTPRequestHandler;
 import ir.ac.ut.ie.CA_08_mzFoodDelivery.utils.StringUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -66,11 +68,16 @@ public class AuthController {
         Gson gson = new Gson();
         Properties properties = gson.fromJson(jsonString, Properties.class);
         String jwtToken = properties.getProperty("token");
-        String userEmail = JWTAuthorizationFilter.checkGoogleAuth(jwtToken);
+
+//        String userEmail = JWTAuthorizationFilter.checkGoogleAuth(jwtToken);
         try {
+            System.out.println("Sending Request to google auth at:" + "https://oauth2.googleapis.com/tokeninfo?id_token=" + jwtToken);
+            Properties userProps = gson.fromJson(HTTPRequestHandler.getRequest("https://oauth2.googleapis.com/tokeninfo?id_token=" + jwtToken), Properties.class);
+            String userEmail = userProps.getProperty("email");
             User user = MzRepository.getInstance().getUser(userEmail);
             return JWTAuthorizationFilter.getJWTToken(userEmail);
-        } catch (SQLException e) {
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
             return null;
         }
