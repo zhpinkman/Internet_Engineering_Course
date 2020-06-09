@@ -12,6 +12,11 @@ import java.util.Map;
 @RequestMapping("/test")
 public class testController {
 
+    @GetMapping("/version")
+    public String version() {
+        return "1.00";
+    }
+
     @GetMapping("")
     public String testing() {
         return "authorized";

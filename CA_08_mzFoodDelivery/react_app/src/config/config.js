@@ -11,6 +11,7 @@ export let SEARCH_FOODS_URL = DOMAIN + "search/foods/";
 export let LOGIN_URL = DOMAIN + "auth/login/";
 export let GOOGLE_LOGIN_URL = DOMAIN + "auth/glogin/";
 export let SIGNUP_URL = DOMAIN + "auth/signup/";
+export let BACKEND_VERSION_URL = DOMAIN + "test/version";
 
 
 export let OK = "ok";
@@ -22,3 +23,5 @@ export let TOAST_PERMISSION_DENIED = "برای دسترسی در ابتدا وا
 export let TOAST_MESSAGE_FILLED_BOTH_SEARCH = "برای جستجو در غذاها، نام رستوران را پاک کنید.";
 
 export let RESTAURANTS_LIST_PAGE_SIZE = 8;
+
+export let FRONT_VERSION = "1.00"

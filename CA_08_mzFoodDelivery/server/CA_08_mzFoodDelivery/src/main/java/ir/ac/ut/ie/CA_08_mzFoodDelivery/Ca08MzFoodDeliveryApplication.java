@@ -16,7 +16,7 @@ public class Ca08MzFoodDeliveryApplication {
 	public static void main(String[] args) throws SQLException {
 		MzRepository.getInstance().createAllTables();
 		ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-		int foodPartyPeriod = 30; //Seconds
+		int foodPartyPeriod = 3540; //Seconds = 60 min
 		try {
 			RestaurantsService.getInstance().importRestaurantsFromWeb();
 			// Start Food Party
