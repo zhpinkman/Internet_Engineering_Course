@@ -5,6 +5,7 @@ variables:
     
 stages:
     - build
+    - deploy
 
 docker-build-master-backend:
   # Official docker image.
@@ -34,3 +35,11 @@ docker-build-master-frontend:
     - docker push "$DOCKER_HUB_REGISTRY_IMAGE":"$FRONT_TAGNAME"
   only:
     - master
+
+deployment:
+  image: ubuntu
+  stage: deploy
+  script:
+    - apt install openconnect
+    - apt-get update
+    - echo zhivar
