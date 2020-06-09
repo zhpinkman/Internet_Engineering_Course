@@ -40,6 +40,6 @@ deployment:
   image: ubuntu
   stage: deploy
   script:
-    - apt install openconnect
+    - apt-get install openconnect
     - apt-get update
     - echo zhivar
