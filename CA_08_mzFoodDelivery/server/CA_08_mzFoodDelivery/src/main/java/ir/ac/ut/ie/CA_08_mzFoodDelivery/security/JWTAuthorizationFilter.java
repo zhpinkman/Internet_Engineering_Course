@@ -121,7 +121,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     }
 
     public static String checkGoogleAuth(String token) throws GeneralSecurityException, IOException {
-        String CLIENT_ID = "355342436276-cv166bttml8pconilhtbjnnfulvb1u93.apps.googleusercontent.com";
+        String CLIENT_ID = "531123957595-6grppb7pa8usclorcp34vlc43dmhhedg.apps.googleusercontent.com";
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
                 .setAudience(Collections.singletonList(CLIENT_ID))
                 .build();
