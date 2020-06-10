@@ -24,4 +24,4 @@ export let TOAST_MESSAGE_FILLED_BOTH_SEARCH = "برای جستجو در غذاه
 
 export let RESTAURANTS_LIST_PAGE_SIZE = 8;
 
-export let FRONT_VERSION = "1.03";
+export let FRONT_VERSION = "1.04";

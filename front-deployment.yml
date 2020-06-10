@@ -27,7 +27,7 @@ spec:
         resources:
           limits:
             cpu: 0.2
-            memory: "50Mi"
+            memory: "100Mi"
 ---
 apiVersion: v1                  # API version
 kind: Service                   # Type of kubernetes resource
