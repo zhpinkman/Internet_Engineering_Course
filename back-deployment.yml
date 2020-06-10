@@ -6,6 +6,11 @@ metadata:
     app: back
 spec:
   replicas: 2                 # No. of replicas/pods to run in this deployment
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
   selector:
     matchLabels:              # The deployment applies to any pods mayching the specified labels
       app: back
