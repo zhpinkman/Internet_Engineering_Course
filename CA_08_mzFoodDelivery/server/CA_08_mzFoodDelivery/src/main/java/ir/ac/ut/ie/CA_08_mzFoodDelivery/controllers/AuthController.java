@@ -69,11 +69,11 @@ public class AuthController {
         Properties properties = gson.fromJson(jsonString, Properties.class);
         String jwtToken = properties.getProperty("token");
 
-        String userEmail = JWTAuthorizationFilter.checkGoogleAuth(jwtToken);
+//        String userEmail = JWTAuthorizationFilter.checkGoogleAuth(jwtToken);
         try {
-//            System.out.println("Sending Request to google auth at:" + "https://oauth2.googleapis.com/tokeninfo?id_token=" + jwtToken);
-//            Properties userProps = gson.fromJson(HTTPRequestHandler.getRequest("https://oauth2.googleapis.com/tokeninfo?id_token=" + jwtToken), Properties.class);
-//            String userEmail = userProps.getProperty("email");
+            System.out.println("Sending Request to google auth at:" + "https://oauth2.googleapis.com/tokeninfo?id_token=" + jwtToken);
+            Properties userProps = gson.fromJson(HTTPRequestHandler.getRequest("https://oauth2.googleapis.com/tokeninfo?id_token=" + jwtToken), Properties.class);
+            String userEmail = userProps.getProperty("email");
             User user = MzRepository.getInstance().getUser(userEmail);
             return JWTAuthorizationFilter.getJWTToken(userEmail);
         } catch (Exception e) {
