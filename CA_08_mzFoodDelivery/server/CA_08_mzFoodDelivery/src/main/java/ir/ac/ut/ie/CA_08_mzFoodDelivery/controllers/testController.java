@@ -14,7 +14,7 @@ public class testController {
 
     @GetMapping("/version")
     public String version() {
-        return "1.00";
+        return "1.01";
     }
 
     @GetMapping("")

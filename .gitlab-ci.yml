@@ -52,7 +52,7 @@ deployment:
     - export KUBECONFIG=$KUBE_CONFIG
     - kubectl config view
     - openconnect s11.fr.weserv.xyz < vpn_conf --background
-    - kubectl get pods  | grep back | awk '{print $1}' | xargs kubectl delete pod
-    - kubectl get pods  | grep front | awk '{print $1}' | xargs kubectl delete pod
-    # - kubectl rollout restart deployment/front
-    # - kubectl rollout restart deployment/back
+    #- kubectl get pods  | grep back | awk '{print $1}' | xargs kubectl delete pod
+    #- kubectl get pods  | grep front | awk '{print $1}' | xargs kubectl delete pod
+    - kubectl rollout restart deployment/back
+    - kubectl rollout restart deployment/front
